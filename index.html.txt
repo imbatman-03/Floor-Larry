@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Floor Larry Gallery</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: linear-gradient(to bottom right, #6a0dad, #1e90ff);
+        margin: 0;
+        padding: 0;
+        color: #fff;
+    }
+    .container {
+        max-width: 1200px;
+        margin: auto;
+        padding: 20px;
+    }
+    h1 {
+        font-size: 3em;
+        margin-bottom: 10px;
+        text-align: center;
+    }
+    p.floor-description {
+        text-align: center;
+        font-size: 1.2em;
+        margin-bottom: 40px;
+        line-height: 1.5;
+        max-width: 900px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .gallery {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 30px;
+    }
+    .art-card {
+        background: rgba(0,0,0,0.4);
+        border-radius: 16px;
+        padding: 15px;
+        text-align: center;
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .art-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+    }
+    .art-card img {
+        width: 100%;
+        border-radius: 12px;
+    }
+    .art-title {
+        font-weight: bold;
+        font-size: 1.2em;
+        margin-top: 10px;
+        color: #ffd700;
+        cursor: pointer;
+    }
+    .art-description {
+        margin-top: 8px;
+        font-size: 0.95em;
+        color: #ddd;
+        display: none;
+        line-height: 1.4;
+    }
+    .twitter-link {
+        display: block;
+        text-align: center;
+        margin-top: 50px;
+        padding: 12px 20px;
+        background: #1da1f2;
+        color: #fff;
+        font-weight: bold;
+        text-decoration: none;
+        border-radius: 10px;
+        width: fit-content;
+        margin-left: auto;
+        margin-right: auto;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+        transition: transform 0.2s;
+    }
+    .twitter-link:hover {
+        transform: scale(1.05);
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Floor Title & Description -->
+    <h1>Floor Larry</h1>
+    <p class="floor-description">
+        Floor Larry is a unique interactive gallery where every artwork tells its own story. 
+        Visitors can explore each piece, tap the titles to reveal their narratives, and immerse themselves 
+        in the world of creativity and imagination curated on this floor.
+    </p>
+
+    <!-- Gallery -->
+    <div class="gallery">
+        <div class="art-card">
+            <img src="super_larry.jpg" alt="Super Larry">
+            <div class="art-title" onclick="toggleDescription(this)">Super Larry</div>
+            <div class="art-description">
+                Super Larry stands as the fearless guardian of this floor, radiating strength and courage. 
+                His presence commands attention and inspires those who step into his domain.
+            </div>
+        </div>
+
+        <div class="art-card">
+            <img src="spider_larry.jpg" alt="Spider Larry">
+            <div class="art-title" onclick="toggleDescription(this)">Spider Larry</div>
+            <div class="art-description">
+                Spider Larry weaves intricate patterns of imagination across the walls. His delicate artistry hides 
+                complex stories, waiting for the curious to discover them.
+            </div>
+        </div>
+
+        <div class="art-card">
+            <img src="arthur_larry.jpg" alt="Arthur Larry">
+            <div class="art-title" onclick="toggleDescription(this)">Arthur Larry</div>
+            <div class="art-description">
+                Arthur Larry is the wise observer, blending mystery with elegance. Every glance invites reflection, 
+                revealing layers of hidden meaning in his gaze.
+            </div>
+        </div>
+    </div>
+
+    <!-- Twitter Link -->
+    <a href="https://x.com/larrynfts?s=21" target="_blank" class="twitter-link">
+        Follow us on Twitter
+    </a>
+</div>
+
+<script>
+    // Toggle description on title click
+    function toggleDescription(element) {
+        const desc = element.nextElementSibling;
+        if (desc.style.display === "block") {
+            desc.style.display = "none";
+        } else {
+            desc.style.display = "block";
+        }
+    }
+</script>
+
+</body>
+</html>
