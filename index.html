@@ -3,1583 +3,592 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>📺 LARRY-VISION 9000 - 24/7 ART BROADCAST</title>
+<title>FLOOR LARRY</title>
 <style>
     /* ============================================= */
-    /* 90s TV SET STYLES - FULL SCREEN EXPERIENCE */
+    /* BLACK & WHITE PIXELATED PREMIUM STYLE */
     /* ============================================= */
     
     * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
+        image-rendering: pixelated;
+        image-rendering: crisp-edges;
     }
     
     body {
-        font-family: 'Comic Sans MS', 'Arial Black', 'Impact', sans-serif;
         background: #000000;
         color: #FFFFFF;
-        margin: 0;
-        padding: 0;
+        font-family: 'Courier New', 'Monaco', monospace;
+        line-height: 1.4;
         min-height: 100vh;
+        padding: 0;
+        margin: 0;
         overflow-x: hidden;
-        background-image: 
-            radial-gradient(circle at 20% 30%, #330033 0%, transparent 50%),
-            radial-gradient(circle at 80% 70%, #003333 0%, transparent 50%);
     }
     
-    /* TV SCANLINES EFFECT */
-    .scanlines {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: 
-            repeating-linear-gradient(
-                0deg,
-                rgba(0, 0, 0, 0.15) 0px,
-                rgba(0, 0, 0, 0.15) 1px,
-                transparent 1px,
-                transparent 2px
-            );
-        pointer-events: none;
-        z-index: 9998;
-        opacity: 0.3;
-        animation: scan 10s linear infinite;
-    }
-    
-    @keyframes scan {
-        0% { transform: translateY(0); }
-        100% { transform: translateY(20px); }
-    }
-    
-    /* TV STATIC */
-    .static {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: 
-            repeating-linear-gradient(0deg, 
-                rgba(255, 255, 255, 0.05) 0px, 
-                rgba(255, 255, 255, 0.05) 1px, 
-                transparent 1px, 
-                transparent 2px),
-            repeating-linear-gradient(90deg, 
-                rgba(255, 255, 255, 0.03) 0px, 
-                rgba(255, 255, 255, 0.03) 1px, 
-                transparent 1px, 
-                transparent 2px);
-        pointer-events: none;
-        z-index: 9997;
-        opacity: 0.1;
-        animation: tvStatic 0.1s infinite;
-    }
-    
-    @keyframes tvStatic {
-        0% { opacity: 0.1; }
-        50% { opacity: 0.2; }
-        100% { opacity: 0.1; }
-    }
-    
-    /* TV SET CONTAINER */
-    .tv-set {
-        max-width: 1300px;
-        margin: 30px auto;
-        background: linear-gradient(135deg, #222222 0%, #444444 100%);
-        border: 50px solid #333333;
-        border-radius: 50px;
+    /* GLOSSY BLACK CONTAINER */
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
         padding: 40px;
         position: relative;
-        box-shadow: 
-            0 0 150px rgba(255, 255, 255, 0.1),
-            inset 0 0 100px rgba(0, 0, 0, 0.9);
-        overflow: hidden;
     }
     
-    .tv-set::before {
-        content: "";
-        position: absolute;
-        top: -30px;
-        left: -30px;
-        right: -30px;
-        bottom: -30px;
-        border: 30px solid #111111;
-        border-radius: 80px;
-        z-index: -1;
-    }
-    
-    /* TV SPEAKERS */
-    .tv-speaker {
-        position: absolute;
-        background: repeating-linear-gradient(90deg, 
-            #222222 0px, #222222 10px, 
-            #444444 10px, #444444 20px);
-        width: 300px;
-        height: 40px;
-        top: 50%;
-        transform: translateY(-50%);
-        border-radius: 10px;
-    }
-    
-    .speaker-left {
-        left: -350px;
-    }
-    
-    .speaker-right {
-        right: -350px;
-    }
-    
-    /* TV SCREEN */
-    .tv-screen {
-        background: linear-gradient(135deg, #000033 0%, #000000 100%);
-        border: 20px solid #000000;
-        border-radius: 20px;
-        padding: 30px;
+    /* PIXELATED HEADER */
+    .header {
+        text-align: center;
+        margin-bottom: 60px;
+        padding-bottom: 30px;
+        border-bottom: 2px solid #333333;
         position: relative;
-        box-shadow: 
-            inset 0 0 100px rgba(0, 0, 255, 0.4),
-            inset 0 0 60px rgba(0, 255, 255, 0.3),
-            0 0 80px rgba(0, 255, 255, 0.2);
-        min-height: 800px;
     }
     
-    .tv-screen::after {
+    .header::after {
         content: "";
         position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: linear-gradient(
-            135deg,
-            transparent 0%,
-            rgba(255, 255, 255, 0.1) 50%,
-            transparent 100%
-        );
-        pointer-events: none;
+        bottom: -2px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 200px;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, #FFFFFF, transparent);
     }
     
-    /* TV CHANNEL INFO */
-    .channel-info {
-        position: absolute;
-        top: 30px;
-        left: 30px;
-        background: rgba(0, 0, 0, 0.9);
-        padding: 15px 25px;
-        border: 3px solid #00FFFF;
-        z-index: 100;
-        font-family: 'Impact', sans-serif;
-        min-width: 200px;
-    }
-    
-    .channel-number {
-        color: #00FFFF;
-        font-size: 28px;
-        text-shadow: 0 0 10px #00FFFF;
-        letter-spacing: 3px;
-    }
-    
-    .channel-name {
-        color: #FF00FF;
-        font-size: 20px;
-        letter-spacing: 2px;
+    .title {
+        font-size: 64px;
+        font-weight: bold;
+        letter-spacing: 8px;
         text-transform: uppercase;
-    }
-    
-    /* TV CLOCK */
-    .tv-clock {
-        position: absolute;
-        top: 30px;
-        right: 30px;
-        background: rgba(0, 0, 0, 0.9);
-        padding: 15px 25px;
-        border: 3px solid #FFFF00;
-        z-index: 100;
+        color: #FFFFFF;
+        text-shadow: 
+            0 0 10px rgba(255, 255, 255, 0.3),
+            0 0 20px rgba(255, 255, 255, 0.2);
+        margin-bottom: 20px;
         font-family: 'Courier New', monospace;
     }
     
-    .time-display {
-        color: #FFFF00;
-        font-size: 24px;
-        letter-spacing: 3px;
-    }
-    
-    /* TV KNOBS */
-    .tv-knob {
-        position: absolute;
-        width: 50px;
-        height: 50px;
-        background: radial-gradient(circle at 30% 30%, #666666, #222222);
-        border-radius: 50%;
-        border: 5px solid #000000;
-        box-shadow: 
-            0 0 20px rgba(0, 0, 0, 0.8),
-            inset 0 0 20px rgba(255, 255, 255, 0.1);
-        cursor: pointer;
-        z-index: 100;
-    }
-    
-    .volume-knob {
-        bottom: 30px;
-        left: 30px;
-    }
-    
-    .channel-knob {
-        bottom: 30px;
-        right: 30px;
-    }
-    
-    .knob-dot {
-        position: absolute;
-        top: 5px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 10px;
-        height: 10px;
-        background: #00FFFF;
-        border-radius: 50%;
-        box-shadow: 0 0 10px #00FFFF;
-    }
-    
-    /* ============================================= */
-    /* TV PROGRAM CONTENT - 90s COMMERCIAL STYLE */
-    /* ============================================= */
-    
-    .tv-program {
-        position: relative;
-        padding-top: 80px;
-    }
-    
-    /* TV SHOW TITLE */
-    .show-title {
-        text-align: center;
-        font-family: 'Impact', sans-serif;
-        font-size: 72px;
-        color: #FFFF00;
+    .subtitle {
+        font-size: 20px;
+        color: #CCCCCC;
+        letter-spacing: 2px;
         text-transform: uppercase;
-        letter-spacing: 8px;
-        margin-bottom: 20px;
-        text-shadow: 
-            3px 3px 0 #FF0000,
-            6px 6px 0 #000000,
-            9px 9px 0 #00FFFF;
-        animation: titleGlow 3s infinite alternate;
-    }
-    
-    @keyframes titleGlow {
-        0% { 
-            text-shadow: 
-                3px 3px 0 #FF0000,
-                6px 6px 0 #000000,
-                9px 9px 0 #00FFFF;
-        }
-        100% { 
-            text-shadow: 
-                3px 3px 0 #00FFFF,
-                6px 6px 0 #000000,
-                9px 9px 0 #FF00FF,
-                0 0 30px #FFFF00;
-        }
-    }
-    
-    .show-subtitle {
-        text-align: center;
-        font-family: 'Arial Black', sans-serif;
-        font-size: 28px;
-        color: #00FFFF;
-        margin-bottom: 40px;
-        text-transform: uppercase;
-        letter-spacing: 4px;
-        background: rgba(0, 0, 0, 0.7);
-        padding: 15px;
-        display: inline-block;
-        margin-left: 50%;
-        transform: translateX(-50%);
-        border: 3px solid #FF00FF;
-        box-shadow: 0 0 20px rgba(255, 0, 255, 0.5);
-    }
-    
-    /* TV COMMERCIAL BREAK STYLE */
-    .commercial-break {
-        background: linear-gradient(45deg, #660000, #000066, #006600);
-        padding: 40px;
-        margin: 50px 0;
-        border: 8px solid #FFFF00;
-        position: relative;
-        animation: commercialPulse 4s infinite;
-    }
-    
-    @keyframes commercialPulse {
-        0%, 100% { border-color: #FFFF00; }
-        33% { border-color: #FF0000; }
-        66% { border-color: #00FFFF; }
-    }
-    
-    .commercial-title {
-        text-align: center;
-        font-family: 'Impact', sans-serif;
-        font-size: 48px;
-        color: #FFFFFF;
-        text-transform: uppercase;
-        letter-spacing: 4px;
-        margin-bottom: 30px;
-        text-shadow: 
-            2px 2px 0 #000000,
-            4px 4px 0 #FF0000;
-    }
-    
-    /* CALL TO ACTION STICKER */
-    .call-to-action {
-        position: absolute;
-        top: -25px;
-        right: 50px;
-        background: #FF0000;
-        color: #FFFF00;
-        padding: 20px 40px;
-        font-family: 'Impact', sans-serif;
-        font-size: 28px;
-        transform: rotate(10deg);
-        animation: callWiggle 2s infinite alternate;
-        border: 5px dashed #FFFF00;
-        z-index: 10;
-    }
-    
-    @keyframes callWiggle {
-        0% { transform: rotate(8deg) scale(1); }
-        100% { transform: rotate(12deg) scale(1.1); }
-    }
-    
-    /* ============================================= */
-    /* ORIGINAL CONTENT - RETRO STYLED */
-    /* ============================================= */
-    
-    .floor-description {
-        text-align: center;
-        font-family: 'Comic Sans MS', cursive;
-        font-size: 22px;
-        margin: 40px auto;
+        max-width: 600px;
+        margin: 0 auto;
         line-height: 1.6;
-        max-width: 900px;
-        color: #00FF00;
-        background: rgba(0, 0, 0, 0.7);
-        padding: 25px;
-        border: 3px solid #00FFFF;
-        border-radius: 15px;
-        position: relative;
-        z-index: 2;
     }
     
-    .floor-description::before {
-        content: "📺";
-        position: absolute;
-        left: 20px;
-        top: 20px;
-        font-size: 30px;
-        animation: iconFloat 3s infinite ease-in-out;
-    }
-    
-    .floor-description::after {
-        content: "📺";
-        position: absolute;
-        right: 20px;
-        bottom: 20px;
-        font-size: 30px;
-        animation: iconFloat 3s infinite ease-in-out reverse;
-    }
-    
-    @keyframes iconFloat {
-        0%, 100% { transform: translateY(0); }
-        50% { transform: translateY(-10px); }
-    }
-    
-    /* TV ART GALLERY - 90s STYLE */
-    .tv-gallery {
+    /* PIXEL ART GALLERY */
+    .gallery {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
         gap: 40px;
         margin: 60px 0;
     }
     
-    .tv-art-card {
-        background: rgba(0, 0, 0, 0.8);
-        border-radius: 20px;
+    .art-card {
+        background: rgba(20, 20, 20, 0.9);
+        border: 1px solid #333333;
         padding: 25px;
-        text-align: center;
         transition: all 0.3s;
         position: relative;
-        border: 4px solid;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
         overflow: hidden;
     }
     
-    .tv-art-card:hover {
-        transform: translateY(-10px) scale(1.05);
-        box-shadow: 0 20px 40px rgba(255, 255, 0, 0.3);
+    .art-card:hover {
+        background: rgba(30, 30, 30, 0.95);
+        border-color: #666666;
+        transform: translateY(-5px);
+        box-shadow: 
+            0 10px 30px rgba(0, 0, 0, 0.5),
+            0 0 50px rgba(255, 255, 255, 0.05);
     }
     
-    /* Different border colors for each Larry */
-    .tv-art-card:nth-child(1) {
-        border-color: #FF0000;
-    }
-    
-    .tv-art-card:nth-child(2) {
-        border-color: #0000FF;
-    }
-    
-    .tv-art-card:nth-child(3) {
-        border-color: #FF6600;
-    }
-    
-    .tv-art-card::before {
+    .art-card::before {
         content: "";
         position: absolute;
         top: 0;
         left: 0;
         right: 0;
-        height: 5px;
-        background: linear-gradient(90deg, 
-            #FF0000, #FFFF00, #00FF00, #00FFFF, #0000FF, #FF00FF, #FF0000);
-        animation: borderRun 3s linear infinite;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, #666666, transparent);
     }
     
-    @keyframes borderRun {
-        0% { background-position: 0% 0%; }
-        100% { background-position: 200% 0%; }
+    .art-card::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, #666666, transparent);
     }
     
-    .tv-art-card img {
+    .art-image {
         width: 100%;
         height: 200px;
         object-fit: cover;
-        border-radius: 12px;
-        border: 3px solid #FFFFFF;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-        margin-bottom: 15px;
-        transition: transform 0.3s;
-    }
-    
-    .tv-art-card:hover img {
-        transform: scale(1.1);
-    }
-    
-    .tv-art-title {
-        font-family: 'Impact', sans-serif;
-        font-size: 28px;
-        margin-top: 15px;
-        color: #FFFF00;
-        cursor: pointer;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        padding: 10px;
-        background: rgba(0, 0, 0, 0.7);
-        border: 2px solid;
+        border: 2px solid #333333;
+        margin-bottom: 20px;
+        filter: grayscale(100%) contrast(120%);
         transition: all 0.3s;
     }
     
-    .tv-art-title:hover {
-        background: rgba(255, 255, 0, 0.2);
-        color: #FFFFFF;
+    .art-card:hover .art-image {
+        filter: grayscale(0%) contrast(110%);
+        border-color: #666666;
     }
     
-    .tv-art-description {
-        margin-top: 15px;
-        font-size: 18px;
-        color: #00FFFF;
-        line-height: 1.5;
-        padding: 15px;
-        background: rgba(0, 0, 0, 0.6);
-        border-radius: 10px;
-        border-left: 4px solid #FF00FF;
-        display: none;
-        animation: fadeIn 0.5s;
-    }
-    
-    @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(10px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-    
-    /* TV WALLET COLLECTOR - ULTRA RETRO */
-    .tv-wallet-collector {
-        background: rgba(0, 20, 40, 0.95);
-        border: 6px solid;
-        border-image: repeating-linear-gradient(45deg, #ff00ff, #00ffff 10px, #ffff00 20px) 6;
-        padding: 40px;
-        margin: 60px auto;
-        position: relative;
-        overflow: hidden;
-        box-shadow: 
-            0 0 50px rgba(255, 0, 255, 0.5),
-            inset 0 0 30px rgba(0, 255, 255, 0.3);
-        font-family: 'Courier New', monospace;
-    }
-    
-    .tv-wallet-header {
-        text-align: center;
-        margin-bottom: 30px;
-        position: relative;
-        z-index: 2;
-    }
-    
-    .tv-wallet-title {
-        font-family: 'Impact', sans-serif;
-        font-size: 3.2em;
-        color: #fff;
-        text-transform: uppercase;
-        letter-spacing: 4px;
-        text-shadow: 
-            0 0 15px #ff00ff,
-            0 0 25px #ff00ff,
-            0 0 35px #00ffff;
-        margin-bottom: 15px;
-        animation: neonPulse 2s infinite alternate;
-    }
-    
-    @keyframes neonPulse {
-        from { 
-            text-shadow: 
-                0 0 10px #ff00ff,
-                0 0 20px #ff00ff,
-                0 0 30px #00ffff;
-        }
-        to { 
-            text-shadow: 
-                0 0 15px #ff00ff,
-                0 0 25px #00ffff,
-                0 0 35px #ffff00,
-                0 0 45px #00ff00;
-        }
-    }
-    
-    .tv-wallet-subtitle {
-        color: #00ff00;
-        font-size: 1.4em;
-        text-transform: uppercase;
-        letter-spacing: 3px;
-        background: rgba(0, 0, 0, 0.8);
-        padding: 12px 25px;
-        display: inline-block;
-        border: 3px solid #00ffff;
-        transform: rotate(-2deg);
-    }
-    
-    /* TV CARD DISPLAY */
-    .tv-card-display {
-        background: black;
-        border: 8px solid;
-        border-image: repeating-linear-gradient(45deg, #ffff00, #ff00ff 10px) 8;
-        width: 280px;
-        height: 200px;
-        margin: 0 auto 35px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        position: relative;
-        overflow: hidden;
-        box-shadow: 0 0 35px rgba(255, 255, 0, 0.6);
-        animation: tvFloat 5s ease-in-out infinite;
-    }
-    
-    @keyframes tvFloat {
-        0%, 100% { 
-            transform: translateY(0) rotate(0deg);
-            box-shadow: 0 0 35px rgba(255, 255, 0, 0.6);
-        }
-        50% { 
-            transform: translateY(-15px) rotate(2deg);
-            box-shadow: 0 0 50px rgba(0, 255, 255, 0.8);
-        }
-    }
-    
-    .tv-card-glow {
-        position: absolute;
-        top: -50%;
-        left: -50%;
-        width: 200%;
-        height: 200%;
-        background: radial-gradient(circle, 
-            rgba(255,255,0,0.4) 0%, 
-            rgba(255,0,255,0.3) 30%, 
-            transparent 70%);
-        animation: tvRotateGlow 15s linear infinite;
-    }
-    
-    @keyframes tvRotateGlow {
-        from { transform: rotate(0deg); }
-        to { transform: rotate(360deg); }
-    }
-    
-    .tv-card-img {
-        max-width: 90%;
-        max-height: 90%;
-        object-fit: contain;
-        display: block;
-        filter: drop-shadow(0 0 10px rgba(255, 255, 0, 0.5));
-    }
-    
-    /* TV FORM BOX */
-    .tv-form-box {
-        background: rgba(0, 30, 60, 0.9);
-        border: 5px solid #00ffff;
-        padding: 30px;
-        margin-bottom: 25px;
-        position: relative;
-        z-index: 2;
-        box-shadow: 
-            inset 0 0 30px rgba(0, 255, 255, 0.3),
-            0 0 30px rgba(0, 255, 255, 0.2);
-    }
-    
-    .tv-form-title {
-        color: #ffff00;
-        font-size: 1.5em;
-        margin-bottom: 25px;
-        text-align: center;
-        text-transform: uppercase;
-        letter-spacing: 3px;
-        text-shadow: 0 0 10px #ffff00;
-    }
-    
-    .tv-form-group {
-        margin-bottom: 25px;
-    }
-    
-    .tv-form-label {
-        display: block;
-        color: #00ff00;
+    .art-title {
+        font-size: 24px;
         font-weight: bold;
-        margin-bottom: 10px;
-        font-size: 1.2em;
+        color: #FFFFFF;
         text-transform: uppercase;
         letter-spacing: 2px;
+        margin-bottom: 15px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #333333;
+        cursor: pointer;
+        transition: all 0.3s;
     }
     
-    .tv-form-input {
+    .art-title:hover {
+        color: #FFFFFF;
+        border-bottom-color: #666666;
+    }
+    
+    .art-description {
+        font-size: 16px;
+        color: #AAAAAA;
+        line-height: 1.6;
+        display: none;
+        padding-top: 15px;
+        border-top: 1px solid #333333;
+        margin-top: 15px;
+    }
+    
+    /* PIXELATED FORM SECTION */
+    .form-section {
+        background: rgba(10, 10, 10, 0.95);
+        border: 1px solid #333333;
+        padding: 50px;
+        margin: 80px 0;
+        position: relative;
+    }
+    
+    .form-section::before {
+        content: "";
+        position: absolute;
+        top: -1px;
+        left: -1px;
+        right: -1px;
+        bottom: -1px;
+        border: 1px solid transparent;
+        background: linear-gradient(45deg, transparent, #666666, transparent) border-box;
+        mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+        mask-composite: exclude;
+        pointer-events: none;
+    }
+    
+    .form-header {
+        text-align: center;
+        margin-bottom: 40px;
+    }
+    
+    .form-title {
+        font-size: 36px;
+        font-weight: bold;
+        color: #FFFFFF;
+        text-transform: uppercase;
+        letter-spacing: 4px;
+        margin-bottom: 10px;
+    }
+    
+    .form-subtitle {
+        font-size: 16px;
+        color: #888888;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+    }
+    
+    /* FORM ELEMENTS */
+    .form-group {
+        margin-bottom: 30px;
+    }
+    
+    .form-label {
+        display: block;
+        font-size: 14px;
+        color: #888888;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        margin-bottom: 10px;
+    }
+    
+    .form-input {
         width: 100%;
         padding: 15px;
         background: rgba(0, 0, 0, 0.8);
-        border: 4px solid #ff00ff;
-        color: #00ff00;
+        border: 1px solid #333333;
+        color: #FFFFFF;
         font-family: 'Courier New', monospace;
-        font-size: 1.2em;
-        border-radius: 5px;
-        transition: all 0.3s;
+        font-size: 16px;
         letter-spacing: 1px;
+        transition: all 0.3s;
     }
     
-    .tv-form-input:focus {
+    .form-input:focus {
         outline: none;
-        border-color: #ffff00;
-        box-shadow: 
-            0 0 20px rgba(255, 255, 0, 0.7),
-            inset 0 0 20px rgba(255, 255, 0, 0.2);
+        border-color: #666666;
         background: rgba(0, 0, 0, 0.9);
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
     }
     
-    /* TV SUBMIT BUTTON */
-    .tv-submit-btn {
-        background: linear-gradient(45deg, 
-            #ff00ff 0%, 
-            #00ffff 50%, 
-            #ffff00 100%);
-        background-size: 200% 200%;
-        color: black;
-        border: none;
-        padding: 20px 50px;
-        font-family: 'Impact', sans-serif;
-        font-size: 1.5em;
+    /* PIXELATED BUTTON */
+    .submit-btn {
+        width: 100%;
+        padding: 20px;
+        background: #000000;
+        border: 1px solid #333333;
+        color: #FFFFFF;
+        font-family: 'Courier New', monospace;
+        font-size: 18px;
+        font-weight: bold;
         text-transform: uppercase;
         letter-spacing: 3px;
         cursor: pointer;
-        display: block;
-        margin: 30px auto;
-        position: relative;
-        overflow: hidden;
         transition: all 0.3s;
-        border: 6px solid #ffff00;
-        box-shadow: 
-            0 0 30px rgba(255, 0, 255, 0.6),
-            0 10px 25px rgba(0, 0, 0, 0.8);
-        animation: gradientShift 3s infinite alternate;
-    }
-    
-    @keyframes gradientShift {
-        0% { background-position: 0% 50%; }
-        100% { background-position: 100% 50%; }
-    }
-    
-    .tv-submit-btn:hover {
-        transform: scale(1.1);
-        box-shadow: 
-            0 0 50px rgba(0, 255, 255, 0.8),
-            0 15px 35px rgba(0, 0, 0, 0.9);
-        animation: none;
-        background: linear-gradient(45deg, 
-            #ffff00 0%, 
-            #ff00ff 50%, 
-            #00ffff 100%);
-    }
-    
-    .tv-submit-btn:active {
-        transform: scale(0.95);
-    }
-    
-    .tv-btn-text {
-        position: relative;
-        z-index: 2;
-        text-shadow: 1px 1px 0 #FFFFFF;
-    }
-    
-    .tv-btn-glow {
-        position: absolute;
-        top: -100%;
-        left: -100%;
-        width: 300%;
-        height: 300%;
-        background: radial-gradient(circle, 
-            rgba(255,255,255,0.5) 0%, 
-            transparent 60%);
-        animation: tvBtnRotate 4s linear infinite;
-    }
-    
-    @keyframes tvBtnRotate {
-        from { transform: rotate(0deg); }
-        to { transform: rotate(360deg); }
-    }
-    
-    /* TV RESPONSE MESSAGE */
-    .tv-response {
-        background: rgba(0, 0, 0, 0.9);
-        border: 4px solid #00ff00;
-        padding: 20px;
-        margin-top: 25px;
-        text-align: center;
-        color: #00ff00;
-        font-weight: bold;
-        min-height: 25px;
-        display: none;
-        font-family: 'Courier New', monospace;
-        position: relative;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-    }
-    
-    .tv-response::before {
-        content: "▶";
-        position: absolute;
-        left: 15px;
-        top: 18px;
-        color: #00ff00;
-        animation: tvBlink 1s infinite;
-        font-size: 1.2em;
-    }
-    
-    @keyframes tvBlink {
-        0%, 100% { opacity: 1; }
-        50% { opacity: 0.3; }
-    }
-    
-    .tv-response-text {
-        margin-left: 30px;
-        font-size: 1.2em;
-    }
-    
-    .tv-response-success {
-        border-color: #00ff00;
-        color: #00ff00;
-        text-shadow: 0 0 10px #00ff00;
-    }
-    
-    .tv-response-error {
-        border-color: #ff0000;
-        color: #ff0000;
-        text-shadow: 0 0 10px #ff0000;
-    }
-    
-    /* TV STATS BAR */
-    .tv-stats-bar {
-        display: flex;
-        justify-content: space-around;
-        background: rgba(0, 0, 0, 0.9);
-        padding: 20px;
-        border-top: 5px solid #ff00ff;
-        margin-top: 35px;
-        flex-wrap: wrap;
-        gap: 20px;
-        border-bottom: 5px solid #00ffff;
-    }
-    
-    .tv-stat-item {
-        color: #ffff00;
-        font-weight: bold;
-        text-align: center;
-        padding: 15px 20px;
-        border: 3px solid #00ffff;
-        background: rgba(0, 255, 255, 0.15);
-        min-width: 200px;
         position: relative;
         overflow: hidden;
-        animation: tvStatPulse 4s infinite;
     }
     
-    @keyframes tvStatPulse {
-        0%, 100% { 
-            box-shadow: 0 0 20px rgba(255, 255, 0, 0.3);
-            transform: scale(1);
-        }
-        50% { 
-            box-shadow: 0 0 30px rgba(255, 0, 255, 0.5);
-            transform: scale(1.05);
-        }
+    .submit-btn:hover {
+        background: #111111;
+        border-color: #666666;
+        letter-spacing: 4px;
     }
     
-    .tv-stat-value {
-        font-size: 1.8em;
-        color: #ff00ff;
-        display: block;
-        margin-top: 10px;
-        text-shadow: 0 0 10px #ff00ff;
-        font-family: 'Impact', sans-serif;
-        letter-spacing: 2px;
+    .submit-btn:active {
+        transform: translateY(1px);
     }
     
-    /* TV FOOTER */
-    .tv-footer {
-        text-align: center;
-        padding: 30px;
-        background: rgba(0, 0, 0, 0.95);
-        border-top: 5px solid #666666;
-        margin-top: 50px;
-        color: #999999;
-        font-size: 16px;
-        position: relative;
-        z-index: 2;
-    }
-    
-    .tv-copyright {
-        color: #00FFFF;
-        font-family: 'Impact', sans-serif;
-        font-size: 22px;
-        letter-spacing: 3px;
-        margin-bottom: 15px;
-    }
-    
-    /* TV TWITTER LINK */
-    .tv-twitter-link {
-        display: block;
-        text-align: center;
-        margin-top: 40px;
-        padding: 18px 35px;
-        background: linear-gradient(45deg, #1da1f2, #00acee);
-        color: #fff;
-        font-family: 'Impact', sans-serif;
-        font-size: 1.3em;
-        text-decoration: none;
-        border-radius: 15px;
-        width: fit-content;
-        margin-left: auto;
-        margin-right: auto;
-        box-shadow: 
-            0 8px 25px rgba(0, 0, 0, 0.6),
-            0 0 20px rgba(29, 161, 242, 0.5);
-        transition: all 0.3s;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        position: relative;
-        overflow: hidden;
-        border: 3px solid #FFFFFF;
-    }
-    
-    .tv-twitter-link:hover {
-        transform: scale(1.1) rotate(2deg);
-        box-shadow: 
-            0 12px 35px rgba(0, 0, 0, 0.8),
-            0 0 30px rgba(29, 161, 242, 0.7);
-        background: linear-gradient(45deg, #00acee, #1da1f2);
-    }
-    
-    .tv-twitter-link::before {
+    .submit-btn::before {
         content: "";
         position: absolute;
-        top: -50%;
-        left: -50%;
-        width: 200%;
-        height: 200%;
-        background: radial-gradient(circle, 
-            rgba(255,255,255,0.3) 0%, 
-            transparent 70%);
-        animation: twitterGlow 3s linear infinite;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+        transition: all 0.5s;
     }
     
-    @keyframes twitterGlow {
-        from { transform: rotate(0deg); }
-        to { transform: rotate(360deg); }
+    .submit-btn:hover::before {
+        left: 100%;
     }
     
-    /* TV BRANDING WATERMARK */
-    .tv-watermark {
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        color: rgba(255, 255, 255, 0.1);
-        font-family: 'Impact', sans-serif;
-        font-size: 48px;
-        writing-mode: vertical-rl;
-        text-orientation: mixed;
-        z-index: 9996;
-        letter-spacing: 10px;
+    /* RESPONSE MESSAGE */
+    .response {
+        margin-top: 20px;
+        padding: 20px;
+        border: 1px solid #333333;
+        font-size: 14px;
+        text-align: center;
+        color: #888888;
+        display: none;
+        letter-spacing: 1px;
         text-transform: uppercase;
     }
     
-    /* TV SNOW EFFECT (FOR NO SIGNAL) */
-    .tv-snow {
+    .response.success {
+        color: #FFFFFF;
+        border-color: #666666;
+        background: rgba(0, 0, 0, 0.9);
+    }
+    
+    .response.error {
+        color: #FF4444;
+        border-color: #FF4444;
+        background: rgba(255, 68, 68, 0.05);
+    }
+    
+    /* STATS BAR */
+    .stats {
+        display: flex;
+        justify-content: space-around;
+        padding: 30px 0;
+        border-top: 1px solid #333333;
+        border-bottom: 1px solid #333333;
+        margin: 40px 0;
+    }
+    
+    .stat-item {
+        text-align: center;
+    }
+    
+    .stat-label {
+        font-size: 12px;
+        color: #888888;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        margin-bottom: 10px;
+    }
+    
+    .stat-value {
+        font-size: 32px;
+        font-weight: bold;
+        color: #FFFFFF;
+        letter-spacing: 2px;
+    }
+    
+    /* TWITTER LINK */
+    .twitter-link {
+        display: block;
+        width: fit-content;
+        margin: 60px auto;
+        padding: 20px 40px;
+        border: 1px solid #333333;
+        color: #FFFFFF;
+        text-decoration: none;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        font-size: 14px;
+        transition: all 0.3s;
+        text-align: center;
+    }
+    
+    .twitter-link:hover {
+        border-color: #666666;
+        background: rgba(255, 255, 255, 0.05);
+        letter-spacing: 4px;
+    }
+    
+    /* FOOTER */
+    .footer {
+        text-align: center;
+        padding: 40px 0;
+        border-top: 1px solid #333333;
+        margin-top: 60px;
+        color: #666666;
+        font-size: 12px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+    }
+    
+    /* PIXEL BORDER EFFECT */
+    .pixel-border {
+        position: relative;
+        padding: 2px;
+        background: linear-gradient(45deg, 
+            #333333 25%, 
+            transparent 25%, 
+            transparent 50%, 
+            #333333 50%, 
+            #333333 75%, 
+            transparent 75%, 
+            transparent);
+        background-size: 4px 4px;
+    }
+    
+    .pixel-border-inner {
+        background: #000000;
+        padding: 40px;
+    }
+    
+    /* PIXEL GRID BACKGROUND */
+    .pixel-grid {
         position: fixed;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
+        background-image: 
+            linear-gradient(rgba(51, 51, 51, 0.1) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(51, 51, 51, 0.1) 1px, transparent 1px);
+        background-size: 20px 20px;
         pointer-events: none;
-        z-index: 9995;
-        opacity: 0;
-        transition: opacity 0.5s;
+        z-index: -1;
     }
     
-    .tv-snow.active {
-        opacity: 0.3;
+    /* SCROLLBAR */
+    ::-webkit-scrollbar {
+        width: 8px;
     }
     
-    /* RESPONSIVE DESIGN */
-    @media (max-width: 1200px) {
-        .tv-set {
-            margin: 20px;
-            border-width: 30px;
+    ::-webkit-scrollbar-track {
+        background: #000000;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+        background: #333333;
+    }
+    
+    ::-webkit-scrollbar-thumb:hover {
+        background: #666666;
+    }
+    
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+        .container {
             padding: 20px;
         }
         
-        .tv-speaker {
-            display: none;
-        }
-    }
-    
-    @media (max-width: 768px) {
-        .show-title {
-            font-size: 48px;
+        .title {
+            font-size: 40px;
             letter-spacing: 4px;
         }
         
-        .tv-gallery {
+        .gallery {
             grid-template-columns: 1fr;
             gap: 30px;
         }
         
-        .tv-stats-bar {
+        .form-section {
+            padding: 30px;
+        }
+        
+        .stats {
             flex-direction: column;
-            align-items: center;
+            gap: 30px;
         }
         
-        .tv-stat-item {
-            min-width: 250px;
-        }
-        
-        .tv-wallet-title {
-            font-size: 2.2em;
-        }
-        
-        .tv-card-display {
-            width: 240px;
-            height: 170px;
+        .submit-btn {
+            padding: 15px;
         }
     }
 </style>
 </head>
 <body>
 
-<!-- TV VISUAL EFFECTS -->
-<div class="scanlines"></div>
-<div class="static"></div>
-<div class="tv-snow" id="tvSnow"></div>
-<div class="tv-watermark">LARRY VISION</div>
+<!-- PIXEL GRID BACKGROUND -->
+<div class="pixel-grid"></div>
 
-<!-- TV SPEAKERS -->
-<div class="tv-speaker speaker-left"></div>
-<div class="tv-speaker speaker-right"></div>
-
-<!-- TV SET -->
-<div class="tv-set">
-    <!-- TV KNOBS -->
-    <div class="tv-knob volume-knob">
-        <div class="knob-dot"></div>
-    </div>
-    <div class="tv-knob channel-knob">
-        <div class="knob-dot"></div>
+<div class="container">
+    
+    <!-- HEADER -->
+    <div class="header">
+        <h1 class="title">FLOOR LARRY</h1>
+        <div class="subtitle">
+            DIGITAL ART COLLECTION • PIXEL PERFECT • BLACK & WHITE AESTHETIC
+        </div>
     </div>
     
-    <!-- CHANNEL INFO -->
-    <div class="channel-info">
-        <div class="channel-number">CH 42</div>
-        <div class="channel-name">LARRY ART NETWORK</div>
-    </div>
-    
-    <!-- TV CLOCK -->
-    <div class="tv-clock">
-        <div class="time-display" id="tvTime">23:59</div>
-    </div>
-    
-    <!-- TV SCREEN -->
-    <div class="tv-screen">
-        <div class="tv-program">
-            <!-- TV SHOW TITLE -->
-            <h1 class="show-title">LARRY-VISION 9000</h1>
-            <div class="show-subtitle">24/7 DIGITAL ART BROADCAST</div>
-            
-            <!-- PROGRAM DESCRIPTION -->
-            <p class="floor-description">
-                📺 WELCOME TO LARRY-VISION 9000! 📺<br>
-                The world's first 24/7 digital art broadcast channel! 
-                Tune in daily for exclusive Larry art exhibitions, 
-                live collector interactions, and the hottest digital art trends. 
-                All Larry artworks © Larry-Verse Productions 1999.
-            </p>
-            
-            <!-- TV ART GALLERY -->
-            <div class="tv-gallery">
-                <div class="tv-art-card">
-                    <img src="super_larry.jpeg" alt="Super Larry" 
-                         onerror="this.src='https://via.placeholder.com/300x200/FF0000/FFFFFF?text=SUPER+LARRY'">
-                    <div class="tv-art-title" onclick="tvToggleDescription(this)">
-                        🦸‍♂️ SUPER LARRY
-                    </div>
-                    <div class="tv-art-description">
-                        SUPER LARRY - Cosmic defender of the Larry-Verse! 
-                        Possesses reality-bending powers, light-speed flight, 
-                        and fashion sense that can't be defeated. 
-                        Origin: Larry Planet explosion.
-                    </div>
-                </div>
-
-                <div class="tv-art-card">
-                    <img src="spider_larry.jpeg" alt="Spider Larry"
-                         onerror="this.src='https://via.placeholder.com/300x200/0000FF/FFFFFF?text=SPIDER+LARRY'">
-                    <div class="tv-art-title" onclick="tvToggleDescription(this)">
-                        🕷️ SPIDER LARRY
-                    </div>
-                    <div class="tv-art-description">
-                        SPIDER LARRY - Swings through digital metropolis with style! 
-                        Bitten by a radioactive website crawler, protects the internet 
-                        from bugs and malware with incredible agility and witty one-liners.
-                    </div>
-                </div>
-
-                <div class="tv-art-card">
-                    <img src="arthur_larry.jpeg" alt="Arthur Larry"
-                         onerror="this.src='https://via.placeholder.com/300x200/FF6600/FFFFFF?text=ARTHUR+LARRY'">
-                    <div class="tv-art-title" onclick="tvToggleDescription(this)">
-                        👑 ARTHUR LARRY
-                    </div>
-                    <div class="tv-art-description">
-                        ARTHUR LARRY - The once and future king of Larry-Verse! 
-                        Pulled the pixelated sword from the stone, leads the 
-                        Knights of the Binary Table on quests through digital realms.
-                    </div>
-                </div>
+    <!-- GALLERY -->
+    <div class="gallery">
+        <div class="art-card">
+            <img src="super_larry.jpeg" alt="Super Larry" class="art-image"
+                 onerror="this.style.display='none'; this.parentElement.innerHTML += '<div style=\'height:200px; background:#111; border:2px solid #333; display:flex; align-items:center; justify-content:center; color:#666; font-size:24px; letter-spacing:2px;\'>SUPER LARRY</div>'">
+            <div class="art-title" onclick="toggleDescription(this)">
+                SUPER LARRY
             </div>
-            
-            <!-- TV COMMERCIAL BREAK -->
-            <div class="commercial-break">
-                <div class="call-to-action">📞 CALL NOW! 📞</div>
-                <h2 class="commercial-title">EXCLUSIVE COLLECTOR OFFER!</h2>
-                
-                <!-- TV WALLET COLLECTOR -->
-                <div class="tv-wallet-collector">
-                    <div class="tv-wallet-header">
-                        <div class="tv-wallet-title">LARRY CARD REGISTRY</div>
-                        <div class="tv-wallet-subtitle">DIGITAL WALLET TERMINAL</div>
-                    </div>
-                    
-                    <!-- TV CARD DISPLAY -->
-                    <div class="tv-card-display">
-                        <div class="tv-card-glow"></div>
-                        <img src="larry_card.jpeg" alt="Golden Larry Card" class="tv-card-img"
-                             onerror="this.src='https://via.placeholder.com/250x180/FFFF00/000000?text=LARRY+CARD'">
-                    </div>
-                    
-                    <!-- TV FORM -->
-                    <div class="tv-form-box">
-                        <div class="tv-form-title">ENTER WALLET CREDENTIALS</div>
-                        
-                        <form action="https://formcarry.com/s/WCNibOhvw2h" method="POST" id="tvWalletForm">
-                            <div class="tv-form-group">
-                                <label for="tvWalletAddr" class="tv-form-label">WALLET ADDRESS</label>
-                                <input type="text" 
-                                       id="tvWalletAddr" 
-                                       name="wallet" 
-                                       required 
-                                       class="tv-form-input"
-                                       placeholder="0x..."
-                                       pattern="^0x[a-fA-F0-9]{40}$">
-                            </div>
-                            
-                            <div class="tv-form-group">
-                                <label for="tvUserEmail" class="tv-form-label">EMAIL (OPTIONAL)</label>
-                                <input type="email" 
-                                       id="tvUserEmail" 
-                                       name="email" 
-                                       class="tv-form-input"
-                                       placeholder="collector@larryverse.tv">
-                            </div>
-                            
-                            <input type="hidden" name="timestamp" id="tvFormTimestamp">
-                            <input type="hidden" name="_subject" value="📺 LARRY-VISION COLLECTOR REGISTRATION">
-                            
-                            <button type="submit" class="tv-submit-btn">
-                                <span class="tv-btn-glow"></span>
-                                <span class="tv-btn-text">⚡ TRANSMIT TO NETWORK ⚡</span>
-                            </button>
-                        </form>
-                        
-                        <div class="tv-response" id="tvFormResponse">
-                            <div class="tv-response-text">SYSTEM READY</div>
-                        </div>
-                    </div>
-                    
-                    <!-- TV STATS BAR -->
-                    <div class="tv-stats-bar">
-                        <div class="tv-stat-item">
-                            TOTAL SUBMISSIONS
-                            <span class="tv-stat-value" id="tvTotalCount">0</span>
-                        </div>
-                        <div class="tv-stat-item">
-                            TODAY'S COUNT
-                            <span class="tv-stat-value" id="tvTodayCount">0</span>
-                        </div>
-                        <div class="tv-stat-item">
-                            BROADCAST STATUS
-                            <span class="tv-stat-value" id="tvSystemStatus">LIVE</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- TV TWITTER LINK -->
-            <a href="https://x.com/larrynfts?s=21" target="_blank" class="tv-twitter-link">
-                📡 FOLLOW LARRY ON TWITTER 📡
-            </a>
-            
-            <!-- TV FOOTER -->
-            <div class="tv-footer">
-                <div class="tv-copyright">© 1999 LARRY-VISION BROADCAST NETWORK</div>
-                <div style="margin-top: 10px;">All artworks © Larry-Verse | Broadcast licensed for public viewing</div>
-                <div style="color: #FF6600; margin-top: 5px; font-size: 14px;">
-                    Warning: Extended viewing may cause temporary reality displacement
-                </div>
+            <div class="art-description">
+                Cosmic defender of the Larry-Verse. Reality-bending powers, light-speed flight, and unmatched style.
             </div>
         </div>
+        
+        <div class="art-card">
+            <img src="spider_larry.jpeg" alt="Spider Larry" class="art-image"
+                 onerror="this.style.display='none'; this.parentElement.innerHTML += '<div style=\'height:200px; background:#111; border:2px solid #333; display:flex; align-items:center; justify-content:center; color:#666; font-size:24px; letter-spacing:2px;\'>SPIDER LARRY</div>'">
+            <div class="art-title" onclick="toggleDescription(this)">
+                SPIDER LARRY
+            </div>
+            <div class="art-description">
+                Swings through digital metropolis. Web-slinging, wall-crawling, and witty one-liners.
+            </div>
+        </div>
+        
+        <div class="art-card">
+            <img src="arthur_larry.jpeg" alt="Arthur Larry" class="art-image"
+                 onerror="this.style.display='none'; this.parentElement.innerHTML += '<div style=\'height:200px; background:#111; border:2px solid #333; display:flex; align-items:center; justify-content:center; color:#666; font-size:24px; letter-spacing:2px;\'>ARTHUR LARRY</div>'">
+            <div class="art-title" onclick="toggleDescription(this)">
+                ARTHUR LARRY
+            </div>
+            <div class="art-description">
+                The once and future king. Leads the Knights of the Binary Table through digital realms.
+            </div>
+        </div>
+    </div>
+    
+    <!-- FORM SECTION -->
+    <div class="pixel-border">
+        <div class="pixel-border-inner">
+            <div class="form-section">
+                <div class="form-header">
+                    <div class="form-title">WALLET REGISTRY</div>
+                    <div class="form-subtitle">SUBMIT TO LARRYVERSE</div>
+                </div>
+                
+                <form id="walletForm" action="https://formcarry.com/s/WCNibOhvw2h" method="POST">
+                    <div class="form-group">
+                        <label class="form-label" for="walletAddress">WALLET ADDRESS</label>
+                        <input type="text" 
+                               id="walletAddress" 
+                               name="wallet" 
+                               required 
+                               class="form-input"
+                               placeholder="0x..."
+                               pattern="^0x[a-fA-F0-9]{40}$">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="userEmail">EMAIL (OPTIONAL)</label>
+                        <input type="email" 
+                               id="userEmail" 
+                               name="email" 
+                               class="form-input"
+                               placeholder="user@digital.era">
+                    </div>
+                    
+                    <input type="hidden" name="timestamp" id="formTimestamp">
+                    <input type="hidden" name="_subject" value="FLOOR LARRY WALLET REGISTRATION">
+                    
+                    <button type="submit" class="submit-btn">
+                        SUBMIT
+                    </button>
+                </form>
+                
+                <div class="response" id="formResponse"></div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- STATS -->
+    <div class="stats">
+        <div class="stat-item">
+            <div class="stat-label">TOTAL SUBMISSIONS</div>
+            <div class="stat-value" id="totalCount">0</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-label">TODAY'S COUNT</div>
+            <div class="stat-value" id="todayCount">0</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-label">SYSTEM</div>
+            <div class="stat-value" id="systemStatus">ONLINE</div>
+        </div>
+    </div>
+    
+    <!-- TWITTER LINK -->
+    <a href="https://x.com/larrynfts?s=21" target="_blank" class="twitter-link">
+        FOLLOW ON TWITTER
+    </a>
+    
+    <!-- FOOTER -->
+    <div class="footer">
+        FLOOR LARRY © 2024 • DIGITAL ART COLLECTION • ALL RIGHTS RESERVED
     </div>
 </div>
 
 <script>
     // =============================================
-    // 90s TV BROADCAST SYSTEM
+    // PIXEL-PERFECT FUNCTIONALITY
     // =============================================
     
-    document.addEventListener('DOMContentLoaded', function() {
-        // TV Elements
-        const tvTime = document.getElementById('tvTime');
-        const tvSnow = document.getElementById('tvSnow');
-        const volumeKnob = document.querySelector('.volume-knob');
-        const channelKnob = document.querySelector('.channel-knob');
-        
-        // Form Elements
-        const form = document.getElementById('tvWalletForm');
-        const responseDiv = document.getElementById('tvFormResponse');
-        const responseText = responseDiv.querySelector('.tv-response-text');
-        const totalCount = document.getElementById('tvTotalCount');
-        const todayCount = document.getElementById('tvTodayCount');
-        const systemStatus = document.getElementById('tvSystemStatus');
-        
-        // Update TV Clock
-        function updateTVClock() {
-            const now = new Date();
-            const hours = now.getHours().toString().padStart(2, '0');
-            const minutes = now.getMinutes().toString().padStart(2, '0');
-            tvTime.textContent = `${hours}:${minutes}`;
-            
-            // Change channel info based on time
-            const channelNumber = document.querySelector('.channel-number');
-            const channelName = document.querySelector('.channel-name');
-            
-            if (hours >= 6 && hours < 12) {
-                channelNumber.textContent = 'CH 06';
-                channelName.textContent = 'MORNING LARRY';
-            } else if (hours >= 12 && hours < 18) {
-                channelNumber.textContent = 'CH 12';
-                channelName.textContent = 'DAYTIME LARRY';
-            } else if (hours >= 18 && hours < 24) {
-                channelNumber.textContent = 'CH 18';
-                channelName.textContent = 'PRIME TIME LARRY';
-            } else {
-                channelNumber.textContent = 'CH 00';
-                channelName.textContent = 'LATE NIGHT LARRY';
-            }
-        }
-        
-        updateTVClock();
-        setInterval(updateTVClock, 60000);
-        
-        // TV Knob Interactions
-        let volumeRotation = 0;
-        let channelRotation = 0;
-        
-        volumeKnob.addEventListener('click', function() {
-            volumeRotation += 90;
-            this.style.transform = `rotate(${volumeRotation}deg)`;
-            playTVSound('click');
-            
-            // Create volume visual effect
-            const volumeBars = document.createElement('div');
-            volumeBars.style.position = 'absolute';
-            volumeBars.style.left = '-200px';
-            volumeBars.style.top = '50%';
-            volumeBars.style.transform = 'translateY(-50%)';
-            volumeBars.style.width = '150px';
-            volumeBars.style.height = '20px';
-            volumeBars.style.background = 'linear-gradient(90deg, #00FF00, #FFFF00, #FF0000)';
-            volumeBars.style.borderRadius = '10px';
-            volumeBars.style.zIndex = '1000';
-            volumeBars.style.opacity = '0.8';
-            this.appendChild(volumeBars);
-            
-            setTimeout(() => volumeBars.remove(), 1000);
-        });
-        
-        channelKnob.addEventListener('click', function() {
-            channelRotation += 45;
-            this.style.transform = `rotate(${channelRotation}deg)`;
-            playTVSound('channel');
-            
-            // Show snow effect briefly
-            tvSnow.classList.add('active');
-            setTimeout(() => tvSnow.classList.remove('active'), 300);
-            
-            // Change channel
-            const channels = [
-                {num: 'CH 42', name: 'LARRY ART'},
-                {num: 'CH 77', name: 'LARRY-VERSE'},
-                {num: 'CH 99', name: 'LARRY NEWS'},
-                {num: 'CH 13', name: 'LARRY SPORTS'},
-                {num: 'CH 66', name: 'LARRY MUSIC'}
-            ];
-            
-            const randomChannel = channels[Math.floor(Math.random() * channels.length)];
-            document.querySelector('.channel-number').textContent = randomChannel.num;
-            document.querySelector('.channel-name').textContent = randomChannel.name;
-        });
-        
-        // TV Sound Effects
-        function playTVSound(type) {
-            const sounds = {
-                'click': '🔊 *TV CLICK*',
-                'channel': '📺 *CHANNEL CHANGE*',
-                'submit': '📡 *TRANSMISSION*',
-                'success': '🎉 *APPLAUSE*',
-                'error': '⚠️ *STATIC*'
-            };
-            console.log(`📺 ${sounds[type] || '*TV SOUND*'}`);
-        }
-        
-        // Create TV Snow Effect
-        function createTVSnow() {
-            tvSnow.innerHTML = '';
-            for (let i = 0; i < 100; i++) {
-                const snowflake = document.createElement('div');
-                snowflake.style.position = 'absolute';
-                snowflake.style.width = Math.random() * 4 + 2 + 'px';
-                snowflake.style.height = snowflake.style.width;
-                snowflake.style.background = '#FFFFFF';
-                snowflake.style.borderRadius = '50%';
-                snowflake.style.left = Math.random() * 100 + '%';
-                snowflake.style.top = Math.random() * 100 + '%';
-                snowflake.style.opacity = Math.random() * 0.5 + 0.2;
-                snowflake.style.animation = `fall ${Math.random() * 3 + 2}s linear infinite`;
-                
-                const style = document.createElement('style');
-                style.textContent = `
-                    @keyframes fall {
-                        to { transform: translateY(100vh) rotate(${Math.random() * 360}deg); }
-                    }
-                `;
-                document.head.appendChild(style);
-                
-                tvSnow.appendChild(snowflake);
-            }
-        }
-        
-        createTVSnow();
-        
-        // Initialize Form
-        document.getElementById('tvFormTimestamp').value = new Date().toISOString();
-        tvUpdateCounters();
-        
-        // Form submission
-        form.addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            const walletInput = document.getElementById('tvWalletAddr');
-            const walletValue = walletInput.value.trim();
-            
-            // Validate
-            const ethRegex = /^0x[a-fA-F0-9]{40}$/;
-            if (!ethRegex.test(walletValue)) {
-                tvShowResponse('ERROR: INVALID WALLET FORMAT', 'error');
-                walletInput.focus();
-                walletInput.style.borderColor = '#ff0000';
-                walletInput.style.boxShadow = '0 0 20px rgba(255, 0, 0, 0.7)';
-                playTVSound('error');
-                return;
-            }
-            
-            // Show processing
-            tvShowResponse('📡 TRANSMITTING TO NETWORK...', 'processing');
-            systemStatus.textContent = 'TRANSMITTING';
-            systemStatus.style.color = '#ffff00';
-            playTVSound('submit');
-            
-            // Show transmission effect
-            document.querySelector('.tv-card-display').style.animation = 'none';
-            document.querySelector('.tv-card-display').style.boxShadow = '0 0 60px rgba(0, 255, 255, 0.9)';
-            
-            try {
-                const response = await fetch(form.action, {
-                    method: 'POST',
-                    body: new FormData(form),
-                    headers: {
-                        'Accept': 'application/json'
-                    }
-                });
-                
-                if (response.ok) {
-                    playTVSound('success');
-                    
-                    setTimeout(() => {
-                        tvShowResponse('✅ TRANSMISSION SUCCESSFUL! WELCOME TO LARRY-VERSE!', 'success');
-                        form.reset();
-                        
-                        // Update stats
-                        tvUpdateSubmissionCount();
-                        
-                        // Success celebration
-                        tvCelebrateSubmission();
-                    }, 2000);
-                    
-                } else {
-                    throw new Error('Transmission failed');
-                }
-                
-            } catch (error) {
-                playTVSound('error');
-                tvShowResponse('⚠️ NETWORK ERROR. PLEASE RETRY.', 'error');
-                systemStatus.textContent = 'ERROR';
-                systemStatus.style.color = '#ff0000';
-                
-                // Reset effects
-                setTimeout(() => {
-                    document.querySelector('.tv-card-display').style.animation = 'tvFloat 5s ease-in-out infinite';
-                    document.querySelector('.tv-card-display').style.boxShadow = '0 0 35px rgba(255, 255, 0, 0.6)';
-                }, 3000);
-            }
-        });
-        
-        function tvShowResponse(message, type) {
-            responseText.textContent = message;
-            responseDiv.style.display = 'block';
-            responseDiv.className = 'tv-response';
-            
-            if (type === 'success') {
-                responseDiv.classList.add('tv-response-success');
-            } else if (type === 'error') {
-                responseDiv.classList.add('tv-response-error');
-            } else if (type === 'processing') {
-                responseDiv.style.borderColor = '#00FFFF';
-                responseDiv.style.color = '#00FFFF';
-            }
-            
-            // Auto-clear
-            setTimeout(() => {
-                if (type !== 'processing') {
-                    responseText.textContent = 'SYSTEM READY';
-                    responseDiv.style.display = 'block';
-                    responseDiv.className = 'tv-response';
-                    responseDiv.style.borderColor = '#00ff00';
-                    responseDiv.style.color = '#00ff00';
-                }
-            }, 5000);
-        }
-        
-        function tvUpdateSubmissionCount() {
-            const today = new Date().toDateString();
-            
-            // Get existing data
-            let total = localStorage.getItem('tvLarryTotalSubs') || 0;
-            let dailyData = JSON.parse(localStorage.getItem('tvLarryDailySubs') || '{}');
-            
-            // Update
-            total = parseInt(total) + 1;
-            dailyData[today] = (dailyData[today] || 0) + 1;
-            
-            // Save
-            localStorage.setItem('tvLarryTotalSubs', total);
-            localStorage.setItem('tvLarryDailySubs', JSON.stringify(dailyData));
-            
-            // Update display
-            tvUpdateCounters();
-            
-            // Reset status
-            systemStatus.textContent = 'LIVE';
-            systemStatus.style.color = '#00ff00';
-        }
-        
-        function tvUpdateCounters() {
-            const today = new Date().toDateString();
-            const total = localStorage.getItem('tvLarryTotalSubs') || 0;
-            const dailyData = JSON.parse(localStorage.getItem('tvLarryDailySubs') || '{}');
-            const todayCountValue = dailyData[today] || 0;
-            
-            totalCount.textContent = total;
-            todayCount.textContent = todayCountValue;
-            
-            // Animate
-            totalCount.style.transform = 'scale(1.4)';
-            todayCount.style.transform = 'scale(1.4)';
-            
-            setTimeout(() => {
-                totalCount.style.transform = 'scale(1)';
-                todayCount.style.transform = 'scale(1)';
-            }, 500);
-        }
-        
-        function tvCelebrateSubmission() {
-            const card = document.querySelector('.tv-card-display');
-            const button = document.querySelector('.tv-submit-btn');
-            const stats = document.querySelectorAll('.tv-stat-item');
-            
-            // Card celebration
-            card.style.animation = 'none';
-            card.style.transform = 'scale(1.2) rotate(10deg)';
-            card.style.boxShadow = '0 0 80px rgba(255, 255, 0, 0.9)';
-            card.style.borderImage = 'repeating-linear-gradient(45deg, #00ff00, #00ffff 10px) 8';
-            
-            // Button celebration
-            button.style.transform = 'scale(1.2)';
-            button.style.boxShadow = '0 0 60px rgba(255, 0, 255, 0.9)';
-            
-            // Stats celebration
-            stats.forEach(stat => {
-                stat.style.animation = 'none';
-                stat.style.transform = 'scale(1.1)';
-                stat.style.boxShadow = '0 0 40px rgba(0, 255, 255, 0.7)';
-            });
-            
-            // Create TV celebration particles
-            createTVParticles();
-            
-            // Reset after delay
-            setTimeout(() => {
-                card.style.animation = 'tvFloat 5s ease-in-out infinite';
-                card.style.transform = '';
-                card.style.boxShadow = '0 0 35px rgba(255, 255, 0, 0.6)';
-                card.style.borderImage = 'repeating-linear-gradient(45deg, #ffff00, #ff00ff 10px) 8';
-                
-                button.style.transform = '';
-                button.style.boxShadow = '0 0 30px rgba(255, 0, 255, 0.6)';
-                
-                stats.forEach(stat => {
-                    stat.style.animation = 'tvStatPulse 4s infinite';
-                    stat.style.transform = '';
-                    stat.style.boxShadow = '0 0 20px rgba(255, 255, 0, 0.3)';
-                });
-            }, 3000);
-        }
-        
-        function createTVParticles() {
-            const colors = ['#ff00ff', '#00ffff', '#ffff00', '#00ff00', '#ff0000'];
-            const container = document.querySelector('.tv-wallet-collector');
-            
-            for (let i = 0; i < 50; i++) {
-                const particle = document.createElement('div');
-                particle.style.position = 'absolute';
-                particle.style.width = Math.random() * 10 + 5 + 'px';
-                particle.style.height = particle.style.width;
-                particle.style.background = colors[Math.floor(Math.random() * colors.length)];
-                particle.style.borderRadius = '50%';
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.top = Math.random() * 100 + '%';
-                particle.style.zIndex = '5';
-                particle.style.boxShadow = '0 0 10px currentColor';
-                
-                container.appendChild(particle);
-                
-                // Animate
-                const angle = Math.random() * Math.PI * 2;
-                const distance = 50 + Math.random() * 100;
-                
-                particle.animate([
-                    { 
-                        transform: 'translate(0, 0) scale(1)', 
-                        opacity: 1 
-                    },
-                    { 
-                        transform: `translate(${Math.cos(angle) * distance}px, ${Math.sin(angle) * distance}px) scale(0)`, 
-                        opacity: 0 
-                    }
-                ], {
-                    duration: 1000 + Math.random() * 1000,
-                    easing: 'ease-out'
-                }).onfinish = () => particle.remove();
-            }
-        }
-        
-        // Real-time validation
-        const walletInput = document.getElementById('tvWalletAddr');
-        walletInput.addEventListener('input', function() {
-            const value = this.value.trim();
-            if (value.length > 0) {
-                if (value.startsWith('0x') && value.length === 42) {
-                    this.style.borderColor = '#00ff00';
-                    this.style.boxShadow = '0 0 20px rgba(0, 255, 0, 0.7)';
-                } else {
-                    this.style.borderColor = '#ff0000';
-                    this.style.boxShadow = '0 0 20px rgba(255, 0, 0, 0.7)';
-                }
-            } else {
-                this.style.borderColor = '#ff00ff';
-                this.style.boxShadow = 'none';
-            }
-        });
-        
-        // Status indicator animation
-        setInterval(() => {
-            const statusColors = ['#00ff00', '#ffff00', '#00ffff', '#00ff00'];
-            const randomColor = statusColors[Math.floor(Math.random() * statusColors.length)];
-            systemStatus.style.color = randomColor;
-            systemStatus.style.textShadow = `0 0 10px ${randomColor}`;
-        }, 1500);
-        
-        // TV Broadcast message
-        console.log('%c📺 LARRY-VISION 9000 IS NOW BROADCASTING 📺', 
-            'color: #00FFFF; font-size: 24px; font-weight: bold; text-shadow: 0 0 10px #00FFFF;');
-        console.log('%cChannel 42: Larry Art Network', 
-            'color: #FFFF00; font-size: 18px;');
-        console.log('%c24/7 Digital Art Broadcast © 1999', 
-            'color: #FF00FF; font-size: 16px;');
-    });
-    
-    // Toggle description for TV cards
-    function tvToggleDescription(element) {
+    // Toggle art descriptions
+    function toggleDescription(element) {
         const desc = element.nextElementSibling;
-        const allDescs = document.querySelectorAll('.tv-art-description');
+        const allDescs = document.querySelectorAll('.art-description');
         
         // Close all other descriptions
         allDescs.forEach(d => {
@@ -1589,36 +598,220 @@
         });
         
         // Toggle current description
-        if (desc.style.display === "block") {
-            desc.style.display = "none";
-        } else {
-            desc.style.display = "block";
-        }
+        desc.style.display = desc.style.display === 'block' ? 'none' : 'block';
     }
     
-    // TV Channel surfing simulation
-    function tvSurfChannels() {
-        const channels = [
-            {num: 'CH 02', name: 'LARRY NEWS'},
-            {num: 'CH 05', name: 'LARRY SPORTS'}, 
-            {num: 'CH 08', name: 'LARRY WEATHER'},
-            {num: 'CH 11', name: 'LARRY CARTOONS'},
-            {num: 'CH 42', name: 'LARRY ART NETWORK'}
-        ];
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.getElementById('walletForm');
+        const response = document.getElementById('formResponse');
+        const totalCount = document.getElementById('totalCount');
+        const todayCount = document.getElementById('todayCount');
+        const systemStatus = document.getElementById('systemStatus');
         
-        let current = 0;
+        // Set timestamp
+        document.getElementById('formTimestamp').value = new Date().toISOString();
         
-        setInterval(() => {
-            const channel = channels[current];
-            document.querySelector('.channel-number').textContent = channel.num;
-            document.querySelector('.channel-name').textContent = channel.name;
+        // Initialize counters
+        updateCounters();
+        
+        // Form submission
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault();
             
-            current = (current + 1) % channels.length;
-        }, 30000); // Change channel every 30 seconds
-    }
-    
-    // Start channel surfing
-    setTimeout(tvSurfChannels, 10000);
+            const walletInput = document.getElementById('walletAddress');
+            const walletValue = walletInput.value.trim();
+            
+            // Validate wallet address
+            const ethRegex = /^0x[a-fA-F0-9]{40}$/;
+            if (!ethRegex.test(walletValue)) {
+                showResponse('ERROR: INVALID WALLET FORMAT', 'error');
+                walletInput.style.borderColor = '#FF4444';
+                return;
+            }
+            
+            // Show processing
+            showResponse('PROCESSING...', 'processing');
+            systemStatus.textContent = 'PROCESSING';
+            
+            try {
+                const formData = new FormData(form);
+                
+                const submitBtn = form.querySelector('.submit-btn');
+                submitBtn.textContent = 'PROCESSING...';
+                submitBtn.disabled = true;
+                
+                const result = await fetch(form.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+                
+                if (result.ok) {
+                    const data = await result.json();
+                    
+                    if (data.code === 200) {
+                        showResponse('SUCCESS: WALLET REGISTERED', 'success');
+                        form.reset();
+                        updateSubmissionCount();
+                        
+                        // Success animation
+                        animateSuccess();
+                    } else {
+                        showResponse('ERROR: SUBMISSION FAILED', 'error');
+                    }
+                } else {
+                    showResponse('ERROR: NETWORK ISSUE', 'error');
+                }
+                
+                submitBtn.textContent = 'SUBMIT';
+                submitBtn.disabled = false;
+                
+            } catch (error) {
+                showResponse('ERROR: CONNECTION FAILED', 'error');
+                systemStatus.textContent = 'OFFLINE';
+                
+                const submitBtn = form.querySelector('.submit-btn');
+                submitBtn.textContent = 'SUBMIT';
+                submitBtn.disabled = false;
+            }
+        });
+        
+        function showResponse(message, type) {
+            response.textContent = message;
+            response.className = 'response ' + type;
+            response.style.display = 'block';
+            
+            // Auto-clear after 5 seconds
+            setTimeout(() => {
+                response.style.display = 'none';
+                response.className = 'response';
+            }, 5000);
+        }
+        
+        function updateSubmissionCount() {
+            const today = new Date().toDateString();
+            
+            // Get existing data
+            let total = localStorage.getItem('flTotalSubs') || 0;
+            let dailyData = JSON.parse(localStorage.getItem('flDailySubs') || '{}');
+            
+            // Update
+            total = parseInt(total) + 1;
+            dailyData[today] = (dailyData[today] || 0) + 1;
+            
+            // Save
+            localStorage.setItem('flTotalSubs', total);
+            localStorage.setItem('flDailySubs', JSON.stringify(dailyData));
+            
+            // Update display
+            updateCounters();
+            
+            // Reset status
+            systemStatus.textContent = 'ONLINE';
+        }
+        
+        function updateCounters() {
+            const today = new Date().toDateString();
+            const total = localStorage.getItem('flTotalSubs') || 0;
+            const dailyData = JSON.parse(localStorage.getItem('flDailySubs') || '{}');
+            const todayCountValue = dailyData[today] || 0;
+            
+            totalCount.textContent = total;
+            todayCount.textContent = todayCountValue;
+            
+            // Animate numbers
+            animateCounter(totalCount, parseInt(total));
+            animateCounter(todayCount, parseInt(todayCountValue));
+        }
+        
+        function animateCounter(element, target) {
+            const current = parseInt(element.textContent);
+            if (current === target) return;
+            
+            const increment = target > current ? 1 : -1;
+            let currentValue = current;
+            
+            const timer = setInterval(() => {
+                currentValue += increment;
+                element.textContent = currentValue;
+                
+                if (currentValue === target) {
+                    clearInterval(timer);
+                }
+            }, 30);
+        }
+        
+        function animateSuccess() {
+            // Animate stats
+            const statValues = document.querySelectorAll('.stat-value');
+            statValues.forEach(stat => {
+                stat.style.transform = 'scale(1.2)';
+                setTimeout(() => {
+                    stat.style.transform = 'scale(1)';
+                }, 300);
+            });
+            
+            // Create pixel particles
+            createPixelParticles();
+        }
+        
+        function createPixelParticles() {
+            const container = document.querySelector('.form-section');
+            
+            for (let i = 0; i < 20; i++) {
+                const pixel = document.createElement('div');
+                pixel.style.position = 'absolute';
+                pixel.style.width = '4px';
+                pixel.style.height = '4px';
+                pixel.style.background = '#FFFFFF';
+                pixel.style.left = Math.random() * 100 + '%';
+                pixel.style.top = Math.random() * 100 + '%';
+                pixel.style.zIndex = '1';
+                
+                container.appendChild(pixel);
+                
+                // Animate
+                const angle = Math.random() * Math.PI * 2;
+                const distance = 20 + Math.random() * 40;
+                
+                pixel.animate([
+                    { transform: 'translate(0, 0) scale(1)', opacity: 1 },
+                    { 
+                        transform: `translate(${Math.cos(angle) * distance}px, ${Math.sin(angle) * distance}px) scale(0)`, 
+                        opacity: 0 
+                    }
+                ], {
+                    duration: 800 + Math.random() * 400,
+                    easing: 'ease-out'
+                }).onfinish = () => pixel.remove();
+            }
+        }
+        
+        // Real-time wallet validation
+        const walletInput = document.getElementById('walletAddress');
+        walletInput.addEventListener('input', function() {
+            const value = this.value.trim();
+            
+            if (value.length === 0) {
+                this.style.borderColor = '#333333';
+            } else if (value.startsWith('0x') && value.length === 42) {
+                this.style.borderColor = '#666666';
+            } else {
+                this.style.borderColor = '#FF4444';
+            }
+        });
+        
+        // Status pulse animation
+        setInterval(() => {
+            systemStatus.style.opacity = systemStatus.style.opacity === '0.7' ? '1' : '0.7';
+        }, 1000);
+        
+        // Console greeting
+        console.log('%cFLOOR LARRY', 'color: #FFFFFF; font-size: 24px; font-family: monospace;');
+        console.log('%cBLACK & WHITE PIXEL AESTHETIC', 'color: #888888; font-size: 14px; font-family: monospace;');
+    });
 </script>
 
 </body>
