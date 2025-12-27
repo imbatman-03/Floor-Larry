@@ -57,10 +57,47 @@
         z-index: 2;
     }
     
+    /* SECTION HEADERS */
+    .section-header {
+        text-align: center;
+        margin: 60px 0 40px;
+        position: relative;
+    }
+    
+    .section-title {
+        font-size: 48px;
+        font-weight: bold;
+        color: #ffffff;
+        letter-spacing: 6px;
+        text-transform: uppercase;
+        display: inline-block;
+        padding: 0 30px;
+        background: rgba(0,0,0,0.9);
+        position: relative;
+        z-index: 2;
+        text-shadow: 0 2px 10px rgba(255,255,255,0.3);
+    }
+    
+    .section-title::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: -100px;
+        right: -100px;
+        height: 3px;
+        background: linear-gradient(90deg, 
+            transparent, 
+            rgba(255,255,255,0.4), 
+            rgba(255,255,255,0.8), 
+            rgba(255,255,255,0.4), 
+            transparent);
+        z-index: 1;
+    }
+    
     /* RETRO PATTERN HEADER */
     .header {
         text-align: center;
-        margin-bottom: 60px;
+        margin-bottom: 40px;
         padding: 60px 40px;
         position: relative;
         background: 
@@ -257,38 +294,66 @@
         text-shadow: 0 0 10px rgba(255,255,255,0.3);
     }
     
-    /* RETRO PATTERN GALLERY */
+    /* FLIP CARD GALLERY */
     .gallery {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
         gap: 60px;
-        margin: 80px 0;
+        margin: 40px 0 80px;
     }
     
-    .art-card {
-        background: rgba(20, 20, 20, 0.9);
-        border: 2px solid rgba(255,255,255,0.2);
-        padding: 30px;
-        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        position: relative;
+    .flip-card {
+        perspective: 1000px;
+        height: 400px;
+        border-radius: 15px;
         overflow: hidden;
-        border-radius: 12px;
-        box-shadow: 
-            0 10px 30px rgba(0,0,0,0.5),
-            inset 0 1px 0 rgba(255,255,255,0.1);
+    }
+    
+    .flip-card-inner {
+        position: relative;
+        width: 100%;
         height: 100%;
-        min-height: 450px;
+        text-align: center;
+        transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        transform-style: preserve-3d;
+        border-radius: 15px;
+        cursor: pointer;
+    }
+    
+    .flip-card:hover .flip-card-inner,
+    .flip-card.flipped .flip-card-inner {
+        transform: rotateY(180deg);
+    }
+    
+    .flip-card-front, .flip-card-back {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        border-radius: 15px;
+        overflow: hidden;
+        border: 3px solid rgba(255,255,255,0.3);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+    
+    .flip-card-front {
+        background: rgba(20, 20, 20, 0.95);
         display: flex;
         flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 30px;
+        position: relative;
     }
     
-    .art-card::before {
+    .flip-card-front::before {
         content: "";
         position: absolute;
         top: 0;
         left: 0;
         right: 0;
-        height: 2px;
+        height: 3px;
         background: linear-gradient(90deg, 
             transparent, 
             rgba(255,255,255,0.8), 
@@ -296,94 +361,35 @@
             transparent);
     }
     
-    .art-card::after {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: 
-            linear-gradient(45deg, transparent 48%, rgba(255,255,255,0.05) 50%, transparent 52%),
-            linear-gradient(-45deg, transparent 48%, rgba(255,255,255,0.05) 50%, transparent 52%);
-        background-size: 15px 15px;
-        opacity: 0;
-        transition: opacity 0.3s;
-        pointer-events: none;
-    }
-    
-    .art-card:hover {
-        transform: translateY(-10px) scale(1.02);
-        border-color: rgba(255,255,255,0.4);
-        box-shadow: 
-            0 20px 50px rgba(0,0,0,0.7),
-            0 0 30px rgba(255,255,255,0.1),
-            inset 0 1px 0 rgba(255,255,255,0.2);
-    }
-    
-    .art-card:hover::after {
-        opacity: 1;
-    }
-    
-    .art-image-container {
+    .art-image {
         width: 100%;
-        height: 280px;
-        position: relative;
-        overflow: hidden;
+        height: 240px;
+        object-fit: cover;
         border-radius: 8px;
         margin-bottom: 25px;
         border: 2px solid rgba(255,255,255,0.2);
-        flex-shrink: 0;
+        transition: all 0.4s;
+        filter: grayscale(0%) contrast(110%) brightness(1.05);
     }
     
-    .art-image {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        filter: grayscale(100%) contrast(120%);
-        transition: all 0.6s ease;
-    }
-    
-    .art-image-hover-overlay {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0,0,0,0.85);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        opacity: 0;
-        transition: all 0.4s ease;
-        padding: 30px;
-        text-align: center;
-        cursor: pointer;
-    }
-    
-    .art-card:hover .art-image-hover-overlay,
-    .art-image-hover-overlay.active {
-        opacity: 1;
-    }
-    
-    .art-card:hover .art-image {
-        filter: grayscale(0%) contrast(110%) brightness(1.1);
+    .flip-card:hover .art-image {
         transform: scale(1.05);
+        filter: grayscale(0%) contrast(120%) brightness(1.1);
     }
     
-    .hover-description {
+    .art-title-front {
+        font-size: 28px;
+        font-weight: bold;
         color: #ffffff;
-        font-size: 16px;
-        line-height: 1.6;
-        letter-spacing: 1px;
-        max-height: 100%;
-        overflow-y: auto;
-        padding-right: 10px;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        margin-top: 15px;
     }
     
-    .hover-instruction {
+    .flip-tap-hint {
         position: absolute;
-        bottom: 15px;
+        bottom: 20px;
         left: 0;
         width: 100%;
         text-align: center;
@@ -393,69 +399,89 @@
         text-transform: uppercase;
         padding: 5px;
         background: rgba(0,0,0,0.5);
-        opacity: 0;
+        opacity: 0.8;
         transition: opacity 0.3s;
     }
     
-    .art-image-container:hover .hover-instruction,
-    .hover-instruction.active {
-        opacity: 1;
+    .flip-card-back {
+        background: rgba(15, 15, 15, 0.98);
+        transform: rotateY(180deg);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 40px;
+        text-align: center;
+        position: relative;
+        overflow-y: auto;
     }
     
-    .art-title {
-        font-size: 28px;
+    .flip-card-back::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: 
+            linear-gradient(45deg, transparent 48%, rgba(255,255,255,0.05) 50%, transparent 52%),
+            linear-gradient(-45deg, transparent 48%, rgba(255,255,255,0.05) 50%, transparent 52%);
+        background-size: 20px 20px;
+        pointer-events: none;
+    }
+    
+    .art-title-back {
+        font-size: 32px;
         font-weight: bold;
         color: #ffffff;
         text-transform: uppercase;
         letter-spacing: 3px;
-        margin-bottom: 15px;
-        padding-bottom: 15px;
-        border-bottom: 2px solid rgba(255,255,255,0.2);
+        margin-bottom: 30px;
+        text-shadow: 0 2px 10px rgba(255,255,255,0.3);
         position: relative;
-        text-shadow: 0 2px 4px rgba(0,0,0,0.5);
-        flex-shrink: 0;
     }
     
-    .art-title::after {
-        content: "⏣";
+    .art-title-back::after {
+        content: "";
         position: absolute;
-        right: 0;
-        top: 50%;
-        transform: translateY(-50%);
-        font-size: 14px;
-        opacity: 0.5;
-        transition: all 0.3s;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100px;
+        height: 2px;
+        background: linear-gradient(90deg, 
+            transparent, 
+            rgba(255,255,255,0.6), 
+            transparent);
     }
     
-    .art-card:hover .art-title::after {
-        opacity: 1;
-        transform: translateY(-50%) rotate(90deg);
-    }
-    
-    .art-description {
+    .art-description-flip {
         font-size: 16px;
         color: #aaaaaa;
-        line-height: 1.6;
-        display: none;
-        padding-top: 20px;
-        border-top: 1px solid rgba(255,255,255,0.1);
-        margin-top: 20px;
-        position: relative;
-        flex-grow: 1;
+        line-height: 1.8;
+        letter-spacing: 1px;
+        margin-bottom: 20px;
+        max-height: 200px;
         overflow-y: auto;
+        padding-right: 10px;
     }
     
-    .art-description::before {
-        content: ">";
+    .flip-back-hint {
         position: absolute;
-        left: -20px;
-        top: 20px;
-        color: rgba(255,255,255,0.5);
-        font-weight: bold;
+        bottom: 20px;
+        left: 0;
+        width: 100%;
+        text-align: center;
+        font-size: 14px;
+        color: rgba(255,255,255,0.7);
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        padding: 5px;
+        background: rgba(0,0,0,0.5);
     }
     
-    /* LARRY CARD DISPLAY WITH RETRO PATTERNS */
-    .larry-card-display {
+    /* LARRY CARD DISPLAY SECTION */
+    .larry-card-section {
         text-align: center;
         margin: 80px 0;
         padding: 50px;
@@ -469,7 +495,7 @@
             inset 0 1px 0 rgba(255,255,255,0.1);
     }
     
-    .larry-card-display::before {
+    .larry-card-section::before {
         content: "";
         position: absolute;
         top: 0;
@@ -484,43 +510,12 @@
         pointer-events: none;
     }
     
-    .larry-card-title {
-        font-size: 32px;
-        color: #ffffff;
-        letter-spacing: 4px;
-        text-transform: uppercase;
-        margin-bottom: 40px;
-        font-weight: bold;
-        text-shadow: 0 2px 10px rgba(255,255,255,0.3);
-        position: relative;
-        display: inline-block;
-        padding: 0 30px;
-    }
-    
-    .larry-card-title::before,
-    .larry-card-title::after {
-        content: "✦";
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        color: rgba(255,255,255,0.5);
-        font-size: 20px;
-    }
-    
-    .larry-card-title::before {
-        left: 0;
-    }
-    
-    .larry-card-title::after {
-        right: 0;
-    }
-    
     .larry-card-img {
         width: 280px;
         height: 380px;
         object-fit: cover;
         border: 3px solid rgba(255,255,255,0.3);
-        filter: grayscale(100%) contrast(120%);
+        filter: grayscale(0%) contrast(110%) brightness(1.05);
         transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         image-rendering: pixelated;
         border-radius: 12px;
@@ -534,27 +529,14 @@
     .larry-card-img:hover {
         transform: scale(1.05) rotate(2deg);
         border-color: rgba(255,255,255,0.6);
-        filter: grayscale(50%) contrast(110%) brightness(1.1);
+        filter: grayscale(0%) contrast(120%) brightness(1.1);
         box-shadow: 
             0 20px 50px rgba(0,0,0,0.9),
             0 0 40px rgba(255,255,255,0.2);
     }
     
-    .larry-card-img::after {
-        content: "";
-        position: absolute;
-        top: -10px;
-        left: -10px;
-        right: -10px;
-        bottom: -10px;
-        border: 2px solid rgba(255,255,255,0.1);
-        border-radius: 20px;
-        pointer-events: none;
-        z-index: -1;
-    }
-    
-    /* X FOLLOW REQUIREMENT WITH RETRO STYLE */
-    .follow-requirement {
+    /* WALLET SUBMISSION SECTION */
+    .wallet-submission-section {
         background: rgba(20, 20, 20, 0.95);
         border: 2px solid rgba(255,255,255,0.2);
         padding: 50px;
@@ -568,7 +550,7 @@
             inset 0 1px 0 rgba(255,255,255,0.1);
     }
     
-    .follow-requirement::before {
+    .wallet-submission-section::before {
         content: "";
         position: absolute;
         top: 0;
@@ -736,7 +718,7 @@
         color: #00ff00;
     }
     
-    /* RETRO FORM SECTION */
+    /* FORM SECTION */
     .form-section {
         background: rgba(15, 15, 15, 0.95);
         border: 2px solid rgba(255,255,255,0.2);
@@ -951,6 +933,35 @@
         border-color: rgba(255,68,68,0.3);
         background: rgba(255,68,68,0.05);
         box-shadow: 0 0 30px rgba(255,68,68,0.1);
+    }
+    
+    /* CONNECTIONS SECTION */
+    .connections-section {
+        background: rgba(20, 20, 20, 0.95);
+        border: 2px solid rgba(255,255,255,0.2);
+        padding: 50px;
+        margin: 60px 0;
+        text-align: center;
+        border-radius: 15px;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 
+            0 10px 30px rgba(0,0,0,0.6),
+            inset 0 1px 0 rgba(255,255,255,0.1);
+    }
+    
+    .connections-section::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, 
+            transparent, 
+            rgba(255,255,255,0.8), 
+            rgba(255,255,255,0.8), 
+            transparent);
     }
     
     /* RETRO STATS BAR */
@@ -1192,6 +1203,11 @@
             letter-spacing: 6px;
         }
         
+        .section-title {
+            font-size: 36px;
+            letter-spacing: 4px;
+        }
+        
         .description-title {
             font-size: 28px;
         }
@@ -1206,11 +1222,15 @@
             gap: 40px;
         }
         
-        .art-image-container {
-            height: 240px;
+        .flip-card {
+            height: 380px;
         }
         
-        .form-section, .follow-requirement {
+        .art-image {
+            height: 200px;
+        }
+        
+        .form-section, .wallet-submission-section, .connections-section {
             padding: 30px;
         }
         
@@ -1243,6 +1263,11 @@
             padding: 15px;
         }
         
+        .section-title {
+            font-size: 28px;
+            letter-spacing: 3px;
+        }
+        
         .project-description {
             padding: 25px;
         }
@@ -1262,8 +1287,12 @@
             font-size: 14px;
         }
         
-        .art-image-container {
-            height: 200px;
+        .flip-card {
+            height: 350px;
+        }
+        
+        .art-image {
+            height: 180px;
         }
     }
 </style>
@@ -1294,75 +1323,93 @@
         </div>
     </div>
     
-    <!-- RETRO PATTERN GALLERY -->
+    <!-- GALLERY SECTION -->
+    <div class="section-header">
+        <div class="section-title">ART GALLERY</div>
+    </div>
+    
+    <!-- FLIP CARD GALLERY -->
     <div class="gallery">
-        <div class="art-card">
-            <div class="art-image-container">
-                <img src="super_larry.jpeg" alt="Super Larry" class="art-image"
-                     onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzUwIiBoZWlnaHQ9IjI4MCIgdmlld0JveD0iMCAwIDM1MCAyODAiIHN0eWxlPSJpbWFnZS1yZW5kZXJpbmc6IHBpeGVsYXRlZCI+PHJlY3Qgd2lkdGg9IjM1MCIgaGVpZ2h0PSIyODAiIGZpbGw9IiMwMDAwMDAiLz48cmVjdCB4PSIxMCIgeT0iMTAiIHdpZHRoPSIzMzAiIGhlaWdodD0iMjYwIiBmaWxsPSIjMTExMTExIiBzdHJva2U9IiNGRkQ3MDAiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjE3NSIgeT0iMTQwIiBmb250LWZhbWlseT0iQ291cmllciBOZXciIGZvbnQtc2l6ZT0iMjQiIGZpbGw9IiNGRkQ3MDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkZMT09SIDwvdGV4dD48dGV4dCB4PSIxNzUiIHk9IjE3MCIgZm9udC1mYW1pbHk9IkNvdXJpZXIgTmV3IiBmb250LXNpemU9IjI0IiBmaWxsPSIjRkZENzAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5MQUJSWSA8L3RleHQ+PHRleHQgeD0iMTc1IiB5PSIyMDAiIGZvbnQtZmFtaWx5PSJDb3VyaWVyIE5ldyIgZm9udC1zaXplPSIxNiIgZmlsbD0iI0ZGRDcwMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+U1VQRVIgTEFSUlk8L3RleHQ+PC9zdmc+'">
-                <div class="art-image-hover-overlay">
-                    <div class="hover-description">
-                        <strong>Super Larry</strong> is the cosmic defender of the Larry-Verse. With reality-bending powers, light-speed flight, and unmatched style, he patrols the digital cosmos protecting the basement floor from inter-dimensional threats. His signature white pattern cape generates cryptographic shields.
-                    </div>
+        <!-- SUPER LARRY -->
+        <div class="flip-card" id="superLarryCard">
+            <div class="flip-card-inner">
+                <div class="flip-card-front">
+                    <img src="super_larry.jpeg" alt="Super Larry" class="art-image"
+                         onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzUwIiBoZWlnaHQ9IjI0MCIgdmlld0JveD0iMCAwIDM1MCAyNDAiIHN0eWxlPSJpbWFnZS1yZW5kZXJpbmc6IHBpeGVsYXRlZCI+PHJlY3Qgd2lkdGg9IjM1MCIgaGVpZ2h0PSIyNDAiIGZpbGw9IiMxMTExMTEiLz48cmVjdCB4PSIxMCIgeT0iMTAiIHdpZHRoPSIzMzAiIGhlaWdodD0iMjIwIiBmaWxsPSIjMjIyMjIyIiBzdHJva2U9IiNGRkQ3MDAiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjE3NSIgeT0iMTAwIiBmb250LWZhbWlseT0iJ1ZUMzIzJywgbW9ub3NwYWNlIiBmb250LXNpemU9IjI0IiBmaWxsPSIjRkZENzAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5TVVBFUjwvdGV4dD48dGV4dCB4PSIxNzUiIHk9IjEzMCIgZm9udC1mYW1pbHk9IidWVDMyMycsIG1vbm9zcGFjZSIgZm9udC1zaXplPSIzMCIgZmlsbD0iI0ZGRDcwMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+TEFSUlk8L3RleHQ+PHRleHQgeD0iMTc1IiB5PSIxNzAiIGZvbnQtZmFtaWx5PSInVlQzMjMnLCBtb25vc3BhY2UiIGZvbnQtc2l6ZT0iMTYiIGZpbGw9IiNGRkQ3MDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkNPU01JQyBERUZFTkRFUjwvdGV4dD48L3N2Zz4='">
+                    <div class="art-title-front">SUPER LARRY</div>
+                    <div class="flip-tap-hint">TAP TO FLIP</div>
                 </div>
-                <div class="hover-instruction">HOVER or TOUCH to see description</div>
-            </div>
-            <div class="art-title" onclick="toggleDescription(this)">
-                SUPER LARRY
-            </div>
-            <div class="art-description">
-                Cosmic defender of the Larry-Verse. Reality-bending powers, light-speed flight, and unmatched style. Patrols the digital cosmos protecting the basement floor from inter-dimensional threats.
+                <div class="flip-card-back">
+                    <div class="art-title-back">SUPER LARRY</div>
+                    <div class="art-description-flip">
+                        <strong>Super Larry</strong> is the cosmic defender of the Larry-Verse. With reality-bending powers, light-speed flight, and unmatched style, he patrols the digital cosmos protecting the basement floor from inter-dimensional threats. His signature white pattern cape generates cryptographic shields that can withstand even the most powerful digital attacks.
+                        <br><br>
+                        Abilities: Reality manipulation, light-speed travel, energy projection, and cryptographic defense systems.
+                    </div>
+                    <div class="flip-back-hint">TAP TO RETURN</div>
+                </div>
             </div>
         </div>
         
-        <div class="art-card">
-            <div class="art-image-container">
-                <img src="spider_larry.jpeg" alt="Spider Larry" class="art-image"
-                     onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzUwIiBoZWlnaHQ9IjI4MCIgdmlld0JveD0iMCAwIDM1MCAyODAiIHN0eWxlPSJpbWFnZS1yZW5kZXJpbmc6IHBpeGVsYXRlZCI+PHJlY3Qgd2lkdGg9IjM1MCIgaGVpZ2h0PSIyODAiIGZpbGw9IiMwMDAwMDAiLz48cmVjdCB4PSIxMCIgeT0iMTAiIHdpZHRoPSIzMzAiIGhlaWdodD0iMjYwIiBmaWxsPSIjMTExMTExIiBzdHJva2U9IiNGRkQ3MDAiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjE3NSIgeT0iMTQwIiBmb250LWZhbWlseT0iQ291cmllciBOZXciIGZvbnQtc2l6ZT0iMjQiIGZpbGw9IiNGRkQ3MDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkZMT09SIDwvdGV4dD48dGV4dCB4PSIxNzUiIHk9IjE3MCIgZm9udC1mYW1pbHk9IkNvdXJpZXIgTmV3IiBmb250LXNpemU9IjI0IiBmaWxsPSIjRkZENzAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5MQUJSWSA8L3RleHQ+PHRleHQgeD0iMTc1IiB5PSIyMDAiIGZvbnQtZmFtaWx5PSJDb3VyaWVyIE5ldyIgZm9udC1zaXplPSIxNiIgZmlsbD0iI0ZGRDcwMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+U1BJREVSIExBUlJZPC90ZXh0Pjwvc3ZnPg=='">
-                <div class="art-image-hover-overlay">
-                    <div class="hover-description">
-                        <strong>Spider Larry</strong> swings through the digital metropolis of the internet's basement floor. With web-slinging abilities, wall-crawling skills, and witty one-liners, he navigates the complex architecture of abandoned servers and forgotten data centers, protecting the digital citizens from corruption.
-                    </div>
+        <!-- SPIDER LARRY -->
+        <div class="flip-card" id="spiderLarryCard">
+            <div class="flip-card-inner">
+                <div class="flip-card-front">
+                    <img src="spider_larry.jpeg" alt="Spider Larry" class="art-image"
+                         onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzUwIiBoZWlnaHQ9IjI0MCIgdmlld0JveD0iMCAwIDM1MCAyNDAiIHN0eWxlPSJpbWFnZS1yZW5kZXJpbmc6IHBpeGVsYXRlZCI+PHJlY3Qgd2lkdGg9IjM1MCIgaGVpZ2h0PSIyNDAiIGZpbGw9IiMxMTExMTEiLz48cmVjdCB4PSIxMCIgeT0iMTAiIHdpZHRoPSIzMzAiIGhlaWdodD0iMjIwIiBmaWxsPSIjMjIyMjIyIiBzdHJva2U9IiNGRkQ3MDAiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjE3NSIgeT0iMTAwIiBmb250LWZhbWlseT0iJ1ZUMzIzJywgbW9ub3NwYWNlIiBmb250LXNpemU9IjI0IiBmaWxsPSIjRkZENzAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5TUElERVI8L3RleHQ+PHRleHQgeD0iMTc1IiB5PSIxMzAiIGZvbnQtZmFtaWx5PSInVlQzMjMnLCBtb25vc3BhY2UiIGZvbnQtc2l6ZT0iMzAiIGZpbGw9IiNGRkQ3MDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkxBUlJZPC90ZXh0Pjx0ZXh0IHg9IjE3NSIgeT0iMTcwIiBmb250LWZhbWlseT0iJ1ZUMzIzJywgbW9ub3NwYWNlIiBmb250LXNpemU9IjE2IiBmaWxsPSIjRkZENzAwIiB0ZXh0LWFuY2hvcjPSJtaWRkbGUiPldFQi1TTElOR0VSPC90ZXh0Pjwvc3ZnPg=='">
+                    <div class="art-title-front">SPIDER LARRY</div>
+                    <div class="flip-tap-hint">TAP TO FLIP</div>
                 </div>
-                <div class="hover-instruction">HOVER or TOUCH to see description</div>
-            </div>
-            <div class="art-title" onclick="toggleDescription(this)">
-                SPIDER LARRY
-            </div>
-            <div class="art-description">
-                Swings through digital metropolis. Web-slinging, wall-crawling, and witty one-liners. Navigates the complex architecture of abandoned servers and forgotten data centers.
+                <div class="flip-card-back">
+                    <div class="art-title-back">SPIDER LARRY</div>
+                    <div class="art-description-flip">
+                        <strong>Spider Larry</strong> swings through the digital metropolis of the internet's basement floor. With web-slinging abilities, wall-crawling skills, and witty one-liners, he navigates the complex architecture of abandoned servers and forgotten data centers, protecting the digital citizens from corruption and data breaches.
+                        <br><br>
+                        Abilities: Web-slinging, wall-crawling, enhanced agility, spider-sense for detecting digital threats, and rapid code regeneration.
+                    </div>
+                    <div class="flip-back-hint">TAP TO RETURN</div>
+                </div>
             </div>
         </div>
         
-        <div class="art-card">
-            <div class="art-image-container">
-                <img src="arthur_larry.jpeg" alt="Arthur Larry" class="art-image"
-                     onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzUwIiBoZWlnaHQ9IjI4MCIgdmlld0JveD0iMCAwIDM1MCAyODAiIHN0eWxlPSJpbWFnZS1yZW5kZXJpbmc6IHBpeGVsYXRlZCI+PHJlY3Qgd2lkdGg9IjM1MCIgaGVpZ2h0PSIyODAiIGZpbGw9IiMwMDAwMDAiLz48cmVjdCB4PSIxMCIgeT0iMTAiIHdpZHRoPSIzMzAiIGhlaWdodD0iMjYwIiBmaWxsPSIjMTExMTExIiBzdHJva2U9IiNGRkQ3MDAiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjE3NSIgeT0iMTQwIiBmb250LWZhbWlseT0iQ291cmllciBOZXciIGZvbnQtc2l6ZT0iMjQiIGZpbGw9IiNGRkQ3MDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkZMT09SIDwvdGV4dD48dGV4dCB4PSIxNzUiIHk9IjE3MCIgZm9udC1mYW1pbHk9IkNvdXJpZXIgTmV3IiBmb250LXNpemU9IjI0IiBmaWxsPSIjRkZENzAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5MQUJSWSA8L3RleHQ+PHRleHQgeD0iMTc1IiB5PSIyMDAiIGZvbnQtZmFtaWx5PSJDb3VyaWVyIE5ldyIgZm9udC1zaXplPSIxNiIgZmlsbD0iI0ZGRDcwMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+QVJUSFVSICBMQVJSWTwvdGV4dD48L3N2Zz4='">
-                <div class="art-image-hover-overlay">
-                    <div class="hover-description">
+        <!-- ARTHUR LARRY -->
+        <div class="flip-card" id="arthurLarryCard">
+            <div class="flip-card-inner">
+                <div class="flip-card-front">
+                    <img src="arthur_larry.jpeg" alt="Arthur Larry" class="art-image"
+                         onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzUwIiBoZWlnaHQ9IjI0MCIgdmlld0JveD0iMCAwIDM1MCAyNDAiIHN0eWxlPSJpbWFnZS1yZW5kZXJpbmc6IHBpeGVsYXRlZCI+PHJlY3Qgd2lkdGg9IjM1MCIgaGVpZ2h0PSIyNDAiIGZpbGw9IiMxMTExMTEiLz48cmVjdCB4PSIxMCIgeT0iMTAiIHdpZHRoPSIzMzAiIGhlaWdodD0iMjIwIiBmaWxsPSIjMjIyMjIyIiBzdHJva2U9IiNGRkQ3MDAiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjE3NSIgeT0iMTAwIiBmb250LWZhbWlseT0iJ1ZUMzIzJywgbW9ub3NwYWNlIiBmb250LXNpemU9IjI0IiBmaWxsPSIjRkZENzAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5BUlRIVVI8L3RleHQ+PHRleHQgeD0iMTc1IiB5PSIxMzAiIGZvbnQtZmFtaWx5PSInVlQzMjMnLCBtb25vc3BhY2UiIGZvbnQtc2l6ZT0iMzAiIGZpbGw9IiNGRkQ3MDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkxBUlJZPC90ZXh0Pjx0ZXh0IHg9IjE3NSIgeT0iMTcwIiBmb250LWZhbWlseT0iJ1ZUMzIzJywgbW9ub3NwYWNlIiBmb250LXNpemU9IjE2IiBmaWxsPSIjRkZENzAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5USEUgS0lORzwvdGV4dD48L3N2Zz4='">
+                    <div class="art-title-front">ARTHUR LARRY</div>
+                    <div class="flip-tap-hint">TAP TO FLIP</div>
+                </div>
+                <div class="flip-card-back">
+                    <div class="art-title-back">ARTHUR LARRY</div>
+                    <div class="art-description-flip">
                         <strong>Arthur Larry</strong> is the once and future king of the digital realm. He leads the Knights of the Binary Table through the deepest levels of the internet's basement floor, wielding the legendary sword Excali-Bit. His quest is to unite the fragmented data kingdoms and restore order to the chaotic digital landscape.
+                        <br><br>
+                        Abilities: Leadership aura, sword mastery with Excali-Bit, digital kingdom unification, and protocol diplomacy.
                     </div>
+                    <div class="flip-back-hint">TAP TO RETURN</div>
                 </div>
-                <div class="hover-instruction">HOVER or TOUCH to see description</div>
-            </div>
-            <div class="art-title" onclick="toggleDescription(this)">
-                ARTHUR LARRY
-            </div>
-            <div class="art-description">
-                The once and future king. Leads the Knights of the Binary Table through digital realms. Wields the legendary sword Excali-Bit to unite fragmented data kingdoms.
             </div>
         </div>
     </div>
     
-    <!-- RETRO LARRY CARD DISPLAY -->
-    <div class="larry-card-display">
-        <div class="larry-card-title">COLLECTOR'S CARD</div>
-        <img src="larry_card.jpeg" alt="Larry Card" class="larry-card-img"
-             onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjgwIiBoZWlnaHQ9IjM4MCIgdmlld0JveD0iMCAwIDMyIDQ0IiBzdHlsZT0iaW1hZ2UtcmVuZGVyaW5nOiBwaXhlbGF0ZWQiPjxyZWN0IHdpZHRoPSIzMiIgaGVpZ2h0PSI0NCIgZmlsbD0iIzAwMDAwMCIvPjxyZWN0IHg9IjIiIHk9IjIiIHdpZHRoPSIyOCIgaGVpZ2h0PSI0MCIgZmlsbD0iI0ZGRDcwMCIgc3Ryb2tlPSIjMDAwMDAwIiBzdHJva2Utd2lkdGg9IjEiLz48cmVjdCB4PSI0IiB5PSI0IiB3aWR0aD0iMjQiIGhlaWdodD0iMzYiIGZpbGw9IiMwMDAwMDAiLz48cmVjdCB4PSI4IiB5PSI4IiB3aWR0aD0iMTYiIGhlaWdodD0iMjQiIGZpbGw9IiMxMTExMTEiLz48cmVjdCB4PSIxMiIgeT0iMTIiIHdpZHRoPSI4IiBoZWlnaHQ9IjgiIGZpbGw9IiNGRkQ3MDAiLz48cmVjdCB4PSIxNCIgeT0iMTQiIHdpZHRoPSI0IiBoZWlnaHQ9IjQiIGZpbGw9IiMwMDAwMDAiLz48cmVjdCB4PSIxMyIgeT0iMTMiIHdpZHRoPSIyIiBoZWlnaHQ9IjIiIGZpbGw9IiNGRkZGRkYiLz48cmVjdCB4PSIxNyIgeT0iMTMiIHdpZHRoPSIyIiBoZWlnaHQ9IjIiIGZpbGw9IiNGRkZGRkYiLz48dGV4dCB4PSIxNiIgeT0iMjgiIGZvbnQtZmFtaWx5PSJDb3VyaWVyIE5ldyIgbGV0dGVyLXNwYWNpbmc9IjFweCIgZm9udC1zaXplPSIzIiBmaWxsPSIjRkZENzAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5MQUJSWTwvdGV4dD48dGV4dCB4PSIxNiIgeT0iMzIiIGZvbnQtZmFtaWx5PSJDb3VyaWVyIE5ldyIgbGV0dGVyLXNwYWNpbmc9IjFweCIgZm9udC1zaXplPSIyIiBmaWxsPSIjRkZENzAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5DT0xMRUNUT1IgQ0FSRDwvdGV4dD48cmVjdCB4PSIyMiIgeT0iNCIgd2lkdGg9IjYiIGhlaWdodD0iNCIgZmlsbD0iI0ZGMDAwMCIvPjx0ZXh0IHg9IjI1IiB5PSI2IiBmb250LWZhbWlseT0iQ291cmllciBOZXciIGZvbnQtc2l6ZT0iMyIgZmlsbD0iI0ZGRkZGRiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+TkZUPC90ZXh0Pjwvc3ZnPg=='">
+    <!-- LARRY CARD SECTION -->
+    <div class="section-header">
+        <div class="section-title">LARRY CARD</div>
     </div>
     
-    <!-- RETRO X FOLLOW REQUIREMENT -->
-    <div class="follow-requirement">
+    <div class="larry-card-section">
+        <img src="larry_card.jpeg" alt="Larry Card" class="larry-card-img"
+             onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjgwIiBoZWlnaHQ9IjM4MCIgdmlld0JveD0iMCAwIDMyIDQ0IiBzdHlsZT0iaW1hZ2UtcmVuZGVyaW5nOiBwaXhlbGF0ZWQiPjxyZWN0IHdpZHRoPSIzMiIgaGVpZ2h0PSI0NCIgZmlsbD0iIzExMTExMSIvPjxyZWN0IHg9IjIiIHk9IjIiIHdpZHRoPSIyOCIgaGVpZ2h0PSI0MCIgZmlsbD0iIzIyMjIyMiIgc3Ryb2tlPSIjRkZENzAwIiBzdHJva2Utd2lkdGg9IjEiLz48cmVjdCB4PSI0IiB5PSI0IiB3aWR0aD0iMjQiIGhlaWdodD0iMzYiIGZpbGw9IiMxMTExMTEiLz48dGV4dCB4PSIxNiIgeT0iMjAiIGZvbnQtZmFtaWx5PSInVlQzMjMnLCBtb25vc3BhY2UiIGxldHRlci1zcGFjaW5nPSIxcHgiIGZvbnQtc2l6ZT0iNCIgZmlsbD0iI0ZGRDcwMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+RkxPT1I8L3RleHQ+PHRleHQgeD0iMTYiIHk9IjI2IiBmb250LWZhbWlseT0iJ1ZUMzIzJywgbW9ub3NwYWNlIiBsZXR0ZXItc3BhY2luZz0iMXB4IiBmb250LXNpemU9IjUiIGZpbGw9IiNGRkQ3MDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkxBUlJZPC90ZXh0Pjx0ZXh0IHg9IjE2IiB5PSIzMiIgZm9udC1mYW1pbHk9IidWVDMyMycsIG1vbm9zcGFjZSIgbGV0dGVyLXNwYWNpbmc9IjFweCIgZm9udC1zaXplPSIyIiBmaWxsPSIjRkZENzAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5DT0xMRUNUT1IgQ0FSRDwvdGV4dD48cmVjdCB4PSIyMiIgeT0iNCIgd2lkdGg9IjYiIGhlaWdodD0iNCIgZmlsbD0iI0ZGMDAwMCIvPjx0ZXh0IHg9IjI1IiB5PSI2IiBmb250LWZhbWlseT0iJ1ZUMzIzJywgbW9ub3NwYWNlIiBmb250LXNpemU9IjIiIGZpbGw9IiNGRkZGRkYiIHRleHQtYW5jaG9yPSJtaWRkbGUiPk5GVDwvdGV4dD48L3N2Zz4='">
+    </div>
+    
+    <!-- WALLET SUBMISSION SECTION -->
+    <div class="section-header">
+        <div class="section-title">WALLET SUBMISSION</div>
+    </div>
+    
+    <div class="wallet-submission-section">
         <div class="requirement-title">VERIFICATION REQUIRED</div>
         
         <div class="requirement-steps">
@@ -1393,7 +1440,7 @@
         </div>
     </div>
     
-    <!-- RETRO FORM SECTION -->
+    <!-- FORM SECTION -->
     <div class="pixel-border">
         <div class="pixel-border-inner">
             <div class="form-section" id="walletFormSection">
@@ -1437,7 +1484,29 @@
         </div>
     </div>
     
-    <!-- RETRO STATS BAR -->
+    <!-- CONNECTIONS SECTION -->
+    <div class="section-header">
+        <div class="section-title">CONNECTIONS</div>
+    </div>
+    
+    <div class="connections-section">
+        <div class="requirement-title">STAY CONNECTED</div>
+        <div class="description-text" style="max-width: 700px; margin: 0 auto 40px;">
+            Join the Floor Larry community and stay updated with the latest drops, news, and developments in the Larry-Verse. Follow us on X and be part of the digital basement floor revolution.
+        </div>
+        
+        <a href="https://x.com/larrynfts" target="_blank" class="twitter-link">
+            <span>⚡</span>
+            FOLLOW @LARRYNFTS ON X
+            <span>⚡</span>
+        </a>
+    </div>
+    
+    <!-- STATS SECTION -->
+    <div class="section-header">
+        <div class="section-title">STATS</div>
+    </div>
+    
     <div class="stats">
         <div class="stat-item">
             <div class="stat-label">TOTAL SUBMISSIONS</div>
@@ -1453,13 +1522,6 @@
         </div>
     </div>
     
-    <!-- RETRO TWITTER LINK -->
-    <a href="https://x.com/larrynfts" target="_blank" class="twitter-link">
-        <span>⚡</span>
-        FOLLOW @LARRYNFTS ON X
-        <span>⚡</span>
-    </a>
-    
     <!-- RETRO FOOTER -->
     <div class="footer">
         <div class="copyright">FLOOR LARRY © 2024</div>
@@ -1471,29 +1533,6 @@
     // =============================================
     // RETRO UI FUNCTIONALITY
     // =============================================
-    
-    // Toggle art descriptions
-    function toggleDescription(element) {
-        const desc = element.nextElementSibling;
-        const allDescs = document.querySelectorAll('.art-description');
-        
-        // Close all other descriptions
-        allDescs.forEach(d => {
-            if (d !== desc) {
-                d.style.display = 'none';
-            }
-        });
-        
-        // Toggle current description with animation
-        if (desc.style.display === 'block') {
-            desc.style.display = 'none';
-            element.style.letterSpacing = '3px';
-        } else {
-            desc.style.display = 'block';
-            element.style.letterSpacing = '4px';
-            desc.style.animation = 'fadeIn 0.5s ease-out';
-        }
-    }
     
     document.addEventListener('DOMContentLoaded', function() {
         const followBtn = document.getElementById('followBtn');
@@ -1514,30 +1553,32 @@
         const step2Number = document.getElementById('step2Number');
         const step3Number = document.getElementById('step3Number');
         
-        // Image hover functionality
-        const imageContainers = document.querySelectorAll('.art-image-container');
-        const hoverOverlays = document.querySelectorAll('.art-image-hover-overlay');
-        const hoverInstructions = document.querySelectorAll('.hover-instruction');
+        // Flip card functionality
+        const flipCards = document.querySelectorAll('.flip-card');
         
-        // Set up image hover/touch interactions
-        imageContainers.forEach((container, index) => {
-            // Mouse events
-            container.addEventListener('mouseenter', function() {
-                hoverOverlays[index].classList.add('active');
-                hoverInstructions[index].classList.add('active');
-            });
-            
-            container.addEventListener('mouseleave', function() {
-                hoverOverlays[index].classList.remove('active');
-                hoverInstructions[index].classList.remove('active');
+        flipCards.forEach(card => {
+            // Click/tap to flip
+            card.addEventListener('click', function(e) {
+                if (!e.target.closest('.flip-tap-hint') && !e.target.closest('.flip-back-hint')) {
+                    this.classList.toggle('flipped');
+                }
             });
             
             // Touch events for mobile
-            container.addEventListener('touchstart', function(e) {
-                e.preventDefault();
-                hoverOverlays[index].classList.toggle('active');
-                hoverInstructions[index].classList.toggle('active');
+            card.addEventListener('touchstart', function(e) {
+                this.classList.toggle('flipped');
             });
+            
+            // Keyboard support
+            card.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    this.classList.toggle('flipped');
+                }
+            });
+            
+            // Set tabindex for accessibility
+            card.setAttribute('tabindex', '0');
         });
         
         // Set timestamp
@@ -1842,6 +1883,19 @@
         console.log('%c║                    FLOOR LARRY - RETRO NFT COLLECTION            ║', 'color: #ffffff; font-family: monospace;');
         console.log('%c║                    Follow @larrynfts to submit wallet            ║', 'color: #00ff00; font-family: monospace;');
         console.log('%c╚══════════════════════════════════════════════════════════════════╝', 'color: #ffffff;');
+        
+        // Auto-rotate flip cards on load
+        setTimeout(() => {
+            const cards = document.querySelectorAll('.flip-card');
+            cards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.classList.add('flipped');
+                    setTimeout(() => {
+                        card.classList.remove('flipped');
+                    }, 2000);
+                }, index * 500);
+            });
+        }, 1000);
     });
 </script>
 
