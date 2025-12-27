@@ -83,6 +83,422 @@
     }
     .twitter-link:hover {
         transform: scale(1.05);
+        /* ================================= */
+/* RETRO 90s WALLET COLLECTOR STYLES */
+/* ================================= */
+
+/* Main Container */
+.retro-collector {
+    background: linear-gradient(135deg, 
+        #000033 0%, 
+        #330066 25%, 
+        #660099 50%, 
+        #9900cc 75%, 
+        #cc00ff 100%);
+    border: 12px solid;
+    border-image: 
+        repeating-linear-gradient(
+            45deg,
+            #ff00ff,
+            #00ffff 10px,
+            #ffff00 20px,
+            #ff00ff 30px
+        ) 12;
+    padding: 30px;
+    margin: 50px auto;
+    max-width: 900px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 
+        0 0 50px rgba(255, 0, 255, 0.5),
+        inset 0 0 30px rgba(0, 255, 255, 0.3);
+}
+
+/* CRT Screen Effect */
+.retro-collector::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        repeating-linear-gradient(
+            0deg,
+            rgba(0, 0, 0, 0.15) 0px,
+            rgba(0, 0, 0, 0.15) 1px,
+            transparent 1px,
+            transparent 2px
+        );
+    pointer-events: none;
+    z-index: 1;
+    animation: scanlines 10s linear infinite;
+}
+
+@keyframes scanlines {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(10px); }
+}
+
+/* Animated Header */
+.retro-header {
+    text-align: center;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.neon-text {
+    font-family: 'Impact', 'Arial Black', sans-serif;
+    font-size: 3.5em;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    text-shadow: 
+        0 0 10px #ff00ff,
+        0 0 20px #ff00ff,
+        0 0 30px #ff00ff,
+        0 0 40px #00ffff,
+        0 0 70px #00ffff;
+    animation: neonPulse 2s infinite alternate;
+    margin-bottom: 10px;
+}
+
+@keyframes neonPulse {
+    from {
+        text-shadow: 
+            0 0 10px #ff00ff,
+            0 0 20px #ff00ff,
+            0 0 30px #ff00ff,
+            0 0 40px #00ffff,
+            0 0 70px #00ffff;
+    }
+    to {
+        text-shadow: 
+            0 0 5px #ff00ff,
+            0 0 10px #ff00ff,
+            0 0 15px #ff00ff,
+            0 0 20px #00ffff,
+            0 0 35px #00ffff;
+    }
+}
+
+.pixel-subtitle {
+    font-family: 'Courier New', monospace;
+    font-size: 1.2em;
+    color: #00ff00;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 10px;
+    border: 2px solid #00ffff;
+    display: inline-block;
+}
+
+.scan-line {
+    height: 3px;
+    background: linear-gradient(90deg, 
+        transparent, 
+        #00ffff, 
+        #ff00ff, 
+        #00ffff, 
+        transparent);
+    margin-top: 15px;
+    animation: scan 3s linear infinite;
+}
+
+@keyframes scan {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+/* Larry Card Display */
+.larry-card-display {
+    position: relative;
+    width: 200px;
+    margin: 0 auto 30px;
+    perspective: 1000px;
+}
+
+.pixel-border {
+    width: 100%;
+    border: 8px solid;
+    border-image: 
+        repeating-linear-gradient(
+            45deg,
+            #ffff00,
+            #00ff00 5px,
+            #00ffff 10px,
+            #ff00ff 15px
+        ) 8;
+    box-shadow: 
+        0 0 20px #ffff00,
+        inset 0 0 20px #00ffff;
+    animation: cardFloat 4s ease-in-out infinite;
+}
+
+@keyframes cardFloat {
+    0%, 100% { transform: translateY(0) rotateY(0); }
+    50% { transform: translateY(-10px) rotateY(10deg); }
+}
+
+.glitch-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        45deg,
+        transparent 48%,
+        rgba(255, 0, 255, 0.1) 50%,
+        transparent 52%
+    );
+    animation: glitch 0.5s infinite;
+    pointer-events: none;
+}
+
+@keyframes glitch {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-2px); }
+    75% { transform: translateX(2px); }
+}
+
+/* CRT Screen Form Container */
+.crt-screen {
+    background: #001122;
+    border: 15px solid #333;
+    border-radius: 10px;
+    padding: 25px;
+    position: relative;
+    box-shadow: 
+        inset 0 0 30px #000,
+        0 0 30px #00ffff;
+    margin-bottom: 20px;
+}
+
+.crt-screen::before {
+    content: "";
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    border: 5px solid #00ffff;
+    border-radius: 15px;
+    pointer-events: none;
+    z-index: -1;
+    animation: screenGlow 2s infinite alternate;
+}
+
+@keyframes screenGlow {
+    from { box-shadow: 0 0 20px #00ffff; }
+    to { box-shadow: 0 0 40px #ff00ff; }
+}
+
+/* Form Elements */
+.screen-text {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.typewriter {
+    font-family: 'Courier New', monospace;
+    font-size: 1.3em;
+    color: #00ff00;
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 3px solid #00ff00;
+    width: 0;
+    animation: typing 3.5s steps(40, end) forwards;
+}
+
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+}
+
+.blinking-cursor {
+    color: #00ff00;
+    animation: blink 1s infinite;
+    font-size: 1.5em;
+    margin-top: 10px;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+.input-group {
+    margin-bottom: 25px;
+    position: relative;
+}
+
+.pixel-label {
+    display: block;
+    font-family: 'Courier New', monospace;
+    font-size: 1.1em;
+    color: #ffff00;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.pixel-input {
+    width: 100%;
+    padding: 15px;
+    background: #000;
+    border: 3px solid #00ffff;
+    color: #00ff00;
+    font-family: 'Courier New', monospace;
+    font-size: 1.1em;
+    border-radius: 0;
+    transition: all 0.3s;
+}
+
+.pixel-input:focus {
+    outline: none;
+    border-color: #ff00ff;
+    box-shadow: 0 0 15px #ff00ff;
+    background: #111;
+}
+
+.input-underline {
+    height: 2px;
+    background: linear-gradient(90deg, #00ffff, #ff00ff);
+    width: 0;
+    transition: width 0.3s;
+}
+
+.pixel-input:focus + .input-underline {
+    width: 100%;
+}
+
+/* Retro Button */
+.retro-button {
+    position: relative;
+    background: linear-gradient(45deg, #ff00ff, #00ffff);
+    border: none;
+    padding: 20px 40px;
+    font-family: 'Impact', sans-serif;
+    font-size: 1.3em;
+    color: #000;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    cursor: pointer;
+    overflow: hidden;
+    margin: 20px auto;
+    display: block;
+    transition: all 0.3s;
+    border: 4px solid #ffff00;
+}
+
+.retro-button:hover {
+    transform: scale(1.05);
+    box-shadow: 
+        0 0 30px #ff00ff,
+        0 0 60px #00ffff;
+}
+
+.button-text {
+    position: relative;
+    z-index: 2;
+}
+
+.button-glow {
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    right: -50%;
+    bottom: -50%;
+    background: radial-gradient(circle, 
+        rgba(255,255,255,0.3) 0%, 
+        transparent 70%);
+    animation: rotateGlow 3s linear infinite;
+}
+
+@keyframes rotateGlow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.button-pixels {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 2px,
+            rgba(255,255,0,0.1) 2px,
+            rgba(255,255,0,0.1) 4px
+        );
+}
+
+/* Terminal Response */
+.terminal-response {
+    background: #001a00;
+    border: 2px solid #00ff00;
+    padding: 15px;
+    margin-top: 20px;
+    font-family: 'Courier New', monospace;
+    color: #00ff00;
+    min-height: 60px;
+    position: relative;
+}
+
+.terminal-response::before {
+    content: ">";
+    position: absolute;
+    left: 10px;
+    top: 15px;
+    color: #00ff00;
+    animation: blink 1s infinite;
+}
+
+.response-text {
+    margin-left: 20px;
+}
+
+/* Status Bar */
+.status-bar {
+    display: flex;
+    justify-content: space-around;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 10px;
+    border-top: 3px solid #00ffff;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9em;
+    color: #ffff00;
+}
+
+.status-item {
+    padding: 5px 15px;
+    border: 1px solid #ff00ff;
+    background: rgba(255, 0, 255, 0.1);
+    animation: statusPulse 2s infinite;
+}
+
+@keyframes statusPulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+/* Form Success/Error States */
+.form-success .terminal-response {
+    border-color: #00ff00;
+    background: rgba(0, 255, 0, 0.1);
+    color: #00ff00;
+}
+
+.form-error .terminal-response {
+    border-color: #ff0000;
+    background: rgba(255, 0, 0, 0.1);
+    color: #ff0000;
+}
     }
 </style>
 </head>
@@ -135,6 +551,79 @@ He doesn’t follow trends—he defines them.
 </div>
     </div>
 
+    <!-- ============================= -->
+    <!-- LARRY CARD WALLET SUBMISSION -->
+    <!-- ============================= -->
+    
+    <div class="retro-collector">
+        <!-- Animated 90s Header -->
+        <div class="retro-header">
+            <div class="neon-text">LARRY CARD</div>
+            <div class="pixel-subtitle">WALLET SUBMISSION STATION</div>
+            <div class="scan-line"></div>
+        </div>
+        
+        <!-- Larry Card Image -->
+        <div class="larry-card-display">
+            <img src="larry_card.jpeg" alt="Larry Card NFT" class="pixel-border">
+            <div class="glitch-overlay"></div>
+        </div>
+        
+        <!-- Retro Form -->
+        <div class="retro-form-container">
+            <div class="crt-screen">
+                <div class="screen-text">
+                    <p class="typewriter">ENTER YOUR WALLET TO JOIN THE LARRYVERSE</p>
+                    <p class="blinking-cursor">_</p>
+                </div>
+                
+                <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" class="retro-form" id="walletForm">
+                    <div class="input-group">
+                        <label for="wallet" class="pixel-label">📍 WALLET ADDRESS</label>
+                        <input type="text" 
+                               id="wallet" 
+                               name="wallet" 
+                               required 
+                               class="pixel-input"
+                               placeholder="0x..."
+                               pattern="^0x[a-fA-F0-9]{40}$">
+                        <div class="input-underline"></div>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="email" class="pixel-label">📧 EMAIL (OPTIONAL)</label>
+                        <input type="email" 
+                               id="email" 
+                               name="email" 
+                               class="pixel-input"
+                               placeholder="larryfan@90s.com">
+                        <div class="input-underline"></div>
+                    </div>
+                    
+                    <!-- Hidden field for timestamp -->
+                    <input type="hidden" name="submission_time" id="submissionTime">
+                    
+                    <button type="submit" class="retro-button">
+                        <span class="button-text">SUBMIT WALLET</span>
+                        <span class="button-glow"></span>
+                        <span class="button-pixels"></span>
+                    </button>
+                </form>
+                
+                <div class="terminal-response" id="responseMessage">
+                    <div class="response-text">AWAITING INPUT...</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Retro Status Bar -->
+        <div class="status-bar">
+            <div class="status-item">LARRYVERSE v1.0</div>
+            <div class="status-item">▲ ACTIVE ▲</div>
+            <div class="status-item" id="submissionCount">SUBMISSIONS: 0</div>
+            <div class="status-item">90s MODE: ONLINE</div>
+        </div>
+    </div>
     <!-- Twitter Link -->
     <a href="https://x.com/larrynfts?s=21" target="_blank" class="twitter-link">
         Follow us on Twitter
@@ -151,6 +640,145 @@ He doesn’t follow trends—he defines them.
             desc.style.display = "block";
         }
     }
+    // ===========================
+    // WALLET FORM FUNCTIONALITY
+    // ===========================
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.getElementById('walletForm');
+        const responseMessage = document.getElementById('responseMessage');
+        const responseText = responseMessage.querySelector('.response-text');
+        const submissionCount = document.getElementById('submissionCount');
+        
+        // Set timestamp
+        document.getElementById('submissionTime').value = new Date().toISOString();
+        
+        // Form validation
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const walletInput = document.getElementById('wallet');
+            const walletValue = walletInput.value.trim();
+            
+            // Basic Ethereum wallet validation
+            const ethRegex = /^0x[a-fA-F0-9]{40}$/;
+            
+            if (!ethRegex.test(walletValue)) {
+                showResponse('ERROR: Invalid Ethereum wallet address format', 'error');
+                walletInput.focus();
+                return;
+            }
+            
+            // Show submitting message
+            showResponse('PROCESSING SUBMISSION...', 'processing');
+            
+            // Submit to Formspree (REPLACE YOUR_FORM_ID with actual ID)
+            fetch(form.action, {
+                method: 'POST',
+                body: new FormData(form),
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    showResponse('✅ WALLET SUBMITTED SUCCESSFULLY! Welcome to the Larryverse!', 'success');
+                    form.reset();
+                    updateSubmissionCount();
+                    
+                    // Confetti effect
+                    createConfetti();
+                } else {
+                    showResponse('❌ SUBMISSION FAILED. Please try again.', 'error');
+                }
+            })
+            .catch(error => {
+                showResponse('❌ NETWORK ERROR. Please check connection.', 'error');
+                console.error('Error:', error);
+            });
+        });
+        
+        function showResponse(message, type) {
+            responseText.textContent = message;
+            responseMessage.className = 'terminal-response';
+            
+            if (type === 'success') {
+                responseMessage.classList.add('form-success');
+            } else if (type === 'error') {
+                responseMessage.classList.add('form-error');
+            }
+            
+            // Auto-clear after 5 seconds
+            setTimeout(() => {
+                responseText.textContent = 'AWAITING INPUT...';
+                responseMessage.className = 'terminal-response';
+            }, 5000);
+        }
+        
+        function updateSubmissionCount() {
+            // Get current count from localStorage
+            let count = localStorage.getItem('larrySubmissions') || 0;
+            count = parseInt(count) + 1;
+            localStorage.setItem('larrySubmissions', count);
+            
+            // Update display with retro effect
+            submissionCount.textContent = `SUBMISSIONS: ${count}`;
+            submissionCount.style.animation = 'none';
+            setTimeout(() => {
+                submissionCount.style.animation = 'statusPulse 2s infinite';
+            }, 10);
+        }
+        
+        // Initialize count
+        const initialCount = localStorage.getItem('larrySubmissions') || 0;
+        submissionCount.textContent = `SUBMISSIONS: ${initialCount}`;
+        
+        // Retro confetti effect
+        function createConfetti() {
+            const colors = ['#ff00ff', '#00ffff', '#ffff00', '#00ff00'];
+            const container = document.querySelector('.retro-collector');
+            
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.style.position = 'absolute';
+                confetti.style.width = '10px';
+                confetti.style.height = '10px';
+                confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.borderRadius = '0';
+                confetti.style.left = Math.random() * 100 + '%';
+                confetti.style.top = '-20px';
+                confetti.style.opacity = '0.8';
+                confetti.style.zIndex = '1000';
+                
+                container.appendChild(confetti);
+                
+                // Animation
+                const animation = confetti.animate([
+                    { transform: 'translateY(0) rotate(0deg)', opacity: 1 },
+                    { transform: `translateY(${window.innerHeight}px) rotate(${Math.random() * 360}deg)`, opacity: 0 }
+                ], {
+                    duration: 2000 + Math.random() * 2000,
+                    easing: 'cubic-bezier(0.1, 0.7, 1.0, 0.1)'
+                });
+                
+                animation.onfinish = () => confetti.remove();
+            }
+        }
+        
+        // Wallet input validation on the fly
+        const walletInput = document.getElementById('wallet');
+        walletInput.addEventListener('input', function(e) {
+            if (this.value.length > 0) {
+                if (this.value.startsWith('0x') && this.value.length === 42) {
+                    this.style.borderColor = '#00ff00';
+                    this.style.boxShadow = '0 0 10px #00ff00';
+                } else {
+                    this.style.borderColor = '#ff0000';
+                    this.style.boxShadow = '0 0 10px #ff0000';
+                }
+            }
+        });
+    });
 </script>
 
 </body>
