@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -66,207 +66,330 @@
         line-height: 1.4;
     }
     
-    /* =============================== */
-    /* WALLET SUBMISSION STYLES */
-    /* =============================== */
+    /* ==================================== */
+    /* 90s RETRO WALLET COLLECTOR - PERFECT */
+    /* ==================================== */
     
-    .wallet-section {
-        background: rgba(106, 13, 173, 0.9);
-        border: 5px solid #ffd700;
-        border-radius: 20px;
+    .retro-wallet-section {
+        background: linear-gradient(135deg, #000033, #660099);
+        border: 8px solid;
+        border-image: repeating-linear-gradient(45deg, #ff00ff, #00ffff 10px, #ffff00 20px) 8;
         padding: 30px;
         margin: 50px auto;
         max-width: 800px;
         position: relative;
-        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
         overflow: hidden;
+        box-shadow: 
+            0 0 30px rgba(255, 0, 255, 0.5),
+            inset 0 0 20px rgba(0, 255, 255, 0.3);
+        font-family: 'Courier New', monospace;
     }
     
-    .wallet-section::before {
+    /* CRT Screen Effect */
+    .retro-wallet-section::before {
         content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: 
+            repeating-linear-gradient(
+                0deg,
+                rgba(0, 0, 0, 0.1) 0px,
+                rgba(0, 0, 0, 0.1) 1px,
+                transparent 1px,
+                transparent 2px
+            );
+        pointer-events: none;
+        z-index: 1;
+        animation: scanlines 10s linear infinite;
+    }
+    
+    @keyframes scanlines {
+        0% { transform: translateY(0); }
+        100% { transform: translateY(10px); }
+    }
+    
+    .retro-header {
+        text-align: center;
+        margin-bottom: 25px;
+        position: relative;
+        z-index: 2;
+    }
+    
+    .retro-title {
+        font-family: 'Impact', 'Arial Black', sans-serif;
+        font-size: 2.8em;
+        color: #fff;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        text-shadow: 
+            0 0 10px #ff00ff,
+            0 0 20px #ff00ff,
+            0 0 30px #00ffff;
+        margin-bottom: 10px;
+        animation: neonGlow 2s infinite alternate;
+    }
+    
+    @keyframes neonGlow {
+        from { text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff, 0 0 30px #00ffff; }
+        to { text-shadow: 0 0 15px #ff00ff, 0 0 25px #00ffff, 0 0 35px #ffff00; }
+    }
+    
+    .retro-subtitle {
+        color: #00ff00;
+        font-size: 1.2em;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        background: rgba(0, 0, 0, 0.7);
+        padding: 10px;
+        display: inline-block;
+        border: 2px solid #00ffff;
+    }
+    
+    /* Larry Card Display - PERFECT SIZE */
+    .larry-card-display {
+        background: black;
+        border: 6px solid;
+        border-image: repeating-linear-gradient(45deg, #ffff00, #ff00ff 10px) 6;
+        width: 250px;
+        height: 180px;
+        margin: 0 auto 25px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 0 25px rgba(255, 255, 0, 0.5);
+        animation: cardFloat 4s ease-in-out infinite;
+    }
+    
+    @keyframes cardFloat {
+        0%, 100% { transform: translateY(0) rotate(0deg); }
+        50% { transform: translateY(-10px) rotate(1deg); }
+    }
+    
+    .larry-card-img {
+        max-width: 90%;
+        max-height: 90%;
+        object-fit: contain;
+        display: block;
+    }
+    
+    .card-glow {
         position: absolute;
         top: -50%;
         left: -50%;
         width: 200%;
         height: 200%;
-        background: radial-gradient(circle, rgba(255,215,0,0.1) 0%, transparent 70%);
-        animation: rotate 20s linear infinite;
+        background: radial-gradient(circle, rgba(255,255,0,0.3) 0%, transparent 70%);
+        animation: rotateGlow 10s linear infinite;
     }
     
-    @keyframes rotate {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
+    @keyframes rotateGlow {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
     }
     
-    .wallet-header {
-        text-align: center;
-        margin-bottom: 30px;
-        position: relative;
-        z-index: 2;
-    }
-    
-    .wallet-title {
-        font-size: 2.5em;
-        color: #ffd700;
-        text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.3);
-        margin-bottom: 10px;
-        font-weight: bold;
-    }
-    
-    .wallet-subtitle {
-        color: #fff;
-        font-size: 1.2em;
-        opacity: 0.9;
-    }
-    
-    .larry-card-container {
-        position: relative;
-        width: 300px;
-        margin: 0 auto 30px;
-        z-index: 2;
-    }
-    
-    .larry-card-image {
-        width: 100%;
-        height: 200px;
-        object-fit: cover;
-        border-radius: 15px;
-        border: 4px solid #ffd700;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-        transition: transform 0.3s ease;
-    }
-    
-    .larry-card-image:hover {
-        transform: scale(1.05);
-    }
-    
-    .wallet-form-container {
-        background: rgba(255, 255, 255, 0.1);
-        backdrop-filter: blur(10px);
-        border-radius: 15px;
+    /* Retro Form Box */
+    .retro-form-box {
+        background: rgba(0, 20, 40, 0.9);
+        border: 4px solid #00ffff;
         padding: 25px;
+        margin-bottom: 20px;
         position: relative;
         z-index: 2;
+        box-shadow: inset 0 0 20px rgba(0, 255, 255, 0.2);
+    }
+    
+    .form-title {
+        color: #ffff00;
+        font-size: 1.3em;
+        margin-bottom: 20px;
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 2px;
     }
     
     .form-group {
         margin-bottom: 20px;
     }
     
-    .form-label {
+    .retro-label {
         display: block;
-        color: #ffd700;
+        color: #00ff00;
         font-weight: bold;
         margin-bottom: 8px;
         font-size: 1.1em;
+        text-transform: uppercase;
     }
     
-    .form-input {
+    .retro-input {
         width: 100%;
-        padding: 15px;
-        background: rgba(255, 255, 255, 0.9);
-        border: 2px solid #6a0dad;
-        border-radius: 10px;
-        font-size: 1em;
-        color: #333;
+        padding: 12px;
+        background: black;
+        border: 3px solid #ff00ff;
+        color: #00ff00;
+        font-family: 'Courier New', monospace;
+        font-size: 1.1em;
+        border-radius: 0;
         transition: all 0.3s;
     }
     
-    .form-input:focus {
+    .retro-input:focus {
         outline: none;
-        border-color: #ffd700;
-        box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
-        background: white;
+        border-color: #ffff00;
+        box-shadow: 0 0 15px rgba(255, 255, 0, 0.5);
     }
     
-    .submit-button {
-        background: linear-gradient(45deg, #ffd700, #ffed4e);
-        color: #6a0dad;
+    /* Submit Button */
+    .retro-submit-btn {
+        background: linear-gradient(45deg, #ff00ff, #00ffff);
+        color: black;
         border: none;
-        padding: 16px 40px;
-        font-size: 1.2em;
-        font-weight: bold;
-        border-radius: 12px;
+        padding: 15px 40px;
+        font-family: 'Impact', sans-serif;
+        font-size: 1.3em;
+        text-transform: uppercase;
+        letter-spacing: 2px;
         cursor: pointer;
         display: block;
-        margin: 20px auto;
-        transition: all 0.3s;
-        box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+        margin: 25px auto;
         position: relative;
         overflow: hidden;
+        transition: all 0.3s;
+        border: 4px solid #ffff00;
+        box-shadow: 0 0 20px rgba(255, 0, 255, 0.5);
     }
     
-    .submit-button:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 8px 20px rgba(255, 215, 0, 0.5);
-        background: linear-gradient(45deg, #ffed4e, #ffd700);
+    .retro-submit-btn:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 30px rgba(0, 255, 255, 0.7);
+        background: linear-gradient(45deg, #00ffff, #ff00ff);
     }
     
-    .submit-button:active {
-        transform: translateY(0);
+    .btn-text {
+        position: relative;
+        z-index: 2;
     }
     
-    .form-response {
-        background: rgba(0, 0, 0, 0.7);
-        border: 2px solid #4CAF50;
-        border-radius: 10px;
+    .btn-glow {
+        position: absolute;
+        top: -100%;
+        left: -100%;
+        width: 300%;
+        height: 300%;
+        background: radial-gradient(circle, rgba(255,255,255,0.4) 0%, transparent 60%);
+        animation: btnRotate 3s linear infinite;
+    }
+    
+    @keyframes btnRotate {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+    }
+    
+    /* Response Message */
+    .retro-response {
+        background: rgba(0, 0, 0, 0.8);
+        border: 3px solid #00ff00;
         padding: 15px;
         margin-top: 20px;
         text-align: center;
-        color: #4CAF50;
+        color: #00ff00;
         font-weight: bold;
         min-height: 20px;
         display: none;
+        font-family: 'Courier New', monospace;
+        position: relative;
     }
     
-    .form-response.error {
-        border-color: #ff4444;
-        color: #ff4444;
+    .retro-response::before {
+        content: ">";
+        position: absolute;
+        left: 10px;
+        top: 15px;
+        color: #00ff00;
+        animation: blink 1s infinite;
     }
     
-    .stats-bar {
+    @keyframes blink {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0; }
+    }
+    
+    .response-text {
+        margin-left: 20px;
+    }
+    
+    .response-success {
+        border-color: #00ff00;
+        color: #00ff00;
+    }
+    
+    .response-error {
+        border-color: #ff0000;
+        color: #ff0000;
+    }
+    
+    /* Stats Bar */
+    .retro-stats {
         display: flex;
-        justify-content: center;
-        gap: 20px;
+        justify-content: space-around;
+        background: rgba(0, 0, 0, 0.8);
+        padding: 15px;
+        border-top: 3px solid #ff00ff;
         margin-top: 25px;
         flex-wrap: wrap;
+        gap: 15px;
     }
     
     .stat-item {
-        background: rgba(255, 255, 255, 0.1);
-        padding: 10px 20px;
-        border-radius: 10px;
-        color: #ffd700;
+        color: #ffff00;
         font-weight: bold;
-        border: 2px solid rgba(255, 215, 0, 0.3);
+        text-align: center;
+        padding: 10px 15px;
+        border: 2px solid #00ffff;
+        background: rgba(0, 255, 255, 0.1);
+        min-width: 180px;
+        animation: statPulse 3s infinite;
     }
     
-    /* Mobile responsive */
+    @keyframes statPulse {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.7; }
+    }
+    
+    .stat-value {
+        font-size: 1.3em;
+        color: #ff00ff;
+        display: block;
+        margin-top: 5px;
+    }
+    
+    /* Mobile Responsive */
     @media (max-width: 768px) {
-        .wallet-section {
+        .retro-wallet-section {
             padding: 20px;
             margin: 30px 15px;
         }
         
-        .wallet-title {
-            font-size: 2em;
+        .retro-title {
+            font-size: 2.2em;
         }
         
-        .larry-card-container {
-            width: 250px;
+        .larry-card-display {
+            width: 220px;
+            height: 160px;
         }
         
-        .larry-card-image {
-            height: 180px;
-        }
-        
-        .stats-bar {
+        .retro-stats {
+            flex-direction: column;
             gap: 10px;
         }
         
         .stat-item {
-            padding: 8px 15px;
-            font-size: 0.9em;
+            min-width: auto;
         }
     }
     
@@ -332,56 +455,73 @@
         </div>
     </div>
 
-    <!-- ============================ -->
-    <!-- LARRY CARD WALLET SUBMISSION -->
-    <!-- ============================ -->
+    <!-- ==================================== -->
+    <!-- 90s RETRO WALLET COLLECTOR -->
+    <!-- ==================================== -->
     
-    <div class="wallet-section">
-        <div class="wallet-header">
-            <h2 class="wallet-title">Join the Larryverse</h2>
-            <p class="wallet-subtitle">Submit your wallet to become part of the NFT community</p>
+    <div class="retro-wallet-section">
+        <div class="retro-header">
+            <div class="retro-title">LARRY CARD REGISTRY</div>
+            <div class="retro-subtitle">WALLET SUBMISSION TERMINAL</div>
         </div>
         
-        <!-- Larry Card Image - Optimized Size -->
-        <div class="larry-card-container">
-            <img src="larry_card.jpeg" alt="Larry Card NFT" class="larry-card-image">
+        <!-- Larry Card Display - Perfect Size -->
+        <div class="larry-card-display">
+            <div class="card-glow"></div>
+            <img src="golden_larry.jpeg" alt="Golden Larry Card" class="larry-card-img">
         </div>
         
-        <!-- Wallet Submission Form -->
-        <div class="wallet-form-container">
+        <!-- Retro Form -->
+        <div class="retro-form-box">
+            <div class="form-title">ENTER WALLET CREDENTIALS</div>
+            
             <form action="https://formspree.io/f/xnjqpqjd" method="POST" id="walletForm">
                 <div class="form-group">
-                    <label for="walletAddress" class="form-label">Wallet Address *</label>
+                    <label for="walletAddr" class="retro-label">WALLET ADDRESS</label>
                     <input type="text" 
-                           id="walletAddress" 
+                           id="walletAddr" 
                            name="wallet" 
                            required 
-                           class="form-input"
-                           placeholder="Enter your 0x... address">
+                           class="retro-input"
+                           placeholder="0x..."
+                           pattern="^0x[a-fA-F0-9]{40}$">
                 </div>
                 
                 <div class="form-group">
-                    <label for="userEmail" class="form-label">Email (Optional)</label>
+                    <label for="userEmail" class="retro-label">EMAIL (OPTIONAL)</label>
                     <input type="email" 
                            id="userEmail" 
                            name="email" 
-                           class="form-input"
-                           placeholder="your.email@example.com">
+                           class="retro-input"
+                           placeholder="user@digital.era">
                 </div>
                 
-                <input type="hidden" name="timestamp" id="timestamp">
+                <input type="hidden" name="timestamp" id="formTimestamp">
                 
-                <button type="submit" class="submit-button">
-                    Submit Wallet
+                <button type="submit" class="retro-submit-btn">
+                    <span class="btn-glow"></span>
+                    <span class="btn-text">SUBMIT TO LARRYVERSE</span>
                 </button>
             </form>
             
-            <div class="form-response" id="formResponse"></div>
-            
-            <div class="stats-bar">
-                <div class="stat-item">Total Submissions: <span id="totalSubmissions">0</span></div>
-                <div class="stat-item">Today: <span id="todaySubmissions">0</span></div>
-                <div class="stat-item">Live: <span class="live-dot">●</span></div>
+            <div class="retro-response" id="formResponse">
+                <div class="response-text">SYSTEM READY</div>
+            </div>
+        </div>
+        
+        <!-- Stats Bar -->
+        <div class="retro-stats">
+            <div class="stat-item">
+                TOTAL SUBMISSIONS
+                <span class="stat-value" id="totalCount">0</span>
+            </div>
+            <div class="stat-item">
+                TODAY'S COUNT
+                <span class="stat-value" id="todayCount">0</span>
+            </div>
+            <div class="stat-item">
+                SYSTEM STATUS
+                <span class="stat-value" id="systemStatus">ONLINE</span>
             </div>
         </div>
     </div>
@@ -403,39 +543,45 @@
         }
     }
     
-    // ===========================
-    // WALLET FORM FUNCTIONALITY
-    // ===========================
+    // ======================================
+    // RETRO WALLET FORM FUNCTIONALITY
+    // ======================================
     
     document.addEventListener('DOMContentLoaded', function() {
         const form = document.getElementById('walletForm');
         const responseDiv = document.getElementById('formResponse');
-        const totalSubmissions = document.getElementById('totalSubmissions');
-        const todaySubmissions = document.getElementById('todaySubmissions');
+        const responseText = responseDiv.querySelector('.response-text');
+        const totalCount = document.getElementById('totalCount');
+        const todayCount = document.getElementById('todayCount');
+        const systemStatus = document.getElementById('systemStatus');
         
-        // Set current timestamp
-        document.getElementById('timestamp').value = new Date().toISOString();
+        // Set timestamp
+        document.getElementById('formTimestamp').value = new Date().toISOString();
         
-        // Initialize counters from localStorage
+        // Initialize
         updateCounters();
         
         // Form submission
         form.addEventListener('submit', async function(e) {
             e.preventDefault();
             
-            const walletInput = document.getElementById('walletAddress');
+            const walletInput = document.getElementById('walletAddr');
             const walletValue = walletInput.value.trim();
             
-            // Validate Ethereum wallet
+            // Validate
             const ethRegex = /^0x[a-fA-F0-9]{40}$/;
             if (!ethRegex.test(walletValue)) {
-                showResponse('Please enter a valid Ethereum wallet address (0x followed by 40 characters)', 'error');
+                showResponse('ERROR: INVALID WALLET FORMAT', 'error');
                 walletInput.focus();
+                walletInput.style.borderColor = '#ff0000';
+                walletInput.style.boxShadow = '0 0 15px rgba(255, 0, 0, 0.5)';
                 return;
             }
             
-            // Show loading
-            showResponse('Submitting...', 'processing');
+            // Show processing
+            showResponse('PROCESSING SUBMISSION...', 'processing');
+            systemStatus.textContent = 'PROCESSING';
+            systemStatus.style.color = '#ffff00';
             
             try {
                 const response = await fetch(form.action, {
@@ -447,153 +593,162 @@
                 });
                 
                 if (response.ok) {
-                    showResponse('🎉 Success! Your wallet has been submitted to the Larryverse!', 'success');
+                    showResponse('✓ SUBMISSION ACCEPTED. WELCOME TO LARRYVERSE!', 'success');
                     form.reset();
                     
-                    // Update counters
+                    // Update stats
                     updateSubmissionCount();
                     
-                    // Animate success
-                    animateSuccess();
+                    // Success animation
+                    celebrateSubmission();
                 } else {
-                    showResponse('Submission failed. Please try again.', 'error');
+                    showResponse('✗ TRANSMISSION FAILED. RETRY.', 'error');
+                    systemStatus.textContent = 'ERROR';
+                    systemStatus.style.color = '#ff0000';
                 }
             } catch (error) {
-                showResponse('Network error. Please check your connection.', 'error');
-                console.error('Error:', error);
+                showResponse('✗ NETWORK ERROR. CHECK CONNECTION.', 'error');
+                systemStatus.textContent = 'OFFLINE';
+                systemStatus.style.color = '#ff0000';
             }
         });
         
         function showResponse(message, type) {
-            responseDiv.textContent = message;
+            responseText.textContent = message;
             responseDiv.style.display = 'block';
-            responseDiv.className = 'form-response';
+            responseDiv.className = 'retro-response';
             
             if (type === 'success') {
-                responseDiv.style.borderColor = '#4CAF50';
-                responseDiv.style.color = '#4CAF50';
+                responseDiv.classList.add('response-success');
             } else if (type === 'error') {
-                responseDiv.classList.add('error');
+                responseDiv.classList.add('response-error');
             }
             
-            // Auto-hide after 5 seconds
+            // Auto-clear
             setTimeout(() => {
-                responseDiv.style.display = 'none';
+                responseText.textContent = 'SYSTEM READY';
+                responseDiv.style.display = 'block';
+                responseDiv.className = 'retro-response';
             }, 5000);
         }
         
         function updateSubmissionCount() {
-            // Get current date
             const today = new Date().toDateString();
             
             // Get existing data
-            let total = localStorage.getItem('larryTotalSubmissions') || 0;
-            let dailyData = JSON.parse(localStorage.getItem('larryDailySubmissions') || '{}');
+            let total = localStorage.getItem('larryTotalSubs') || 0;
+            let dailyData = JSON.parse(localStorage.getItem('larryDailySubs') || '{}');
             
-            // Update counts
+            // Update
             total = parseInt(total) + 1;
             dailyData[today] = (dailyData[today] || 0) + 1;
             
-            // Save to localStorage
-            localStorage.setItem('larryTotalSubmissions', total);
-            localStorage.setItem('larryDailySubmissions', JSON.stringify(dailyData));
+            // Save
+            localStorage.setItem('larryTotalSubs', total);
+            localStorage.setItem('larryDailySubs', JSON.stringify(dailyData));
             
             // Update display
             updateCounters();
+            
+            // Reset status
+            systemStatus.textContent = 'ONLINE';
+            systemStatus.style.color = '#00ff00';
         }
         
         function updateCounters() {
             const today = new Date().toDateString();
-            const total = localStorage.getItem('larryTotalSubmissions') || 0;
-            const dailyData = JSON.parse(localStorage.getItem('larryDailySubmissions') || '{}');
-            const todayCount = dailyData[today] || 0;
+            const total = localStorage.getItem('larryTotalSubs') || 0;
+            const dailyData = JSON.parse(localStorage.getItem('larryDailySubs') || '{}');
+            const todayCountValue = dailyData[today] || 0;
             
-            totalSubmissions.textContent = total;
-            todaySubmissions.textContent = todayCount;
+            totalCount.textContent = total;
+            todayCount.textContent = todayCountValue;
             
-            // Animate the update
-            totalSubmissions.style.transform = 'scale(1.2)';
-            todaySubmissions.style.transform = 'scale(1.2)';
+            // Animate
+            totalCount.style.transform = 'scale(1.3)';
+            todayCount.style.transform = 'scale(1.3)';
             
             setTimeout(() => {
-                totalSubmissions.style.transform = 'scale(1)';
-                todaySubmissions.style.transform = 'scale(1)';
+                totalCount.style.transform = 'scale(1)';
+                todayCount.style.transform = 'scale(1)';
             }, 300);
         }
         
-        function animateSuccess() {
-            const button = document.querySelector('.submit-button');
-            const container = document.querySelector('.larry-card-container');
+        function celebrateSubmission() {
+            const card = document.querySelector('.larry-card-display');
+            const button = document.querySelector('.retro-submit-btn');
             
-            // Button animation
-            button.style.background = 'linear-gradient(45deg, #4CAF50, #8BC34A)';
+            // Card celebration
+            card.style.transform = 'scale(1.1)';
+            card.style.boxShadow = '0 0 40px rgba(255, 255, 0, 0.8)';
+            
             setTimeout(() => {
-                button.style.background = 'linear-gradient(45deg, #ffd700, #ffed4e)';
+                card.style.transform = 'scale(1)';
+                card.style.boxShadow = '0 0 25px rgba(255, 255, 0, 0.5)';
+            }, 800);
+            
+            // Button pulse
+            button.style.boxShadow = '0 0 40px rgba(0, 255, 255, 0.8)';
+            setTimeout(() => {
+                button.style.boxShadow = '0 0 20px rgba(255, 0, 255, 0.5)';
             }, 1000);
             
-            // Card image pulse
-            container.style.transform = 'scale(1.05)';
-            setTimeout(() => {
-                container.style.transform = 'scale(1)';
-            }, 500);
-            
-            // Create floating particles
-            createFloatingParticles();
+            // Create particles
+            createRetroParticles();
         }
         
-        function createFloatingParticles() {
-            const colors = ['#ffd700', '#6a0dad', '#ffffff', '#1e90ff'];
-            const container = document.querySelector('.wallet-section');
+        function createRetroParticles() {
+            const colors = ['#ff00ff', '#00ffff', '#ffff00', '#00ff00'];
+            const container = document.querySelector('.retro-wallet-section');
             
-            for (let i = 0; i < 20; i++) {
+            for (let i = 0; i < 30; i++) {
                 const particle = document.createElement('div');
                 particle.style.position = 'absolute';
-                particle.style.width = '8px';
-                particle.style.height = '8px';
+                particle.style.width = '6px';
+                particle.style.height = '6px';
                 particle.style.background = colors[Math.floor(Math.random() * colors.length)];
                 particle.style.borderRadius = '50%';
                 particle.style.left = Math.random() * 100 + '%';
-                particle.style.top = '100%';
+                particle.style.top = Math.random() * 100 + '%';
                 particle.style.zIndex = '1';
                 
                 container.appendChild(particle);
                 
-                // Animate particle
-                const animation = particle.animate([
-                    { transform: 'translateY(0) scale(1)', opacity: 1 },
-                    { transform: 'translateY(-100px) scale(0.5)', opacity: 0 }
+                // Animate
+                particle.animate([
+                    { transform: 'translate(0, 0) scale(1)', opacity: 1 },
+                    { transform: `translate(${Math.random() * 100 - 50}px, ${Math.random() * 100 - 50}px) scale(0)`, opacity: 0 }
                 ], {
-                    duration: 1500 + Math.random() * 1000,
-                    easing: 'cubic-bezier(0.1, 0.7, 1.0, 0.1)'
-                });
-                
-                animation.onfinish = () => particle.remove();
+                    duration: 1000 + Math.random() * 1000,
+                    easing: 'ease-out'
+                }).onfinish = () => particle.remove();
             }
         }
         
         // Real-time validation
-        const walletInput = document.getElementById('walletAddress');
+        const walletInput = document.getElementById('walletAddr');
         walletInput.addEventListener('input', function() {
             const value = this.value.trim();
             if (value.length > 0) {
                 if (value.startsWith('0x') && value.length === 42) {
-                    this.style.borderColor = '#4CAF50';
-                    this.style.boxShadow = '0 0 10px rgba(76, 175, 80, 0.3)';
+                    this.style.borderColor = '#00ff00';
+                    this.style.boxShadow = '0 0 15px rgba(0, 255, 0, 0.5)';
                 } else {
-                    this.style.borderColor = '#ff4444';
-                    this.style.boxShadow = '0 0 10px rgba(255, 68, 68, 0.3)';
+                    this.style.borderColor = '#ff0000';
+                    this.style.boxShadow = '0 0 15px rgba(255, 0, 0, 0.5)';
                 }
             } else {
-                this.style.borderColor = '#6a0dad';
+                this.style.borderColor = '#ff00ff';
                 this.style.boxShadow = 'none';
             }
         });
         
-        // Update live dot animation
+        // Status indicator animation
         setInterval(() => {
-            const liveDot = document.querySelector('.live-dot');
-            liveDot.style.opacity = liveDot.style.opacity === '0.5' ? '1' : '0.5';
-        }, 1000);
+            const statusColors = ['#00ff00', '#ffff00', '#00ff00'];
+            const randomColor = statusColors[Math.floor(Math.random() * statusColors.length)];
+            systemStatus.style.color = randomColor;
+        }, 2000);
     });
 </script>
 
