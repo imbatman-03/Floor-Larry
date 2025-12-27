@@ -304,9 +304,10 @@
     
     .flip-card {
         perspective: 1000px;
-        height: 400px;
+        height: 420px;
         border-radius: 15px;
         overflow: hidden;
+        cursor: pointer;
     }
     
     .flip-card-inner {
@@ -317,10 +318,8 @@
         transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         transform-style: preserve-3d;
         border-radius: 15px;
-        cursor: pointer;
     }
     
-    .flip-card:hover .flip-card-inner,
     .flip-card.flipped .flip-card-inner {
         transform: rotateY(180deg);
     }
@@ -363,18 +362,18 @@
     
     .art-image {
         width: 100%;
-        height: 240px;
+        height: 260px;
         object-fit: cover;
         border-radius: 8px;
         margin-bottom: 25px;
         border: 2px solid rgba(255,255,255,0.2);
         transition: all 0.4s;
-        filter: grayscale(0%) contrast(110%) brightness(1.05);
+        filter: brightness(1.05) saturate(1.1);
     }
     
     .flip-card:hover .art-image {
         transform: scale(1.05);
-        filter: grayscale(0%) contrast(120%) brightness(1.1);
+        filter: brightness(1.1) saturate(1.2);
     }
     
     .art-title-front {
@@ -397,9 +396,10 @@
         color: rgba(255,255,255,0.7);
         letter-spacing: 2px;
         text-transform: uppercase;
-        padding: 5px;
-        background: rgba(0,0,0,0.5);
-        opacity: 0.8;
+        padding: 8px;
+        background: rgba(0,0,0,0.6);
+        border-top: 1px solid rgba(255,255,255,0.2);
+        opacity: 1;
         transition: opacity 0.3s;
     }
     
@@ -436,7 +436,7 @@
         color: #ffffff;
         text-transform: uppercase;
         letter-spacing: 3px;
-        margin-bottom: 30px;
+        margin-bottom: 25px;
         text-shadow: 0 2px 10px rgba(255,255,255,0.3);
         position: relative;
     }
@@ -464,6 +464,7 @@
         max-height: 200px;
         overflow-y: auto;
         padding-right: 10px;
+        text-align: left;
     }
     
     .flip-back-hint {
@@ -476,11 +477,12 @@
         color: rgba(255,255,255,0.7);
         letter-spacing: 2px;
         text-transform: uppercase;
-        padding: 5px;
-        background: rgba(0,0,0,0.5);
+        padding: 8px;
+        background: rgba(0,0,0,0.6);
+        border-top: 1px solid rgba(255,255,255,0.2);
     }
     
-    /* LARRY CARD DISPLAY SECTION */
+    /* LARRY CARD SECTION */
     .larry-card-section {
         text-align: center;
         margin: 80px 0;
@@ -510,12 +512,18 @@
         pointer-events: none;
     }
     
+    .larry-card-display {
+        position: relative;
+        display: inline-block;
+        margin-bottom: 40px;
+    }
+    
     .larry-card-img {
-        width: 280px;
-        height: 380px;
+        width: 300px;
+        height: 400px;
         object-fit: cover;
         border: 3px solid rgba(255,255,255,0.3);
-        filter: grayscale(0%) contrast(110%) brightness(1.05);
+        filter: brightness(1.05) saturate(1.1);
         transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         image-rendering: pixelated;
         border-radius: 12px;
@@ -524,15 +532,80 @@
             0 0 20px rgba(255,255,255,0.1);
         position: relative;
         z-index: 2;
+        cursor: pointer;
     }
     
     .larry-card-img:hover {
         transform: scale(1.05) rotate(2deg);
         border-color: rgba(255,255,255,0.6);
-        filter: grayscale(0%) contrast(120%) brightness(1.1);
+        filter: brightness(1.1) saturate(1.2);
         box-shadow: 
             0 20px 50px rgba(0,0,0,0.9),
             0 0 40px rgba(255,255,255,0.2);
+    }
+    
+    .larry-card-hint {
+        position: absolute;
+        bottom: -40px;
+        left: 0;
+        width: 100%;
+        text-align: center;
+        font-size: 14px;
+        color: rgba(255,255,255,0.7);
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        padding: 5px;
+        background: rgba(0,0,0,0.5);
+        border-radius: 4px;
+    }
+    
+    .larry-card-description {
+        background: rgba(20, 20, 20, 0.9);
+        border: 2px solid rgba(255,255,255,0.2);
+        padding: 30px;
+        margin-top: 30px;
+        border-radius: 12px;
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: left;
+    }
+    
+    .larry-card-description-title {
+        font-size: 24px;
+        color: #ffffff;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        margin-bottom: 20px;
+        text-align: center;
+        position: relative;
+    }
+    
+    .larry-card-description-title::after {
+        content: "";
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100px;
+        height: 2px;
+        background: linear-gradient(90deg, 
+            transparent, 
+            rgba(255,255,255,0.6), 
+            transparent);
+    }
+    
+    .larry-card-description-text {
+        font-size: 16px;
+        color: #aaaaaa;
+        line-height: 1.8;
+        letter-spacing: 1px;
+    }
+    
+    .larry-card-highlight {
+        color: #ffffff;
+        font-weight: bold;
+        text-shadow: 0 0 10px rgba(255,255,255,0.3);
     }
     
     /* WALLET SUBMISSION SECTION */
@@ -1309,7 +1382,7 @@
     <div class="header">
         <h1 class="title">FLOOR LARRY</h1>
         <div class="subtitle">
-             • EXPLORE • 
+             • EXPLORE THE LARRY UNIVERSE • 
         </div>
     </div>
     
@@ -1335,7 +1408,7 @@
             <div class="flip-card-inner">
                 <div class="flip-card-front">
                     <img src="super_larry.jpeg" alt="Super Larry" class="art-image"
-                         onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzUwIiBoZWlnaHQ9IjI0MCIgdmlld0JveD0iMCAwIDM1MCAyNDAiIHN0eWxlPSJpbWFnZS1yZW5kZXJpbmc6IHBpeGVsYXRlZCI+PHJlY3Qgd2lkdGg9IjM1MCIgaGVpZ2h0PSIyNDAiIGZpbGw9IiMxMTExMTEiLz48cmVjdCB4PSIxMCIgeT0iMTAiIHdpZHRoPSIzMzAiIGhlaWdodD0iMjIwIiBmaWxsPSIjMjIyMjIyIiBzdHJva2U9IiNGRkQ3MDAiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjE3NSIgeT0iMTAwIiBmb250LWZhbWlseT0iJ1ZUMzIzJywgbW9ub3NwYWNlIiBmb250LXNpemU9IjI0IiBmaWxsPSIjRkZENzAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5TVVBFUjwvdGV4dD48dGV4dCB4PSIxNzUiIHk9IjEzMCIgZm9udC1mYW1pbHk9IidWVDMyMycsIG1vbm9zcGFjZSIgZm9udC1zaXplPSIzMCIgZmlsbD0iI0ZGRDcwMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+TEFSUlk8L3RleHQ+PHRleHQgeD0iMTc1IiB5PSIxNzAiIGZvbnQtZmFtaWx5PSInVlQzMjMnLCBtb25vc3BhY2UiIGZvbnQtc2l6ZT0iMTYiIGZpbGw9IiNGRkQ3MDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkNPU01JQyBERUZFTkRFUjwvdGV4dD48L3N2Zz4='">
+                         onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzUwIiBoZWlnaHQ9IjI2MCIgdmlld0JveD0iMCAwIDM1MCAyNjAiIHN0eWxlPSJpbWFnZS1yZW5kZXJpbmc6IHBpeGVsYXRlZCI+PHJlY3Qgd2lkdGg9IjM1MCIgaGVpZ2h0PSIyNjAiIGZpbGw9IiMxMTExMTEiLz48cmVjdCB4PSIxMCIgeT0iMTAiIHdpZHRoPSIzMzAiIGhlaWdodD0iMjQwIiBmaWxsPSIjMjIyMjIyIiBzdHJva2U9IiNGRkQ3MDAiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjE3NSIgeT0iMTAwIiBmb250LWZhbWlseT0iJ1ZUMzIzJywgbW9ub3NwYWNlIiBmb250LXNpemU9IjI0IiBmaWxsPSIjRkZENzAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5TVVBFUjwvdGV4dD48dGV4dCB4PSIxNzUiIHk9IjEzMCIgZm9udC1mYW1pbHk9IidWVDMyMycsIG1vbm9zcGFjZSIgZm9udC1zaXplPSIzMCIgZmlsbD0iI0ZGRDcwMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+TEFSUlk8L3RleHQ+PHRleHQgeD0iMTc1IiB5PSIxNzAiIGZvbnQtZmFtaWx5PSInVlQzMjMnLCBtb25vc3BhY2UiIGZvbnQtc2l6ZT0iMTYiIGZpbGw9IiNGRkQ3MDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkNPU01JQyBERUZFTkRFUjwvdGV4dD48L3N2Zz4='">
                     <div class="art-title-front">SUPER LARRY</div>
                     <div class="flip-tap-hint">TAP TO FLIP</div>
                 </div>
@@ -1344,7 +1417,9 @@
                     <div class="art-description-flip">
                         <strong>Super Larry</strong> is the cosmic defender of the Larry-Verse. With reality-bending powers, light-speed flight, and unmatched style, he patrols the digital cosmos protecting the basement floor from inter-dimensional threats. His signature white pattern cape generates cryptographic shields that can withstand even the most powerful digital attacks.
                         <br><br>
-                        Abilities: Reality manipulation, light-speed travel, energy projection, and cryptographic defense systems.
+                        <strong>Abilities:</strong> Reality manipulation, light-speed travel, energy projection, and cryptographic defense systems.
+                        <br><br>
+                        <strong>Role:</strong> Guardian of the digital basement floor against cosmic-level threats.
                     </div>
                     <div class="flip-back-hint">TAP TO RETURN</div>
                 </div>
@@ -1356,7 +1431,7 @@
             <div class="flip-card-inner">
                 <div class="flip-card-front">
                     <img src="spider_larry.jpeg" alt="Spider Larry" class="art-image"
-                         onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzUwIiBoZWlnaHQ9IjI0MCIgdmlld0JveD0iMCAwIDM1MCAyNDAiIHN0eWxlPSJpbWFnZS1yZW5kZXJpbmc6IHBpeGVsYXRlZCI+PHJlY3Qgd2lkdGg9IjM1MCIgaGVpZ2h0PSIyNDAiIGZpbGw9IiMxMTExMTEiLz48cmVjdCB4PSIxMCIgeT0iMTAiIHdpZHRoPSIzMzAiIGhlaWdodD0iMjIwIiBmaWxsPSIjMjIyMjIyIiBzdHJva2U9IiNGRkQ3MDAiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjE3NSIgeT0iMTAwIiBmb250LWZhbWlseT0iJ1ZUMzIzJywgbW9ub3NwYWNlIiBmb250LXNpemU9IjI0IiBmaWxsPSIjRkZENzAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5TUElERVI8L3RleHQ+PHRleHQgeD0iMTc1IiB5PSIxMzAiIGZvbnQtZmFtaWx5PSInVlQzMjMnLCBtb25vc3BhY2UiIGZvbnQtc2l6ZT0iMzAiIGZpbGw9IiNGRkQ3MDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkxBUlJZPC90ZXh0Pjx0ZXh0IHg9IjE3NSIgeT0iMTcwIiBmb250LWZhbWlseT0iJ1ZUMzIzJywgbW9ub3NwYWNlIiBmb250LXNpemU9IjE2IiBmaWxsPSIjRkZENzAwIiB0ZXh0LWFuY2hvcjPSJtaWRkbGUiPldFQi1TTElOR0VSPC90ZXh0Pjwvc3ZnPg=='">
+                         onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzUwIiBoZWlnaHQ9IjI2MCIgdmlld0JveD0iMCAwIDM1MCAyNjAiIHN0eWxlPSJpbWFnZS1yZW5kZXJpbmc6IHBpeGVsYXRlZCI+PHJlY3Qgd2lkdGg9IjM1MCIgaGVpZ2h0PSIyNjAiIGZpbGw9IiMxMTExMTEiLz48cmVjdCB4PSIxMCIgeT0iMTAiIHdpZHRoPSIzMzAiIGhlaWdodD0iMjQwIiBmaWxsPSIjMjIyMjIyIiBzdHJva2U9IiNGRkQ3MDAiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjE3NSIgeT0iMTAwIiBmb250LWZhbWlseT0iJ1ZUMzIzJywgbW9ub3NwYWNlIiBmb250LXNpemU9IjI0IiBmaWxsPSIjRkZENzAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5TUElERVI8L3RleHQ+PHRleHQgeD0iMTc1IiB5PSIxMzAiIGZvbnQtZmFtaWx5PSInVlQzMjMnLCBtb25vc3BhY2UiIGZvbnQtc2l6ZT0iMzAiIGZpbGw9IiNGRkQ3MDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkxBUlJZPC90ZXh0Pjx0ZXh0IHg9IjE3NSIgeT0iMTcwIiBmb250LWZhbWlseT0iJ1ZUMzIzJywgbW9ub3NwYWNlIiBmb250LXNpemU9IjE2IiBmaWxsPSIjRkZENzAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5XRUItU0xJTkdFUjwvdGV4dD48L3N2Zz4='">
                     <div class="art-title-front">SPIDER LARRY</div>
                     <div class="flip-tap-hint">TAP TO FLIP</div>
                 </div>
@@ -1365,7 +1440,9 @@
                     <div class="art-description-flip">
                         <strong>Spider Larry</strong> swings through the digital metropolis of the internet's basement floor. With web-slinging abilities, wall-crawling skills, and witty one-liners, he navigates the complex architecture of abandoned servers and forgotten data centers, protecting the digital citizens from corruption and data breaches.
                         <br><br>
-                        Abilities: Web-slinging, wall-crawling, enhanced agility, spider-sense for detecting digital threats, and rapid code regeneration.
+                        <strong>Abilities:</strong> Web-slinging, wall-crawling, enhanced agility, spider-sense for detecting digital threats, and rapid code regeneration.
+                        <br><br>
+                        <strong>Role:</strong> Protector of urban digital spaces and data infrastructure.
                     </div>
                     <div class="flip-back-hint">TAP TO RETURN</div>
                 </div>
@@ -1377,7 +1454,7 @@
             <div class="flip-card-inner">
                 <div class="flip-card-front">
                     <img src="arthur_larry.jpeg" alt="Arthur Larry" class="art-image"
-                         onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzUwIiBoZWlnaHQ9IjI0MCIgdmlld0JveD0iMCAwIDM1MCAyNDAiIHN0eWxlPSJpbWFnZS1yZW5kZXJpbmc6IHBpeGVsYXRlZCI+PHJlY3Qgd2lkdGg9IjM1MCIgaGVpZ2h0PSIyNDAiIGZpbGw9IiMxMTExMTEiLz48cmVjdCB4PSIxMCIgeT0iMTAiIHdpZHRoPSIzMzAiIGhlaWdodD0iMjIwIiBmaWxsPSIjMjIyMjIyIiBzdHJva2U9IiNGRkQ3MDAiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjE3NSIgeT0iMTAwIiBmb250LWZhbWlseT0iJ1ZUMzIzJywgbW9ub3NwYWNlIiBmb250LXNpemU9IjI0IiBmaWxsPSIjRkZENzAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5BUlRIVVI8L3RleHQ+PHRleHQgeD0iMTc1IiB5PSIxMzAiIGZvbnQtZmFtaWx5PSInVlQzMjMnLCBtb25vc3BhY2UiIGZvbnQtc2l6ZT0iMzAiIGZpbGw9IiNGRkQ3MDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkxBUlJZPC90ZXh0Pjx0ZXh0IHg9IjE3NSIgeT0iMTcwIiBmb250LWZhbWlseT0iJ1ZUMzIzJywgbW9ub3NwYWNlIiBmb250LXNpemU9IjE2IiBmaWxsPSIjRkZENzAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5USEUgS0lORzwvdGV4dD48L3N2Zz4='">
+                         onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzUwIiBoZWlnaHQ9IjI2MCIgdmlld0JveD0iMCAwIDM1MCAyNjAiIHN0eWxlPSJpbWFnZS1yZW5kZXJpbmc6IHBpeGVsYXRlZCI+PHJlY3Qgd2lkdGg9IjM1MCIgaGVpZ2h0PSIyNjAiIGZpbGw9IiMxMTExMTEiLz48cmVjdCB4PSIxMCIgeT0iMTAiIHdpZHRoPSIzMzAiIGhlaWdodD0iMjQwIiBmaWxsPSIjMjIyMjIyIiBzdHJva2U9IiNGRkQ3MDAiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjE3NSIgeT0iMTAwIiBmb250LWZhbWlseT0iJ1ZUMzIzJywgbW9ub3NwYWNlIiBmb250LXNpemU9IjI0IiBmaWxsPSIjRkZENzAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5BUlRIVVI8L3RleHQ+PHRleHQgeD0iMTc1IiB5PSIxMzAiIGZvbnQtZmFtaWx5PSInVlQzMjMnLCBtb25vc3BhY2UiIGZvbnQtc2l6ZT0iMzAiIGZpbGw9IiNGRkQ3MDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkxBUlJZPC90ZXh0Pjx0ZXh0IHg9IjE3NSIgeT0iMTcwIiBmb250LWZhbWlseT0iJ1ZUMzIzJywgbW9ub3NwYWNlIiBmb250LXNpemU9IjE2IiBmaWxsPSIjRkZENzAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5USEUgS0lORzwvdGV4dD48L3N2Zz4='">
                     <div class="art-title-front">ARTHUR LARRY</div>
                     <div class="flip-tap-hint">TAP TO FLIP</div>
                 </div>
@@ -1386,7 +1463,9 @@
                     <div class="art-description-flip">
                         <strong>Arthur Larry</strong> is the once and future king of the digital realm. He leads the Knights of the Binary Table through the deepest levels of the internet's basement floor, wielding the legendary sword Excali-Bit. His quest is to unite the fragmented data kingdoms and restore order to the chaotic digital landscape.
                         <br><br>
-                        Abilities: Leadership aura, sword mastery with Excali-Bit, digital kingdom unification, and protocol diplomacy.
+                        <strong>Abilities:</strong> Leadership aura, sword mastery with Excali-Bit, digital kingdom unification, and protocol diplomacy.
+                        <br><br>
+                        <strong>Role:</strong> Unifier of digital kingdoms and bringer of order to chaotic data realms.
                     </div>
                     <div class="flip-back-hint">TAP TO RETURN</div>
                 </div>
@@ -1400,8 +1479,27 @@
     </div>
     
     <div class="larry-card-section">
-        <img src="larry_card.jpeg" alt="Larry Card" class="larry-card-img"
-             onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjgwIiBoZWlnaHQ9IjM4MCIgdmlld0JveD0iMCAwIDMyIDQ0IiBzdHlsZT0iaW1hZ2UtcmVuZGVyaW5nOiBwaXhlbGF0ZWQiPjxyZWN0IHdpZHRoPSIzMiIgaGVpZ2h0PSI0NCIgZmlsbD0iIzExMTExMSIvPjxyZWN0IHg9IjIiIHk9IjIiIHdpZHRoPSIyOCIgaGVpZ2h0PSI0MCIgZmlsbD0iIzIyMjIyMiIgc3Ryb2tlPSIjRkZENzAwIiBzdHJva2Utd2lkdGg9IjEiLz48cmVjdCB4PSI0IiB5PSI0IiB3aWR0aD0iMjQiIGhlaWdodD0iMzYiIGZpbGw9IiMxMTExMTEiLz48dGV4dCB4PSIxNiIgeT0iMjAiIGZvbnQtZmFtaWx5PSInVlQzMjMnLCBtb25vc3BhY2UiIGxldHRlci1zcGFjaW5nPSIxcHgiIGZvbnQtc2l6ZT0iNCIgZmlsbD0iI0ZGRDcwMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+RkxPT1I8L3RleHQ+PHRleHQgeD0iMTYiIHk9IjI2IiBmb250LWZhbWlseT0iJ1ZUMzIzJywgbW9ub3NwYWNlIiBsZXR0ZXItc3BhY2luZz0iMXB4IiBmb250LXNpemU9IjUiIGZpbGw9IiNGRkQ3MDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkxBUlJZPC90ZXh0Pjx0ZXh0IHg9IjE2IiB5PSIzMiIgZm9udC1mYW1pbHk9IidWVDMyMycsIG1vbm9zcGFjZSIgbGV0dGVyLXNwYWNpbmc9IjFweCIgZm9udC1zaXplPSIyIiBmaWxsPSIjRkZENzAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5DT0xMRUNUT1IgQ0FSRDwvdGV4dD48cmVjdCB4PSIyMiIgeT0iNCIgd2lkdGg9IjYiIGhlaWdodD0iNCIgZmlsbD0iI0ZGMDAwMCIvPjx0ZXh0IHg9IjI1IiB5PSI2IiBmb250LWZhbWlseT0iJ1ZUMzIzJywgbW9ub3NwYWNlIiBmb250LXNpemU9IjIiIGZpbGw9IiNGRkZGRkYiIHRleHQtYW5jaG9yPSJtaWRkbGUiPk5GVDwvdGV4dD48L3N2Zz4='">
+        <div class="larry-card-display">
+            <img src="larry_card.jpeg" alt="Larry Card" class="larry-card-img"
+                 onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjQwMCIgdmlld0JveD0iMCAwIDMwMCA0MDAiIHN0eWxlPSJpbWFnZS1yZW5kZXJpbmc6IHBpeGVsYXRlZCI+PHJlY3Qgd2lkdGg9IjMwMCIgaGVpZ2h0PSI0MDAiIGZpbGw9IiMxMTExMTEiLz48cmVjdCB4PSIxMCIgeT0iMTAiIHdpZHRoPSIyODAiIGhlaWdodD0iMzgwIiBmaWxsPSIjMjIyMjIyIiBzdHJva2U9IiNGRkQ3MDAiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjE1MCIgeT0iMTYwIiBmb250LWZhbWlseT0iJ1ZUMzIzJywgbW9ub3NwYWNlIiBmb250LXNpemU9IjI0IiBmaWxsPSIjRkZENzAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5GTExPUlwvTEFSUlk8L3RleHQ+PHRleHQgeD0iMTUwIiB5PSIyMDAiIGZvbnQtZmFtaWx5PSInVlQzMjMnLCBtb25vc3BhY2UiIGZvbnQtc2l6ZT0iMTYiIGZpbGw9IiNGRkQ3MDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkNPTExFQ1RPUiBDQVJEPC90ZXh0Pjx0ZXh0IHg9IjE1MCIgeT0iMjQwIiBmb250LWZhbWlseT0iJ1ZUMzIzJywgbW9ub3NwYWNlIiBmb250LXNpemU9IjEyIiBmaWxsPSIjRkZENzAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5FWENMVVNJVkUgTkZUPC90ZXh0Pjwvc3ZnPg=='">
+            <div class="larry-card-hint">EXCLUSIVE COLLECTOR'S CARD</div>
+        </div>
+        
+        <div class="larry-card-description">
+            <div class="larry-card-description-title">LARRY CARD - GATEWAY TO THE COMMUNITY</div>
+            <div class="larry-card-description-text">
+                The <span class="larry-card-highlight">Larry Card</span> is an exclusive NFT awarded only to <span class="larry-card-highlight">real contributors</span> within the Floor Larry ecosystem. This is not just a digital collectible – it's your <span class="larry-card-highlight">gateway to full access</span> in the Larry community.
+                <br><br>
+                <strong>What the Larry Card Unlocks:</strong>
+                <br>• <span class="larry-card-highlight">VIP access</span> to all future Larryverse drops
+                <br>• <span class="larry-card-highlight">Exclusive voting rights</span> on community decisions
+                <br>• <span class="larry-card-highlight">Priority access</span> to merchandise and physical collectibles
+                <br>• <span class="larry-card-highlight">Special role</span> in the community Discord server
+                <br>• <span class="larry-card-highlight">Early previews</span> of upcoming Larry characters
+                <br><br>
+                This card represents <span class="larry-card-highlight">true ownership and participation</span> in the Larry-Verse. Holders become part of the inner circle that shapes the future of the Floor Larry universe.
+            </div>
+        </div>
     </div>
     
     <!-- WALLET SUBMISSION SECTION -->
@@ -1566,6 +1664,7 @@
             
             // Touch events for mobile
             card.addEventListener('touchstart', function(e) {
+                e.preventDefault();
                 this.classList.toggle('flipped');
             });
             
@@ -1884,7 +1983,7 @@
         console.log('%c║                    Follow @larrynfts to submit wallet            ║', 'color: #00ff00; font-family: monospace;');
         console.log('%c╚══════════════════════════════════════════════════════════════════╝', 'color: #ffffff;');
         
-        // Auto-rotate flip cards on load
+        // Auto-rotate flip cards on load (demo)
         setTimeout(() => {
             const cards = document.querySelectorAll('.flip-card');
             cards.forEach((card, index) => {
