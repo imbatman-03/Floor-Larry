@@ -1,1801 +1,501 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FLOOR LARRY</title>
-<style>
-    /* ============================================= */
-    /* RETRO WHITE PATTERN AESTHETIC */
-    /* ============================================= */
-    
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        image-rendering: pixelated;
-        image-rendering: crisp-edges;
-    }
-    
-    body {
-        background: #0a0a0a;
-        color: #ffffff;
-        font-family: 'Courier New', 'Monaco', 'VT323', monospace;
-        line-height: 1.4;
-        min-height: 100vh;
-        padding: 0;
-        margin: 0;
-        overflow-x: hidden;
-        background-image: 
-            radial-gradient(circle at 15% 20%, rgba(255,255,255,0.02) 0%, transparent 20%),
-            radial-gradient(circle at 85% 80%, rgba(255,255,255,0.02) 0%, transparent 20%),
-            repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,0.03) 2px, rgba(255,255,255,0.03) 4px);
-    }
-    
-    /* RETRO GRID OVERLAY */
-    .retro-grid {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-image: 
-            linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
-        background-size: 40px 40px;
-        pointer-events: none;
-        z-index: 1;
-        opacity: 0.5;
-    }
-    
-    /* GLOSSY BLACK CONTAINER */
-    .container {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 40px;
-        position: relative;
-        z-index: 2;
-    }
-    
-    /* RETRO PATTERN HEADER */
-    .header {
-        text-align: center;
-        margin-bottom: 80px;
-        padding: 60px 40px;
-        position: relative;
-        background: 
-            linear-gradient(45deg, transparent 48%, rgba(255,255,255,0.1) 50%, transparent 52%),
-            linear-gradient(-45deg, transparent 48%, rgba(255,255,255,0.1) 50%, transparent 52%);
-        background-size: 20px 20px;
-        border: 2px solid rgba(255,255,255,0.2);
-        border-radius: 12px;
-        overflow: hidden;
-    }
-    
-    .header::before {
-        content: "";
-        position: absolute;
-        top: -2px;
-        left: -2px;
-        right: -2px;
-        bottom: -2px;
-        background: linear-gradient(45deg, 
-            transparent 25%, 
-            rgba(255,255,255,0.1) 25%, 
-            rgba(255,255,255,0.1) 50%, 
-            transparent 50%, 
-            transparent 75%, 
-            rgba(255,255,255,0.1) 75%, 
-            rgba(255,255,255,0.1));
-        background-size: 10px 10px;
-        border-radius: 14px;
-        z-index: -1;
-        animation: patternMove 20s linear infinite;
-    }
-    
-    @keyframes patternMove {
-        0% { background-position: 0 0; }
-        100% { background-position: 100px 100px; }
-    }
-    
-    .title {
-        font-size: 96px;
-        font-weight: bold;
-        letter-spacing: 10px;
-        text-transform: uppercase;
-        color: #ffffff;
-        text-shadow: 
-            0 0 20px rgba(255,255,255,0.5),
-            0 0 40px rgba(255,255,255,0.3),
-            0 0 60px rgba(255,255,255,0.1);
-        margin-bottom: 30px;
-        font-family: 'VT323', monospace;
-        position: relative;
-        display: inline-block;
-    }
-    
-    .title::before {
-        content: "FLOOR LARRY";
-        position: absolute;
-        top: 4px;
-        left: 4px;
-        color: transparent;
-        text-shadow: 
-            2px 2px 0 rgba(255,255,255,0.2),
-            4px 4px 0 rgba(255,255,255,0.1);
-        z-index: -1;
-    }
-    
-    .title::after {
-        content: "";
-        position: absolute;
-        bottom: -10px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 80%;
-        height: 3px;
-        background: linear-gradient(90deg, 
-            transparent, 
-            rgba(255,255,255,0.8), 
-            rgba(255,255,255,0.8), 
-            transparent);
-        border-radius: 2px;
-    }
-    
-    /* PROJECT DESCRIPTION */
-    .project-description {
-        font-size: 20px;
-        color: #cccccc;
-        letter-spacing: 2px;
-        max-width: 900px;
-        margin: 40px auto 60px;
-        line-height: 1.8;
-        padding: 40px;
-        background: rgba(0,0,0,0.7);
-        border: 2px solid rgba(255,255,255,0.2);
-        border-radius: 12px;
-        position: relative;
-        text-align: center;
-    }
-    
-    .project-description::before {
-        content: "★ ★ ★";
-        position: absolute;
-        top: -15px;
-        left: 50%;
-        transform: translateX(-50%);
-        color: rgba(255,255,255,0.5);
-        font-size: 24px;
-        letter-spacing: 10px;
-        background: #0a0a0a;
-        padding: 0 20px;
-    }
-    
-    /* SECTION HEADERS */
-    .section-header {
-        text-align: center;
-        margin: 80px 0 50px;
-        position: relative;
-        padding: 30px;
-    }
-    
-    .section-title {
-        font-size: 48px;
-        color: #ffffff;
-        text-transform: uppercase;
-        letter-spacing: 6px;
-        margin-bottom: 20px;
-        font-family: 'VT323', monospace;
-        display: inline-block;
-        padding: 0 40px;
-        position: relative;
-    }
-    
-    .section-title::before,
-    .section-title::after {
-        content: "";
-        position: absolute;
-        top: 50%;
-        width: 100px;
-        height: 2px;
-        background: linear-gradient(90deg, 
-            transparent, 
-            rgba(255,255,255,0.5), 
-            transparent);
-    }
-    
-    .section-title::before {
-        left: -120px;
-    }
-    
-    .section-title::after {
-        right: -120px;
-    }
-    
-    .section-subtitle {
-        font-size: 18px;
-        color: #888888;
-        letter-spacing: 3px;
-        text-transform: uppercase;
-        max-width: 600px;
-        margin: 0 auto;
-        line-height: 1.6;
-    }
-    
-    /* RETRO TV GALLERY */
-    .tv-gallery {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-        gap: 50px;
-        margin: 40px 0;
-    }
-    
-    .tv-art-card {
-        background: rgba(15, 15, 15, 0.95);
-        border: 4px solid rgba(255,255,255,0.3);
-        padding: 30px;
-        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        position: relative;
-        overflow: hidden;
-        border-radius: 15px;
-        box-shadow: 
-            0 15px 40px rgba(0,0,0,0.7),
-            inset 0 0 60px rgba(0,0,0,0.8);
-    }
-    
-    .tv-art-card::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 4px;
-        background: linear-gradient(90deg, 
-            #ff0000, #ff9900, #ffff00, #00ff00, #00ffff, #0000ff, #ff00ff, #ff0000);
-        background-size: 400% 100%;
-        animation: tvBorderGlow 3s linear infinite;
-    }
-    
-    @keyframes tvBorderGlow {
-        0% { background-position: 0% 0%; }
-        100% { background-position: 400% 0%; }
-    }
-    
-    .tv-art-card::after {
-        content: "▶";
-        position: absolute;
-        bottom: 15px;
-        right: 15px;
-        color: rgba(255,255,255,0.3);
-        font-size: 20px;
-        animation: blink 1s infinite;
-    }
-    
-    @keyframes blink {
-        0%, 100% { opacity: 1; }
-        50% { opacity: 0.3; }
-    }
-    
-    .tv-art-image {
-        width: 100%;
-        height: 280px;
-        object-fit: cover;
-        border: 3px solid rgba(255,255,255,0.2);
-        margin-bottom: 25px;
-        filter: grayscale(100%) contrast(120%);
-        transition: all 0.4s;
-        border-radius: 8px;
-        position: relative;
-        background: #000;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-    
-    .tv-art-image::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: 
-            repeating-linear-gradient(0deg, 
-                transparent, 
-                transparent 2px, 
-                rgba(255,255,255,0.03) 2px, 
-                rgba(255,255,255,0.03) 4px);
-        pointer-events: none;
-        border-radius: 8px;
-    }
-    
-    .tv-art-card:hover .tv-art-image {
-        filter: grayscale(0%) contrast(110%) brightness(1.1);
-        border-color: rgba(255,255,255,0.5);
-        transform: scale(1.05);
-    }
-    
-    .tv-art-title {
-        font-size: 28px;
-        font-weight: bold;
-        color: #ffffff;
-        text-transform: uppercase;
-        letter-spacing: 3px;
-        margin-bottom: 15px;
-        padding-bottom: 15px;
-        border-bottom: 2px solid rgba(255,255,255,0.2);
-        cursor: pointer;
-        transition: all 0.3s;
-        position: relative;
-        text-shadow: 0 2px 4px rgba(0,0,0,0.5);
-    }
-    
-    .tv-art-title::after {
-        content: "CHANNEL " attr(data-channel);
-        position: absolute;
-        right: 0;
-        top: 50%;
-        transform: translateY(-50%);
-        font-size: 12px;
-        color: rgba(255,255,255,0.5);
-        background: rgba(0,0,0,0.5);
-        padding: 4px 8px;
-        border-radius: 4px;
-    }
-    
-    .tv-art-description {
-        font-size: 16px;
-        color: #aaaaaa;
-        line-height: 1.6;
-        display: none;
-        padding-top: 20px;
-        border-top: 1px solid rgba(255,255,255,0.1);
-        margin-top: 20px;
-        position: relative;
-        font-family: 'Courier New', monospace;
-    }
-    
-    /* COLLECTOR CARD SECTION */
-    .collector-section {
-        margin: 80px 0;
-        padding: 60px;
-        background: rgba(10, 10, 10, 0.95);
-        border: 3px solid rgba(255,255,255,0.2);
-        border-radius: 20px;
-        position: relative;
-        text-align: center;
-    }
-    
-    .collector-section::before {
-        content: "";
-        position: absolute;
-        top: -3px;
-        left: -3px;
-        right: -3px;
-        bottom: -3px;
-        border: 3px solid transparent;
-        background: linear-gradient(45deg, 
-            #ff0000, #ff9900, #ffff00, #00ff00, #00ffff, #0000ff, #ff00ff) border-box;
-        border-radius: 23px;
-        mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
-        mask-composite: exclude;
-        pointer-events: none;
-        animation: gradientRotate 5s linear infinite;
-    }
-    
-    @keyframes gradientRotate {
-        0% { background-position: 0% 50%; }
-        100% { background-position: 400% 50%; }
-    }
-    
-    .collector-card {
-        width: 300px;
-        height: 400px;
-        margin: 40px auto;
-        position: relative;
-        perspective: 1000px;
-    }
-    
-    .card-inner {
-        width: 100%;
-        height: 100%;
-        position: relative;
-        transform-style: preserve-3d;
-        transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    }
-    
-    .collector-card:hover .card-inner {
-        transform: rotateY(180deg);
-    }
-    
-    .card-front, .card-back {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        backface-visibility: hidden;
-        border-radius: 15px;
-        overflow: hidden;
-        border: 4px solid rgba(255,255,255,0.3);
-    }
-    
-    .card-front {
-        background: linear-gradient(45deg, #000000, #111111);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-    
-    .card-back {
-        background: linear-gradient(45deg, #111111, #000000);
-        transform: rotateY(180deg);
-        padding: 30px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
-    
-    .larry-card-img {
-        width: 90%;
-        height: 90%;
-        object-fit: contain;
-        border-radius: 10px;
-        filter: grayscale(100%) contrast(120%);
-        transition: all 0.3s;
-    }
-    
-    .collector-card:hover .larry-card-img {
-        filter: grayscale(0%) contrast(110%);
-    }
-    
-    .card-title {
-        font-size: 24px;
-        color: #ffffff;
-        text-transform: uppercase;
-        letter-spacing: 3px;
-        margin-bottom: 20px;
-        text-shadow: 0 2px 4px rgba(255,255,255,0.3);
-    }
-    
-    .card-details {
-        color: #888888;
-        font-size: 14px;
-        line-height: 1.6;
-        text-align: center;
-        margin-bottom: 20px;
-    }
-    
-    /* WALLET SUBMISSION SECTION */
-    .submission-section {
-        margin: 80px 0;
-        padding: 60px;
-        background: rgba(15, 15, 15, 0.95);
-        border: 3px solid rgba(255,255,255,0.2);
-        border-radius: 20px;
-        position: relative;
-        overflow: hidden;
-    }
-    
-    .submission-section::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: 
-            linear-gradient(45deg, transparent 45%, rgba(255,255,255,0.02) 50%, transparent 55%),
-            linear-gradient(-45deg, transparent 45%, rgba(255,255,255,0.02) 50%, transparent 55%);
-        background-size: 30px 30px;
-        animation: patternMove 30s linear infinite;
-        pointer-events: none;
-    }
-    
-    /* X FOLLOW REQUIREMENT */
-    .follow-requirement {
-        background: rgba(20, 20, 20, 0.95);
-        border: 2px solid rgba(255,255,255,0.2);
-        padding: 50px;
-        margin: 60px 0;
-        text-align: center;
-        border-radius: 15px;
-        position: relative;
-        overflow: hidden;
-        box-shadow: 
-            0 10px 30px rgba(0,0,0,0.6),
-            inset 0 1px 0 rgba(255,255,255,0.1);
-    }
-    
-    .follow-requirement::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 3px;
-        background: linear-gradient(90deg, 
-            transparent, 
-            rgba(255,255,255,0.8), 
-            rgba(255,255,255,0.8), 
-            transparent);
-    }
-    
-    .requirement-title {
-        font-size: 36px;
-        color: #ffffff;
-        letter-spacing: 3px;
-        text-transform: uppercase;
-        margin-bottom: 40px;
-        font-weight: bold;
-        text-shadow: 0 2px 10px rgba(255,255,255,0.3);
-        position: relative;
-    }
-    
-    .requirement-title::after {
-        content: "";
-        position: absolute;
-        bottom: -15px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 100px;
-        height: 2px;
-        background: linear-gradient(90deg, 
-            transparent, 
-            rgba(255,255,255,0.6), 
-            transparent);
-    }
-    
-    .requirement-steps {
-        display: flex;
-        flex-direction: column;
-        gap: 25px;
-        margin-bottom: 40px;
-        position: relative;
-    }
-    
-    .requirement-step {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 20px;
-        color: #888888;
-        font-size: 18px;
-        letter-spacing: 1px;
-        padding: 20px;
-        background: rgba(0,0,0,0.5);
-        border: 1px solid rgba(255,255,255,0.1);
-        border-radius: 8px;
-        transition: all 0.3s;
-    }
-    
-    .requirement-step.completed {
-        color: #00ff00;
-        background: rgba(0,255,0,0.05);
-        border-color: rgba(0,255,0,0.3);
-        box-shadow: 0 0 20px rgba(0,255,0,0.1);
-    }
-    
-    .step-number {
-        width: 40px;
-        height: 40px;
-        background: rgba(255,255,255,0.1);
-        border: 2px solid rgba(255,255,255,0.3);
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-weight: bold;
-        font-size: 20px;
-        transition: all 0.3s;
-    }
-    
-    .step-completed {
-        background: rgba(0,255,0,0.2);
-        border-color: #00ff00;
-        color: #00ff00;
-        transform: scale(1.1);
-    }
-    
-    .x-follow-btn {
-        display: inline-flex;
-        align-items: center;
-        gap: 15px;
-        background: linear-gradient(45deg, #000000, #1a1a1a);
-        color: #ffffff;
-        border: 2px solid rgba(255,255,255,0.3);
-        padding: 20px 40px;
-        text-decoration: none;
-        text-transform: uppercase;
-        letter-spacing: 3px;
-        font-size: 16px;
-        font-weight: bold;
-        transition: all 0.4s;
-        margin: 20px 0;
-        border-radius: 8px;
-        position: relative;
-        overflow: hidden;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-    }
-    
-    .x-follow-btn::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-        transition: left 0.6s;
-    }
-    
-    .x-follow-btn:hover {
-        background: linear-gradient(45deg, #1a1a1a, #000000);
-        border-color: rgba(255,255,255,0.6);
-        transform: translateY(-5px);
-        box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-        letter-spacing: 4px;
-    }
-    
-    .x-follow-btn:hover::before {
-        left: 100%;
-    }
-    
-    .x-follow-btn.completed {
-        background: linear-gradient(45deg, rgba(0,255,0,0.1), rgba(0,255,0,0.05));
-        border-color: #00ff00;
-        color: #00ff00;
-    }
-    
-    .verify-checkbox {
-        margin: 30px 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 15px;
-    }
-    
-    .verify-checkbox input[type="checkbox"] {
-        width: 24px;
-        height: 24px;
-        accent-color: rgba(255,255,255,0.3);
-        cursor: pointer;
-        position: relative;
-    }
-    
-    .verify-checkbox input[type="checkbox"]:checked {
-        accent-color: #00ff00;
-    }
-    
-    .verify-checkbox label {
-        color: #888888;
-        font-size: 16px;
-        cursor: pointer;
-        letter-spacing: 1px;
-        transition: color 0.3s;
-    }
-    
-    .verify-checkbox input[type="checkbox"]:checked + label {
-        color: #00ff00;
-    }
-    
-    /* RETRO FORM SECTION */
-    .form-section {
-        background: rgba(15, 15, 15, 0.95);
-        border: 2px solid rgba(255,255,255,0.2);
-        padding: 60px;
-        margin: 60px 0;
-        position: relative;
-        display: none;
-        border-radius: 15px;
-        box-shadow: 
-            0 15px 40px rgba(0,0,0,0.7),
-            inset 0 1px 0 rgba(255,255,255,0.1);
-    }
-    
-    .form-section.active {
-        display: block;
-        animation: fadeIn 0.5s ease-out;
-    }
-    
-    @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(20px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-    
-    .form-section::before {
-        content: "";
-        position: absolute;
-        top: -2px;
-        left: -2px;
-        right: -2px;
-        bottom: -2px;
-        border: 2px solid transparent;
-        background: linear-gradient(45deg, 
-            rgba(255,255,255,0.1) 25%, 
-            transparent 25%, 
-            transparent 50%, 
-            rgba(255,255,255,0.1) 50%, 
-            rgba(255,255,255,0.1) 75%, 
-            transparent 75%, 
-            transparent) border-box;
-        background-size: 10px 10px;
-        border-radius: 17px;
-        mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
-        mask-composite: exclude;
-        pointer-events: none;
-        animation: patternMove 20s linear infinite;
-    }
-    
-    .form-header {
-        text-align: center;
-        margin-bottom: 50px;
-        position: relative;
-    }
-    
-    .form-title {
-        font-size: 48px;
-        font-weight: bold;
-        color: #ffffff;
-        text-transform: uppercase;
-        letter-spacing: 6px;
-        margin-bottom: 20px;
-        text-shadow: 0 2px 15px rgba(255,255,255,0.3);
-        position: relative;
-        display: inline-block;
-    }
-    
-    .form-title::before {
-        content: "";
-        position: absolute;
-        bottom: -10px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 150px;
-        height: 3px;
-        background: linear-gradient(90deg, 
-            transparent, 
-            rgba(255,255,255,0.8), 
-            rgba(255,255,255,0.8), 
-            transparent);
-        border-radius: 2px;
-    }
-    
-    .form-subtitle {
-        font-size: 18px;
-        color: #888888;
-        letter-spacing: 2px;
-        text-transform: uppercase;
-        max-width: 600px;
-        margin: 0 auto;
-    }
-    
-    /* FORM ELEMENTS */
-    .form-group {
-        margin-bottom: 40px;
-        position: relative;
-    }
-    
-    .form-label {
-        display: block;
-        font-size: 16px;
-        color: #888888;
-        text-transform: uppercase;
-        letter-spacing: 3px;
-        margin-bottom: 15px;
-        font-weight: bold;
-    }
-    
-    .form-input {
-        width: 100%;
-        padding: 20px;
-        background: rgba(0, 0, 0, 0.8);
-        border: 2px solid rgba(255,255,255,0.2);
-        color: #ffffff;
-        font-family: 'Courier New', monospace;
-        font-size: 18px;
-        letter-spacing: 2px;
-        transition: all 0.3s;
-        border-radius: 8px;
-        box-shadow: inset 0 2px 10px rgba(0,0,0,0.5);
-    }
-    
-    .form-input:focus {
-        outline: none;
-        border-color: rgba(255,255,255,0.5);
-        background: rgba(0, 0, 0, 0.9);
-        box-shadow: 
-            inset 0 2px 10px rgba(0,0,0,0.5),
-            0 0 30px rgba(255,255,255,0.1);
-        transform: translateY(-2px);
-    }
-    
-    /* RETRO SUBMIT BUTTON */
-    .submit-btn {
-        width: 100%;
-        padding: 25px;
-        background: linear-gradient(45deg, #000000, #1a1a1a);
-        border: 2px solid rgba(255,255,255,0.3);
-        color: #ffffff;
-        font-family: 'VT323', monospace;
-        font-size: 24px;
-        font-weight: bold;
-        text-transform: uppercase;
-        letter-spacing: 4px;
-        cursor: pointer;
-        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        position: relative;
-        overflow: hidden;
-        border-radius: 8px;
-        box-shadow: 0 10px 20px rgba(0,0,0,0.5);
-        margin-top: 20px;
-    }
-    
-    .submit-btn:disabled {
-        opacity: 0.5;
-        cursor: not-allowed;
-        transform: none !important;
-    }
-    
-    .submit-btn:hover:not(:disabled) {
-        background: linear-gradient(45deg, #1a1a1a, #000000);
-        border-color: rgba(255,255,255,0.6);
-        letter-spacing: 6px;
-        transform: translateY(-5px);
-        box-shadow: 
-            0 15px 30px rgba(0,0,0,0.7),
-            0 0 40px rgba(255,255,255,0.1);
-    }
-    
-    .submit-btn:active:not(:disabled) {
-        transform: translateY(-2px);
-    }
-    
-    .submit-btn::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
-        transition: all 0.6s;
-    }
-    
-    .submit-btn:hover:not(:disabled)::before {
-        left: 100%;
-    }
-    
-    /* RESPONSE MESSAGE */
-    .response {
-        margin-top: 30px;
-        padding: 25px;
-        border: 2px solid rgba(255,255,255,0.2);
-        font-size: 16px;
-        text-align: center;
-        color: #888888;
-        display: none;
-        letter-spacing: 2px;
-        text-transform: uppercase;
-        border-radius: 8px;
-        background: rgba(0,0,0,0.7);
-        animation: fadeIn 0.3s ease-out;
-    }
-    
-    .response.success {
-        color: #00ff00;
-        border-color: rgba(0,255,0,0.3);
-        background: rgba(0,255,0,0.05);
-        box-shadow: 0 0 30px rgba(0,255,0,0.1);
-    }
-    
-    .response.error {
-        color: #ff4444;
-        border-color: rgba(255,68,68,0.3);
-        background: rgba(255,68,68,0.05);
-        box-shadow: 0 0 30px rgba(255,68,68,0.1);
-    }
-    
-    /* SOCIAL LINKS SECTION */
-    .social-section {
-        text-align: center;
-        margin: 80px 0;
-        padding: 60px;
-        background: rgba(20, 20, 20, 0.95);
-        border: 2px solid rgba(255,255,255,0.2);
-        border-radius: 20px;
-        position: relative;
-    }
-    
-    .social-section::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 4px;
-        background: linear-gradient(90deg, 
-            #ff0000, #ff9900, #ffff00, #00ff00, #00ffff, #0000ff, #ff00ff, #ff0000);
-        background-size: 400% 100%;
-        animation: tvBorderGlow 3s linear infinite;
-    }
-    
-    .social-links {
-        display: flex;
-        justify-content: center;
-        gap: 30px;
-        margin-top: 40px;
-        flex-wrap: wrap;
-    }
-    
-    .social-link {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 15px;
-        padding: 30px;
-        background: rgba(0,0,0,0.5);
-        border: 2px solid rgba(255,255,255,0.2);
-        border-radius: 15px;
-        text-decoration: none;
-        color: #ffffff;
-        transition: all 0.3s;
-        min-width: 180px;
-    }
-    
-    .social-link:hover {
-        transform: translateY(-10px);
-        border-color: rgba(255,255,255,0.5);
-        background: rgba(0,0,0,0.8);
-        box-shadow: 0 15px 30px rgba(0,0,0,0.7);
-    }
-    
-    .social-icon {
-        font-size: 48px;
-        margin-bottom: 10px;
-    }
-    
-    .social-name {
-        font-size: 18px;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        font-weight: bold;
-    }
-    
-    .social-handle {
-        font-size: 14px;
-        color: #888888;
-        letter-spacing: 1px;
-    }
-    
-    /* RETRO STATS BAR */
-    .stats {
-        display: flex;
-        justify-content: space-around;
-        padding: 40px;
-        border-top: 2px solid rgba(255,255,255,0.2);
-        border-bottom: 2px solid rgba(255,255,255,0.2);
-        margin: 60px 0;
-        background: rgba(20,20,20,0.8);
-        border-radius: 15px;
-        position: relative;
-        overflow: hidden;
-    }
-    
-    .stats::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: 
-            linear-gradient(45deg, transparent 48%, rgba(255,255,255,0.03) 50%, transparent 52%),
-            linear-gradient(-45deg, transparent 48%, rgba(255,255,255,0.03) 50%, transparent 52%);
-        background-size: 20px 20px;
-        opacity: 0.5;
-        pointer-events: none;
-    }
-    
-    .stat-item {
-        text-align: center;
-        position: relative;
-        z-index: 1;
-        padding: 20px;
-        min-width: 200px;
-    }
-    
-    .stat-label {
-        font-size: 14px;
-        color: #888888;
-        text-transform: uppercase;
-        letter-spacing: 3px;
-        margin-bottom: 15px;
-        font-weight: bold;
-    }
-    
-    .stat-value {
-        font-size: 48px;
-        font-weight: bold;
-        color: #ffffff;
-        letter-spacing: 4px;
-        text-shadow: 0 2px 10px rgba(255,255,255,0.3);
-        font-family: 'VT323', monospace;
-    }
-    
-    /* RETRO FOOTER */
-    .footer {
-        text-align: center;
-        padding: 60px 40px;
-        border-top: 2px solid rgba(255,255,255,0.2);
-        margin-top: 80px;
-        color: #666666;
-        font-size: 14px;
-        letter-spacing: 3px;
-        text-transform: uppercase;
-        position: relative;
-        background: rgba(10,10,10,0.9);
-        border-radius: 15px 15px 0 0;
-    }
-    
-    .footer::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 3px;
-        background: linear-gradient(90deg, 
-            transparent, 
-            rgba(255,255,255,0.5), 
-            rgba(255,255,255,0.5), 
-            transparent);
-    }
-    
-    .copyright {
-        color: #ffffff;
-        font-family: 'VT323', monospace;
-        font-size: 24px;
-        letter-spacing: 4px;
-        margin-bottom: 20px;
-        text-shadow: 0 2px 5px rgba(255,255,255,0.2);
-    }
-    
-    /* RETRO SCANLINES */
-    .scanlines {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: 
-            repeating-linear-gradient(
-                0deg,
-                rgba(0,0,0,0.15) 0px,
-                rgba(0,0,0,0.15) 1px,
-                transparent 1px,
-                transparent 2px
-            );
-        pointer-events: none;
-        z-index: 9998;
-        opacity: 0.1;
-        animation: scan 10s linear infinite;
-    }
-    
-    @keyframes scan {
-        0% { transform: translateY(0); }
-        100% { transform: translateY(20px); }
-    }
-    
-    /* SCROLLBAR */
-    ::-webkit-scrollbar {
-        width: 10px;
-    }
-    
-    ::-webkit-scrollbar-track {
-        background: #0a0a0a;
-        border: 1px solid rgba(255,255,255,0.1);
-    }
-    
-    ::-webkit-scrollbar-thumb {
-        background: rgba(255,255,255,0.2);
-        border-radius: 5px;
-        border: 2px solid #0a0a0a;
-    }
-    
-    ::-webkit-scrollbar-thumb:hover {
-        background: rgba(255,255,255,0.3);
-    }
-    
-    /* RESPONSIVE */
-    @media (max-width: 1024px) {
-        .tv-gallery {
-            grid-template-columns: repeat(2, 1fr);
-            gap: 40px;
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LarryNFTs Gallery</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, sans-serif;
         }
         
-        .stats {
-            flex-direction: column;
-            gap: 40px;
-            align-items: center;
-        }
-        
-        .stat-item {
-            min-width: 250px;
-        }
-        
-        .social-links {
-            gap: 20px;
-        }
-        
-        .social-link {
-            min-width: 150px;
+        body {
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            color: #fff;
+            min-height: 100vh;
             padding: 20px;
         }
-    }
-    
-    @media (max-width: 768px) {
+        
         .container {
+            max-width: 1400px;
+            margin: 0 auto;
             padding: 20px;
         }
         
-        .title {
-            font-size: 60px;
-            letter-spacing: 6px;
-        }
-        
-        .section-title {
-            font-size: 36px;
-            letter-spacing: 4px;
-        }
-        
-        .section-title::before,
-        .section-title::after {
-            width: 50px;
-        }
-        
-        .section-title::before {
-            left: -70px;
-        }
-        
-        .section-title::after {
-            right: -70px;
-        }
-        
-        .tv-gallery {
-            grid-template-columns: 1fr;
-            gap: 40px;
-        }
-        
-        .collector-section,
-        .submission-section,
-        .social-section {
-            padding: 30px;
-        }
-        
-        .collector-card {
-            width: 250px;
-            height: 350px;
-        }
-        
-        .requirement-step {
-            flex-direction: column;
+        header {
             text-align: center;
-            gap: 15px;
+            margin-bottom: 40px;
+            padding-top: 20px;
         }
         
-        .form-section, .follow-requirement {
-            padding: 30px;
+        .logo {
+            font-size: 2.8rem;
+            font-weight: 800;
+            background: linear-gradient(90deg, #00dbde, #fc00ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
         }
         
-        .social-links {
-            flex-direction: column;
-            align-items: center;
+        .tagline {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 25px;
+            color: #b8b8ff;
         }
         
         .social-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.08);
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 20px;
+        }
+        
+        .social-link:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .social-link i {
+            font-size: 1.2rem;
+        }
+        
+        .instructions {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            font-size: 1.1rem;
+            color: #b8b8ff;
+            border-left: 4px solid #00dbde;
+        }
+        
+        .instructions i {
+            color: #fc00ff;
+            margin-right: 8px;
+        }
+        
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 20px;
+        }
+        
+        .nft-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            height: 380px;
+            position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
+        
+        .nft-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border-color: rgba(124, 58, 237, 0.5);
+        }
+        
+        .image-container {
+            height: 250px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .nft-image {
             width: 100%;
-            max-width: 300px;
-        }
-    }
-    
-    @media (max-width: 480px) {
-        .title {
-            font-size: 48px;
-            letter-spacing: 4px;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.7s ease;
         }
         
-        .section-title {
-            font-size: 28px;
-            letter-spacing: 3px;
-            padding: 0 20px;
+        .nft-card:hover .nft-image {
+            transform: scale(1.05);
         }
         
-        .project-description {
-            font-size: 16px;
+        .hover-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .nft-card:hover .hover-overlay {
+            opacity: 1;
+        }
+        
+        .hover-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+        
+        .hover-description {
+            font-size: 0.95rem;
+            line-height: 1.5;
+            color: #d1d1ff;
+            max-height: 120px;
+            overflow-y: auto;
+            padding-right: 5px;
+        }
+        
+        .hover-description::-webkit-scrollbar {
+            width: 5px;
+        }
+        
+        .hover-description::-webkit-scrollbar-thumb {
+            background: #7c3aed;
+            border-radius: 10px;
+        }
+        
+        .tap-hint {
+            position: absolute;
+            bottom: 15px;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            font-size: 0.85rem;
+            color: #a78bfa;
+            opacity: 0.8;
+            z-index: 2;
+        }
+        
+        .card-content {
             padding: 20px;
         }
         
-        .collector-card {
-            width: 200px;
-            height: 280px;
+        .nft-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #fff;
         }
         
-        .x-follow-btn {
-            padding: 15px 25px;
-            font-size: 14px;
+        .nft-author {
+            font-size: 0.95rem;
+            color: #a78bfa;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
         }
         
-        .form-title {
-            font-size: 32px;
-            letter-spacing: 4px;
+        .nft-author i {
+            font-size: 0.8rem;
         }
-    }
-</style>
+        
+        .nft-info {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            color: #b8b8ff;
+        }
+        
+        .nft-price {
+            color: #00dbde;
+            font-weight: 600;
+        }
+        
+        .nft-edition {
+            background: rgba(124, 58, 237, 0.2);
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px;
+            color: #a78bfa;
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.07);
+        }
+        
+        .mobile-note {
+            display: none;
+            background: rgba(124, 58, 237, 0.1);
+            padding: 12px;
+            border-radius: 10px;
+            margin-top: 10px;
+            font-size: 0.9rem;
+            color: #b8b8ff;
+        }
+        
+        @media (max-width: 768px) {
+            .gallery {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+                gap: 20px;
+            }
+            
+            .logo {
+                font-size: 2.2rem;
+            }
+            
+            .mobile-note {
+                display: block;
+            }
+            
+            .instructions {
+                font-size: 1rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+            
+            .container {
+                padding: 10px;
+            }
+        }
+    </style>
 </head>
 <body>
-
-<!-- RETRO EFFECTS -->
-<div class="retro-grid"></div>
-<div class="scanlines"></div>
-
-<div class="container">
-    
-    <!-- RETRO PATTERN HEADER -->
-    <div class="header">
-        <h1 class="title">FLOOR LARRY</h1>
-        <div class="project-description">
-            Floor Larry is a unique NFT collection centered around Larry - a charismatic digital character who has taken up residence in the basement floor of the internet. Unlike typical NFT projects, Floor Larry embodies the spirit of underground digital culture, combining retro aesthetics with modern blockchain technology.
-        </div>
-    </div>
-    
-    <!-- GALLERY SECTION -->
-    <div class="section-header">
-        <h2 class="section-title">DIGITAL ART GALLERY</h2>
-        <div class="section-subtitle">EXPLORE THE LARRY-VERSE THROUGH RETRO TV DISPLAYS</div>
-    </div>
-    
-    <!-- RETRO TV GALLERY -->
-    <div class="tv-gallery">
-        <div class="tv-art-card">
-            <div class="tv-art-image">
-                <img src="super_larry.jpeg" alt="Super Larry" style="width: 100%; height: 100%; object-fit: cover;"
-                     onerror="this.style.display='none'; this.parentElement.innerHTML = '<div style=\"width:100%; height:100%; display:flex; align-items:center; justify-content:center; color:rgba(255,255,255,0.5); font-size:32px; letter-spacing:3px; font-family:VT323; text-align:center;\">CHANNEL 01<br>SUPER LARRY</div>'">
+    <div class="container">
+        <header>
+            <h1 class="logo">LarryNFTs Gallery</h1>
+            <p class="tagline">Exclusive Digital Art Collection</p>
+            <a href="https://x.com/larrynfts" target="_blank" class="social-link">
+                <i class="fab fa-twitter"></i> Follow @larrynfts on X
+            </a>
+            
+            <div class="instructions">
+                <i class="fas fa-mouse-pointer"></i> Hover over each artwork to see description
             </div>
-            <div class="tv-art-title" data-channel="01" onclick="toggleDescription(this)">
-                SUPER LARRY
+            <div class="mobile-note">
+                <i class="fas fa-hand-point-up"></i> On mobile, tap each artwork to see description
             </div>
-            <div class="tv-art-description">
-                Cosmic defender of the Larry-Verse. Reality-bending powers, light-speed flight, and unmatched style.
-            </div>
-        </div>
+        </header>
         
-        <div class="tv-art-card">
-            <div class="tv-art-image">
-                <img src="spider_larry.jpeg" alt="Spider Larry" style="width: 100%; height: 100%; object-fit: cover;"
-                     onerror="this.style.display='none'; this.parentElement.innerHTML = '<div style=\"width:100%; height:100%; display:flex; align-items:center; justify-content:center; color:rgba(255,255,255,0.5); font-size:32px; letter-spacing:3px; font-family:VT323; text-align:center;\">CHANNEL 02<br>SPIDER LARRY</div>'">
-            </div>
-            <div class="tv-art-title" data-channel="02" onclick="toggleDescription(this)">
-                SPIDER LARRY
-            </div>
-            <div class="tv-art-description">
-                Swings through digital metropolis. Web-slinging, wall-crawling, and witty one-liners.
-            </div>
-        </div>
-        
-        <div class="tv-art-card">
-            <div class="tv-art-image">
-                <img src="arthur_larry.jpeg" alt="Arthur Larry" style="width: 100%; height: 100%; object-fit: cover;"
-                     onerror="this.style.display='none'; this.parentElement.innerHTML = '<div style=\"width:100%; height:100%; display:flex; align-items:center; justify-content:center; color:rgba(255,255,255,0.5); font-size:32px; letter-spacing:3px; font-family:VT323; text-align:center;\">CHANNEL 03<br>ARTHUR LARRY</div>'">
-            </div>
-            <div class="tv-art-title" data-channel="03" onclick="toggleDescription(this)">
-                ARTHUR LARRY
-            </div>
-            <div class="tv-art-description">
-                The once and future king. Leads the Knights of the Binary Table through digital realms.
-            </div>
-        </div>
-    </div>
-    
-    <!-- COLLECTOR CARD SECTION -->
-    <div class="section-header">
-        <h2 class="section-title">EXCLUSIVE COLLECTOR'S CARD</h2>
-        <div class="section-subtitle">FLIP TO REVEAL THE ULTIMATE LARRY COLLECTIBLE</div>
-    </div>
-    
-    <div class="collector-section">
-        <div class="collector-card">
-            <div class="card-inner">
-                <div class="card-front">
-                    <img src="larry_card.jpeg" alt="Larry Card" class="larry-card-img"
-                         onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjgwIiBoZWlnaHQ9IjM4MCIgdmlld0JveD0iMCAwIDMyIDQ0IiBzdHlsZT0iaW1hZ2UtcmVuZGVyaW5nOiBwaXhlbGF0ZWQiPjxyZWN0IHdpZHRoPSIzMiIgaGVpZ2h0PSI0NCIgZmlsbD0iIzAwMDAwMCIvPjxyZWN0IHg9IjIiIHk9IjIiIHdpZHRoPSIyOCIgaGVpZ2h0PSI0MCIgZmlsbD0iI0ZGRDcwMCIgc3Ryb2tlPSIjMDAwMDAwIiBzdHJva2Utd2lkdGg9IjEiLz48cmVjdCB4PSI0IiB5PSI0IiB3aWR0aD0iMjQiIGhlaWdodD0iMzYiIGZpbGw9IiMwMDAwMDAiLz48cmVjdCB4PSI4IiB5PSI4IiB3aWR0aD0iMTYiIGhlaWdodD0iMjQiIGZpbGw9IiMxMTExMTEiLz48cmVjdCB4PSIxMiIgeT0iMTIiIHdpZHRoPSI4IiBoZWlnaHQ9IjgiIGZpbGw9IiNGRkQ3MDAiLz48cmVjdCB4PSIxNCIgeT0iMTQiIHdpZHRoPSI0IiBoZWlnaHQ9IjQiIGZpbGw9IiMwMDAwMDAiLz48cmVjdCB4PSIxMyIgeT0iMTMiIHdpZHRoPSIyIiBoZWlnaHQ9IjIiIGZpbGw9IiNGRkZGRkYiLz48cmVjdCB4PSIxNyIgeT0iMTMiIHdpZHRoPSIyIiBoZWlnaHQ9IjIiIGZpbGw9IiNGRkZGRkYiLz48dGV4dCB4PSIxNiIgeT0iMjgiIGZvbnQtZmFtaWx5PSJDb3VyaWVyIE5ldyIgbGV0dGVyLXNwYWNpbmc9IjFweCIgZm9udC1zaXplPSIzIiBmaWxsPSIjRkZENzAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5MQUJSWTwvdGV4dD48dGV4dCB4PSIxNiIgeT0iMzIiIGZvbnQtZmFtaWx5PSJDb3VyaWVyIE5ldyIgbGV0dGVyLXNwYWNpbmc9IjFweCIgZm9udC1zaXplPSIyIiBmaWxsPSIjRkZENzAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5DT0xMRUNUT1IgQ0FSRDwvdGV4dD48cmVjdCB4PSIyMiIgeT0iNCIgd2lkdGg9IjYiIGhlaWdodD0iNCIgZmlsbD0iI0ZGMDAwMCIvPjx0ZXh0IHg9IjI1IiB5PSI2IiBmb250LWZhbWlseT0iQ291cmllciBOZXciIGZvbnQtc2l6ZT0iMyIgZmlsbD0iI0ZGRkZGRiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+TkZUPC90ZXh0Pjwvc3ZnPg=='">
+        <main>
+            <div class="gallery">
+                <!-- NFT 1 -->
+                <div class="nft-card">
+                    <div class="image-container">
+                        <img src="https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80" alt="Digital Cosmos" class="nft-image">
+                        <div class="hover-overlay">
+                            <h3 class="hover-title">Digital Cosmos</h3>
+                            <p class="hover-description">A vibrant exploration of digital space and color theory. This piece represents the intersection of technology and natural beauty, created using custom generative algorithms. Each iteration is unique, with color palettes generated from cosmic data.</p>
+                        </div>
+                        <div class="tap-hint">Tap to see description</div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="nft-title">Digital Cosmos</h3>
+                        <div class="nft-author">
+                            <i class="fas fa-user"></i> LarryNFTs
+                        </div>
+                        <div class="nft-info">
+                            <span class="nft-price">0.8 ETH</span>
+                            <span class="nft-edition">1/10 Edition</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="card-back">
-                    <h3 class="card-title">LARRY CARD</h3>
-                    <p class="card-details">Exclusive collector edition<br>Limited NFT Token<br>Floor Larry Collection</p>
-                    <div style="margin-top: 20px; font-size: 12px; color: #666;">Hover to flip back</div>
+                
+                <!-- NFT 2 -->
+                <div class="nft-card">
+                    <div class="image-container">
+                        <img src="https://images.unsplash.com/photo-1543857778-c4a1a569e388?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80" alt="Neon Dreams" class="nft-image">
+                        <div class="hover-overlay">
+                            <h3 class="hover-title">Neon Dreams</h3>
+                            <p class="hover-description">Inspired by 80s cyberpunk aesthetics, this piece combines neon gradients with geometric patterns. The artwork was created through a combination of 3D rendering and digital painting techniques. It reflects the glow of city nights and digital dreams.</p>
+                        </div>
+                        <div class="tap-hint">Tap to see description</div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="nft-title">Neon Dreams</h3>
+                        <div class="nft-author">
+                            <i class="fas fa-user"></i> LarryNFTs
+                        </div>
+                        <div class="nft-info">
+                            <span class="nft-price">1.2 ETH</span>
+                            <span class="nft-edition">1/1 Unique</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- NFT 3 -->
+                <div class="nft-card">
+                    <div class="image-container">
+                        <img src="https://images.unsplash.com/photo-1579546929662-711aa81148cf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Abstract Flow" class="nft-image">
+                        <div class="hover-overlay">
+                            <h3 class="hover-title">Abstract Flow</h3>
+                            <p class="hover-description">Fluid dynamics simulated through custom code create this ever-changing abstract composition. The piece explores the concept of digital liquidity and how algorithms can mimic natural processes. Each owner can regenerate the artwork with different parameters.</p>
+                        </div>
+                        <div class="tap-hint">Tap to see description</div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="nft-title">Abstract Flow</h3>
+                        <div class="nft-author">
+                            <i class="fas fa-user"></i> LarryNFTs
+                        </div>
+                        <div class="nft-info">
+                            <span class="nft-price">0.5 ETH</span>
+                            <span class="nft-edition">3/25 Edition</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- NFT 4 -->
+                <div class="nft-card">
+                    <div class="image-container">
+                        <img src="https://images.unsplash.com/photo-1550684376-efcbd6e3f031?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Cyber Portal" class="nft-image">
+                        <div class="hover-overlay">
+                            <h3 class="hover-title">Cyber Portal</h3>
+                            <p class="hover-description">A gateway between realities, this piece combines glitch art with mystical symbolism. Created through databending techniques and AI-assisted design, it represents the threshold between physical and digital existence. The artwork changes subtly based on time of day.</p>
+                        </div>
+                        <div class="tap-hint">Tap to see description</div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="nft-title">Cyber Portal</h3>
+                        <div class="nft-author">
+                            <i class="fas fa-user"></i> LarryNFTs
+                        </div>
+                        <div class="nft-info">
+                            <span class="nft-price">2.1 ETH</span>
+                            <span class="nft-edition">1/5 Edition</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- NFT 5 -->
+                <div class="nft-card">
+                    <div class="image-container">
+                        <img src="https://images.unsplash.com/photo-1518709268805-4e9042af2176?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1108&q=80" alt="Fragmented Reality" class="nft-image">
+                        <div class="hover-overlay">
+                            <h3 class="hover-title">Fragmented Reality</h3>
+                            <p class="hover-description">This artwork explores the fragmentation of perception in the digital age. Using geometric decomposition and color separation techniques, it visualizes how information is broken down and reconstructed in our minds. The piece is interactive in virtual galleries.</p>
+                        </div>
+                        <div class="tap-hint">Tap to see description</div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="nft-title">Fragmented Reality</h3>
+                        <div class="nft-author">
+                            <i class="fas fa-user"></i> LarryNFTs
+                        </div>
+                        <div class="nft-info">
+                            <span class="nft-price">0.95 ETH</span>
+                            <span class="nft-edition">7/50 Edition</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- NFT 6 -->
+                <div class="nft-card">
+                    <div class="image-container">
+                        <img src="https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1169&q=80" alt="Quantum Layers" class="nft-image">
+                        <div class="hover-overlay">
+                            <h3 class="hover-title">Quantum Layers</h3>
+                            <p class="hover-description">Inspired by quantum physics, this piece visualizes superposition through layered transparencies and interference patterns. Each layer represents a possible state, combining to create the final artwork. The colors shift based on viewer interaction in supported platforms.</p>
+                        </div>
+                        <div class="tap-hint">Tap to see description</div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="nft-title">Quantum Layers</h3>
+                        <div class="nft-author">
+                            <i class="fas fa-user"></i> LarryNFTs
+                        </div>
+                        <div class="nft-info">
+                            <span class="nft-price">1.8 ETH</span>
+                            <span class="nft-edition">1/15 Edition</span>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-    
-    <!-- WALLET SUBMISSION SECTION -->
-    <div class="section-header">
-        <h2 class="section-title">WALLET REGISTRY</h2>
-        <div class="section-subtitle">JOIN THE LARRY-VERSE BY SUBMITTING YOUR WALLET</div>
-    </div>
-    
-    <!-- X FOLLOW REQUIREMENT -->
-    <div class="follow-requirement">
-        <div class="requirement-title">VERIFICATION REQUIRED</div>
+        </main>
         
-        <div class="requirement-steps">
-            <div class="requirement-step" id="step1">
-                <div class="step-number" id="step1Number">1</div>
-                <span>Follow @larrysnfts on X (Twitter)</span>
-            </div>
-            
-            <div class="requirement-step" id="step2">
-                <div class="step-number" id="step2Number">2</div>
-                <span>Click verification button below</span>
-            </div>
-            
-            <div class="requirement-step" id="step3">
-                <div class="step-number" id="step3Number">3</div>
-                <span>Submit wallet address</span>
-            </div>
-        </div>
-        
-        <a href="https://x.com/larrysnfts" target="_blank" class="x-follow-btn" id="followBtn">
-            <span>🐦</span>
-            FOLLOW @LARRYSNFTS ON X
-        </a>
-        
-        <div class="verify-checkbox">
-            <input type="checkbox" id="verifyFollow">
-            <label for="verifyFollow">I have followed @larrysnfts on X</label>
-        </div>
+        <footer class="footer">
+            <p>© 2023 LarryNFTs Gallery. All artworks are unique digital collectibles.</p>
+            <p>Follow <a href="https://x.com/larrynfts" target="_blank" style="color:#00dbde; text-decoration:none;">@larrynfts on X</a> for updates on new drops.</p>
+            <p style="margin-top: 10px; font-size: 0.8rem; opacity: 0.7;">Discord community coming soon!</p>
+        </footer>
     </div>
-    
-    <!-- RETRO FORM SECTION -->
-    <div class="form-section" id="walletFormSection">
-        <div class="form-header">
-            <div class="form-title">SUBMIT WALLET</div>
-            <div class="form-subtitle">ENTER YOUR WALLET ADDRESS TO JOIN THE COLLECTION</div>
-        </div>
-        
-        <form id="walletForm" action="https://formcarry.com/s/WCNibOhvw2h" method="POST">
-            <div class="form-group">
-                <label class="form-label" for="walletAddress">WALLET ADDRESS</label>
-                <input type="text" 
-                       id="walletAddress" 
-                       name="wallet" 
-                       required 
-                       class="form-input"
-                       placeholder="0x..."
-                       pattern="^0x[a-fA-F0-9]{40}$">
-            </div>
-            
-            <div class="form-group">
-                <label class="form-label" for="userEmail">EMAIL (OPTIONAL)</label>
-                <input type="email" 
-                       id="userEmail" 
-                       name="email" 
-                       class="form-input"
-                       placeholder="user@digital.era">
-            </div>
-            
-            <input type="hidden" name="timestamp" id="formTimestamp">
-            <input type="hidden" name="_subject" value="FLOOR LARRY WALLET REGISTRATION">
-            <input type="hidden" name="verified_follower" value="true">
-            
-            <button type="submit" class="submit-btn" id="submitBtn" disabled>
-                SUBMIT WALLET
-            </button>
-        </form>
-        
-        <div class="response" id="formResponse"></div>
-    </div>
-    
-    <!-- SOCIAL LINKS SECTION -->
-    <div class="section-header">
-        <h2 class="section-title">CONNECT WITH US</h2>
-        <div class="section-subtitle">STAY UPDATED ON ALL LARRY-VERSE DEVELOPMENTS</div>
-    </div>
-    
-    <div class="social-section">
-        <div class="social-links">
-            <a href="https://x.com/larrysnfts" target="_blank" class="social-link">
-                <div class="social-icon">🐦</div>
-                <div class="social-name">TWITTER</div>
-                <div class="social-handle">@larrysnfts</div>
-            </a>
-            
-            <a href="https://discord.gg/example" target="_blank" class="social-link">
-                <div class="social-icon">💬</div>
-                <div class="social-name">DISCORD</div>
-                <div class="social-handle">Join Community</div>
-            </a>
-            
-            <a href="https://opensea.io/collection/floor-larry" target="_blank" class="social-link">
-                <div class="social-icon">🌊</div>
-                <div class="social-name">OPENSEA</div>
-                <div class="social-handle">View Collection</div>
-            </a>
-        </div>
-    </div>
-    
-    <!-- RETRO STATS BAR -->
-    <div class="stats">
-        <div class="stat-item">
-            <div class="stat-label">TOTAL SUBMISSIONS</div>
-            <div class="stat-value" id="totalCount">0</div>
-        </div>
-        <div class="stat-item">
-            <div class="stat-label">TODAY'S COUNT</div>
-            <div class="stat-value" id="todayCount">0</div>
-        </div>
-        <div class="stat-item">
-            <div class="stat-label">SYSTEM STATUS</div>
-            <div class="stat-value" id="systemStatus">ONLINE</div>
-        </div>
-    </div>
-    
-    <!-- RETRO FOOTER -->
-    <div class="footer">
-        <div class="copyright">FLOOR LARRY © 2024</div>
-        <div>RETRO NFT COLLECTION • FOLLOW @LARRYSNFTS • ALL RIGHTS RESERVED</div>
-    </div>
-</div>
 
-<script>
-    // =============================================
-    // RETRO UI FUNCTIONALITY
-    // =============================================
-    
-    // Toggle art descriptions
-    function toggleDescription(element) {
-        const desc = element.nextElementSibling;
-        const allDescs = document.querySelectorAll('.tv-art-description');
-        
-        // Close all other descriptions
-        allDescs.forEach(d => {
-            if (d !== desc) {
-                d.style.display = 'none';
-            }
-        });
-        
-        // Toggle current description with animation
-        if (desc.style.display === 'block') {
-            desc.style.display = 'none';
-        } else {
-            desc.style.display = 'block';
-            desc.style.animation = 'fadeIn 0.5s ease-out';
-        }
-    }
-    
-    document.addEventListener('DOMContentLoaded', function() {
-        const followBtn = document.getElementById('followBtn');
-        const verifyCheckbox = document.getElementById('verifyFollow');
-        const walletFormSection = document.getElementById('walletFormSection');
-        const form = document.getElementById('walletForm');
-        const response = document.getElementById('formResponse');
-        const submitBtn = document.getElementById('submitBtn');
-        const totalCount = document.getElementById('totalCount');
-        const todayCount = document.getElementById('todayCount');
-        const systemStatus = document.getElementById('systemStatus');
-        
-        // Elements for step tracking
-        const step1 = document.getElementById('step1');
-        const step2 = document.getElementById('step2');
-        const step3 = document.getElementById('step3');
-        const step1Number = document.getElementById('step1Number');
-        const step2Number = document.getElementById('step2Number');
-        const step3Number = document.getElementById('step3Number');
-        
-        // Set timestamp
-        document.getElementById('formTimestamp').value = new Date().toISOString();
-        
-        // Initialize counters
-        updateCounters();
-        
-        // Follow button click handler
-        followBtn.addEventListener('click', function(e) {
-            // Open X in new tab
-            window.open(this.href, '_blank');
+    <script>
+        // Add tap functionality for mobile devices
+        document.addEventListener('DOMContentLoaded', function() {
+            const nftCards = document.querySelectorAll('.nft-card');
             
-            // Mark step 1 as completed after a short delay
-            setTimeout(() => {
-                step1.classList.add('completed');
-                step1Number.classList.add('step-completed');
-                step1Number.textContent = '✓';
-                
-                // Enable checkbox
-                verifyCheckbox.disabled = false;
-                
-                // Update follow button
-                followBtn.classList.add('completed');
-                followBtn.innerHTML = '<span>✅</span> FOLLOWING @LARRYSNFTS';
-                
-                console.log('Step 1 completed: User clicked follow link');
-            }, 1000);
-        });
-        
-        // Checkbox verification handler
-        verifyCheckbox.addEventListener('change', function() {
-            if (this.checked) {
-                // Mark step 2 as completed
-                step2.classList.add('completed');
-                step2Number.classList.add('step-completed');
-                step2Number.textContent = '✓';
-                
-                // Show wallet form section with animation
-                walletFormSection.classList.add('active');
-                
-                // Enable submit button
-                submitBtn.disabled = false;
-                
-                // Mark step 3 as active
-                step3.classList.add('completed');
-                step3Number.classList.add('step-completed');
-                
-                // Add retro effect
-                step3.style.animation = 'fadeIn 0.5s ease-out';
-                
-                console.log('Step 2 completed: User verified following');
-            } else {
-                // Hide wallet form section
-                walletFormSection.classList.remove('active');
-                
-                // Disable submit button
-                submitBtn.disabled = true;
-                
-                console.log('Verification unchecked');
-            }
-        });
-        
-        // Form submission
-        form.addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            // Check if user is verified
-            if (!verifyCheckbox.checked) {
-                showResponse('ERROR: PLEASE VERIFY X FOLLOW FIRST', 'error');
-                return;
-            }
-            
-            const walletInput = document.getElementById('walletAddress');
-            const walletValue = walletInput.value.trim();
-            
-            // Validate wallet address
-            const ethRegex = /^0x[a-fA-F0-9]{40}$/;
-            if (!ethRegex.test(walletValue)) {
-                showResponse('ERROR: INVALID WALLET FORMAT', 'error');
-                walletInput.style.borderColor = 'rgba(255,68,68,0.6)';
-                walletInput.style.boxShadow = '0 0 20px rgba(255,68,68,0.3)';
-                return;
-            }
-            
-            // Show processing
-            showResponse('PROCESSING VERIFIED SUBMISSION...', 'processing');
-            systemStatus.textContent = 'PROCESSING';
-            systemStatus.style.color = '#ffff00';
-            submitBtn.disabled = true;
-            submitBtn.textContent = 'PROCESSING...';
-            
-            try {
-                const formData = new FormData(form);
-                
-                const result = await fetch(form.action, {
-                    method: 'POST',
-                    body: formData,
-                    headers: {
-                        'Accept': 'application/json'
+            nftCards.forEach(card => {
+                // For mobile touch devices
+                card.addEventListener('touchstart', function(e) {
+                    if (window.innerWidth <= 768) {
+                        // Toggle overlay on mobile tap
+                        const overlay = this.querySelector('.hover-overlay');
+                        const isActive = overlay.style.opacity === '1';
+                        
+                        // Reset all other cards
+                        nftCards.forEach(c => {
+                            if (c !== this) {
+                                c.querySelector('.hover-overlay').style.opacity = '0';
+                            }
+                        });
+                        
+                        // Toggle this card
+                        overlay.style.opacity = isActive ? '0' : '1';
+                        
+                        // Prevent default to avoid double-tap zoom
+                        if (e.cancelable) e.preventDefault();
                     }
                 });
                 
-                if (result.ok) {
-                    const data = await result.json();
-                    
-                    if (data.code === 200) {
-                        showResponse('SUCCESS: WALLET REGISTERED BY VERIFIED FOLLOWER', 'success');
-                        form.reset();
-                        updateSubmissionCount();
-                        
-                        // Mark step 3 as completed
-                        step3Number.textContent = '✓';
-                        step3Number.style.background = 'rgba(0,255,0,0.3)';
-                        
-                        // Success animation
-                        animateSuccess();
-                    } else {
-                        showResponse('ERROR: SUBMISSION FAILED', 'error');
+                // Close overlay when clicking outside on mobile
+                document.addEventListener('touchstart', function(e) {
+                    if (window.innerWidth <= 768 && !e.target.closest('.nft-card')) {
+                        nftCards.forEach(card => {
+                            card.querySelector('.hover-overlay').style.opacity = '0';
+                        });
                     }
-                } else {
-                    showResponse('ERROR: NETWORK ISSUE', 'error');
-                }
-                
-                submitBtn.disabled = false;
-                submitBtn.textContent = 'SUBMIT WALLET';
-                
-            } catch (error) {
-                showResponse('ERROR: CONNECTION FAILED', 'error');
-                systemStatus.textContent = 'OFFLINE';
-                systemStatus.style.color = '#ff4444';
-                
-                submitBtn.disabled = false;
-                submitBtn.textContent = 'SUBMIT WALLET';
-            }
-        });
-        
-        function showResponse(message, type) {
-            response.textContent = message;
-            response.className = 'response ' + type;
-            response.style.display = 'block';
-            
-            // Auto-clear after 5 seconds
-            setTimeout(() => {
-                if (type !== 'processing') {
-                    response.style.display = 'none';
-                    response.className = 'response';
-                }
-            }, 5000);
-        }
-        
-        function updateSubmissionCount() {
-            const today = new Date().toDateString();
-            
-            // Get existing data
-            let total = localStorage.getItem('flTotalSubs') || 0;
-            let dailyData = JSON.parse(localStorage.getItem('flDailySubs') || '{}');
-            
-            // Update
-            total = parseInt(total) + 1;
-            dailyData[today] = (dailyData[today] || 0) + 1;
-            
-            // Save
-            localStorage.setItem('flTotalSubs', total);
-            localStorage.setItem('flDailySubs', JSON.stringify(dailyData));
-            
-            // Update display
-            updateCounters();
-            
-            // Reset status
-            systemStatus.textContent = 'ONLINE';
-            systemStatus.style.color = '#ffffff';
-        }
-        
-        function updateCounters() {
-            const today = new Date().toDateString();
-            const total = localStorage.getItem('flTotalSubs') || 0;
-            const dailyData = JSON.parse(localStorage.getItem('flDailySubs') || '{}');
-            const todayCountValue = dailyData[today] || 0;
-            
-            totalCount.textContent = total;
-            todayCount.textContent = todayCountValue;
-            
-            // Animate numbers
-            animateCounter(totalCount, parseInt(total));
-            animateCounter(todayCount, parseInt(todayCountValue));
-        }
-        
-        function animateCounter(element, target) {
-            const current = parseInt(element.textContent);
-            if (current === target) return;
-            
-            const increment = target > current ? 1 : -1;
-            let currentValue = current;
-            
-            const timer = setInterval(() => {
-                currentValue += increment;
-                element.textContent = currentValue;
-                element.style.transform = 'scale(1.2)';
-                
-                if (currentValue === target) {
-                    clearInterval(timer);
-                    setTimeout(() => {
-                        element.style.transform = 'scale(1)';
-                    }, 300);
-                }
-            }, 30);
-        }
-        
-        function animateSuccess() {
-            // Animate stats
-            const statValues = document.querySelectorAll('.stat-value');
-            statValues.forEach(stat => {
-                stat.style.transform = 'scale(1.3)';
-                stat.style.color = '#00ff00';
-                setTimeout(() => {
-                    stat.style.transform = 'scale(1)';
-                    stat.style.color = '#ffffff';
-                }, 600);
+                });
             });
             
-            // Create retro pixel particles
-            createRetroParticles();
-            
-            // Play success sound (in console)
-            console.log('%c✅ SUCCESS! Wallet registered!', 'color: #00ff00; font-size: 16px; font-weight: bold;');
-        }
-        
-        function createRetroParticles() {
-            const container = document.querySelector('.form-section');
-            const colors = ['#ffffff', '#00ff00', '#ffff00'];
-            
-            for (let i = 0; i < 30; i++) {
-                const particle = document.createElement('div');
-                particle.style.position = 'absolute';
-                particle.style.width = '6px';
-                particle.style.height = '6px';
-                particle.style.background = colors[Math.floor(Math.random() * colors.length)];
-                particle.style.borderRadius = '50%';
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.top = Math.random() * 100 + '%';
-                particle.style.zIndex = '1000';
-                particle.style.boxShadow = '0 0 10px currentColor';
-                particle.style.pointerEvents = 'none';
-                
-                container.appendChild(particle);
-                
-                // Animate with retro style
-                const angle = Math.random() * Math.PI * 2;
-                const distance = 30 + Math.random() * 60;
-                const duration = 800 + Math.random() * 800;
-                
-                particle.animate([
-                    { 
-                        transform: 'translate(0, 0) scale(1) rotate(0deg)', 
-                        opacity: 1,
-                        filter: 'blur(0px)'
-                    },
-                    { 
-                        transform: `translate(${Math.cos(angle) * distance}px, ${Math.sin(angle) * distance}px) scale(0) rotate(360deg)`, 
-                        opacity: 0,
-                        filter: 'blur(2px)'
+            // For desktop, ensure hover works correctly
+            nftCards.forEach(card => {
+                card.addEventListener('mouseleave', function() {
+                    if (window.innerWidth > 768) {
+                        this.querySelector('.hover-overlay').style.opacity = '0';
                     }
-                ], {
-                    duration: duration,
-                    easing: 'cubic-bezier(0.175, 0.885, 0.32, 1.275)'
-                }).onfinish = () => particle.remove();
-            }
-        }
-        
-        // Real-time wallet validation
-        const walletInput = document.getElementById('walletAddress');
-        walletInput.addEventListener('input', function() {
-            const value = this.value.trim();
-            
-            if (value.length === 0) {
-                this.style.borderColor = 'rgba(255,255,255,0.2)';
-                this.style.boxShadow = 'inset 0 2px 10px rgba(0,0,0,0.5)';
-            } else if (value.startsWith('0x') && value.length === 42) {
-                this.style.borderColor = 'rgba(0,255,0,0.4)';
-                this.style.boxShadow = 
-                    'inset 0 2px 10px rgba(0,0,0,0.5), ' +
-                    '0 0 20px rgba(0,255,0,0.2)';
-            } else {
-                this.style.borderColor = 'rgba(255,68,68,0.6)';
-                this.style.boxShadow = 
-                    'inset 0 2px 10px rgba(0,0,0,0.5), ' +
-                    '0 0 20px rgba(255,68,68,0.3)';
-            }
+                });
+                
+                card.addEventListener('mouseenter', function() {
+                    if (window.innerWidth > 768) {
+                        this.querySelector('.hover-overlay').style.opacity = '1';
+                    }
+                });
+            });
         });
-        
-        // Status pulse animation
-        setInterval(() => {
-            const statusColors = ['#ffffff', '#ffff00', '#00ffff'];
-            const randomColor = statusColors[Math.floor(Math.random() * statusColors.length)];
-            systemStatus.style.color = randomColor;
-            systemStatus.style.textShadow = `0 0 10px ${randomColor}`;
-        }, 2000);
-        
-        // Console greeting with retro style
-        console.log('%c╔══════════════════════════════════════════════════════════════════╗', 'color: #ffffff;');
-        console.log('%c║                    FLOOR LARRY - RETRO NFT COLLECTION            ║', 'color: #ffffff; font-family: monospace;');
-        console.log('%c║                    Follow @larrysnfts to submit wallet           ║', 'color: #00ff00; font-family: monospace;');
-        console.log('%c╚══════════════════════════════════════════════════════════════════╝', 'color: #ffffff;');
-    });
-</script>
-
+    </script>
 </body>
 </html>
