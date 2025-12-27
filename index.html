@@ -168,13 +168,157 @@
         margin-top: 15px;
     }
     
+    /* LARRY CARD DISPLAY */
+    .larry-card-display {
+        text-align: center;
+        margin: 60px 0 40px 0;
+        padding: 30px;
+        background: rgba(10, 10, 10, 0.95);
+        border: 1px solid #333333;
+        position: relative;
+    }
+    
+    .larry-card-title {
+        font-size: 18px;
+        color: #FFFFFF;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        margin-bottom: 25px;
+        font-weight: bold;
+    }
+    
+    .larry-card-img {
+        width: 250px;
+        height: 350px;
+        object-fit: cover;
+        border: 2px solid #444444;
+        filter: grayscale(100%) contrast(120%);
+        transition: all 0.3s;
+        image-rendering: pixelated;
+    }
+    
+    .larry-card-img:hover {
+        transform: scale(1.02);
+        border-color: #666666;
+        filter: grayscale(70%) contrast(110%);
+    }
+    
+    /* X (TWITTER) FOLLOW REQUIREMENT */
+    .follow-requirement {
+        background: rgba(15, 15, 15, 0.95);
+        border: 1px solid #333333;
+        padding: 30px;
+        margin: 40px 0;
+        text-align: center;
+    }
+    
+    .requirement-title {
+        font-size: 22px;
+        color: #FFFFFF;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        margin-bottom: 20px;
+        font-weight: bold;
+    }
+    
+    .requirement-steps {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        margin-bottom: 25px;
+    }
+    
+    .requirement-step {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+        color: #888888;
+        font-size: 16px;
+    }
+    
+    .step-number {
+        width: 30px;
+        height: 30px;
+        background: #333333;
+        border: 1px solid #444444;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+    }
+    
+    .step-completed {
+        background: #111111;
+        color: #00FF00;
+        border-color: #00FF00;
+    }
+    
+    .requirement-step.completed {
+        color: #00FF00;
+    }
+    
+    .x-follow-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        background: #000000;
+        color: #FFFFFF;
+        border: 1px solid #333333;
+        padding: 15px 30px;
+        text-decoration: none;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-size: 14px;
+        font-weight: bold;
+        transition: all 0.3s;
+        margin: 10px 0;
+    }
+    
+    .x-follow-btn:hover {
+        background: #111111;
+        border-color: #666666;
+        transform: translateY(-2px);
+    }
+    
+    .x-follow-btn.completed {
+        background: #111111;
+        border-color: #00FF00;
+        color: #00FF00;
+    }
+    
+    .verify-checkbox {
+        margin: 20px 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+    }
+    
+    .verify-checkbox input[type="checkbox"] {
+        width: 20px;
+        height: 20px;
+        accent-color: #333333;
+    }
+    
+    .verify-checkbox label {
+        color: #888888;
+        font-size: 14px;
+        cursor: pointer;
+    }
+    
     /* PIXELATED FORM SECTION */
     .form-section {
         background: rgba(10, 10, 10, 0.95);
         border: 1px solid #333333;
         padding: 50px;
-        margin: 80px 0;
+        margin: 40px 0;
         position: relative;
+        display: none; /* Hidden until X follow verified */
+    }
+    
+    .form-section.active {
+        display: block;
     }
     
     .form-section::before {
@@ -263,13 +407,18 @@
         overflow: hidden;
     }
     
-    .submit-btn:hover {
+    .submit-btn:disabled {
+        opacity: 0.3;
+        cursor: not-allowed;
+    }
+    
+    .submit-btn:hover:not(:disabled) {
         background: #111111;
         border-color: #666666;
         letter-spacing: 4px;
     }
     
-    .submit-btn:active {
+    .submit-btn:active:not(:disabled) {
         transform: translateY(1px);
     }
     
@@ -284,7 +433,7 @@
         transition: all 0.5s;
     }
     
-    .submit-btn:hover::before {
+    .submit-btn:hover:not(:disabled)::before {
         left: 100%;
     }
     
@@ -357,43 +506,6 @@
         transition: all 0.3s;
         text-align: center;
     }
-    /* ============================================= */
-/* LARRY CARD DISPLAY STYLES - ADD TO YOUR CSS */
-/* ============================================= */
-
-.larry-card-display {
-    text-align: center;
-    margin: 60px 0 40px 0;
-    padding: 30px;
-    background: rgba(10, 10, 10, 0.95);
-    border: 1px solid #333333;
-    position: relative;
-}
-
-.larry-card-title {
-    font-size: 18px;
-    color: #FFFFFF;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    margin-bottom: 25px;
-    font-weight: bold;
-}
-
-.larry-card-img {
-    width: 250px;
-    height: 350px;
-    object-fit: cover;
-    border: 2px solid #444444;
-    filter: grayscale(100%) contrast(120%);
-    transition: all 0.3s;
-    image-rendering: pixelated;
-}
-
-.larry-card-img:hover {
-    transform: scale(1.02);
-    border-color: #666666;
-    filter: grayscale(70%) contrast(110%);
-}
     
     .twitter-link:hover {
         border-color: #666666;
@@ -493,6 +605,14 @@
         .submit-btn {
             padding: 15px;
         }
+        
+        .requirement-steps {
+            text-align: left;
+        }
+        
+        .requirement-step {
+            justify-content: flex-start;
+        }
     }
 </style>
 </head>
@@ -507,7 +627,7 @@
     <div class="header">
         <h1 class="title">FLOOR LARRY</h1>
         <div class="subtitle">
-            Floor Larry is a unique NFT collection centered around Larry •  a charismatic digital character who has taken up residence in the basement floor of the internet • Unlike typical NFT projects, Floor Larry embodies the spirit of underground digital culture, combining retro aesthetics with modern blockchain technology.
+            NFT COLLECTION • PIXEL ART • BLACK & WHITE AESTHETIC
         </div>
     </div>
     
@@ -546,17 +666,50 @@
             </div>
         </div>
     </div>
-    <!-- LARRY CARD DISPLAY SECTION - ADD THIS ABOVE THE FORM -->
-<div class="larry-card-display">
-    <div class="larry-card-title">COLLECTOR'S CARD</div>
-    <img src="larry_card.jpeg" alt="Larry Card" class="larry-card-img"
-         onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjU2IiBoZWlnaHQ9IjM1NiIgdmlld0JveD0iMCAwIDMyIDQ0IiBzdHlsZT0iaW1hZ2UtcmVuZGVyaW5nOiBwaXhlbGF0ZWQiPjxyZWN0IHdpZHRoPSIzMiIgaGVpZ2h0PSI0NCIgZmlsbD0iIzAwMDAwMCIvPjxyZWN0IHg9IjIiIHk9IjIiIHdpZHRoPSIyOCIgaGVpZ2h0PSI0MCIgZmlsbD0iI0ZGRDcwMCIgc3Ryb2tlPSIjMDAwMDAwIiBzdHJva2Utd2lkdGg9IjEiLz48cmVjdCB4PSI0IiB5PSI0IiB3aWR0aD0iMjQiIGhlaWdodD0iMzYiIGZpbGw9IiMwMDAwMDAiLz48cmVjdCB4PSI4IiB5PSI4IiB3aWR0aD0iMTYiIGhlaWdodD0iMjQiIGZpbGw9IiMxMTExMTEiLz48cmVjdCB4PSIxMiIgeT0iMTIiIHdpZHRoPSI4IiBoZWlnaHQ9IjgiIGZpbGw9IiNGRkQ3MDAiLz48cmVjdCB4PSIxNCIgeT0iMTQiIHdpZHRoPSI0IiBoZWlnaHQ9IjQiIGZpbGw9IiMwMDAwMDAiLz48cmVjdCB4PSIxMyIgeT0iMTMiIHdpZHRoPSIyIiBoZWlnaHQ9IjIiIGZpbGw9IiNGRkZGRkYiLz48cmVjdCB4PSIxNyIgeT0iMTMiIHdpZHRoPSIyIiBoZWlnaHQ9IjIiIGZpbGw9IiNGRkZGRkYiLz48dGV4dCB4PSIxNiIgeT0iMjgiIGZvbnQtZmFtaWx5PSJDb3VyaWVyIE5ldyIgbGV0dGVyLXNwYWNpbmc9IjFweCIgZm9udC1zaXplPSIzIiBmaWxsPSIjRkZENzAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5MQUJSWTwvdGV4dD48dGV4dCB4PSIxNiIgeT0iMzIiIGZvbnQtZmFtaWx5PSJDb3VyaWVyIE5ldyIgbGV0dGVyLXNwYWNpbmc9IjFweCIgZm9udC1zaXplPSIyIiBmaWxsPSIjRkZENzAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5DT0xMRUNUT1IgQ0FSRDwvdGV4dD48cmVjdCB4PSIyMiIgeT0iNCIgd2lkdGg9IjYiIGhlaWdodD0iNCIgZmlsbD0iI0ZGMDAwMCIvPjx0ZXh0IHg9IjI1IiB5PSI2IiBmb250LWZhbWlseT0iQ291cmllciBOZXciIGZvbnQtc2l6ZT0iMyIgZmlsbD0iI0ZGRkZGRiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+TkZUPC90ZXh0Pjwvc3ZnPg=='">
-</div>
     
-    <!-- FORM SECTION -->
+    <!-- LARRY CARD DISPLAY -->
+    <div class="larry-card-display">
+        <div class="larry-card-title">COLLECTOR'S CARD</div>
+        <img src="larry_card.jpeg" alt="Larry Card" class="larry-card-img"
+             onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjU2IiBoZWlnaHQ9IjM1NiIgdmlld0JveD0iMCAwIDMyIDQ0IiBzdHlsZT0iaW1hZ2UtcmVuZGVyaW5nOiBwaXhlbGF0ZWQiPjxyZWN0IHdpZHRoPSIzMiIgaGVpZ2h0PSI0NCIgZmlsbD0iIzAwMDAwMCIvPjxyZWN0IHg9IjIiIHk9IjIiIHdpZHRoPSIyOCIgaGVpZ2h0PSI0MCIgZmlsbD0iI0ZGRDcwMCIgc3Ryb2tlPSIjMDAwMDAwIiBzdHJva2Utd2lkdGg9IjEiLz48cmVjdCB4PSI0IiB5PSI0IiB3aWR0aD0iMjQiIGhlaWdodD0iMzYiIGZpbGw9IiMwMDAwMDAiLz48cmVjdCB4PSI4IiB5PSI4IiB3aWR0aD0iMTYiIGhlaWdodD0iMjQiIGZpbGw9IiMxMTExMTEiLz48cmVjdCB4PSIxMiIgeT0iMTIiIHdpZHRoPSI4IiBoZWlnaHQ9IjgiIGZpbGw9IiNGRkQ3MDAiLz48cmVjdCB4PSIxNCIgeT0iMTQiIHdpZHRoPSI0IiBoZWlnaHQ9IjQiIGZpbGw9IiMwMDAwMDAiLz48cmVjdCB4PSIxMyIgeT0iMTMiIHdpZHRoPSIyIiBoZWlnaHQ9IjIiIGZpbGw9IiNGRkZGRkYiLz48cmVjdCB4PSIxNyIgeT0iMTMiIHdpZHRoPSIyIiBoZWlnaHQ9IjIiIGZpbGw9IiNGRkZGRkYiLz48dGV4dCB4PSIxNiIgeT0iMjgiIGZvbnQtZmFtaWx5PSJDb3VyaWVyIE5ldyIgbGV0dGVyLXNwYWNpbmc9IjFweCIgZm9udC1zaXplPSIzIiBmaWxsPSIjRkZENzAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5MQUJSWTwvdGV4dD48dGV4dCB4PSIxNiIgeT0iMzIiIGZvbnQtZmFtaWx5PSJDb3VyaWVyIE5ldyIgbGV0dGVyLXNwYWNpbmc9IjFweCIgZm9udC1zaXplPSIyIiBmaWxsPSIjRkZENzAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5DT0xMRUNUT1IgQ0FSRDwvdGV4dD48cmVjdCB4PSIyMiIgeT0iNCIgd2lkdGg9IjYiIGhlaWdodD0iNCIgZmlsbD0iI0ZGMDAwMCIvPjx0ZXh0IHg9IjI1IiB5PSI2IiBmb250LWZhbWlseT0iQ291cmllciBOZXciIGZvbnQtc2l6ZT0iMyIgZmlsbD0iI0ZGRkZGRiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+TkZUPC90ZXh0Pjwvc3ZnPg=='">
+    </div>
+    
+    <!-- X FOLLOW REQUIREMENT -->
+    <div class="follow-requirement">
+        <div class="requirement-title">VERIFICATION REQUIRED</div>
+        
+        <div class="requirement-steps">
+            <div class="requirement-step" id="step1">
+                <div class="step-number" id="step1Number">1</div>
+                <span>Follow @larrysnfts on X (Twitter)</span>
+            </div>
+            
+            <div class="requirement-step" id="step2">
+                <div class="step-number" id="step2Number">2</div>
+                <span>Click verification button below</span>
+            </div>
+            
+            <div class="requirement-step" id="step3">
+                <div class="step-number" id="step3Number">3</div>
+                <span>Submit wallet address</span>
+            </div>
+        </div>
+        
+        <a href="https://x.com/larrysnfts" target="_blank" class="x-follow-btn" id="followBtn">
+            <span>📱</span>
+            FOLLOW @LARRYSNFTS ON X
+        </a>
+        
+        <div class="verify-checkbox">
+            <input type="checkbox" id="verifyFollow">
+            <label for="verifyFollow">I have followed @larrysnfts on X</label>
+        </div>
+    </div>
+    
+    <!-- FORM SECTION (Hidden until X follow verified) -->
     <div class="pixel-border">
         <div class="pixel-border-inner">
-            <div class="form-section">
+            <div class="form-section" id="walletFormSection">
                 <div class="form-header">
                     <div class="form-title">WALLET REGISTRY</div>
                     <div class="form-subtitle">SUBMIT TO LARRYVERSE</div>
@@ -585,9 +738,10 @@
                     
                     <input type="hidden" name="timestamp" id="formTimestamp">
                     <input type="hidden" name="_subject" value="FLOOR LARRY WALLET REGISTRATION">
+                    <input type="hidden" name="verified_follower" value="true">
                     
-                    <button type="submit" class="submit-btn">
-                        SUBMIT
+                    <button type="submit" class="submit-btn" id="submitBtn" disabled>
+                        SUBMIT WALLET
                     </button>
                 </form>
                 
@@ -613,19 +767,19 @@
     </div>
     
     <!-- TWITTER LINK -->
-    <a href="https://x.com/larrynfts?s=21" target="_blank" class="twitter-link">
+    <a href="https://x.com/larrysnfts?s=21" target="_blank" class="twitter-link">
         FOLLOW ON TWITTER
     </a>
     
     <!-- FOOTER -->
     <div class="footer">
-        FLOOR LARRY © 2024 • DIGITAL ART COLLECTION • ALL RIGHTS RESERVED
+        FLOOR LARRY © 2024 • FOLLOW @LARRYSNFTS • ALL RIGHTS RESERVED
     </div>
 </div>
 
 <script>
     // =============================================
-    // PIXEL-PERFECT FUNCTIONALITY
+    // X FOLLOW VERIFICATION SYSTEM
     // =============================================
     
     // Toggle art descriptions
@@ -645,11 +799,23 @@
     }
     
     document.addEventListener('DOMContentLoaded', function() {
+        const followBtn = document.getElementById('followBtn');
+        const verifyCheckbox = document.getElementById('verifyFollow');
+        const walletFormSection = document.getElementById('walletFormSection');
         const form = document.getElementById('walletForm');
         const response = document.getElementById('formResponse');
+        const submitBtn = document.getElementById('submitBtn');
         const totalCount = document.getElementById('totalCount');
         const todayCount = document.getElementById('todayCount');
         const systemStatus = document.getElementById('systemStatus');
+        
+        // Elements for step tracking
+        const step1 = document.getElementById('step1');
+        const step2 = document.getElementById('step2');
+        const step3 = document.getElementById('step3');
+        const step1Number = document.getElementById('step1Number');
+        const step2Number = document.getElementById('step2Number');
+        const step3Number = document.getElementById('step3Number');
         
         // Set timestamp
         document.getElementById('formTimestamp').value = new Date().toISOString();
@@ -657,9 +823,67 @@
         // Initialize counters
         updateCounters();
         
+        // Follow button click handler
+        followBtn.addEventListener('click', function(e) {
+            // Open X in new tab
+            window.open(this.href, '_blank');
+            
+            // Mark step 1 as completed after a short delay
+            setTimeout(() => {
+                step1.classList.add('completed');
+                step1Number.classList.add('step-completed');
+                step1Number.textContent = '✓';
+                
+                // Enable checkbox
+                verifyCheckbox.disabled = false;
+                
+                // Update follow button
+                followBtn.classList.add('completed');
+                followBtn.innerHTML = '<span>✅</span> FOLLOWING @LARRYSNFTS';
+                
+                console.log('Step 1 completed: User clicked follow link');
+            }, 1000);
+        });
+        
+        // Checkbox verification handler
+        verifyCheckbox.addEventListener('change', function() {
+            if (this.checked) {
+                // Mark step 2 as completed
+                step2.classList.add('completed');
+                step2Number.classList.add('step-completed');
+                step2Number.textContent = '✓';
+                
+                // Show wallet form section
+                walletFormSection.classList.add('active');
+                
+                // Enable submit button
+                submitBtn.disabled = false;
+                
+                // Mark step 3 as active
+                step3.classList.add('completed');
+                step3Number.classList.add('step-completed');
+                
+                console.log('Step 2 completed: User verified following');
+            } else {
+                // Hide wallet form section
+                walletFormSection.classList.remove('active');
+                
+                // Disable submit button
+                submitBtn.disabled = true;
+                
+                console.log('Verification unchecked');
+            }
+        });
+        
         // Form submission
         form.addEventListener('submit', async function(e) {
             e.preventDefault();
+            
+            // Check if user is verified
+            if (!verifyCheckbox.checked) {
+                showResponse('ERROR: PLEASE VERIFY X FOLLOW FIRST', 'error');
+                return;
+            }
             
             const walletInput = document.getElementById('walletAddress');
             const walletValue = walletInput.value.trim();
@@ -673,15 +897,13 @@
             }
             
             // Show processing
-            showResponse('PROCESSING...', 'processing');
+            showResponse('PROCESSING VERIFIED SUBMISSION...', 'processing');
             systemStatus.textContent = 'PROCESSING';
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'PROCESSING...';
             
             try {
                 const formData = new FormData(form);
-                
-                const submitBtn = form.querySelector('.submit-btn');
-                submitBtn.textContent = 'PROCESSING...';
-                submitBtn.disabled = true;
                 
                 const result = await fetch(form.action, {
                     method: 'POST',
@@ -695,9 +917,12 @@
                     const data = await result.json();
                     
                     if (data.code === 200) {
-                        showResponse('SUCCESS: WALLET REGISTERED', 'success');
+                        showResponse('SUCCESS: WALLET REGISTERED BY VERIFIED FOLLOWER', 'success');
                         form.reset();
                         updateSubmissionCount();
+                        
+                        // Mark step 3 as completed
+                        step3Number.textContent = '✓';
                         
                         // Success animation
                         animateSuccess();
@@ -708,16 +933,15 @@
                     showResponse('ERROR: NETWORK ISSUE', 'error');
                 }
                 
-                submitBtn.textContent = 'SUBMIT';
                 submitBtn.disabled = false;
+                submitBtn.textContent = 'SUBMIT WALLET';
                 
             } catch (error) {
                 showResponse('ERROR: CONNECTION FAILED', 'error');
                 systemStatus.textContent = 'OFFLINE';
                 
-                const submitBtn = form.querySelector('.submit-btn');
-                submitBtn.textContent = 'SUBMIT';
                 submitBtn.disabled = false;
+                submitBtn.textContent = 'SUBMIT WALLET';
             }
         });
         
@@ -852,8 +1076,8 @@
         }, 1000);
         
         // Console greeting
-        console.log('%cFLOOR LARRY', 'color: #FFFFFF; font-size: 24px; font-family: monospace;');
-        console.log('%cBLACK & WHITE PIXEL AESTHETIC', 'color: #888888; font-size: 14px; font-family: monospace;');
+        console.log('%cFLOOR LARRY - X VERIFICATION REQUIRED', 'color: #FFFFFF; font-size: 24px; font-family: monospace;');
+        console.log('%cFollow @larrysnfts to submit wallet', 'color: #888888; font-size: 14px; font-family: monospace;');
     });
 </script>
 
