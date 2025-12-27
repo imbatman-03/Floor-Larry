@@ -357,6 +357,43 @@
         transition: all 0.3s;
         text-align: center;
     }
+    /* ============================================= */
+/* LARRY CARD DISPLAY STYLES - ADD TO YOUR CSS */
+/* ============================================= */
+
+.larry-card-display {
+    text-align: center;
+    margin: 60px 0 40px 0;
+    padding: 30px;
+    background: rgba(10, 10, 10, 0.95);
+    border: 1px solid #333333;
+    position: relative;
+}
+
+.larry-card-title {
+    font-size: 18px;
+    color: #FFFFFF;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 25px;
+    font-weight: bold;
+}
+
+.larry-card-img {
+    width: 250px;
+    height: 350px;
+    object-fit: cover;
+    border: 2px solid #444444;
+    filter: grayscale(100%) contrast(120%);
+    transition: all 0.3s;
+    image-rendering: pixelated;
+}
+
+.larry-card-img:hover {
+    transform: scale(1.02);
+    border-color: #666666;
+    filter: grayscale(70%) contrast(110%);
+}
     
     .twitter-link:hover {
         border-color: #666666;
@@ -509,6 +546,12 @@
             </div>
         </div>
     </div>
+    <!-- LARRY CARD DISPLAY SECTION - ADD THIS ABOVE THE FORM -->
+<div class="larry-card-display">
+    <div class="larry-card-title">COLLECTOR'S CARD</div>
+    <img src="larry_card.jpeg" alt="Larry Card" class="larry-card-img"
+         onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjU2IiBoZWlnaHQ9IjM1NiIgdmlld0JveD0iMCAwIDMyIDQ0IiBzdHlsZT0iaW1hZ2UtcmVuZGVyaW5nOiBwaXhlbGF0ZWQiPjxyZWN0IHdpZHRoPSIzMiIgaGVpZ2h0PSI0NCIgZmlsbD0iIzAwMDAwMCIvPjxyZWN0IHg9IjIiIHk9IjIiIHdpZHRoPSIyOCIgaGVpZ2h0PSI0MCIgZmlsbD0iI0ZGRDcwMCIgc3Ryb2tlPSIjMDAwMDAwIiBzdHJva2Utd2lkdGg9IjEiLz48cmVjdCB4PSI0IiB5PSI0IiB3aWR0aD0iMjQiIGhlaWdodD0iMzYiIGZpbGw9IiMwMDAwMDAiLz48cmVjdCB4PSI4IiB5PSI4IiB3aWR0aD0iMTYiIGhlaWdodD0iMjQiIGZpbGw9IiMxMTExMTEiLz48cmVjdCB4PSIxMiIgeT0iMTIiIHdpZHRoPSI4IiBoZWlnaHQ9IjgiIGZpbGw9IiNGRkQ3MDAiLz48cmVjdCB4PSIxNCIgeT0iMTQiIHdpZHRoPSI0IiBoZWlnaHQ9IjQiIGZpbGw9IiMwMDAwMDAiLz48cmVjdCB4PSIxMyIgeT0iMTMiIHdpZHRoPSIyIiBoZWlnaHQ9IjIiIGZpbGw9IiNGRkZGRkYiLz48cmVjdCB4PSIxNyIgeT0iMTMiIHdpZHRoPSIyIiBoZWlnaHQ9IjIiIGZpbGw9IiNGRkZGRkYiLz48dGV4dCB4PSIxNiIgeT0iMjgiIGZvbnQtZmFtaWx5PSJDb3VyaWVyIE5ldyIgbGV0dGVyLXNwYWNpbmc9IjFweCIgZm9udC1zaXplPSIzIiBmaWxsPSIjRkZENzAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5MQUJSWTwvdGV4dD48dGV4dCB4PSIxNiIgeT0iMzIiIGZvbnQtZmFtaWx5PSJDb3VyaWVyIE5ldyIgbGV0dGVyLXNwYWNpbmc9IjFweCIgZm9udC1zaXplPSIyIiBmaWxsPSIjRkZENzAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5DT0xMRUNUT1IgQ0FSRDwvdGV4dD48cmVjdCB4PSIyMiIgeT0iNCIgd2lkdGg9IjYiIGhlaWdodD0iNCIgZmlsbD0iI0ZGMDAwMCIvPjx0ZXh0IHg9IjI1IiB5PSI2IiBmb250LWZhbWlseT0iQ291cmllciBOZXciIGZvbnQtc2l6ZT0iMyIgZmlsbD0iI0ZGRkZGRiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+TkZUPC90ZXh0Pjwvc3ZnPg=='">
+</div>
     
     <!-- FORM SECTION -->
     <div class="pixel-border">
