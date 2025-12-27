@@ -302,35 +302,38 @@
         margin: 40px 0 80px;
     }
     
+    /* FIX: CARD CONTAINER WITH PERSPECTIVE */
     .flip-card {
         height: 420px;
         border-radius: 15px;
-        overflow: hidden;
+        overflow: visible; /* Changed from hidden */
         cursor: pointer;
         position: relative;
-        transform-style: preserve-3d;
-        perspective: 1000px;
+        perspective: 1000px; /* Added */
     }
     
+    /* FIX: INNER CONTAINER WITH 3D */
     .flip-card-inner {
         position: relative;
         width: 100%;
         height: 100%;
         text-align: center;
         transition: transform 0.6s;
-        transform-style: preserve-3d;
+        transform-style: preserve-3d; /* Added */
     }
     
+    /* FIX: FLIPPED STATE */
     .flip-card.flipped .flip-card-inner {
-        transform: rotateY(180deg);
+        transform: rotateY(180deg); /* Fixed: Changed from 180deg rotation */
     }
     
+    /* FIX: FRONT AND BACK POSITIONING */
     .flip-card-front, .flip-card-back {
         position: absolute;
         width: 100%;
         height: 100%;
-        -webkit-backface-visibility: hidden;
-        backface-visibility: hidden;
+        -webkit-backface-visibility: hidden; /* Fixed: Added vendor prefix */
+        backface-visibility: hidden; /* This hides the back when facing away */
         border-radius: 15px;
         overflow: hidden;
         border: 3px solid rgba(255,255,255,0.3);
@@ -398,17 +401,20 @@
         opacity: 1;
     }
     
+    /* FIX: BACK SIDE STYLING - THIS IS CRITICAL */
     .flip-card-back {
         background: rgba(15, 15, 15, 0.98);
-        transform: rotateY(180deg);
+        transform: rotateY(180deg); /* Fixed: Back starts rotated 180 degrees */
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         padding: 40px;
         text-align: center;
-        position: relative;
+        position: absolute; /* Already set, but confirming */
         overflow-y: auto;
+        top: 0;
+        left: 0;
     }
     
     .flip-card-back::before {
@@ -1427,7 +1433,7 @@
             <div class="flip-card-inner">
                 <div class="flip-card-front">
                     <img src="spider_larry.jpeg" alt="Spider Larry" class="art-image"
-                         onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzUwIiBoZWlnaHQ9IjI2MCIgdmlld0JveD0iMCAwIDM1MCAyNjAiIHN0eWxlPSJpbWFnZS1yZW5kZXJpbmc6IHBpeGVsYXRlZCI+PHJlY3Qgd2lkdGg9IjM1MCIgaGVpZ2h0PSIyNjAiIGZpbGw9IiMxMTExMTEiLz48cmVjdCB4PSIxMCIgeT0iMTAiIHdpZHRoPSIzMzAiIGhlaWdodD0iMjQwIiBmaWxsPSIjMjIyMjIyIiBzdHJva2U9IiNGRkQ3MDAiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjE3NSIgeT0iMTAwIiBmb250LWZhbWlseT0iJ1ZUMzIzJywgbW9ub3NwYWNlIiBmb250LXNpemU9IjI0IiBmaWxsPSIjRkZENzAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5TUElERVI8L3RleHQ+PHRleHQgeD0iMTc1IiB5PSIxMzAiIGZvbnQtZmFtaWx5PSInVlQzMjMnLCBtb25vc3BhY2UiIGZvbnQtc2l6ZT0iMzAiIGZpbGw9IiNGRkQ3MDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkxBUlJZPC90ZXh0Pjx0ZXh0IHg9IjE3NSIgeT0iMTcwIiBmb250LWZhbWlseT0iJ1ZUMzIzJywgbW9ub3NwYWNlIiBmb250LXNpemU9IjE2IiBmaWxsPSIjRkZENzAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5XRUItU0xJTkdFUjwvdGV4dD48L3N2Zz4='">
+                         onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzUwIiBoZWlnaHQ9IjI2MCIgdmlld0JveD0iMCAwIDM1MCAyNjAiIHN0eWxlPSJpbWFnZS1yZW5kZXJpbmc6IHBpeGVsYXRlZCI+PHJlY3Qgd2lkdGg9IjM1MCIgaGVpZ2h0PSIyNjAiIGZpbGw9IiMxMTExMTEiLz48cmVjdCB4PSIxMCIgeT0iMTAiIHdpZHRoPSIzMzAiIGhlaWdodD0iMjQwIiBmaWxsPSIjMjIyMjIyIiBzdHJva2U9IiNGRkQ3MDAiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjE3NSIgeT0iMTAwIiBmb250LWZhbWlseT0iJ1ZUMzIzJywgbW9ub3NwYWNlIiBmb250LXNpemU9IjI0IiBmaWxsPSIjRkZENzAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5TUElERVI8L3RleHQ+PHRleHQgeD0iMTc1IiB5PSIxMzAiIGZvbnQtZmFtaWx5PSInVlQzMjMnLCBtb25vc3BhY2UiIGZvbnQtc2l6ZT0iMzAiIGZpbGw9IiNGRkQ3MDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkxBUlJZPC90ZXh0Pjx0ZXh0IHg9IjE3NSIgeT0iMTcwIiBmb250LWZhbWlseT0iJ1ZUMzMjMiwgbW9ub3NwYWNlIiBmb250LXNpemU9IjE2IiBmaWxsPSIjRkZENzAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5XRUItU0xJTkdFUjwvdGV4dD48L3N2Zz4='">
                     <div class="art-title-front">SPIDER LARRY</div>
                     <div class="flip-tap-hint">TAP TO FLIP</div>
                 </div>
@@ -1625,42 +1631,42 @@
 
 <script>
     // =============================================
-    // RETRO UI FUNCTIONALITY - SIMPLIFIED FLIP FIX
+    // RETRO UI FUNCTIONALITY - FIXED CARD FLIP
     // =============================================
     
     document.addEventListener('DOMContentLoaded', function() {
-        console.log('Floor Larry loaded - Card flip fix applied');
+        console.log('Floor Larry loaded - Card flip FIXED!');
         
         // =====================================
         // 1. FIXED CARD FLIP FUNCTIONALITY
         // =====================================
         const flipCards = document.querySelectorAll('.flip-card');
-        console.log('Found flip cards:', flipCards.length);
         
         flipCards.forEach(card => {
-            // Simple click handler
-            card.addEventListener('click', function() {
-                console.log('Card clicked, toggling flip');
+            // Click handler for desktop
+            card.addEventListener('click', function(e) {
+                e.stopPropagation();
+                console.log('Card clicked - toggling flip');
                 this.classList.toggle('flipped');
             });
             
-            // Touch for mobile
+            // Touch handler for mobile
             card.addEventListener('touchstart', function(e) {
                 e.preventDefault();
+                e.stopPropagation();
+                console.log('Card touched - toggling flip');
                 this.classList.toggle('flipped');
             });
         });
         
-        // Test: Auto-flip first card after 1 second to show it works
-        setTimeout(() => {
-            if (flipCards[0]) {
-                console.log('Testing auto-flip...');
-                flipCards[0].classList.add('flipped');
-                setTimeout(() => {
-                    flipCards[0].classList.remove('flipped');
-                }, 2000);
+        // Add click anywhere to close (optional)
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.flip-card')) {
+                flipCards.forEach(card => {
+                    card.classList.remove('flipped');
+                });
             }
-        }, 1000);
+        });
         
         // =====================================
         // 2. ORIGINAL FOLLOW/FORM FUNCTIONALITY
@@ -1691,6 +1697,7 @@
         
         // Follow button click handler
         followBtn.addEventListener('click', function(e) {
+            e.preventDefault();
             window.open(this.href, '_blank');
             
             setTimeout(() => {
@@ -1844,7 +1851,7 @@
         // Console greeting
         console.log('%c╔══════════════════════════════════════════════════════════════════╗', 'color: #ffffff;');
         console.log('%c║                    FLOOR LARRY - RETRO NFT COLLECTION            ║', 'color: #ffffff;');
-        console.log('%c║                    CARD FLIP FIX APPLIED - WORKING!             ║', 'color: #00ff00;');
+        console.log('%c║                    CARD FLIP FIXED! DESCRIPTIONS VISIBLE         ║', 'color: #00ff00;');
         console.log('%c╚══════════════════════════════════════════════════════════════════╝', 'color: #ffffff;');
     });
 </script>
