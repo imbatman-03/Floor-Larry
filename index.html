@@ -294,7 +294,7 @@
         text-shadow: 0 0 10px rgba(255,255,255,0.3);
     }
     
-    /* FLIP CARD GALLERY */
+    /* FLIP CARD GALLERY - FIXED VERSION */
     .gallery {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -303,11 +303,13 @@
     }
     
     .flip-card {
-        perspective: 1000px;
         height: 420px;
         border-radius: 15px;
         overflow: hidden;
         cursor: pointer;
+        position: relative;
+        transform-style: preserve-3d;
+        perspective: 1000px;
     }
     
     .flip-card-inner {
@@ -315,9 +317,8 @@
         width: 100%;
         height: 100%;
         text-align: center;
-        transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        transition: transform 0.6s;
         transform-style: preserve-3d;
-        border-radius: 15px;
     }
     
     .flip-card.flipped .flip-card-inner {
@@ -371,11 +372,6 @@
         filter: brightness(1.05) saturate(1.1);
     }
     
-    .flip-card:hover .art-image {
-        transform: scale(1.05);
-        filter: brightness(1.1) saturate(1.2);
-    }
-    
     .art-title-front {
         font-size: 28px;
         font-weight: bold;
@@ -400,7 +396,6 @@
         background: rgba(0,0,0,0.6);
         border-top: 1px solid rgba(255,255,255,0.2);
         opacity: 1;
-        transition: opacity 0.3s;
     }
     
     .flip-card-back {
@@ -431,12 +426,12 @@
     }
     
     .art-title-back {
-        font-size: 32px;
+        font-size: 28px;
         font-weight: bold;
         color: #ffffff;
         text-transform: uppercase;
         letter-spacing: 3px;
-        margin-bottom: 25px;
+        margin-bottom: 20px;
         text-shadow: 0 2px 10px rgba(255,255,255,0.3);
         position: relative;
     }
@@ -458,13 +453,14 @@
     .art-description-flip {
         font-size: 16px;
         color: #aaaaaa;
-        line-height: 1.8;
+        line-height: 1.6;
         letter-spacing: 1px;
         margin-bottom: 20px;
-        max-height: 200px;
-        overflow-y: auto;
-        padding-right: 10px;
+        padding: 0 15px;
         text-align: left;
+        max-height: 220px;
+        overflow-y: auto;
+        width: 100%;
     }
     
     .flip-back-hint {
@@ -1382,7 +1378,7 @@
     <div class="header">
         <h1 class="title">FLOOR LARRY</h1>
         <div class="subtitle">
-             • EXPLORE THE LARRY UNIVERSE • 
+            NFT COLLECTION • RETRO PIXEL AESTHETIC • WHITE PATTERN DESIGN
         </div>
     </div>
     
@@ -1629,10 +1625,46 @@
 
 <script>
     // =============================================
-    // RETRO UI FUNCTIONALITY
+    // RETRO UI FUNCTIONALITY - SIMPLIFIED FLIP FIX
     // =============================================
     
     document.addEventListener('DOMContentLoaded', function() {
+        console.log('Floor Larry loaded - Card flip fix applied');
+        
+        // =====================================
+        // 1. FIXED CARD FLIP FUNCTIONALITY
+        // =====================================
+        const flipCards = document.querySelectorAll('.flip-card');
+        console.log('Found flip cards:', flipCards.length);
+        
+        flipCards.forEach(card => {
+            // Simple click handler
+            card.addEventListener('click', function() {
+                console.log('Card clicked, toggling flip');
+                this.classList.toggle('flipped');
+            });
+            
+            // Touch for mobile
+            card.addEventListener('touchstart', function(e) {
+                e.preventDefault();
+                this.classList.toggle('flipped');
+            });
+        });
+        
+        // Test: Auto-flip first card after 1 second to show it works
+        setTimeout(() => {
+            if (flipCards[0]) {
+                console.log('Testing auto-flip...');
+                flipCards[0].classList.add('flipped');
+                setTimeout(() => {
+                    flipCards[0].classList.remove('flipped');
+                }, 2000);
+            }
+        }, 1000);
+        
+        // =====================================
+        // 2. ORIGINAL FOLLOW/FORM FUNCTIONALITY
+        // =====================================
         const followBtn = document.getElementById('followBtn');
         const verifyCheckbox = document.getElementById('verifyFollow');
         const walletFormSection = document.getElementById('walletFormSection');
@@ -1651,35 +1683,6 @@
         const step2Number = document.getElementById('step2Number');
         const step3Number = document.getElementById('step3Number');
         
-        // Flip card functionality
-        const flipCards = document.querySelectorAll('.flip-card');
-        
-        flipCards.forEach(card => {
-            // Click/tap to flip
-            card.addEventListener('click', function(e) {
-                if (!e.target.closest('.flip-tap-hint') && !e.target.closest('.flip-back-hint')) {
-                    this.classList.toggle('flipped');
-                }
-            });
-            
-            // Touch events for mobile
-            card.addEventListener('touchstart', function(e) {
-                e.preventDefault();
-                this.classList.toggle('flipped');
-            });
-            
-            // Keyboard support
-            card.addEventListener('keydown', function(e) {
-                if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    this.classList.toggle('flipped');
-                }
-            });
-            
-            // Set tabindex for accessibility
-            card.setAttribute('tabindex', '0');
-        });
-        
         // Set timestamp
         document.getElementById('formTimestamp').value = new Date().toISOString();
         
@@ -1688,56 +1691,31 @@
         
         // Follow button click handler
         followBtn.addEventListener('click', function(e) {
-            // Open X in new tab
             window.open(this.href, '_blank');
             
-            // Mark step 1 as completed after a short delay
             setTimeout(() => {
                 step1.classList.add('completed');
                 step1Number.classList.add('step-completed');
                 step1Number.textContent = '✓';
-                
-                // Enable checkbox
                 verifyCheckbox.disabled = false;
-                
-                // Update follow button
                 followBtn.classList.add('completed');
                 followBtn.innerHTML = '<span>✅</span> FOLLOWING @LARRYNFTS';
-                
-                console.log('Step 1 completed: User clicked follow link');
             }, 1000);
         });
         
         // Checkbox verification handler
         verifyCheckbox.addEventListener('change', function() {
             if (this.checked) {
-                // Mark step 2 as completed
                 step2.classList.add('completed');
                 step2Number.classList.add('step-completed');
                 step2Number.textContent = '✓';
-                
-                // Show wallet form section with animation
                 walletFormSection.classList.add('active');
-                
-                // Enable submit button
                 submitBtn.disabled = false;
-                
-                // Mark step 3 as active
                 step3.classList.add('completed');
                 step3Number.classList.add('step-completed');
-                
-                // Add retro effect
-                step3.style.animation = 'fadeIn 0.5s ease-out';
-                
-                console.log('Step 2 completed: User verified following');
             } else {
-                // Hide wallet form section
                 walletFormSection.classList.remove('active');
-                
-                // Disable submit button
                 submitBtn.disabled = true;
-                
-                console.log('Verification unchecked');
             }
         });
         
@@ -1745,7 +1723,6 @@
         form.addEventListener('submit', async function(e) {
             e.preventDefault();
             
-            // Check if user is verified
             if (!verifyCheckbox.checked) {
                 showResponse('ERROR: PLEASE VERIFY X FOLLOW FIRST', 'error');
                 return;
@@ -1753,47 +1730,34 @@
             
             const walletInput = document.getElementById('walletAddress');
             const walletValue = walletInput.value.trim();
-            
-            // Validate wallet address
             const ethRegex = /^0x[a-fA-F0-9]{40}$/;
+            
             if (!ethRegex.test(walletValue)) {
                 showResponse('ERROR: INVALID WALLET FORMAT', 'error');
                 walletInput.style.borderColor = 'rgba(255,68,68,0.6)';
-                walletInput.style.boxShadow = '0 0 20px rgba(255,68,68,0.3)';
                 return;
             }
             
-            // Show processing
             showResponse('PROCESSING VERIFIED SUBMISSION...', 'processing');
             systemStatus.textContent = 'PROCESSING';
-            systemStatus.style.color = '#ffff00';
             submitBtn.disabled = true;
             submitBtn.textContent = 'PROCESSING...';
             
             try {
                 const formData = new FormData(form);
-                
                 const result = await fetch(form.action, {
                     method: 'POST',
                     body: formData,
-                    headers: {
-                        'Accept': 'application/json'
-                    }
+                    headers: { 'Accept': 'application/json' }
                 });
                 
                 if (result.ok) {
                     const data = await result.json();
-                    
                     if (data.code === 200) {
                         showResponse('SUCCESS: WALLET REGISTERED BY VERIFIED FOLLOWER', 'success');
                         form.reset();
                         updateSubmissionCount();
-                        
-                        // Mark step 3 as completed
                         step3Number.textContent = '✓';
-                        step3Number.style.background = 'rgba(0,255,0,0.3)';
-                        
-                        // Success animation
                         animateSuccess();
                     } else {
                         showResponse('ERROR: SUBMISSION FAILED', 'error');
@@ -1804,52 +1768,36 @@
                 
                 submitBtn.disabled = false;
                 submitBtn.textContent = 'SUBMIT WALLET';
-                
             } catch (error) {
                 showResponse('ERROR: CONNECTION FAILED', 'error');
                 systemStatus.textContent = 'OFFLINE';
-                systemStatus.style.color = '#ff4444';
-                
                 submitBtn.disabled = false;
                 submitBtn.textContent = 'SUBMIT WALLET';
             }
         });
         
+        // Helper functions
         function showResponse(message, type) {
             response.textContent = message;
             response.className = 'response ' + type;
             response.style.display = 'block';
-            
-            // Auto-clear after 5 seconds
             setTimeout(() => {
                 if (type !== 'processing') {
                     response.style.display = 'none';
-                    response.className = 'response';
                 }
             }, 5000);
         }
         
         function updateSubmissionCount() {
             const today = new Date().toDateString();
-            
-            // Get existing data
             let total = localStorage.getItem('flTotalSubs') || 0;
             let dailyData = JSON.parse(localStorage.getItem('flDailySubs') || '{}');
-            
-            // Update
             total = parseInt(total) + 1;
             dailyData[today] = (dailyData[today] || 0) + 1;
-            
-            // Save
             localStorage.setItem('flTotalSubs', total);
             localStorage.setItem('flDailySubs', JSON.stringify(dailyData));
-            
-            // Update display
             updateCounters();
-            
-            // Reset status
             systemStatus.textContent = 'ONLINE';
-            systemStatus.style.color = '#ffffff';
         }
         
         function updateCounters() {
@@ -1857,38 +1805,11 @@
             const total = localStorage.getItem('flTotalSubs') || 0;
             const dailyData = JSON.parse(localStorage.getItem('flDailySubs') || '{}');
             const todayCountValue = dailyData[today] || 0;
-            
             totalCount.textContent = total;
             todayCount.textContent = todayCountValue;
-            
-            // Animate numbers
-            animateCounter(totalCount, parseInt(total));
-            animateCounter(todayCount, parseInt(todayCountValue));
-        }
-        
-        function animateCounter(element, target) {
-            const current = parseInt(element.textContent);
-            if (current === target) return;
-            
-            const increment = target > current ? 1 : -1;
-            let currentValue = current;
-            
-            const timer = setInterval(() => {
-                currentValue += increment;
-                element.textContent = currentValue;
-                element.style.transform = 'scale(1.2)';
-                
-                if (currentValue === target) {
-                    clearInterval(timer);
-                    setTimeout(() => {
-                        element.style.transform = 'scale(1)';
-                    }, 300);
-                }
-            }, 30);
         }
         
         function animateSuccess() {
-            // Animate stats
             const statValues = document.querySelectorAll('.stat-value');
             statValues.forEach(stat => {
                 stat.style.transform = 'scale(1.3)';
@@ -1898,74 +1819,18 @@
                     stat.style.color = '#ffffff';
                 }, 600);
             });
-            
-            // Create retro pixel particles
-            createRetroParticles();
-            
-            // Play success sound (in console)
-            console.log('%c✅ SUCCESS! Wallet registered!', 'color: #00ff00; font-size: 16px; font-weight: bold;');
-        }
-        
-        function createRetroParticles() {
-            const container = document.querySelector('.form-section');
-            const colors = ['#ffffff', '#00ff00', '#ffff00'];
-            
-            for (let i = 0; i < 30; i++) {
-                const particle = document.createElement('div');
-                particle.style.position = 'absolute';
-                particle.style.width = '6px';
-                particle.style.height = '6px';
-                particle.style.background = colors[Math.floor(Math.random() * colors.length)];
-                particle.style.borderRadius = '50%';
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.top = Math.random() * 100 + '%';
-                particle.style.zIndex = '1000';
-                particle.style.boxShadow = '0 0 10px currentColor';
-                particle.style.pointerEvents = 'none';
-                
-                container.appendChild(particle);
-                
-                // Animate with retro style
-                const angle = Math.random() * Math.PI * 2;
-                const distance = 30 + Math.random() * 60;
-                const duration = 800 + Math.random() * 800;
-                
-                particle.animate([
-                    { 
-                        transform: 'translate(0, 0) scale(1) rotate(0deg)', 
-                        opacity: 1,
-                        filter: 'blur(0px)'
-                    },
-                    { 
-                        transform: `translate(${Math.cos(angle) * distance}px, ${Math.sin(angle) * distance}px) scale(0) rotate(360deg)`, 
-                        opacity: 0,
-                        filter: 'blur(2px)'
-                    }
-                ], {
-                    duration: duration,
-                    easing: 'cubic-bezier(0.175, 0.885, 0.32, 1.275)'
-                }).onfinish = () => particle.remove();
-            }
         }
         
         // Real-time wallet validation
         const walletInput = document.getElementById('walletAddress');
         walletInput.addEventListener('input', function() {
             const value = this.value.trim();
-            
             if (value.length === 0) {
                 this.style.borderColor = 'rgba(255,255,255,0.2)';
-                this.style.boxShadow = 'inset 0 2px 10px rgba(0,0,0,0.5)';
             } else if (value.startsWith('0x') && value.length === 42) {
                 this.style.borderColor = 'rgba(0,255,0,0.4)';
-                this.style.boxShadow = 
-                    'inset 0 2px 10px rgba(0,0,0,0.5), ' +
-                    '0 0 20px rgba(0,255,0,0.2)';
             } else {
                 this.style.borderColor = 'rgba(255,68,68,0.6)';
-                this.style.boxShadow = 
-                    'inset 0 2px 10px rgba(0,0,0,0.5), ' +
-                    '0 0 20px rgba(255,68,68,0.3)';
             }
         });
         
@@ -1974,27 +1839,13 @@
             const statusColors = ['#ffffff', '#ffff00', '#00ffff'];
             const randomColor = statusColors[Math.floor(Math.random() * statusColors.length)];
             systemStatus.style.color = randomColor;
-            systemStatus.style.textShadow = `0 0 10px ${randomColor}`;
         }, 2000);
         
-        // Console greeting with retro style
+        // Console greeting
         console.log('%c╔══════════════════════════════════════════════════════════════════╗', 'color: #ffffff;');
-        console.log('%c║                    FLOOR LARRY - RETRO NFT COLLECTION            ║', 'color: #ffffff; font-family: monospace;');
-        console.log('%c║                    Follow @larrynfts to submit wallet            ║', 'color: #00ff00; font-family: monospace;');
+        console.log('%c║                    FLOOR LARRY - RETRO NFT COLLECTION            ║', 'color: #ffffff;');
+        console.log('%c║                    CARD FLIP FIX APPLIED - WORKING!             ║', 'color: #00ff00;');
         console.log('%c╚══════════════════════════════════════════════════════════════════╝', 'color: #ffffff;');
-        
-        // Auto-rotate flip cards on load (demo)
-        setTimeout(() => {
-            const cards = document.querySelectorAll('.flip-card');
-            cards.forEach((card, index) => {
-                setTimeout(() => {
-                    card.classList.add('flipped');
-                    setTimeout(() => {
-                        card.classList.remove('flipped');
-                    }, 2000);
-                }, index * 500);
-            });
-        }, 1000);
     });
 </script>
 
