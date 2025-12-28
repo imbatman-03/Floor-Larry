@@ -1266,7 +1266,7 @@
         width: 100px;
         height: 100px;
         pointer-events: auto; /* Allow clicking on Larry */
-        transition: transform 0.3s ease-in-out; /* Smooth movement */
+        transition: left 0.5s linear, top 0.5s linear; /* Smooth movement */
         cursor: pointer;
         filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5));
         transform-origin: center;
@@ -1654,7 +1654,7 @@
     <div class="flip-card-inner">
         <div class="flip-card-front">
             <img src="golden_larry.jpeg" alt="Golden Larry" class="art-image"
-                 onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzUwIiBoZWlnaHQ9IjI2MCIgdmlld0JveD0iMCAwIDM1MCAyNjAiIHN0eWxlPSJpbWFnZS1yZW5kZXJpbmc6IHBpeGVsYXRlZCI+PHJlY3Qgd2lkdGg9IjM1MCIgaGVpZ2h0PSIyNjAiIGZpbGw9IiMxMTExMTEiLz48cmVjdCB4PSIxMCIgeT0iMTAiIHdpZHRoPSIzMzAiIGhlaWdodD0iMjQwIiBmaWxsPSIjMjIyMjIyIiBzdHJva2U9IiNGRkQ3MDAiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjE3NSIgeT0iMTAwIiBmb250LWZhbWlseT0iJ1ZUMzIzJywgbW9ub3NwYWNlIiBmb250LXNpemU9IjI0IiBmaWxsPSIjRkZENzAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5HT0xERU48L3RleHQ+PHRleHQgeD0iMTc1IiB5PSIxMzAiIGZvbnQtZmFtaWx5PSInVlQzMjMnLCBtb25vc3BhY2UiIGZvbnQtc2l6ZT0iMzAiIGZpbGw9IiNGRkQ3MDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkxBUlJZPC90ZXh0Pjx0ZXh0IHg9IjE3NSIgeT0iMTcwIiBmb250LWZhbWlseT0iJ1ZUMzIzJywgbW9ub3NwYWNlIiBmb250LXNpemU9IjE2IiBmaWxsPSIjRkZENzAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5ESVZJTkUgQkVJTkc8L3RleHQ+PC9zdmc+'">
+                 onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzUwIiBoZWlnaHQ9IjI2MCIgdmlld0JveD0iMCAwIDM1MCAyNjAiIHN0eWxlPSJpbWFnZS1yZW5kZXJpbmc6IHBpeGVsYXRlZCI+PHJlY3Qgd2lkdGg9IjM1MCIgaGVpZ2h0PSIyNjAiIGZpbGw9IiMxMTExMTEiLz48cmVjdCB4PSIxMCIgeT0iMTAiIHdpZHRoPSIzMzAiIGhlaWdodD0iMjQwIiBmaWxsPSIjMjIyMjIyIiBzdHJva2U9IiNGRkQ3MDAiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjE3NSIgeT0iMTAwIiBmb250LWZhbWlseT0iJ1ZUMzIzJywgbW9ub3NwYWNlIiBmb250LXNpemU9IjI0IiBmaWxsPSIjRkZENzAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5HT0xERU48L3RleHQ+PHRleHQgeD0iMTc1IiB5PSIxMzAiIGZvbnQtZmFtaWx5PSInVlQzMjMnLCBtb25vc3BhY2UiIGZvbnQtc2lplPSIzMCIgZmlsbD0iI0ZGRDcwMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+TEFSUlk8L3RleHQ+PHRleHQgeD0iMTc1IiB5PSIxNzAiIGZvbnQtZmFtaWx5PSInVlQzMjMnLCBtb25vc3BhY2UiIGZvbnQtc2l6ZT0iMTYiIGZpbGw9IiNGRkQ3MDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkRJVklORSBCRUlORzwvdGV4dD48L3N2Zz4='">
             <div class="art-title-front">GOLDEN LARRY</div>
             <div class="flip-tap-hint">TAP TO FLIP</div>
         </div>
@@ -2187,7 +2187,7 @@
         console.log('%c╚══════════════════════════════════════════════════════════════════╝', 'color: #ffffff;');
 
         // =====================================
-        // 3. ENHANCED LARRY THE SKELETON LOGIC
+        // 3. PERFECT LARRY ROAMING LOGIC - FIXED
         // =====================================
         
         const larryMascot = document.getElementById('larryMascot');
@@ -2221,29 +2221,34 @@
             "SHHH... I'M TRYING TO NAP HERE... Zzz"
         ];
 
-        // Track movement state
-        let currentDirection = 1; // 1 for right, -1 for left
-        let movementSpeed = 2; // pixels per movement step
+        // PERFECT ROAMING VARIABLES
+        let larryPosX = window.innerWidth / 2;
+        let larryPosY = window.innerHeight / 2;
+        let targetX = larryPosX;
+        let targetY = larryPosY;
+        let currentDirection = 1; // 1 = right, -1 = left
         let isInteracting = false;
+        let roamInterval;
+        let speechInterval;
+        let lightningInterval;
+        let movementSpeed = 1.5;
 
-        // Initialize Larry with enhanced behavior
+        // Initialize Larry
         function initLarry() {
             console.log("Larry the Skeleton has awakened!");
             
-            // Position Larry initially
-            larryMascot.style.left = '50%';
-            larryMascot.style.top = '50%';
-            larryMascot.style.transform = 'translate(-50%, -50%)';
+            // Set initial position
+            larryMascot.style.left = larryPosX + 'px';
+            larryMascot.style.top = larryPosY + 'px';
             
             // Start all behaviors after a short delay
             setTimeout(() => {
-                startAutomaticMovement();
+                startPerfectRoaming();
                 startRandomSpeech();
                 startRandomLightning();
                 
                 // Initial greeting
                 speakLarry("HELLO FRIEND! WELCOME TO MY FLOOR! 👋");
-                // Small bounce effect
                 bounceLarry();
             }, 1500);
             
@@ -2258,80 +2263,85 @@
             const maxX = window.innerWidth - 120;
             const maxY = window.innerHeight - 120;
             
-            let currentX = parseFloat(larryMascot.style.left) || window.innerWidth / 2;
-            let currentY = parseFloat(larryMascot.style.top) || window.innerHeight / 2;
+            if (larryPosX < 20) larryPosX = 20;
+            if (larryPosX > maxX) larryPosX = maxX;
+            if (larryPosY < 20) larryPosY = 20;
+            if (larryPosY > maxY) larryPosY = maxY;
             
-            if (currentX < 20) currentX = 20;
-            if (currentX > maxX) currentX = maxX;
-            if (currentY < 20) currentY = 20;
-            if (currentY > maxY) currentY = maxY;
-            
-            larryMascot.style.left = currentX + 'px';
-            larryMascot.style.top = currentY + 'px';
+            larryMascot.style.left = larryPosX + 'px';
+            larryMascot.style.top = larryPosY + 'px';
         }
 
-        // Automatic movement - Larry drifts around
-        function startAutomaticMovement() {
-            setInterval(() => {
-                if (!isInteracting) {
-                    driftLarry();
-                }
-            }, 50); // Move every 50ms for smooth drifting
+        // PERFECT ROAMING: Larry moves to random targets
+        function startPerfectRoaming() {
+            if (roamInterval) clearInterval(roamInterval);
             
-            // Occasionally change direction
-            setInterval(() => {
+            // Set initial target
+            setNewTarget();
+            
+            // Move toward target every frame
+            roamInterval = setInterval(() => {
                 if (!isInteracting) {
-                    currentDirection *= -1; // Reverse direction
-                    movementSpeed = 1 + Math.random() * 3; // Random speed between 1-4
-                    if (Math.random() > 0.7) {
-                        speakLarry(["CHANGING COURSE!", "WHOOPS, WRONG WAY!", "TIME FOR A U-TURN!"][Math.floor(Math.random() * 3)]);
-                    }
+                    moveTowardTarget();
                 }
-            }, 8000 + Math.random() * 12000); // Every 8-20 seconds
+            }, 16); // ~60fps
+            
+            // Periodically set new random targets
+            setInterval(() => {
+                if (!isInteracting && Math.random() > 0.3) {
+                    setNewTarget();
+                }
+            }, 3000 + Math.random() * 7000); // Every 3-10 seconds
         }
 
-        // Drift Larry in current direction
-        function driftLarry() {
+        // Set a new random target position
+        function setNewTarget() {
             const maxX = window.innerWidth - 120;
             const maxY = window.innerHeight - 120;
             
-            let currentX = parseFloat(larryMascot.style.left) || window.innerWidth / 2;
-            let currentY = parseFloat(larryMascot.style.top) || window.innerHeight / 2;
+            targetX = 20 + Math.random() * (maxX - 40);
+            targetY = 20 + Math.random() * (maxY - 40);
             
-            // Add some randomness to movement
-            const randomX = currentX + (movementSpeed * currentDirection) + (Math.random() * 4 - 2);
-            const randomY = currentY + (Math.random() * 4 - 2);
+            // Update direction based on target
+            currentDirection = targetX > larryPosX ? 1 : -1;
             
-            // Bounce off edges with fun messages
-            if (randomX < 20) {
-                currentDirection = 1;
-                speakLarry(["OUCH! WALL!", "BONK!", "THAT'S MY NOSE!"][Math.floor(Math.random() * 3)]);
-                bounceLarry();
+            // Randomize speed
+            movementSpeed = 1 + Math.random() * 2; // 1-3
+            
+            // Occasionally say something about moving
+            if (Math.random() > 0.7) {
+                speakLarry(["ON THE MOVE!", "NEW DESTINATION!", "EXPLORING!"][Math.floor(Math.random() * 3)]);
+            }
+        }
+
+        // Move Larry toward current target
+        function moveTowardTarget() {
+            const dx = targetX - larryPosX;
+            const dy = targetY - larryPosY;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+            
+            // If we've reached the target, set a new one
+            if (distance < 5) {
+                setNewTarget();
                 return;
             }
             
-            if (randomX > maxX) {
-                currentDirection = -1;
-                speakLarry(["OUCH! WALL!", "BONK!", "THAT'S MY NOSE!"][Math.floor(Math.random() * 3)]);
-                bounceLarry();
-                return;
-            }
+            // Normalize direction and move
+            const moveX = (dx / distance) * movementSpeed;
+            const moveY = (dy / distance) * movementSpeed;
             
-            if (randomY < 20) {
-                speakLarry(["CEILING!", "FLOOR!", "WHO PUT THAT THERE?"][Math.floor(Math.random() * 3)]);
-                bounceLarry();
-                return;
-            }
+            larryPosX += moveX;
+            larryPosY += moveY;
             
-            if (randomY > maxY) {
-                speakLarry(["CEILING!", "FLOOR!", "WHO PUT THAT THERE?"][Math.floor(Math.random() * 3)]);
-                bounceLarry();
-                return;
-            }
+            // Update facing direction
+            currentDirection = moveX > 0 ? 1 : -1;
+            
+            // Keep within bounds
+            keepLarryInBounds();
             
             // Update position
-            larryMascot.style.left = Math.max(20, Math.min(maxX, randomX)) + 'px';
-            larryMascot.style.top = Math.max(20, Math.min(maxY, randomY)) + 'px';
+            larryMascot.style.left = larryPosX + 'px';
+            larryMascot.style.top = larryPosY + 'px';
             
             // Update facing direction
             larryMascot.style.transform = `scaleX(${currentDirection})`;
@@ -2340,31 +2350,33 @@
 
         // Bounce effect - little jump
         function bounceLarry() {
-            const currentY = parseFloat(larryMascot.style.top) || 0;
-            larryMascot.style.top = (currentY - 30) + 'px';
+            const originalY = larryPosY;
+            larryPosY -= 30;
+            larryMascot.style.top = larryPosY + 'px';
             setTimeout(() => {
-                larryMascot.style.top = currentY + 'px';
+                larryPosY = originalY;
+                larryMascot.style.top = larryPosY + 'px';
             }, 300);
         }
 
         // Random speech generator
         function startRandomSpeech() {
-            setInterval(() => {
-                if (!isInteracting && Math.random() > 0.3) { // 70% chance to speak when not interacting
+            if (speechInterval) clearInterval(speechInterval);
+            
+            speechInterval = setInterval(() => {
+                if (!isInteracting && Math.random() > 0.3) {
                     speakLarry();
                 }
-            }, 5000 + Math.random() * 10000); // Every 5-15 seconds
+            }, 7000 + Math.random() * 13000); // Every 7-20 seconds
         }
 
-        // Make Larry Speak with enhanced effects
+        // Make Larry Speak
         function speakLarry(text = null) {
             const phrase = text || phrases[Math.floor(Math.random() * phrases.length)];
             larrySpeech.textContent = phrase;
             larrySpeech.classList.add('visible');
             
-            // Add emoji bounce
-            larrySpeech.style.transform = `translateX(${currentDirection > 0 ? '-50%' : '50%'}) scaleX(${currentDirection > 0 ? 1 : -1}) translateY(-10px)`;
-            
+            // Add bounce to speech bubble
             setTimeout(() => {
                 larrySpeech.classList.remove('visible');
             }, 3000);
@@ -2372,12 +2384,14 @@
 
         // Random lightning generator
         function startRandomLightning() {
-            setInterval(() => {
+            if (lightningInterval) clearInterval(lightningInterval);
+            
+            lightningInterval = setInterval(() => {
                 if (!isInteracting && Math.random() > 0.8) { // 20% chance for random lightning
                     summonLightning();
                     speakLarry(["THUNDER STRUCK!", "DID YOU SEE THAT?", "⚡ LIGHTNING! ⚡"][Math.floor(Math.random() * 3)]);
                 }
-            }, 10000 + Math.random() * 20000); // Every 10-30 seconds
+            }, 15000 + Math.random() * 25000); // Every 15-40 seconds
         }
 
         // Summon Lightning Effect
@@ -2385,15 +2399,17 @@
             lightningFlash.classList.add('lightning-active');
             
             // Make Larry jump
-            const currentY = parseFloat(larryMascot.style.top);
-            larryMascot.style.top = (currentY - 40) + 'px';
+            const originalY = larryPosY;
+            larryPosY -= 40;
+            larryMascot.style.top = larryPosY + 'px';
             setTimeout(() => {
-                larryMascot.style.top = currentY + 'px';
+                larryPosY = originalY;
+                larryMascot.style.top = larryPosY + 'px';
             }, 300);
 
             setTimeout(() => {
                 lightningFlash.classList.remove('lightning-active');
-            }, 500); // Match CSS animation duration
+            }, 500);
         }
 
         // Interactive: Click Larry
@@ -2405,12 +2421,20 @@
             speakLarry("YOU RATTLED ME!");
             
             // Big bounce
-            const currentY = parseFloat(larryMascot.style.top);
-            larryMascot.style.top = (currentY - 50) + 'px';
+            const originalY = larryPosY;
+            larryPosY -= 50;
+            larryMascot.style.top = larryPosY + 'px';
+            
+            // Set a new random target away from current position
             setTimeout(() => {
-                larryMascot.style.top = currentY + 'px';
-                // Change direction
+                larryPosY = originalY;
+                larryMascot.style.top = larryPosY + 'px';
+                
+                // Set target in opposite direction
                 currentDirection *= -1;
+                targetX = larryPosX + (100 * currentDirection);
+                targetY = larryPosY + (Math.random() * 100 - 50);
+                
                 setTimeout(() => {
                     isInteracting = false;
                 }, 1000);
