@@ -57,6 +57,170 @@
         z-index: 2;
     }
     
+    /* ============================================= */
+    /* PIXELATED LARRY SKELETON - NEW */
+    /* ============================================= */
+    
+    #larry-skeleton {
+        position: fixed;
+        width: 80px;
+        height: 120px;
+        z-index: 9999;
+        pointer-events: none;
+        transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        filter: drop-shadow(0 0 8px rgba(255,255,255,0.3));
+        image-rendering: pixelated;
+        user-select: none;
+    }
+    
+    /* LARRY ANIMATION STATES */
+    .larry-walking {
+        animation: larry-walk 0.8s steps(4) infinite;
+    }
+    
+    .larry-idle {
+        animation: larry-idle 2s steps(2) infinite;
+    }
+    
+    .larry-summoning {
+        animation: larry-summon 1s steps(3) infinite;
+    }
+    
+    .larry-interacting {
+        animation: larry-interact 0.5s steps(2) infinite;
+    }
+    
+    /* LARRY SPRITE SHEETS */
+    #larry-sprite {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 320px;
+        height: 120px;
+        background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIwIiBoZWlnaHQ9IjEyMCIgdmlld0JveD0iMCAwIDMyMCAxMjAiIHN0eWxlPSJpbWFnZS1yZW5kZXJpbmc6IHBpeGVsYXRlZCI+PHJlY3Qgd2lkdGg9IjMyMCIgaGVpZ2h0PSIxMjAiIGZpbGw9InRyYW5zcGFyZW50Ii8+PCEtLSBTcHJpdGUgZnJhbWVzIGZvciBMYXJyeSAtLT48cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iODAiIGhlaWdodD0iMTIwIiBmaWxsPSIjZmZmZmZmIj48cmVjdCB4PSIxMCIgeT0iMjAiIHdpZHRoPSI2MCIgaGVpZ2h0PSI4MCIgZmlsbD0iIzIyMjIyMiIvPjxyZWN0IHg9IjIwIiB5PSIzMCIgd2lkdGg9IjQwIiBoZWlnaHQ9IjEwIiBmaWxsPSIjRkZGRkZGIi8+PHJlY3QgeD0iMjUiIHk9IjUwIiB3aWR0aD0iMzAiIGhlaWdodD0iMjAiIGZpbGw9IiNGRkZGRkYiLz48cmVjdCB4PSIzMCIgeT0iODAiIHdpZHRoPSI1IiBoZWlnaHQ9IjIwIiBmaWxsPSIjRkZGRkZGIi8+PHJlY3QgeD0iNDUiIHk9IjgwIiB3aWR0aD0iNSIgaGVpZ2h0PSIyMCIgZmlsbD0iI0ZGRkZGRiIvPjwvcmVjdD48cmVjdCB4PSI4MCIgeT0iMCIgd2lkdGg9IjgwIiBoZWlnaHQ9IjEyMCIgZmlsbD0iI0ZGRkZGRiI+PHJlY3QgeD0iOTAiIHk9IjIwIiB3aWR0aD0iNjAiIGhlaWdodD0iODAiIGZpbGw9IiMyMjIyMjIiLz48cmVjdCB4PSIxMDAiIHk9IjMwIiB3aWR0aD0iNDAiIGhlaWdodD0iMTAiIGZpbGw9IiNGRkZGRkYiLz48cmVjdCB4PSIxMDUiIHk9IjUwIiB3aWR0aD0iMzAiIGhlaWdodD0iMjAiIGZpbGw9IiNGRkZGRkYiLz48cmVjdCB4PSIxMTAiIHk9IjgwIiB3aWR0aD0iNSIgaGVpZ2h0PSIyMCIgZmlsbD0iI0ZGRkZGRiIvPjxyZWN0IHg9IjEyNSIgeT0iODAiIHdpZHRoPSI1IiBoZWlnaHQ9IjIwIiBmaWxsPSIjRkZGRkZGIi8+PC9yZWN0PjxyZWN0IHg9IjE2MCIgeT0iMCIgd2lkdGg9IjgwIiBoZWlnaHQ9IjEyMCIgZmlsbD0iI0ZGRkZGRiI+PHJlY3QgeD0iMTcwIiB5PSIyMCIgd2lkdGg9IjYwIiBoZWlnaHQ9IjgwIiBmaWxsPSIjMjIyMjIyIi8+PHJlY3QgeD0iMTgwIiB5PSIzMCIgd2lkdGg9IjQwIiBoZWlnaHQ9IjEwIiBmaWxsPSIjRkZGRkZGIi8+PHJlY3QgeD0iMTg1IiB5PSI1MCIgd2lkdGg9IjMwIiBoZWlnaHQ9IjIwIiBmaWxsPSIjRkZGRkZGIi8+PHJlY3QgeD0iMTkwIiB5PSI4MCIgd2lkdGg9IjUiIGhlaWdodD0iMjAiIGZpbGw9IiNGRkZGRkYiLz48cmVjdCB4PSIyMDUiIHk9IjgwIiB3aWR0aD0iNSIgaGVpZ2h0PSIyMCIgZmlsbD0iI0ZGRkZGRiIvPjwvcmVjdD48cmVjdCB4PSIyNDAiIHk9IjAiIHdpZHRoPSI4MCIgaGVpZ2h0PSIxMjAiIGZpbGw9IiNGRkZGRkYiPjxyZWN0IHg9IjI1MCIgeT0iMjAiIHdpZHRoPSI2MCIgaGVpZ2h0PSI4MCIgZmlsbD0iIzIyMjIyMiIvPjxyZWN0IHg9IjI2MCIgeT0iMzAiIHdpZHRoPSI0MCIgaGVpZ2h0PSIxMCIgZmlsbD0iI0ZGRkZGRiIvPjxyZWN0IHg9IjI2NSIgeT0iNTAiIHdpZHRoPSIzMCIgaGVpZ2h0PSIyMCIgZmlsbD0iI0ZGRkZGRiIvPjxyZWN0IHg9IjI3MCIgeT0iODAiIHdpZHRoPSI1IiBoZWlnaHQ9IjIwIiBmaWxsPSIjRkZGRkZGIi8+PHJlY3QgeD0iMjg1IiB5PSI4MCIgd2lkdGg9IjUiIGhlaWdodD0iMjAiIGZpbGw9IiNGRkZGRkYiLz48L3JlY3Q+PC9zdmc+') 0 0;
+        image-rendering: pixelated;
+    }
+    
+    /* LARRY ANIMATIONS */
+    @keyframes larry-walk {
+        0% { background-position: 0 0; }
+        100% { background-position: -320px 0; }
+    }
+    
+    @keyframes larry-idle {
+        0%, 100% { background-position: 0 0; }
+        50% { background-position: -160px 0; }
+    }
+    
+    @keyframes larry-summon {
+        0% { background-position: 0 0; }
+        100% { background-position: -240px 0; }
+    }
+    
+    @keyframes larry-interact {
+        0%, 100% { background-position: 0 0; }
+        50% { background-position: -80px 0; }
+    }
+    
+    /* LARRY SPEECH BUBBLE */
+    .larry-speech {
+        position: absolute;
+        background: rgba(0, 0, 0, 0.9);
+        border: 2px solid #fff;
+        border-radius: 4px;
+        padding: 8px 12px;
+        color: #fff;
+        font-family: 'VT323', monospace;
+        font-size: 14px;
+        text-align: center;
+        white-space: nowrap;
+        z-index: 10000;
+        pointer-events: none;
+        opacity: 0;
+        transform: translateY(10px);
+        transition: opacity 0.3s, transform 0.3s;
+        filter: drop-shadow(0 0 4px rgba(255,255,255,0.5));
+    }
+    
+    .larry-speech::before {
+        content: '';
+        position: absolute;
+        bottom: -8px;
+        left: 50%;
+        transform: translateX(-50%);
+        border-left: 8px solid transparent;
+        border-right: 8px solid transparent;
+        border-top: 8px solid #fff;
+    }
+    
+    .larry-speech.show {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    
+    /* PIXELATED THUNDER EFFECT */
+    .thunder-bolt {
+        position: fixed;
+        width: 20px;
+        height: 100px;
+        background: linear-gradient(to bottom, transparent, #00ffff, transparent);
+        z-index: 9997;
+        pointer-events: none;
+        opacity: 0;
+        filter: drop-shadow(0 0 10px #00ffff);
+        image-rendering: pixelated;
+    }
+    
+    .thunder-active {
+        animation: thunder-strike 0.3s steps(3) forwards;
+    }
+    
+    @keyframes thunder-strike {
+        0% { opacity: 0; transform: scaleY(0); }
+        50% { opacity: 1; transform: scaleY(1); }
+        100% { opacity: 0; transform: scaleY(0); }
+    }
+    
+    /* THUNDER IMPACT AREA */
+    .thunder-impact {
+        position: fixed;
+        width: 60px;
+        height: 60px;
+        border: 2px solid #00ffff;
+        border-radius: 50%;
+        z-index: 9996;
+        pointer-events: none;
+        opacity: 0;
+        background: radial-gradient(circle, rgba(0,255,255,0.2) 0%, transparent 70%);
+    }
+    
+    .impact-active {
+        animation: thunder-impact 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    }
+    
+    @keyframes thunder-impact {
+        0% { opacity: 0; transform: scale(0); }
+        50% { opacity: 1; transform: scale(1); }
+        100% { opacity: 0; transform: scale(1.5); }
+    }
+    
+    /* LARRY TRAIL EFFECT */
+    .larry-trail {
+        position: fixed;
+        width: 10px;
+        height: 10px;
+        background: rgba(255,255,255,0.3);
+        border-radius: 50%;
+        z-index: 9998;
+        pointer-events: none;
+        animation: trail-fade 1s forwards;
+    }
+    
+    @keyframes trail-fade {
+        0% { opacity: 0.8; transform: scale(1); }
+        100% { opacity: 0; transform: scale(0); }
+    }
+    
     /* SECTION HEADERS */
     .section-header {
         text-align: center;
@@ -1266,6 +1430,11 @@
         .stat-item {
             min-width: 250px;
         }
+        
+        #larry-skeleton {
+            width: 60px;
+            height: 90px;
+        }
     }
     
     @media (max-width: 768px) {
@@ -1324,6 +1493,11 @@
             font-size: 32px;
             letter-spacing: 4px;
         }
+        
+        #larry-skeleton {
+            width: 50px;
+            height: 75px;
+        }
     }
     
     @media (max-width: 480px) {
@@ -1369,6 +1543,11 @@
         .art-image {
             height: 180px;
         }
+        
+        #larry-skeleton {
+            width: 40px;
+            height: 60px;
+        }
     }
 </style>
 </head>
@@ -1377,6 +1556,13 @@
 <!-- RETRO EFFECTS -->
 <div class="retro-grid"></div>
 <div class="scanlines"></div>
+
+<!-- ============================================= -->
+<!-- PIXELATED LARRY SKELETON - ADDED HERE -->
+<!-- ============================================= -->
+<div id="larry-skeleton">
+    <div id="larry-sprite"></div>
+</div>
 
 <div class="container">
     
@@ -1433,7 +1619,7 @@
             <div class="flip-card-inner">
                 <div class="flip-card-front">
                     <img src="spider_larry.jpeg" alt="Spider Larry" class="art-image"
-                         onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzUwIiBoZWlnaHQ9IjI2MCIgdmlld0JveD0iMCAwIDM1MCAyNjAiIHN0eWxlPSJpbWFnZS1yZW5kZXJpbmc6IHBpeGVsYXRlZCI+PHJlY3Qgd2lkdGg9IjM1MCIgaGVpZ2h0PSIyNjAiIGZpbGw9IiMxMTExMTEiLz48cmVjdCB4PSIxMCIgeT0iMTAiIHdpZHRoPSIzMzAiIGhlaWdodD0iMjQwIiBmaWxsPSIjMjIyMjIyIiBzdHJva2U9IiNGRkQ3MDAiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjE3NSIgeT0iMTAwIiBmb250LWZhbWlseT0iJ1ZUMzIzJywgbW9ub3NwYWNlIiBmb250LXNpemU9IjI0IiBmaWxsPSIjRkZENzAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5TUElERVI8L3RleHQ+PHRleHQgeD0iMTc1IiB5PSIxMzAiIGZvbnQtZmFtaWx5PSInVlQzMjMnLCBtb25vc3BhY2UiIGZvbnQtc2l6ZT0iMzAiIGZpbGw9IiNGRkQ3MDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkxBUlJZPC90ZXh0Pjx0ZXh0IHg9IjE3NSIgeT0iMTcwIiBmb250LWZhbWlseT0iJ1ZUMzMjMiwgbW9ub3NwYWNlIiBmb250LXNpemU9IjE2IiBmaWxsPSIjRkZENzAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5XRUItU0xJTkdFUjwvdGV4dD48L3N2Zz4='">
+                         onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzUwIiBoZWlnaHQ9IjI2MCIgdmlld0JveD0iMCAwIDM1MCAyNjAiIHN0eWxlPSJpbWFnZS1yZW5kZXJpbmc6IHBpeGVsYXRlZCI+PHJlY3Qgd2lkdGg9IjM1MCIgaGVpZ2h0PSIyNjAiIGZpbGw9IiMxMTExMTEiLz48cmVjdCB4PSIxMCIgeT0iMTAiIHdpZHRoPSIzMzAiIGhlaWdodD0iMjQwIiBmaWxsPSIjMjIyMjIyIiBzdHJva2U9IiNGRkQ3MDAiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjE3NSIgeT0iMTAwIiBmb250LWZhbWlseT0iJ1ZUMzIzJywgbW9ub3NwYWNlIiBmb250LXNpemU9IjI0IiBmaWxsPSIjRkZENzAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5TUElERVI8L3RleHQ+PHRleHQgeD0iMTc1IiB5PSIxMzAiIGZvbnQtZmFtaWx5PSInVlQzMjMnLCBtb25vc3BhY2UiIGZvbnQtc2l6ZT0iMzAiIGZpbGw9IiNGRkQ3MDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkxBUlJZPC90ZXh0Pjx0ZXh0IHg9IjE3NSIgeT0iMTcwIiBmb250LWZhbWlseT0iJ1ZUMzMyMiwgbW9ub3NwYWNlIiBmb250LXNpemU9IjE2IiBmaWxsPSIjRkZENzAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5XRUItU0xJTkdFUjwvdGV4dD48L3N2Zz4='">
                     <div class="art-title-front">SPIDER LARRY</div>
                     <div class="flip-tap-hint">TAP TO FLIP</div>
                 </div>
@@ -1522,7 +1708,7 @@
     <div class="flip-card-inner">
         <div class="flip-card-front">
             <img src="mc_larry.jpeg" alt="MC Larry" class="art-image"
-                 onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzUwIiBoZWlnaHQ9IjI2MCIgdmlld0JveD0iMCAwIDM1MCAyNjAiIHN0eWxlPSJpbWFnZS1yZW5kZXJpbmc6IHBpeGVsYXRlZCI+PHJlY3Qgd2lkdGg9IjM1MCIgaGVpZ2h0PSIyNjAiIGZpbGw9IiMxMTExMTEiLz48cmVjdCB4PSIxMCIgeT0iMTAiIHdpZHRoPSIzMzAiIGhlaWdodD0iMjQwIiBmaWxsPSIjMjIyMjIyIiBzdHJva2U9IiNGRkQ3MDAiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjE3NSIgeT0iMTAwIiBmb250LWZhbWlseT0iJ1ZUMzIzJywgbW9ub3NwYWNlIiBmb250LXNpemU9IjI0IiBmaWxsPSIjRkZENzAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5NQzwvdGV4dD48dGV4dCB4PSIxNzUiIHk9IjEzMCIgZm9udC1mYW1pbHk9IidWVDMyMycsIG1vbm9zcGFjZSIgZm9udC1zaXplPSIzMCIgZmlsbD0iI0ZGRDcwMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+TEFSUlk8L3RleHQ+PHRleHQgeD0iMTc1IiB5PSIxNzAiIGZvbnQtZmFtaWx5PSInVlQzMjMnLCBtb25vc3BhY2UiIGZvbnQtc2l6ZT0iMTYiIGZpbGw9IiNGRkQ3MDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkJJTiBUSEUgR1JBVkU8L3RleHQ+PC9zdmc+'">
+               onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzUwIiBoZWlnaHQ9IjI2MCIgdmlld0JveD0iMCAwIDM1MCAyNjAiIHN0eWxlPSJpbWFnZS1yZW5kZXJpbmc6IHBpeGVsYXRlZCI+PHJlY3Qgd2lkdGg9IjM1MCIgaGVpZ2h0PSIyNjAiIGZpbGw9IiMxMTExMTEiLz48cmVjdCB4PSIxMCIgeT0iMTAiIHdpZHRoPSIzMzAiIGhlaWdodD0iMjQwIiBmaWxsPSIjMjIyMjIyIiBzdHJva2U9IiNGRkQ3MDAiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjE3NSIgeT0iMTAwIiBmb250LWZhbWlseT0iJ1ZUMzIzJywgbW9ub3NwYWNlIiBmb250LXNpemU9IjI0IiBmaWxsPSIjRkZENzAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5NQzwvdGV4dD48dGV4dCB4PSIxNzUiIHk9IjEzMCIgZm9udC1mYW1pbHk9IidWVDMyMycsIG1vbm9zcGFjZSIgZm9udC1zaXplPSIzMCIgZmlsbD0iI0ZGRDcwMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+TEFSUlk8L3RleHQ+PHRleHQgeD0iMTc1IiB5PSIxNzAiIGZvbnQtZmFtaWx5PSInVlQzMjMnLCBtb25vc3BhY2UiIGZvbnQtc2l6ZT0iMTYiIGZpbGw9IiNGRkQ3MDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkJJTiBUSEUgR1JBVkU8L3RleHQ+PC9zdmc+'">
             <div class="art-title-front">MC LARRY</div>
             <div class="flip-tap-hint">TAP TO FLIP</div>
         </div>
@@ -1545,7 +1731,7 @@
     <div class="flip-card-inner">
         <div class="flip-card-front">
             <img src="evil_larry.jpeg" alt="Evil Larry" class="art-image"
-                 onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzUwIiBoZWlnaHQ9IjI2MCIgdmlld0JveD0iMCAwIDM1MCAyNjAiIHN0eWxlPSJpbWFnZS1yZW5kZXJpbmc6IHBpeGVsYXRlZCI+PHJlY3Qgd2lkdGg9IjM1MCIgaGVpZ2h0PSIyNjAiIGZpbGw9IiMxMTExMTEiLz48cmVjdCB4PSIxMCIgeT0iMTAiIHdpZHRoPSIzMzAiIGhlaWdodD0iMjQwIiBmaWxsPSIjMjIyMjIyIiBzdHJva2U9IiNGRkQ3MDAiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjE3NSIgeT0iMTAwIiBmb250LWZhbWlseT0iJ1ZUMzIzJywgbW9ub3NwYWNlIiBmb250LXNpemU9IjI0IiBmaWxsPSIjRkZENzAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5FVklMPC90ZXh0Pjx0ZXh0IHg9IjE3NSIgeT0iMTMwIiBmb250LWZhbWlseT0iJ1ZUMzIzJywgbW9ub3NwYWNlIiBmb250LXNpemU9IjMwIiBmaWxsPSIjRkZENzAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5MQVJSWTwvdGV4dD48dGV4dCB4PSIxNzUiIHk9IjE3MCIgZm9udC1mYW1pbHk9IidWVDMyMycsIG1vbm9zcGFjZSIgZm9udC1zaXplPSIxNiIgZmlsbD0iI0ZGRDcwMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+REFSSyBTSURFPC90ZXh0Pjwvc3ZnPg=='">
+                 onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzUwIiBoZWlnaHQ9IjI2MCIgdmlld0JveD0iMCAwIDM1MCAyNjAiIHN0eWxlPSJpbWFnZS1yZW5kZXJpbmc6IHBpeGVsYXRlZCI+PHJlY3Qgd2lkdGg9IjM1MCIgaGVpZ2h0PSIyNjAiIGZpbGw9IiMxMTExMTEiLz48cmVjdCB4PSIxMCIgeT0iMTAiIHdpZHRoPSIzMzAiIGhlaWdodD0iMjQwIiBmaWxsPSIjMjIyMjIyIiBzdHJva2U9IiNGRkQ3MDAiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjE3NSIgeT0iMTAwIiBmb250LWZhbWlseT0iJ1ZUMzIzJywgbW9ub3NwYWNlIiBmb250LXNpemU9IjI0IiBmaWxsPSIjRkZENzAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5FVklMPC90ZXh0Pjx0ZXh0IHg9IjE3NSIgeT0iMTMwIiBmb250LWZhbWx5PSInVlQzMjMnLCBtb25vc3BhY2UiIGZvbnQtc2l6ZT0iMzAiIGZpbGw9IiNGRkQ3MDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkxBUlJZPC90ZXh0Pjx0ZXh0IHg9IjE3NSIgeT0iMTcwIiBmb250LWZhbWlseT0iJ1ZUMzIzJywgbW9ub3NwYWNlIiBmb250LXNpemU9IjE2IiBmaWxsPSIjRkZENzAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5EQVJLIENPREU8L3RleHQ+PC9zdmc+'">
             <div class="art-title-front">EVIL LARRY</div>
             <div class="flip-tap-hint">TAP TO FLIP</div>
         </div>
@@ -1568,7 +1754,7 @@
     <div class="flip-card-inner">
         <div class="flip-card-front">
             <img src="ghost_larry.jpeg" alt="Ghost Larry" class="art-image"
-                 onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzUwIiBoZWlnaHQ9IjI2MCIgdmlld0JveD0iMCAwIDM1MCAyNjAiIHN0eWxlPSJpbWFnZS1yZW5kZXJpbmc6IHBpeGVsYXRlZCI+PHJlY3Qgd2lkdGg9IjM1MCIgaGVpZ2h0PSIyNjAiIGZpbGw9IiMxMTExMTEiLz48cmVjdCB4PSIxMCIgeT0iMTAiIHdpZHRoPSIzMzAiIGhlaWdodD0iMjQwIiBmaWxsPSIjMjIyMjIyIiBzdHJva2U9IiNGRkQ3MDAiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjE3NSIgeT0iMTAwIiBmb250LWZhbWlseT0iJ1ZUMzIzJywgbW9ub3NwYWNlIiBmb250LXNpemU9IjI0IiBmaWxsPSIjRkZENzAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5HSE9TVDwvdGV4dD48dGV4dCB4PSIxNzUiIHk9IjEzMCIgZm9udC1mYW1pbHk9IidWVDMyMycsIG1vbm9zcGFjZSIgZm9udC1zaXplPSIzMCIgZmlsbD0iI0ZGRDcwMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+TEFSUlk8L3RleHQ+PHRleHQgeD0iMTc1IiB5PSIxNzAiIGZvbnQtZmFtaWx5PSInVlQzMjMnLCBtb25vc3BhY2UiIGZvbnQtc2l6ZT0iMTYiIGZpbGw9IiNGRkQ3MDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPlNQSVJJVCA8L3RleHQ+PC9zdmc+'">
+                 onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzUwIiBoZWlnaHQ9IjI2MCIgdmlld0JveD0iMCAwIDM1MCAyNjAiIHN0eWxlPSJpbWFnZS1yZW5kZXJpbmc6IHBpeGVsYXRlZCI+PHJlY3Qgd2lkdGg9IjM1MCIgaGVpZ2h0PSIyNjAiIGZpbGw9IiMxMTExMTEiLz48cmVjdCB4PSIxMCIgeT0iMTAiIHdpZHRoPSIzMzAiIGhlaWdodD0iMjQwIiBmaWxsPSIjMjIyMjIyIiBzdHJva2U9IiNGRkQ3MDAiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjE3NSIgeT0iMTAwIiBmb250LWZhbWlseT0iJ1ZUMzIzJywgbW9ub3NwYWNlIiBmb250LXNpemU9IjI0IiBmaWxsPSIjRkZENzAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5HSE9TVDwvdGV4dD48dGV4dCB4PSIxNzUiIHk9IjEzMCIgZm9udC1mYW1pbHk9IidWVDMyMycsIG1vbm9zcGFjZSIgZm9udC1zaXplPSIzMCIgZmlsbD0iI0ZGRDcwMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+TEFSUlk8L3RleHQ+PHRleHQgeD0iMTc1IiB5PSIxNzAiIGZvbnQtZmFtaWx5PSInVlQzMjMnLCBtb25vc3BhY2UiIGZvbnQtc2l6ZT0iMTYiIGZpbGw9IiNGRkQ3MDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPlNQSVJJVF8nU19XQUxLPC90ZXh0Pjwvc3ZnPg=='">
             <div class="art-title-front">GHOST LARRY</div>
             <div class="flip-tap-hint">TAP TO FLIP</div>
         </div>
@@ -1591,7 +1777,7 @@
     <div class="flip-card-inner">
         <div class="flip-card-front">
             <img src="donald_larry.jpeg" alt="Donald Larry" class="art-image"
-                 onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzUwIiBoZWlnaHQ9IjI2MCIgdmlld0JveD0iMCAwIDM1MCAyNjAiIHN0eWxlPSJpbWFnZS1yZW5kZXJpbmc6IHBpeGVsYXRlZCI+PHJlY3Qgd2lkdGg9IjM1MCIgaGVpZ2h0PSIyNjAiIGZpbGw9IiMxMTExMTEiLz48cmVjdCB4PSIxMCIgeT0iMTAiIHdpZHRoPSIzMzAiIGhlaWdodD0iMjQwIiBmaWxsPSIjMjIyMjIyIiBzdHJva2U9IiNGRkQ3MDAiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjE3NSIgeT0iMTAwIiBmb250LWZhbWlseT0iJ1ZUMzIzJywgbW9ub3NwYWNlIiBmb250LXNpemU9IjI0IiBmaWxsPSIjRkZENzAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5ET05BTEQ8L3RleHQ+PHRleHQgeD0iMTc1IiB5PSIxMzAiIGZvbnQtZmFtaWx5PSInVlQzMjMnLCBtb25vc3BhY2UiIGZvbnQtc2l6ZT0iMzAiIGZpbGw9IiNGRkQ3MDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkxBUlJZPC90ZXh0Pjx0ZXh0IHg9IjE3NSIgeT0iMTcwIiBmb250LWZhbWlseT0iJ1ZUMzIzJywgbW9ub3BhY2UiIGZvbnQtc2l6ZT0iMTYiIGZpbGw9IiNGRkQ3MDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkRJU1RJTkNVSUhFRDwvdGV4dD48L3N2Zz4='">
+                 onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzUwIiBoZWlnaHQ9IjI2MCIgdmlld0JveD0iMCAwIDM1MCAyNjAiIHN0eWxlPSJpbWFnZS1yZW5kZXJpbmc6IHBpeGVsYXRlZCI+PHJlY3Qgd2lkdGg9IjM1MCIgaGVpZ2h0PSIyNjAiIGZpbGw9IiMxMTExMTEiLz48cmVjdCB4PSIxMCIgeT0iMTAiIHdpZHRoPSIzMzAiIGhlaWdodD0iMjQwIiBmaWxsPSIjMjIyMjIyIiBzdHJva2U9IiNGRkQ3MDAiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjE3NSIgeT0iMTAwIiBmb250LWZhbWlseT0iJ1ZUMzIzJywgbW9ub3NwYWNlIiBmb250LXNpemU9IjI0IiBmaWxsPSIjRkZENzAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5ET05BTEQ8L3RleHQ+PHRleHQgeD0iMTc1IiB5PSIxMzAiIGZvbnQtZmFtaWx5PSInVlQzMjMnLCBtb25vc3BhY2UiIGZvbnQtc2l6ZT0iMzAiIGZpbGw9IiNGRkQ3MDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkxBUlJZPC90ZXh0Pjx0ZXh0IHg9IjE3NSIgeT0iMTcwIiBmb250LWZhbWlseT0iJ1ZUMzIzJywgbW9ub3NwYWNlIiBmb250LXNpemU9IjE2IiBmaWxsPSIjRkZENzAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5ESVNUaW5jdWlzaGVkPC90ZXh0Pjwvc3ZnPg=='">
             <div class="art-title-front">DONALD LARRY</div>
             <div class="flip-tap-hint">TAP TO FLIP</div>
         </div>
@@ -1614,7 +1800,7 @@
     <div class="flip-card-inner">
         <div class="flip-card-front">
             <img src="evo_larry.jpeg" alt="Evo Larry" class="art-image"
-                 onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzUwIiBoZWlnaHQ9IjI2MCIgdmlld0JveD0iMCAwIDM1MCAyNjAiIHN0eWxlPSJpbWFnZS1yZW5kZXJpbmc6IHBpeGVsYXRlZCI+PHJlY3Qgd2lkdGg9IjM1MCIgaGVpZ2h0PSIyNjAiIGZpbGw9IiMxMTExMTEiLz48cmVjdCB4PSIxMCIgeT0iMTAiIHdpZHRoPSIzMzAiIGhlaWdodD0iMjQwIiBmaWxsPSIjMjIyMjIyIiBzdHJva2U9IiNGRkQ3MDAiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjE3NSIgeT0iMTAwIiBmb250LWZhbWlseT0iJ1ZUMzIzJywgbW9ub3NwYWNlIiBmb250LXNpemU9IjI0IiBmaWxsPSIjRkZENzAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5FVk88L3RleHQ+PHRleHQgeD0iMTc1IiB5PSIxMzAiIGZvbnQtZmFtaWx5PSInVlQzMjMnLCBtb25vc3BhY2UiIGZvbnQtc2l6ZT0iMzAiIGZpbGw9IiNGRkQ3MDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkxBUlJZPC90ZXh0Pjx0ZXh0IHg9IjE3NSIgeT0iMTcwIiBmb250LWZhbWlseT0iJ1ZUMzIzJywgbW9ub3NwYWNlIiBmb250LXNpemU9IjE2IiBmaWxsPSIjRkZENzAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5GVVRVUkUgRk9STSBIQVJTVEVSPC90ZXh0Pjwvc3ZnPg=='">
+                 onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzUwIiBoZWlnaHQ9IjI2MCIgdmlld0JveD0iMCAwIDM1MCAyNjAiIHN0eWxlPSJpbWFnZS1yZW5kZXJpbmc6IHBpeGVsYXRlZCI+PHJlY3Qgd2lkdGg9IjM1MCIgaGVpZ2h0PSIyNjAiIGZpbGw9IiMxMTExMTEiLz48cmVjdCB4PSIxMCIgeT0iMTAiIHdpZHRoPSIzMzAiIGhlaWdodD0iMjQwIiBmaWxsPSIjMjIyMjIyIiBzdHJva2U9IiNGRkQ3MDAiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjE3NSIgeT0iMTAwIiBmb250LWZhbWlseT0iJ1ZUMzIzJywgbW9ub3NwYWNlIiBmb250LXNpemU9IjI0IiBmaWxsPSIjRkZENzAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5FVk88L3RleHQ+PHRleHQgeD0iMTc1IiB5PSIxMzAiIGZvbnQtZmFtaWx5PSInVlQzMjMnLCBtb25vc3BhY2UiIGZvbnQtc2l6ZT0iMzAiIGZpbGw9IiNGRkQ3MDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkxBUlJZPC90ZXh0Pjx0ZXh0IHg9IjE3NSIgeT0iMTcwIiBmb250LWZhbWlseT0iJ1ZUMzIzJywgbW9ub3NwYWNlIiBmb250LXNpemU9IjE2IiBmaWxsPSIjRkZENzAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5GVVRVUkVfRk9STTwvdGV4dD48L3N2Zz4='">
             <div class="art-title-front">EVO LARRY</div>
             <div class="flip-tap-hint">TAP TO FLIP</div>
         </div>
@@ -1793,10 +1979,395 @@
     // =============================================
     
     document.addEventListener('DOMContentLoaded', function() {
-        console.log('Floor Larry loaded - Card flip FIXED!');
+        console.log('Floor Larry loaded - Pixelated Larry added!');
         
         // =====================================
-        // 1. FIXED CARD FLIP FUNCTIONALITY
+        // 1. PIXELATED LARRY SKELETON SYSTEM
+        // =====================================
+        class PixelatedLarry {
+            constructor() {
+                this.element = document.getElementById('larry-skeleton');
+                this.sprite = document.getElementById('larry-sprite');
+                this.x = Math.random() * (window.innerWidth - 80);
+                this.y = Math.random() * (window.innerHeight - 120);
+                this.directionX = Math.random() > 0.5 ? 1 : -1;
+                this.directionY = Math.random() > 0.5 ? 1 : -1;
+                this.speed = 1 + Math.random() * 2;
+                this.state = 'idle';
+                this.interactionCooldown = 0;
+                this.thunderCooldown = 0;
+                this.trailCooldown = 0;
+                this.speechBubble = null;
+                this.speechTimeout = null;
+                this.currentTarget = null;
+                this.followingMouse = false;
+                
+                this.initialize();
+            }
+            
+            initialize() {
+                // Set initial position
+                this.element.style.left = this.x + 'px';
+                this.element.style.top = this.y + 'px';
+                this.setAnimation('idle');
+                
+                // Create speech bubble
+                this.speechBubble = document.createElement('div');
+                this.speechBubble.className = 'larry-speech';
+                document.body.appendChild(this.speechBubble);
+                
+                // Start animation loop
+                this.animate();
+                
+                // Set up interactions
+                this.setupInteractions();
+            }
+            
+            setAnimation(state) {
+                this.state = state;
+                this.sprite.className = '';
+                void this.sprite.offsetWidth; // Trigger reflow
+                this.sprite.classList.add(`larry-${state}`);
+            }
+            
+            move() {
+                if (this.state === 'interacting' || this.state === 'summoning') return;
+                
+                // Follow mouse if activated
+                if (this.followingMouse && this.currentTarget) {
+                    const dx = this.currentTarget.x - this.x;
+                    const dy = this.currentTarget.y - this.y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    
+                    if (distance > 20) {
+                        this.x += (dx / distance) * this.speed * 2;
+                        this.y += (dy / distance) * this.speed * 2;
+                        this.setAnimation('walking');
+                    } else {
+                        this.setAnimation('idle');
+                        this.interact();
+                    }
+                } else {
+                    // Random wandering
+                    this.x += this.directionX * this.speed;
+                    this.y += this.directionY * this.speed;
+                    this.setAnimation('walking');
+                    
+                    // Bounce off edges
+                    if (this.x <= 0 || this.x >= window.innerWidth - 80) {
+                        this.directionX *= -1;
+                        this.say('BOUNCE!');
+                    }
+                    if (this.y <= 0 || this.y >= window.innerHeight - 120) {
+                        this.directionY *= -1;
+                        this.say('WHEE!');
+                    }
+                    
+                    // Random direction change
+                    if (Math.random() < 0.01) {
+                        this.directionX = Math.random() > 0.5 ? 1 : -1;
+                        this.directionY = Math.random() > 0.5 ? 1 : -1;
+                        this.speed = 1 + Math.random() * 2;
+                    }
+                }
+                
+                // Update position
+                this.element.style.left = this.x + 'px';
+                this.element.style.top = this.y + 'px';
+                
+                // Leave trail
+                if (this.trailCooldown <= 0 && Math.random() < 0.3) {
+                    this.leaveTrail();
+                    this.trailCooldown = 10;
+                }
+                
+                // Random thunder
+                if (this.thunderCooldown <= 0 && Math.random() < 0.002) {
+                    this.summonThunder();
+                    this.thunderCooldown = 300;
+                }
+                
+                // Random interaction
+                if (this.interactionCooldown <= 0 && Math.random() < 0.005) {
+                    this.randomInteraction();
+                    this.interactionCooldown = 200;
+                }
+            }
+            
+            leaveTrail() {
+                const trail = document.createElement('div');
+                trail.className = 'larry-trail';
+                trail.style.left = (this.x + 35) + 'px';
+                trail.style.top = (this.y + 110) + 'px';
+                document.body.appendChild(trail);
+                
+                setTimeout(() => {
+                    if (trail.parentNode) {
+                        trail.parentNode.removeChild(trail);
+                    }
+                }, 1000);
+            }
+            
+            summonThunder() {
+                this.setAnimation('summoning');
+                
+                // Create multiple thunder bolts
+                const boltCount = 3 + Math.floor(Math.random() * 3);
+                
+                for (let i = 0; i < boltCount; i++) {
+                    setTimeout(() => {
+                        // Random position near Larry
+                        const thunderX = this.x + Math.random() * 100 - 50;
+                        const thunderY = this.y + Math.random() * 100 - 50;
+                        
+                        // Create thunder bolt
+                        const thunder = document.createElement('div');
+                        thunder.className = 'thunder-bolt';
+                        thunder.style.left = thunderX + 'px';
+                        thunder.style.top = thunderY + 'px';
+                        thunder.style.transform = `rotate(${Math.random() * 30 - 15}deg)`;
+                        document.body.appendChild(thunder);
+                        
+                        // Create impact effect
+                        const impact = document.createElement('div');
+                        impact.className = 'thunder-impact';
+                        impact.style.left = (thunderX - 30) + 'px';
+                        impact.style.top = (thunderY + 50) + 'px';
+                        document.body.appendChild(impact);
+                        
+                        // Activate animations
+                        setTimeout(() => {
+                            thunder.classList.add('thunder-active');
+                            impact.classList.add('impact-active');
+                        }, 10);
+                        
+                        // Say something
+                        const thunderQuotes = [
+                            'ZAP!',
+                            'THUNDER!',
+                            'POWER!',
+                            'ENERGY!',
+                            'LIGHTNING!'
+                        ];
+                        this.say(thunderQuotes[Math.floor(Math.random() * thunderQuotes.length)]);
+                        
+                        // Remove elements after animation
+                        setTimeout(() => {
+                            if (thunder.parentNode) thunder.parentNode.removeChild(thunder);
+                            if (impact.parentNode) impact.parentNode.removeChild(impact);
+                        }, 1000);
+                    }, i * 200);
+                }
+                
+                // Return to idle
+                setTimeout(() => {
+                    this.setAnimation('idle');
+                }, boltCount * 200 + 500);
+            }
+            
+            randomInteraction() {
+                const interactions = [
+                    () => {
+                        this.say('HELLO FRIEND!');
+                        this.jump();
+                    },
+                    () => {
+                        this.say('COLLECT NFTs!');
+                        this.dance();
+                    },
+                    () => {
+                        this.say('BASEMENT FLOOR!');
+                        this.spin();
+                    },
+                    () => {
+                        this.say('JOIN LARRYVERSE!');
+                        this.pointUp();
+                    },
+                    () => {
+                        this.say('FOLLOW @LARRYNFTS!');
+                        this.wave();
+                    }
+                ];
+                
+                const randomInteraction = interactions[Math.floor(Math.random() * interactions.length)];
+                randomInteraction();
+            }
+            
+            jump() {
+                this.setAnimation('interacting');
+                const originalY = this.y;
+                
+                let jumpHeight = 20;
+                let jumpCount = 0;
+                const jump = () => {
+                    if (jumpCount < 3) {
+                        this.y = originalY - jumpHeight;
+                        jumpHeight -= 5;
+                        jumpCount++;
+                        
+                        this.element.style.top = this.y + 'px';
+                        
+                        setTimeout(() => {
+                            this.y = originalY;
+                            this.element.style.top = this.y + 'px';
+                            
+                            if (jumpCount < 3) {
+                                setTimeout(jump, 200);
+                            } else {
+                                setTimeout(() => this.setAnimation('idle'), 300);
+                            }
+                        }, 150);
+                    }
+                };
+                
+                jump();
+            }
+            
+            dance() {
+                this.setAnimation('interacting');
+                let danceCount = 0;
+                const originalX = this.x;
+                
+                const dance = () => {
+                    if (danceCount < 6) {
+                        this.x = originalX + (danceCount % 2 === 0 ? 10 : -10);
+                        this.element.style.left = this.x + 'px';
+                        danceCount++;
+                        
+                        setTimeout(dance, 200);
+                    } else {
+                        this.x = originalX;
+                        this.element.style.left = this.x + 'px';
+                        setTimeout(() => this.setAnimation('idle'), 300);
+                    }
+                };
+                
+                dance();
+            }
+            
+            spin() {
+                this.setAnimation('interacting');
+                let spinCount = 0;
+                const spin = () => {
+                    if (spinCount < 8) {
+                        this.element.style.transform = `rotate(${spinCount * 45}deg)`;
+                        spinCount++;
+                        setTimeout(spin, 100);
+                    } else {
+                        this.element.style.transform = 'rotate(0deg)';
+                        setTimeout(() => this.setAnimation('idle'), 300);
+                    }
+                };
+                
+                spin();
+            }
+            
+            pointUp() {
+                this.setAnimation('interacting');
+                setTimeout(() => this.setAnimation('idle'), 1000);
+            }
+            
+            wave() {
+                this.setAnimation('interacting');
+                setTimeout(() => this.setAnimation('idle'), 800);
+            }
+            
+            say(message) {
+                if (this.speechTimeout) {
+                    clearTimeout(this.speechTimeout);
+                    this.speechBubble.classList.remove('show');
+                }
+                
+                this.speechBubble.textContent = message;
+                this.speechBubble.style.left = (this.x + 40) + 'px';
+                this.speechBubble.style.top = (this.y - 40) + 'px';
+                
+                this.speechBubble.classList.add('show');
+                
+                this.speechTimeout = setTimeout(() => {
+                    this.speechBubble.classList.remove('show');
+                }, 2000);
+            }
+            
+            interact() {
+                if (this.state === 'interacting') return;
+                
+                this.setAnimation('interacting');
+                const interactionQuotes = [
+                    'GOTCHA!',
+                    'HEY THERE!',
+                    'LARRYVERSE!',
+                    'COLLECT ME!',
+                    'NFT POWER!',
+                    'BASEMENT FLOOR!'
+                ];
+                
+                this.say(interactionQuotes[Math.floor(Math.random() * interactionQuotes.length)]);
+                
+                setTimeout(() => {
+                    this.setAnimation('idle');
+                    this.followingMouse = false;
+                    this.currentTarget = null;
+                }, 1000);
+            }
+            
+            setupInteractions() {
+                // Click to interact
+                this.element.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    this.interact();
+                    this.followingMouse = false;
+                });
+                
+                // Double click to follow mouse
+                this.element.addEventListener('dblclick', (e) => {
+                    e.stopPropagation();
+                    this.followingMouse = true;
+                    this.say('FOLLOWING YOU!');
+                });
+                
+                // Mouse hover
+                this.element.addEventListener('mouseenter', () => {
+                    if (Math.random() < 0.3) {
+                        this.say('HI!');
+                    }
+                });
+                
+                // Global click to summon Larry
+                document.addEventListener('click', (e) => {
+                    if (e.target === this.element || e.target.closest('#larry-skeleton')) return;
+                    
+                    if (Math.random() < 0.2) {
+                        this.currentTarget = { x: e.clientX - 40, y: e.clientY - 60 };
+                        this.followingMouse = true;
+                        this.say('COMING!');
+                    }
+                });
+                
+                // Touch support for mobile
+                this.element.addEventListener('touchstart', (e) => {
+                    e.preventDefault();
+                    this.interact();
+                });
+            }
+            
+            animate() {
+                this.move();
+                
+                // Update cooldowns
+                if (this.interactionCooldown > 0) this.interactionCooldown--;
+                if (this.thunderCooldown > 0) this.thunderCooldown--;
+                if (this.trailCooldown > 0) this.trailCooldown--;
+                
+                requestAnimationFrame(() => this.animate());
+            }
+        }
+        
+        // Initialize Larry
+        const larry = new PixelatedLarry();
+        
+        // =====================================
+        // 2. FIXED CARD FLIP FUNCTIONALITY
         // =====================================
         const flipCards = document.querySelectorAll('.flip-card');
         
@@ -1827,7 +2398,7 @@
         });
         
         // =====================================
-        // 2. ORIGINAL FOLLOW/FORM FUNCTIONALITY
+        // 3. ORIGINAL FOLLOW/FORM FUNCTIONALITY
         // =====================================
         const followBtn = document.getElementById('followBtn');
         const verifyCheckbox = document.getElementById('verifyFollow');
@@ -1865,6 +2436,10 @@
                 verifyCheckbox.disabled = false;
                 followBtn.classList.add('completed');
                 followBtn.innerHTML = '<span>✅</span> FOLLOWING @LARRYNFTS';
+                
+                // Larry reaction
+                larry.say('GOOD FOLLOW!');
+                larry.jump();
             }, 1000);
         });
         
@@ -1878,6 +2453,10 @@
                 submitBtn.disabled = false;
                 step3.classList.add('completed');
                 step3Number.classList.add('step-completed');
+                
+                // Larry reaction
+                larry.say('FORM UNLOCKED!');
+                larry.dance();
             } else {
                 walletFormSection.classList.remove('active');
                 submitBtn.disabled = true;
@@ -1924,6 +2503,10 @@
                         updateSubmissionCount();
                         step3Number.textContent = '✓';
                         animateSuccess();
+                        
+                        // Larry celebration
+                        larry.say('WALLET SUBMITTED!');
+                        larry.summonThunder();
                     } else {
                         showResponse('ERROR: SUBMISSION FAILED', 'error');
                     }
@@ -1994,6 +2577,11 @@
                 this.style.borderColor = 'rgba(255,255,255,0.2)';
             } else if (value.startsWith('0x') && value.length === 42) {
                 this.style.borderColor = 'rgba(0,255,0,0.4)';
+                
+                // Larry notices valid wallet
+                if (Math.random() < 0.3) {
+                    larry.say('VALID WALLET!');
+                }
             } else {
                 this.style.borderColor = 'rgba(255,68,68,0.6)';
             }
@@ -2009,7 +2597,9 @@
         // Console greeting
         console.log('%c╔══════════════════════════════════════════════════════════════════╗', 'color: #ffffff;');
         console.log('%c║                    FLOOR LARRY - RETRO NFT COLLECTION            ║', 'color: #ffffff;');
-        console.log('%c║                    CARD FLIP FIXED! DESCRIPTIONS VISIBLE         ║', 'color: #00ff00;');
+        console.log('%c║                    PIXELATED LARRY ACTIVATED!                    ║', 'color: #00ff00;');
+        console.log('%c║                    DOUBLE-CLICK LARRY TO FOLLOW                  ║', 'color: #00ffff;');
+        console.log('%c║                    CLICK LARRY TO INTERACT                       ║', 'color: #00ffff;');
         console.log('%c╚══════════════════════════════════════════════════════════════════╝', 'color: #ffffff;');
     });
 </script>
