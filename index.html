@@ -1257,7 +1257,7 @@
     }
     
     /* ============================================= */
-    /* LARRY MASCOT & LIGHTNING EFFECTS */
+    /* ENHANCED LARRY MASCOT & LIGHTNING EFFECTS */
     /* ============================================= */
     
     .larry-mascot-container {
@@ -1266,9 +1266,10 @@
         width: 100px;
         height: 100px;
         pointer-events: auto; /* Allow clicking on Larry */
-        transition: transform 3s ease-in-out; /* Smooth floating */
+        transition: transform 0.3s ease-in-out; /* Smooth movement */
         cursor: pointer;
         filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5));
+        transform-origin: center;
     }
 
     /* Pixelated Skeleton SVG styling */
@@ -1277,11 +1278,13 @@
         height: 100%;
         image-rendering: pixelated;
         animation: float 4s ease-in-out infinite;
+        transition: transform 0.3s;
     }
 
     .larry-mascot-container:hover .larry-sprite {
-        animation: shake 0.5s infinite;
+        animation: dance 0.5s infinite;
         filter: drop-shadow(0 0 10px #00ff00);
+        transform: scale(1.1);
     }
 
     /* The Speech Bubble */
@@ -1293,19 +1296,23 @@
         background: #000;
         border: 2px solid #fff;
         color: #fff;
-        padding: 10px;
+        padding: 12px 16px;
         font-family: 'VT323', monospace;
-        font-size: 18px;
-        border-radius: 8px;
+        font-size: 16px;
+        border-radius: 10px;
         white-space: nowrap;
         opacity: 0;
-        transition: opacity 0.3s;
+        transition: opacity 0.3s, transform 0.3s;
         pointer-events: none;
         box-shadow: 4px 4px 0px rgba(255, 255, 255, 0.2);
+        min-width: 160px;
+        text-align: center;
+        z-index: 10000;
     }
 
     .larry-speech.visible {
         opacity: 1;
+        transform: translateX(-50%) translateY(-5px);
     }
 
     .larry-speech::after {
@@ -1334,31 +1341,41 @@
     }
 
     .lightning-active {
-        animation: lightningFlash 0.2s linear;
+        animation: lightningFlash 0.5s linear;
     }
 
     @keyframes float {
         0%, 100% { transform: translateY(0); }
-        50% { transform: translateY(-15px); }
+        50% { transform: translateY(-10px); }
     }
 
-    @keyframes shake {
-        0% { transform: translate(1px, 1px) rotate(0deg); }
-        10% { transform: translate(-1px, -2px) rotate(-1deg); }
-        20% { transform: translate(-3px, 0px) rotate(1deg); }
-        30% { transform: translate(3px, 2px) rotate(0deg); }
-        40% { transform: translate(1px, -1px) rotate(1deg); }
-        50% { transform: translate(-1px, 2px) rotate(-1deg); }
-        60% { transform: translate(-3px, 1px) rotate(0deg); }
-        100% { transform: translate(1px, -2px) rotate(-1deg); }
+    @keyframes dance {
+        0% { transform: rotate(0deg) scale(1.1); }
+        25% { transform: rotate(5deg) scale(1.1); }
+        50% { transform: rotate(0deg) scale(1.1); }
+        75% { transform: rotate(-5deg) scale(1.1); }
+        100% { transform: rotate(0deg) scale(1.1); }
     }
 
     @keyframes lightningFlash {
         0% { opacity: 0; }
-        10% { opacity: 0.8; }
-        20% { opacity: 0; }
-        30% { opacity: 1; }
+        10% { opacity: 0.9; }
+        20% { opacity: 0.2; }
+        30% { opacity: 0.8; }
+        40% { opacity: 0.1; }
+        50% { opacity: 0.7; }
+        60% { opacity: 0.1; }
+        70% { opacity: 0.6; }
+        80% { opacity: 0; }
+        90% { opacity: 0.4; }
         100% { opacity: 0; }
+    }
+    
+    /* Larry bounce animation */
+    @keyframes larryBounce {
+        0% { transform: translateY(0); }
+        50% { transform: translateY(-20px); }
+        100% { transform: translateY(0); }
     }
     
     /* RESPONSIVE */
@@ -1376,6 +1393,11 @@
         
         .stat-item {
             min-width: 250px;
+        }
+        
+        .larry-mascot-container {
+            width: 80px;
+            height: 80px;
         }
     }
     
@@ -1435,6 +1457,17 @@
             font-size: 32px;
             letter-spacing: 4px;
         }
+        
+        .larry-mascot-container {
+            width: 70px;
+            height: 70px;
+        }
+        
+        .larry-speech {
+            font-size: 14px;
+            min-width: 140px;
+            padding: 10px 14px;
+        }
     }
     
     @media (max-width: 480px) {
@@ -1479,6 +1512,17 @@
         
         .art-image {
             height: 180px;
+        }
+        
+        .larry-mascot-container {
+            width: 60px;
+            height: 60px;
+        }
+        
+        .larry-speech {
+            font-size: 12px;
+            min-width: 120px;
+            padding: 8px 12px;
         }
     }
 </style>
@@ -1539,7 +1583,7 @@
             <div class="flip-card-inner">
                 <div class="flip-card-front">
                     <img src="spider_larry.jpeg" alt="Spider Larry" class="art-image"
-                         onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzUwIiBoZWlnaHQ9IjI2MCIgdmlld0JveD0iMCAwIDM1MCAyNjAiIHN0eWxlPSJpbWFnZS1yZW5kZXJpbmc6IHBpeGVsYXRlZCI+PHJlY3Qgd2lkdGg9IjM1MCIgaGVpZ2h0PSIyNjAiIGZpbGw9IiMxMTExMTEiLz48cmVjdCB4PSIxMCIgeT0iMTAiIHdpZHRoPSIzMzAiIGhlaWdodD0iMjQwIiBmaWxsPSIjMjIyMjIyIiBzdHJva2U9IiNGRkQ3MDAiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjE3NSIgeT0iMTAwIiBmb250LWZhbWlseT0iJ1ZUMzIzJywgbW9ub3NwYWNlIiBmb250LXNpemU9IjI0IiBmaWxsPSIjRkZENzAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5TUElERVI8L3RleHQ+PHRleHQgeD0iMTc1IiB5PSIxMzAiIGZvbnQtZmFtaWx5PSInVlQzMjMnLCBtb25vc3BhY2UiIGZvbnQtc2l6ZT0iMzAiIGZpbGw9IiNGRkQ3MDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkxBUlJZPC90ZXh0Pjx0ZXh0IHg9IjE3NSIgeT0iMTcwIiBmb250LWZhbWlseT0iJ1ZUMzMjMiwgbW9ub3NwYWNlIiBmb250LXNpemU9IjE2IiBmaWxsPSIjRkZENzAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5XRUItU0xJTkdFUjwvdGV4dD48L3N2Zz4='">
+                         onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzUwIiBoZWlnaHQ9IjI2MCIgdmlld0JveD0iMCAwIDM1MCAyNjAiIHN0eWxlPSJpbWFnZS1yZW5kZXJpbmc6IHBpeGVsYXRlZCI+PHJlY3Qgd2lkdGg9IjM1MCIgaGVpZ2h0PSIyNjAiIGZpbGw9IiMxMTExMTEiLz48cmVjdCB4PSIxMCIgeT0iMTAiIHdpZHRoPSIzMzAiIGhlaWdodD0iMjQwIiBmaWxsPSIjMjIyMjIyIiBzdHJva2U9IiNGRkQ3MDAiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjE3NSIgeT0iMTAwIiBmb250LWZhbWlseT0iJ1ZUMzIzJywgbW9ub3NwYWNlIiBmb250LXNpemU9IjI0IiBmaWxsPSIjRkZENzAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5TUElERVI8L3RleHQ+PHRleHQgeD0iMTc1IiB5PSIxMzAiIGZvbnQtZmFtaWx5PSInVlQzMjMnLCBtb25vc3BhY2UiIGZvbnQtc2l6ZT0iMzAiIGZpbGw9IiNGRkQ3MDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkxBUlJZPC90ZXh0Pjx0ZXh0IHg9IjE3NSIgeT0iMTcwIiBmb250LWZhbWlseT0iJ1ZUMzMyMiwgbW9ub3BhY2UiIGZvbnQtc2l6ZT0iMTYiIGZpbGw9IiNGRkQ3MDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPldFQi1TTElOR0VSPC90ZXh0Pjwvc3ZnPg=='">
                     <div class="art-title-front">SPIDER LARRY</div>
                     <div class="flip-tap-hint">TAP TO FLIP</div>
                 </div>
@@ -1911,7 +1955,7 @@
 
 <div class="lightning-overlay" id="lightningFlash"></div>
 
-<div class="larry-mascot-container" id="larryMascot" style="top: 50%; left: 50%;">
+<div class="larry-mascot-container" id="larryMascot">
     <div class="larry-speech" id="larrySpeech">WELCOME TO THE FLOOR...</div>
     <svg class="larry-sprite" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path fill-rule="evenodd" clip-rule="evenodd" d="M8 4H16V6H18V12H16V14H8V12H6V6H8V4ZM10 8H8V10H10V8ZM16 8H14V10H16V8ZM10 16H14V18H10V16ZM11 20H13V24H11V20ZM7 14H5V18H7V14ZM19 14H17V18H19V14Z" fill="white"/>
@@ -2143,107 +2187,246 @@
         console.log('%c╚══════════════════════════════════════════════════════════════════╝', 'color: #ffffff;');
 
         // =====================================
-        // 3. LARRY THE SKELETON LOGIC
+        // 3. ENHANCED LARRY THE SKELETON LOGIC
         // =====================================
         
         const larryMascot = document.getElementById('larryMascot');
         const larrySpeech = document.getElementById('larrySpeech');
         const lightningFlash = document.getElementById('lightningFlash');
         
+        // Enhanced phrases - more fun and friendly
         const phrases = [
-            "WELCOME TO THE BASEMENT...",
-            "I AM LARRY...",
-            "DONT TOUCH THE SERVERS...",
-            "LOOKING FOR NFTS?",
-            "BOO!",
-            "THE FLOOR IS WATCHING...",
-            "NICE WALLET...",
-            "CLICK ME FOR LIGHTNING...",
-            "*RATTLES BONES*",
-            "HAVE YOU FOLLOWED ON X?",
-            "PURE PIXELS..."
+            "WELCOME TO THE BASEMENT FLOOR!",
+            "I AM LARRY, KEEPER OF THE PIXELS!",
+            "BOO! JUST KIDDING... OR AM I? 👻",
+            "FEELING ELECTRIC? ME TOO! ⚡",
+            "MY BONES ARE ITCHING... THUNDER COMING!",
+            "DID SOMEONE ORDER A SKELETON DANCE? 💃",
+            "LOOK AT ME, I'M FLOATING! WELL, SORT OF...",
+            "HEY YOU! YES YOU! YOU'RE AWESOME! 😎",
+            "WANNA SEE A MAGIC TRICK? *POOF*",
+            "MY SERVERS ARE TINGLING...",
+            "I SHOULD'VE BROUGHT AN UMBRELLA ☔",
+            "RATTLE RATTLE GO MY BONES!",
+            "I SEE YOU SCROLLING... 👀",
+            "DON'T WORRY, I'M FRIENDLY! MOSTLY...",
+            "THIS IS MY HAPPY DANCE! *SHAKES*",
+            "THE FLOOR IS LAVA! JUST KIDDING... OR AM I? 🌋",
+            "I'M THE GHOST IN THE MACHINE! WELL, SKELETON ACTUALLY...",
+            "CLICK ME FOR A SURPRISE! OR DON'T... I'M NOT THE BOSS OF YOU",
+            "I'VE GOT A BONE TO PICK WITH YOU... GET IT? 😂",
+            "WHEEEEE! FLOATING IS FUN!",
+            "MY EXISTENCE IS PURELY DIGITAL AND I'M LOVING IT!",
+            "DID YOU KNOW I WAS ONCE A PIXEL ART MAJOR?",
+            "SHHH... I'M TRYING TO NAP HERE... Zzz"
         ];
 
-        let isMoving = false;
+        // Track movement state
+        let currentDirection = 1; // 1 for right, -1 for left
+        let movementSpeed = 2; // pixels per movement step
+        let isInteracting = false;
 
-        // Initialize Larry
-        setTimeout(() => {
-            moveLarry();
-            speakLarry("I HAVE AWAKENED...");
-        }, 1000);
-
-        // Move Larry to random position
-        function moveLarry() {
-            if (isMoving) return;
+        // Initialize Larry with enhanced behavior
+        function initLarry() {
+            console.log("Larry the Skeleton has awakened!");
             
+            // Position Larry initially
+            larryMascot.style.left = '50%';
+            larryMascot.style.top = '50%';
+            larryMascot.style.transform = 'translate(-50%, -50%)';
+            
+            // Start all behaviors after a short delay
+            setTimeout(() => {
+                startAutomaticMovement();
+                startRandomSpeech();
+                startRandomLightning();
+                
+                // Initial greeting
+                speakLarry("HELLO FRIEND! WELCOME TO MY FLOOR! 👋");
+                // Small bounce effect
+                bounceLarry();
+            }, 1500);
+            
+            // Add window resize handler
+            window.addEventListener('resize', function() {
+                keepLarryInBounds();
+            });
+        }
+
+        // Keep Larry within screen bounds
+        function keepLarryInBounds() {
             const maxX = window.innerWidth - 120;
             const maxY = window.innerHeight - 120;
             
-            const randomX = Math.max(20, Math.random() * maxX);
-            const randomY = Math.max(20, Math.random() * maxY);
+            let currentX = parseFloat(larryMascot.style.left) || window.innerWidth / 2;
+            let currentY = parseFloat(larryMascot.style.top) || window.innerHeight / 2;
             
-            // Determine facing direction based on movement
-            const currentX = parseFloat(larryMascot.style.left) || 0;
-            if (randomX < currentX) {
-                larryMascot.style.transform = "scaleX(-1)"; // Face left
-                larrySpeech.style.transform = "translateX(50%) scaleX(-1)"; // Keep text readable
-            } else {
-                larryMascot.style.transform = "scaleX(1)"; // Face right
-                larrySpeech.style.transform = "translateX(-50%)";
-            }
+            if (currentX < 20) currentX = 20;
+            if (currentX > maxX) currentX = maxX;
+            if (currentY < 20) currentY = 20;
+            if (currentY > maxY) currentY = maxY;
             
-            larryMascot.style.left = randomX + 'px';
-            larryMascot.style.top = randomY + 'px';
-            
-            // Random chance to summon lightning upon arrival
-            if (Math.random() > 0.8) {
-                setTimeout(summonLightning, 3000);
-            }
+            larryMascot.style.left = currentX + 'px';
+            larryMascot.style.top = currentY + 'px';
         }
 
-        // Make Larry Speak
+        // Automatic movement - Larry drifts around
+        function startAutomaticMovement() {
+            setInterval(() => {
+                if (!isInteracting) {
+                    driftLarry();
+                }
+            }, 50); // Move every 50ms for smooth drifting
+            
+            // Occasionally change direction
+            setInterval(() => {
+                if (!isInteracting) {
+                    currentDirection *= -1; // Reverse direction
+                    movementSpeed = 1 + Math.random() * 3; // Random speed between 1-4
+                    if (Math.random() > 0.7) {
+                        speakLarry(["CHANGING COURSE!", "WHOOPS, WRONG WAY!", "TIME FOR A U-TURN!"][Math.floor(Math.random() * 3)]);
+                    }
+                }
+            }, 8000 + Math.random() * 12000); // Every 8-20 seconds
+        }
+
+        // Drift Larry in current direction
+        function driftLarry() {
+            const maxX = window.innerWidth - 120;
+            const maxY = window.innerHeight - 120;
+            
+            let currentX = parseFloat(larryMascot.style.left) || window.innerWidth / 2;
+            let currentY = parseFloat(larryMascot.style.top) || window.innerHeight / 2;
+            
+            // Add some randomness to movement
+            const randomX = currentX + (movementSpeed * currentDirection) + (Math.random() * 4 - 2);
+            const randomY = currentY + (Math.random() * 4 - 2);
+            
+            // Bounce off edges with fun messages
+            if (randomX < 20) {
+                currentDirection = 1;
+                speakLarry(["OUCH! WALL!", "BONK!", "THAT'S MY NOSE!"][Math.floor(Math.random() * 3)]);
+                bounceLarry();
+                return;
+            }
+            
+            if (randomX > maxX) {
+                currentDirection = -1;
+                speakLarry(["OUCH! WALL!", "BONK!", "THAT'S MY NOSE!"][Math.floor(Math.random() * 3)]);
+                bounceLarry();
+                return;
+            }
+            
+            if (randomY < 20) {
+                speakLarry(["CEILING!", "FLOOR!", "WHO PUT THAT THERE?"][Math.floor(Math.random() * 3)]);
+                bounceLarry();
+                return;
+            }
+            
+            if (randomY > maxY) {
+                speakLarry(["CEILING!", "FLOOR!", "WHO PUT THAT THERE?"][Math.floor(Math.random() * 3)]);
+                bounceLarry();
+                return;
+            }
+            
+            // Update position
+            larryMascot.style.left = Math.max(20, Math.min(maxX, randomX)) + 'px';
+            larryMascot.style.top = Math.max(20, Math.min(maxY, randomY)) + 'px';
+            
+            // Update facing direction
+            larryMascot.style.transform = `scaleX(${currentDirection})`;
+            larrySpeech.style.transform = `translateX(${currentDirection > 0 ? '-50%' : '50%'}) scaleX(${currentDirection > 0 ? 1 : -1})`;
+        }
+
+        // Bounce effect - little jump
+        function bounceLarry() {
+            const currentY = parseFloat(larryMascot.style.top) || 0;
+            larryMascot.style.top = (currentY - 30) + 'px';
+            setTimeout(() => {
+                larryMascot.style.top = currentY + 'px';
+            }, 300);
+        }
+
+        // Random speech generator
+        function startRandomSpeech() {
+            setInterval(() => {
+                if (!isInteracting && Math.random() > 0.3) { // 70% chance to speak when not interacting
+                    speakLarry();
+                }
+            }, 5000 + Math.random() * 10000); // Every 5-15 seconds
+        }
+
+        // Make Larry Speak with enhanced effects
         function speakLarry(text = null) {
             const phrase = text || phrases[Math.floor(Math.random() * phrases.length)];
             larrySpeech.textContent = phrase;
             larrySpeech.classList.add('visible');
+            
+            // Add emoji bounce
+            larrySpeech.style.transform = `translateX(${currentDirection > 0 ? '-50%' : '50%'}) scaleX(${currentDirection > 0 ? 1 : -1}) translateY(-10px)`;
             
             setTimeout(() => {
                 larrySpeech.classList.remove('visible');
             }, 3000);
         }
 
+        // Random lightning generator
+        function startRandomLightning() {
+            setInterval(() => {
+                if (!isInteracting && Math.random() > 0.8) { // 20% chance for random lightning
+                    summonLightning();
+                    speakLarry(["THUNDER STRUCK!", "DID YOU SEE THAT?", "⚡ LIGHTNING! ⚡"][Math.floor(Math.random() * 3)]);
+                }
+            }, 10000 + Math.random() * 20000); // Every 10-30 seconds
+        }
+
         // Summon Lightning Effect
         function summonLightning() {
             lightningFlash.classList.add('lightning-active');
-            speakLarry("THUNDER STRUCK!");
             
-            // Shake effect logic is handled in CSS hover, but we can simulate a jump
-            const currentTop = parseFloat(larryMascot.style.top);
-            larryMascot.style.top = (currentTop - 20) + 'px';
+            // Make Larry jump
+            const currentY = parseFloat(larryMascot.style.top);
+            larryMascot.style.top = (currentY - 40) + 'px';
             setTimeout(() => {
-                larryMascot.style.top = currentTop + 'px';
-            }, 200);
+                larryMascot.style.top = currentY + 'px';
+            }, 300);
 
             setTimeout(() => {
                 lightningFlash.classList.remove('lightning-active');
-            }, 300); // Match CSS animation duration
+            }, 500); // Match CSS animation duration
         }
 
         // Interactive: Click Larry
-        larryMascot.addEventListener('click', function() {
+        larryMascot.addEventListener('click', function(e) {
+            e.stopPropagation();
+            isInteracting = true;
+            
             summonLightning();
             speakLarry("YOU RATTLED ME!");
-            moveLarry();
+            
+            // Big bounce
+            const currentY = parseFloat(larryMascot.style.top);
+            larryMascot.style.top = (currentY - 50) + 'px';
+            setTimeout(() => {
+                larryMascot.style.top = currentY + 'px';
+                // Change direction
+                currentDirection *= -1;
+                setTimeout(() => {
+                    isInteracting = false;
+                }, 1000);
+            }, 400);
         });
 
-        // Game Loop
-        setInterval(() => {
-            if(Math.random() > 0.6) moveLarry();
-        }, 5000); // Try to move every 5 seconds
+        // Interactive: Mouse over Larry
+        larryMascot.addEventListener('mouseenter', function() {
+            if (!isInteracting) {
+                speakLarry("HELLO THERE! 👋");
+                bounceLarry();
+            }
+        });
 
-        setInterval(() => {
-            if(Math.random() > 0.7) speakLarry();
-        }, 7000); // Try to speak every 7 seconds
+        // Initialize Larry
+        initLarry();
     });
 </script>
 
