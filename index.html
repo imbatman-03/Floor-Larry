@@ -58,7 +58,7 @@
     }
     
     /* ============================================= */
-    /* PIXELATED LARRY SKELETON - NEW */
+    /* PIXELATED LARRY SKELETON - FIXED */
     /* ============================================= */
     
     #larry-skeleton {
@@ -67,59 +67,183 @@
         height: 120px;
         z-index: 9999;
         pointer-events: none;
-        transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         filter: drop-shadow(0 0 8px rgba(255,255,255,0.3));
         image-rendering: pixelated;
         user-select: none;
     }
     
-    /* LARRY ANIMATION STATES */
-    .larry-walking {
-        animation: larry-walk 0.8s steps(4) infinite;
+    /* LARRY SPRITE SHEET - SIMPLIFIED FOR VISIBILITY */
+    .larry-sprite {
+        width: 100%;
+        height: 100%;
+        background-color: #ffffff; /* White skeleton */
+        position: relative;
+        overflow: hidden;
+        border-radius: 4px;
+        box-shadow: 0 0 10px rgba(255,255,255,0.5);
     }
     
-    .larry-idle {
-        animation: larry-idle 2s steps(2) infinite;
-    }
-    
-    .larry-summoning {
-        animation: larry-summon 1s steps(3) infinite;
-    }
-    
-    .larry-interacting {
-        animation: larry-interact 0.5s steps(2) infinite;
-    }
-    
-    /* LARRY SPRITE SHEETS */
-    #larry-sprite {
+    /* Larry body parts - created with pure CSS */
+    .larry-head {
         position: absolute;
-        top: 0;
-        left: 0;
-        width: 320px;
-        height: 120px;
-        background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIwIiBoZWlnaHQ9IjEyMCIgdmlld0JveD0iMCAwIDMyMCAxMjAiIHN0eWxlPSJpbWFnZS1yZW5kZXJpbmc6IHBpeGVsYXRlZCI+PHJlY3Qgd2lkdGg9IjMyMCIgaGVpZ2h0PSIxMjAiIGZpbGw9InRyYW5zcGFyZW50Ii8+PCEtLSBTcHJpdGUgZnJhbWVzIGZvciBMYXJyeSAtLT48cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iODAiIGhlaWdodD0iMTIwIiBmaWxsPSIjZmZmZmZmIj48cmVjdCB4PSIxMCIgeT0iMjAiIHdpZHRoPSI2MCIgaGVpZ2h0PSI4MCIgZmlsbD0iIzIyMjIyMiIvPjxyZWN0IHg9IjIwIiB5PSIzMCIgd2lkdGg9IjQwIiBoZWlnaHQ9IjEwIiBmaWxsPSIjRkZGRkZGIi8+PHJlY3QgeD0iMjUiIHk9IjUwIiB3aWR0aD0iMzAiIGhlaWdodD0iMjAiIGZpbGw9IiNGRkZGRkYiLz48cmVjdCB4PSIzMCIgeT0iODAiIHdpZHRoPSI1IiBoZWlnaHQ9IjIwIiBmaWxsPSIjRkZGRkZGIi8+PHJlY3QgeD0iNDUiIHk9IjgwIiB3aWR0aD0iNSIgaGVpZ2h0PSIyMCIgZmlsbD0iI0ZGRkZGRiIvPjwvcmVjdD48cmVjdCB4PSI4MCIgeT0iMCIgd2lkdGg9IjgwIiBoZWlnaHQ9IjEyMCIgZmlsbD0iI0ZGRkZGRiI+PHJlY3QgeD0iOTAiIHk9IjIwIiB3aWR0aD0iNjAiIGhlaWdodD0iODAiIGZpbGw9IiMyMjIyMjIiLz48cmVjdCB4PSIxMDAiIHk9IjMwIiB3aWR0aD0iNDAiIGhlaWdodD0iMTAiIGZpbGw9IiNGRkZGRkYiLz48cmVjdCB4PSIxMDUiIHk9IjUwIiB3aWR0aD0iMzAiIGhlaWdodD0iMjAiIGZpbGw9IiNGRkZGRkYiLz48cmVjdCB4PSIxMTAiIHk9IjgwIiB3aWR0aD0iNSIgaGVpZ2h0PSIyMCIgZmlsbD0iI0ZGRkZGRiIvPjxyZWN0IHg9IjEyNSIgeT0iODAiIHdpZHRoPSI1IiBoZWlnaHQ9IjIwIiBmaWxsPSIjRkZGRkZGIi8+PC9yZWN0PjxyZWN0IHg9IjE2MCIgeT0iMCIgd2lkdGg9IjgwIiBoZWlnaHQ9IjEyMCIgZmlsbD0iI0ZGRkZGRiI+PHJlY3QgeD0iMTcwIiB5PSIyMCIgd2lkdGg9IjYwIiBoZWlnaHQ9IjgwIiBmaWxsPSIjMjIyMjIyIi8+PHJlY3QgeD0iMTgwIiB5PSIzMCIgd2lkdGg9IjQwIiBoZWlnaHQ9IjEwIiBmaWxsPSIjRkZGRkZGIi8+PHJlY3QgeD0iMTg1IiB5PSI1MCIgd2lkdGg9IjMwIiBoZWlnaHQ9IjIwIiBmaWxsPSIjRkZGRkZGIi8+PHJlY3QgeD0iMTkwIiB5PSI4MCIgd2lkdGg9IjUiIGhlaWdodD0iMjAiIGZpbGw9IiNGRkZGRkYiLz48cmVjdCB4PSIyMDUiIHk9IjgwIiB3aWR0aD0iNSIgaGVpZ2h0PSIyMCIgZmlsbD0iI0ZGRkZGRiIvPjwvcmVjdD48cmVjdCB4PSIyNDAiIHk9IjAiIHdpZHRoPSI4MCIgaGVpZ2h0PSIxMjAiIGZpbGw9IiNGRkZGRkYiPjxyZWN0IHg9IjI1MCIgeT0iMjAiIHdpZHRoPSI2MCIgaGVpZ2h0PSI4MCIgZmlsbD0iIzIyMjIyMiIvPjxyZWN0IHg9IjI2MCIgeT0iMzAiIHdpZHRoPSI0MCIgaGVpZ2h0PSIxMCIgZmlsbD0iI0ZGRkZGRiIvPjxyZWN0IHg9IjI2NSIgeT0iNTAiIHdpZHRoPSIzMCIgaGVpZ2h0PSIyMCIgZmlsbD0iI0ZGRkZGRiIvPjxyZWN0IHg9IjI3MCIgeT0iODAiIHdpZHRoPSI1IiBoZWlnaHQ9IjIwIiBmaWxsPSIjRkZGRkZGIi8+PHJlY3QgeD0iMjg1IiB5PSI4MCIgd2lkdGg9IjUiIGhlaWdodD0iMjAiIGZpbGw9IiNGRkZGRkYiLz48L3JlY3Q+PC9zdmc+') 0 0;
-        image-rendering: pixelated;
+        top: 10px;
+        left: 25px;
+        width: 30px;
+        height: 30px;
+        background-color: #ffffff;
+        border: 2px solid #000000;
+        border-radius: 50%;
+    }
+    
+    .larry-eyes {
+        position: absolute;
+        top: 15px;
+        left: 10px;
+        width: 20px;
+        height: 10px;
+    }
+    
+    .larry-eye {
+        position: absolute;
+        width: 6px;
+        height: 6px;
+        background-color: #000000;
+        border-radius: 50%;
+    }
+    
+    .larry-eye.left {
+        left: 5px;
+    }
+    
+    .larry-eye.right {
+        right: 5px;
+    }
+    
+    .larry-body {
+        position: absolute;
+        top: 40px;
+        left: 25px;
+        width: 30px;
+        height: 40px;
+        background-color: #ffffff;
+        border: 2px solid #000000;
+        border-radius: 5px;
+    }
+    
+    .larry-arm {
+        position: absolute;
+        width: 20px;
+        height: 5px;
+        background-color: #ffffff;
+        border: 2px solid #000000;
+        border-radius: 2px;
+    }
+    
+    .larry-arm.left {
+        top: 45px;
+        left: 5px;
+        transform-origin: right center;
+    }
+    
+    .larry-arm.right {
+        top: 45px;
+        right: 5px;
+        transform-origin: left center;
+    }
+    
+    .larry-leg {
+        position: absolute;
+        width: 5px;
+        height: 30px;
+        background-color: #ffffff;
+        border: 2px solid #000000;
+        border-radius: 2px;
+    }
+    
+    .larry-leg.left {
+        top: 80px;
+        left: 30px;
+    }
+    
+    .larry-leg.right {
+        top: 80px;
+        right: 30px;
+    }
+    
+    /* LARRY ANIMATION STATES */
+    .larry-walking .larry-arm.left {
+        animation: arm-swing-left 0.8s ease-in-out infinite;
+    }
+    
+    .larry-walking .larry-arm.right {
+        animation: arm-swing-right 0.8s ease-in-out infinite;
+    }
+    
+    .larry-walking .larry-leg.left {
+        animation: leg-swing-left 0.8s ease-in-out infinite;
+    }
+    
+    .larry-walking .larry-leg.right {
+        animation: leg-swing-right 0.8s ease-in-out infinite;
+    }
+    
+    .larry-idle .larry-arm.left {
+        animation: idle-breathe 2s ease-in-out infinite;
+    }
+    
+    .larry-idle .larry-arm.right {
+        animation: idle-breathe 2s ease-in-out infinite reverse;
+    }
+    
+    .larry-summoning .larry-sprite {
+        animation: summon-glow 1s ease-in-out infinite;
+    }
+    
+    .larry-interacting .larry-sprite {
+        animation: interact-jump 0.5s ease-in-out infinite;
     }
     
     /* LARRY ANIMATIONS */
-    @keyframes larry-walk {
-        0% { background-position: 0 0; }
-        100% { background-position: -320px 0; }
+    @keyframes arm-swing-left {
+        0%, 100% { transform: rotate(-20deg); }
+        50% { transform: rotate(20deg); }
     }
     
-    @keyframes larry-idle {
-        0%, 100% { background-position: 0 0; }
-        50% { background-position: -160px 0; }
+    @keyframes arm-swing-right {
+        0%, 100% { transform: rotate(20deg); }
+        50% { transform: rotate(-20deg); }
     }
     
-    @keyframes larry-summon {
-        0% { background-position: 0 0; }
-        100% { background-position: -240px 0; }
+    @keyframes leg-swing-left {
+        0%, 100% { transform: rotate(10deg); }
+        50% { transform: rotate(-10deg); }
     }
     
-    @keyframes larry-interact {
-        0%, 100% { background-position: 0 0; }
-        50% { background-position: -80px 0; }
+    @keyframes leg-swing-right {
+        0%, 100% { transform: rotate(-10deg); }
+        50% { transform: rotate(10deg); }
+    }
+    
+    @keyframes idle-breathe {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(2px); }
+    }
+    
+    @keyframes summon-glow {
+        0%, 100% { 
+            box-shadow: 0 0 10px rgba(255,255,255,0.5),
+                       0 0 20px rgba(0,255,255,0.3);
+        }
+        50% { 
+            box-shadow: 0 0 20px rgba(255,255,255,0.8),
+                       0 0 40px rgba(0,255,255,0.6);
+        }
+    }
+    
+    @keyframes interact-jump {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-20px); }
     }
     
     /* LARRY SPEECH BUBBLE */
@@ -127,7 +251,7 @@
         position: absolute;
         background: rgba(0, 0, 0, 0.9);
         border: 2px solid #fff;
-        border-radius: 4px;
+        border-radius: 8px;
         padding: 8px 12px;
         color: #fff;
         font-family: 'VT323', monospace;
@@ -140,6 +264,9 @@
         transform: translateY(10px);
         transition: opacity 0.3s, transform 0.3s;
         filter: drop-shadow(0 0 4px rgba(255,255,255,0.5));
+        bottom: 130px;
+        left: 50%;
+        transform: translateX(-50%) translateY(10px);
     }
     
     .larry-speech::before {
@@ -155,7 +282,7 @@
     
     .larry-speech.show {
         opacity: 1;
-        transform: translateY(0);
+        transform: translateX(-50%) translateY(0);
     }
     
     /* PIXELATED THUNDER EFFECT */
@@ -1435,6 +1562,50 @@
             width: 60px;
             height: 90px;
         }
+        
+        .larry-head {
+            width: 25px;
+            height: 25px;
+            left: 17px;
+            top: 8px;
+        }
+        
+        .larry-body {
+            width: 25px;
+            height: 35px;
+            left: 17px;
+            top: 35px;
+        }
+        
+        .larry-arm {
+            width: 15px;
+            height: 4px;
+        }
+        
+        .larry-arm.left {
+            top: 40px;
+            left: 4px;
+        }
+        
+        .larry-arm.right {
+            top: 40px;
+            right: 4px;
+        }
+        
+        .larry-leg {
+            width: 4px;
+            height: 25px;
+        }
+        
+        .larry-leg.left {
+            top: 70px;
+            left: 25px;
+        }
+        
+        .larry-leg.right {
+            top: 70px;
+            right: 25px;
+        }
     }
     
     @media (max-width: 768px) {
@@ -1498,6 +1669,50 @@
             width: 50px;
             height: 75px;
         }
+        
+        .larry-head {
+            width: 20px;
+            height: 20px;
+            left: 15px;
+            top: 7px;
+        }
+        
+        .larry-body {
+            width: 20px;
+            height: 30px;
+            left: 15px;
+            top: 29px;
+        }
+        
+        .larry-arm {
+            width: 12px;
+            height: 3px;
+        }
+        
+        .larry-arm.left {
+            top: 34px;
+            left: 3px;
+        }
+        
+        .larry-arm.right {
+            top: 34px;
+            right: 3px;
+        }
+        
+        .larry-leg {
+            width: 3px;
+            height: 20px;
+        }
+        
+        .larry-leg.left {
+            top: 59px;
+            left: 20px;
+        }
+        
+        .larry-leg.right {
+            top: 59px;
+            right: 20px;
+        }
     }
     
     @media (max-width: 480px) {
@@ -1548,6 +1763,50 @@
             width: 40px;
             height: 60px;
         }
+        
+        .larry-head {
+            width: 16px;
+            height: 16px;
+            left: 12px;
+            top: 5px;
+        }
+        
+        .larry-body {
+            width: 16px;
+            height: 24px;
+            left: 12px;
+            top: 23px;
+        }
+        
+        .larry-arm {
+            width: 10px;
+            height: 2px;
+        }
+        
+        .larry-arm.left {
+            top: 27px;
+            left: 2px;
+        }
+        
+        .larry-arm.right {
+            top: 27px;
+            right: 2px;
+        }
+        
+        .larry-leg {
+            width: 2px;
+            height: 16px;
+        }
+        
+        .larry-leg.left {
+            top: 47px;
+            left: 16px;
+        }
+        
+        .larry-leg.right {
+            top: 47px;
+            right: 16px;
+        }
     }
 </style>
 </head>
@@ -1558,10 +1817,22 @@
 <div class="scanlines"></div>
 
 <!-- ============================================= -->
-<!-- PIXELATED LARRY SKELETON - ADDED HERE -->
+<!-- PIXELATED LARRY SKELETON - FIXED VISIBILITY -->
 <!-- ============================================= -->
 <div id="larry-skeleton">
-    <div id="larry-sprite"></div>
+    <div class="larry-sprite">
+        <div class="larry-head">
+            <div class="larry-eyes">
+                <div class="larry-eye left"></div>
+                <div class="larry-eye right"></div>
+            </div>
+        </div>
+        <div class="larry-body"></div>
+        <div class="larry-arm left"></div>
+        <div class="larry-arm right"></div>
+        <div class="larry-leg left"></div>
+        <div class="larry-leg right"></div>
+    </div>
 </div>
 
 <div class="container">
@@ -1642,7 +1913,7 @@
             <div class="flip-card-inner">
                 <div class="flip-card-front">
                     <img src="arthur_larry.jpeg" alt="Arthur Larry" class="art-image"
-                         onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzUwIiBoZWlnaHQ9IjI2MCIgdmlld0JveD0iMCAwIDM1MCAyNjAiIHN0eWxlPSJpbWFnZS1yZW5kZXJpbmc6IHBpeGVsYXRlZCI+PHJlY3Qgd2lkdGg9IjM1MCIgaGVpZ2h0PSIyNjAiIGZpbGw9IiMxMTExMTEiLz48cmVjdCB4PSIxMCIgeT0iMTAiIHdpZHRoPSIzMzAiIGhlaWdodD0iMjQwIiBmaWxsPSIjMjIyMjIyIiBzdHJva2U9IiNGRkQ3MDAiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjE3NSIgeT0iMTAwIiBmb250LWZhbWlseT0iJ1ZUMzIzJywgbW9ub3NwYWNlIiBmb250LXNpemU9IjI0IiBmaWxsPSIjRkZENzAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5BUlRIVVI8L3RleHQ+PHRleHQgeD0iMTc1IiB5PSIxMzAiIGZvbnQtZmFtaWx5PSInVlQzMjMnLCBtb25vc3BhY2UiIGZvbnQtc2l6ZT0iMzAiIGZpbGw9IiNGRkQ3MDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkxBUlJZPC90ZXh0Pjx0ZXh0IHg9IjE3NSIgeT0iMTcwIiBmb250LWZhbWlseT0iJ1ZUMzIzJywgbW9ub3NwYWNlIiBmb250LXNpemU9IjE2IiBmaWxsPSIjRkZENzAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5USEUgS0lORzwvdGV4dD48L3N2Zz4='">
+                         onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzUwIiBoZWlnaHQ9IjI2MCIgdmlld0JveD0iMCAwIDM1MCAyNjAiIHN0eWxlPSJpbWFnZS1yZW5kZXJpbmc6IHBpeGVsYXRlZCI+PHJlY3Qgd2lkdGg9IjM1MCIgaGVpZ2h0PSIyNjAiIGZpbGw9IiMxMTExMTEiLz48cmVjdCB4PSIxMCIgeT0iMTAiIHdpZHRoPSIzMzAiIGhlaWdodD0iMjQwIiBmaWxsPSIjMjIyMjIyIiBzdHJva2U9IiNGRkQ3MDAiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjE3NSIgeT0iMTAwIiBmb250LWZhbWlseT0iJ1ZUMzIzJywgbW9ub3NwYWNlIiBmb250LXNpemU9IjI0IiBmaWxsPSIjRkZENzAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5BUlRIVVI8L3RleHQ+PHRleHQgeD0iMTc1IiB5PSIxMzAiIGZvbnQtZmFtaWx5PSInVlQzMjMnLCBtb25vc3BhY2UiIGZvbnQtc2l6ZT0iMzAiIGZpbGw9IiNGRkQ3MDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkxBUlJZPC90ZXh0Pjx0ZXh0IHg9IjE3NSIgeT0iMTcwIiBmb250LWZhbWlseT0iJ1ZUMzIzJywgbW9ub3BhY2UiIGZvbnQtc2l6ZT0iMTYiIGZpbGw9IiNGRkQ3MDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPktJTkcgT0YgVEhFIERJR0lUQUwgUkVBTE08L3RleHQ+PC9zdmc+'">
                     <div class="art-title-front">ARTHUR LARRY</div>
                     <div class="flip-tap-hint">TAP TO FLIP</div>
                 </div>
@@ -1708,7 +1979,7 @@
     <div class="flip-card-inner">
         <div class="flip-card-front">
             <img src="mc_larry.jpeg" alt="MC Larry" class="art-image"
-               onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzUwIiBoZWlnaHQ9IjI2MCIgdmlld0JveD0iMCAwIDM1MCAyNjAiIHN0eWxlPSJpbWFnZS1yZW5kZXJpbmc6IHBpeGVsYXRlZCI+PHJlY3Qgd2lkdGg9IjM1MCIgaGVpZ2h0PSIyNjAiIGZpbGw9IiMxMTExMTEiLz48cmVjdCB4PSIxMCIgeT0iMTAiIHdpZHRoPSIzMzAiIGhlaWdodD0iMjQwIiBmaWxsPSIjMjIyMjIyIiBzdHJva2U9IiNGRkQ3MDAiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjE3NSIgeT0iMTAwIiBmb250LWZhbWlseT0iJ1ZUMzIzJywgbW9ub3NwYWNlIiBmb250LXNpemU9IjI0IiBmaWxsPSIjRkZENzAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5NQzwvdGV4dD48dGV4dCB4PSIxNzUiIHk9IjEzMCIgZm9udC1mYW1pbHk9IidWVDMyMycsIG1vbm9zcGFjZSIgZm9udC1zaXplPSIzMCIgZmlsbD0iI0ZGRDcwMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+TEFSUlk8L3RleHQ+PHRleHQgeD0iMTc1IiB5PSIxNzAiIGZvbnQtZmFtaWx5PSInVlQzMjMnLCBtb25vc3BhY2UiIGZvbnQtc2l6ZT0iMTYiIGZpbGw9IiNGRkQ3MDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkJJTiBUSEUgR1JBVkU8L3RleHQ+PC9zdmc+'">
+                 onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzUwIiBoZWlnaHQ9IjI2MCIgdmlld0JveD0iMCAwIDM1MCAyNjAiIHN0eWxlPSJpbWFnZS1yZW5kZXJpbmc6IHBpeGVsYXRlZCI+PHJlY3Qgd2lkdGg9IjM1MCIgaGVpZ2h0PSIyNjAiIGZpbGw9IiMxMTExMTEiLz48cmVjdCB4PSIxMCIgeT0iMTAiIHdpZHRoPSIzMzAiIGhlaWdodD0iMjQwIiBmaWxsPSIjMjIyMjIyIiBzdHJva2U9IiNGRkQ3MDAiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjE3NSIgeT0iMTAwIiBmb250LWZhbWlseT0iJ1ZUMzIzJywgbW9ub3NwYWNlIiBmb250LXNpemU9IjI0IiBmaWxsPSIjRkZENzAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5NQzwvdGV4dD48dGV4dCB4PSIxNzUiIHk9IjEzMCIgZm9udC1mYW1pbHk9IidWVDMyMycsIG1vbm9zcGFjZSIgZm9udC1zaXplPSIzMCIgZmlsbD0iI0ZGRDcwMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+TEFSUlk8L3RleHQ+PHRleHQgeD0iMTc1IiB5PSIxNzAiIGZvbnQtZmFtaWx5PSInVlQzMjMnLCBtb25vc3BhY2UiIGZvbnQtc2l6ZT0iMTYiIGZpbGw9IiNGRkQ3MDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkJJTiBUSEUgR1JBVkU8L3RleHQ+PC9zdmc+'">
             <div class="art-title-front">MC LARRY</div>
             <div class="flip-tap-hint">TAP TO FLIP</div>
         </div>
@@ -1731,7 +2002,7 @@
     <div class="flip-card-inner">
         <div class="flip-card-front">
             <img src="evil_larry.jpeg" alt="Evil Larry" class="art-image"
-                 onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzUwIiBoZWlnaHQ9IjI2MCIgdmlld0JveD0iMCAwIDM1MCAyNjAiIHN0eWxlPSJpbWFnZS1yZW5kZXJpbmc6IHBpeGVsYXRlZCI+PHJlY3Qgd2lkdGg9IjM1MCIgaGVpZ2h0PSIyNjAiIGZpbGw9IiMxMTExMTEiLz48cmVjdCB4PSIxMCIgeT0iMTAiIHdpZHRoPSIzMzAiIGhlaWdodD0iMjQwIiBmaWxsPSIjMjIyMjIyIiBzdHJva2U9IiNGRkQ3MDAiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjE3NSIgeT0iMTAwIiBmb250LWZhbWlseT0iJ1ZUMzIzJywgbW9ub3NwYWNlIiBmb250LXNpemU9IjI0IiBmaWxsPSIjRkZENzAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5FVklMPC90ZXh0Pjx0ZXh0IHg9IjE3NSIgeT0iMTMwIiBmb250LWZhbWx5PSInVlQzMjMnLCBtb25vc3BhY2UiIGZvbnQtc2l6ZT0iMzAiIGZpbGw9IiNGRkQ3MDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkxBUlJZPC90ZXh0Pjx0ZXh0IHg9IjE3NSIgeT0iMTcwIiBmb250LWZhbWlseT0iJ1ZUMzIzJywgbW9ub3NwYWNlIiBmb250LXNpemU9IjE2IiBmaWxsPSIjRkZENzAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5EQVJLIENPREU8L3RleHQ+PC9zdmc+'">
+                 onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzUwIiBoZWlnaHQ9IjI2MCIgdmlld0JveD0iMCAwIDM1MCAyNjAiIHN0eWxlPSJpbWFnZS1yZW5kZXJpbmc6IHBpeGVsYXRlZCI+PHJlY3Qgd2lkdGg9IjM1MCIgaGVpZ2h0PSIyNjAiIGZpbGw9IiMxMTExMTEiLz48cmVjdCB4PSIxMCIgeT0iMTAiIHdpZHRoPSIzMzAiIGhlaWdodD0iMjQwIiBmaWxsPSIjMjIyMjIyIiBzdHJva2U9IiNGRkQ3MDAiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjE3NSIgeT0iMTAwIiBmb250LWZhbWlseT0iJ1ZUMzIzJywgbW9ub3NwYWNlIiBmb250LXNpemU9IjI0IiBmaWxsPSIjRkZENzAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5FVklMPC90ZXh0Pjx0ZXh0IHg9IjE3NSIgeT0iMTMwIiBmb250LWZhbWlseT0iJ1ZUMzIzJywgbW9ub3BhY2UiIGZvbnQtc2l6ZT0iMzAiIGZpbGw9IiNGRkQ3MDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkxBUlJZPC90ZXh0Pjx0ZXh0IHg9IjE3NSIgeT0iMTcwIiBmb250LWZhbWlseT0iJ1ZUMzIzJywgbW9ub3NwYWNlIiBmb250LXNpemU9IjE2IiBmaWxsPSIjRkZENzAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5EQVJLIENPREU8L3RleHQ+PC9zdmc+'">
             <div class="art-title-front">EVIL LARRY</div>
             <div class="flip-tap-hint">TAP TO FLIP</div>
         </div>
@@ -1754,7 +2025,7 @@
     <div class="flip-card-inner">
         <div class="flip-card-front">
             <img src="ghost_larry.jpeg" alt="Ghost Larry" class="art-image"
-                 onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzUwIiBoZWlnaHQ9IjI2MCIgdmlld0JveD0iMCAwIDM1MCAyNjAiIHN0eWxlPSJpbWFnZS1yZW5kZXJpbmc6IHBpeGVsYXRlZCI+PHJlY3Qgd2lkdGg9IjM1MCIgaGVpZ2h0PSIyNjAiIGZpbGw9IiMxMTExMTEiLz48cmVjdCB4PSIxMCIgeT0iMTAiIHdpZHRoPSIzMzAiIGhlaWdodD0iMjQwIiBmaWxsPSIjMjIyMjIyIiBzdHJva2U9IiNGRkQ3MDAiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjE3NSIgeT0iMTAwIiBmb250LWZhbWlseT0iJ1ZUMzIzJywgbW9ub3NwYWNlIiBmb250LXNpemU9IjI0IiBmaWxsPSIjRkZENzAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5HSE9TVDwvdGV4dD48dGV4dCB4PSIxNzUiIHk9IjEzMCIgZm9udC1mYW1pbHk9IidWVDMyMycsIG1vbm9zcGFjZSIgZm9udC1zaXplPSIzMCIgZmlsbD0iI0ZGRDcwMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+TEFSUlk8L3RleHQ+PHRleHQgeD0iMTc1IiB5PSIxNzAiIGZvbnQtZmFtaWx5PSInVlQzMjMnLCBtb25vc3BhY2UiIGZvbnQtc2l6ZT0iMTYiIGZpbGw9IiNGRkQ3MDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPlNQSVJJVF8nU19XQUxLPC90ZXh0Pjwvc3ZnPg=='">
+                 onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzUwIiBoZWlnaHQ9IjI2MCIgdmlld0JveD0iMCAwIDM1MCAyNjAiIHN0eWxlPSJpbWFnZS1yZW5kZXJpbmc6IHBpeGVsYXRlZCI+PHJlY3Qgd2lkdGg9IjM1MCIgaGVpZ2h0PSIyNjAiIGZpbGw9IiMxMTExMTEiLz48cmVjdCB4PSIxMCIgeT0iMTAiIHdpZHRoPSIzMzAiIGhlaWdodD0iMjQwIiBmaWxsPSIjMjIyMjIyIiBzdHJva2U9IiNGRkQ3MDAiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjE3NSIgeT0iMTAwIiBmb250LWZhbWlseT0iJ1ZUMzIzJywgbW9ub3NwYWNlIiBmb250LXNpemU9IjI0IiBmaWxsPSIjRkZENzAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5HSE9TVDwvdGV4dD48dGV4dCB4PSIxNzUiIHk9IjEzMCIgZm9udC1mYW1pbHk9IidWVDMyMycsIG1vbm9zcGFjZSIgZm9udC1zaXplPSIzMCIgZmlsbD0iI0ZGRDcwMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+TEFSUlk8L3RleHQ+PHRleHQgeD0iMTc1IiB5PSIxNzAiIGZvbnQtZmFtaWx5PSInVlQzMjMnLCBtb25vc3BhY2UiIGZvbnQtc2l6ZT0iMTYiIGZpbGw9IiNGRkQ3MDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPlNQSVJJVF9XQUxLPC90ZXh0Pjwvc3ZnPg=='">
             <div class="art-title-front">GHOST LARRY</div>
             <div class="flip-tap-hint">TAP TO FLIP</div>
         </div>
@@ -1777,7 +2048,7 @@
     <div class="flip-card-inner">
         <div class="flip-card-front">
             <img src="donald_larry.jpeg" alt="Donald Larry" class="art-image"
-                 onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzUwIiBoZWlnaHQ9IjI2MCIgdmlld0JveD0iMCAwIDM1MCAyNjAiIHN0eWxlPSJpbWFnZS1yZW5kZXJpbmc6IHBpeGVsYXRlZCI+PHJlY3Qgd2lkdGg9IjM1MCIgaGVpZ2h0PSIyNjAiIGZpbGw9IiMxMTExMTEiLz48cmVjdCB4PSIxMCIgeT0iMTAiIHdpZHRoPSIzMzAiIGhlaWdodD0iMjQwIiBmaWxsPSIjMjIyMjIyIiBzdHJva2U9IiNGRkQ3MDAiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjE3NSIgeT0iMTAwIiBmb250LWZhbWlseT0iJ1ZUMzIzJywgbW9ub3NwYWNlIiBmb250LXNpemU9IjI0IiBmaWxsPSIjRkZENzAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5ET05BTEQ8L3RleHQ+PHRleHQgeD0iMTc1IiB5PSIxMzAiIGZvbnQtZmFtaWx5PSInVlQzMjMnLCBtb25vc3BhY2UiIGZvbnQtc2l6ZT0iMzAiIGZpbGw9IiNGRkQ3MDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkxBUlJZPC90ZXh0Pjx0ZXh0IHg9IjE3NSIgeT0iMTcwIiBmb250LWZhbWlseT0iJ1ZUMzIzJywgbW9ub3NwYWNlIiBmb250LXNpemU9IjE2IiBmaWxsPSIjRkZENzAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5ESVNUaW5jdWlzaGVkPC90ZXh0Pjwvc3ZnPg=='">
+                 onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzUwIiBoZWlnaHQ9IjI2MCIgdmlld0JveD0iMCAwIDM1MCAyNjAiIHN0eWxlPSJpbWFnZS1yZW5kZXJpbmc6IHBpeGVsYXRlZCI+PHJlY3Qgd2lkdGg9IjM1MCIgaGVpZ2h0PSIyNjAiIGZpbGw9IiMxMTExMTEiLz48cmVjdCB4PSIxMCIgeT0iMTAiIHdpZHRoPSIzMzAiIGhlaWdodD0iMjQwIiBmaWxsPSIjMjIyMjIyIiBzdHJva2U9IiNGRkQ3MDAiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjE3NSIgeT0iMTAwIiBmb250LWZhbWlseT0iJ1ZUMzIzJywgbW9ub3NwYWNlIiBmb250LXNpemU9IjI0IiBmaWxsPSIjRkZENzAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5ET05BTEQ8L3RleHQ+PHRleHQgeD0iMTc1IiB5PSIxMzAiIGZvbnQtZmFtaWx5PSInVlQzMjMnLCBtb25vc3BhY2UiIGZvbnQtc2l6ZT0iMzAiIGZpbGw9IiNGRkQ3MDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkxBUlJZPC90ZXh0Pjx0ZXh0IHg9IjE3NSIgeT0iMTcwIiBmb250LWZhbWlseT0iJ1ZUMzIzJywgbW9ub3NwYWNlIiBmb250LXNpemU9IjE2IiBmaWxsPSIjRkZENzAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5ESVNUSU5DVUlTSEVEPC90ZXh0Pjwvc3ZnPg=='">
             <div class="art-title-front">DONALD LARRY</div>
             <div class="flip-tap-hint">TAP TO FLIP</div>
         </div>
@@ -1975,19 +2246,18 @@
 
 <script>
     // =============================================
-    // RETRO UI FUNCTIONALITY - FIXED CARD FLIP
+    // RETRO UI FUNCTIONALITY - WITH FIXED PIXELATED LARRY
     // =============================================
     
     document.addEventListener('DOMContentLoaded', function() {
-        console.log('Floor Larry loaded - Pixelated Larry added!');
+        console.log('Floor Larry loaded - Pixelated Larry FIXED and VISIBLE!');
         
         // =====================================
-        // 1. PIXELATED LARRY SKELETON SYSTEM
+        // 1. PIXELATED LARRY SKELETON SYSTEM - FIXED
         // =====================================
         class PixelatedLarry {
             constructor() {
                 this.element = document.getElementById('larry-skeleton');
-                this.sprite = document.getElementById('larry-sprite');
                 this.x = Math.random() * (window.innerWidth - 80);
                 this.y = Math.random() * (window.innerHeight - 120);
                 this.directionX = Math.random() > 0.5 ? 1 : -1;
@@ -2016,6 +2286,10 @@
                 this.speechBubble.className = 'larry-speech';
                 document.body.appendChild(this.speechBubble);
                 
+                // Make Larry interactive
+                this.element.style.pointerEvents = 'auto';
+                this.element.style.cursor = 'pointer';
+                
                 // Start animation loop
                 this.animate();
                 
@@ -2025,9 +2299,9 @@
             
             setAnimation(state) {
                 this.state = state;
-                this.sprite.className = '';
-                void this.sprite.offsetWidth; // Trigger reflow
-                this.sprite.classList.add(`larry-${state}`);
+                this.element.className = '';
+                void this.element.offsetWidth; // Trigger reflow
+                this.element.classList.add(`larry-${state}`);
             }
             
             move() {
@@ -2375,15 +2649,18 @@
             // Click handler for desktop
             card.addEventListener('click', function(e) {
                 e.stopPropagation();
-                console.log('Card clicked - toggling flip');
                 this.classList.toggle('flipped');
+                
+                // Larry reaction
+                if (Math.random() < 0.3) {
+                    larry.say('COOL CARD!');
+                }
             });
             
             // Touch handler for mobile
             card.addEventListener('touchstart', function(e) {
                 e.preventDefault();
                 e.stopPropagation();
-                console.log('Card touched - toggling flip');
                 this.classList.toggle('flipped');
             });
         });
@@ -2597,9 +2874,9 @@
         // Console greeting
         console.log('%c╔══════════════════════════════════════════════════════════════════╗', 'color: #ffffff;');
         console.log('%c║                    FLOOR LARRY - RETRO NFT COLLECTION            ║', 'color: #ffffff;');
-        console.log('%c║                    PIXELATED LARRY ACTIVATED!                    ║', 'color: #00ff00;');
-        console.log('%c║                    DOUBLE-CLICK LARRY TO FOLLOW                  ║', 'color: #00ffff;');
+        console.log('%c║                    PIXELATED LARRY FIXED AND VISIBLE!           ║', 'color: #00ff00;');
         console.log('%c║                    CLICK LARRY TO INTERACT                       ║', 'color: #00ffff;');
+        console.log('%c║                    DOUBLE-CLICK LARRY TO FOLLOW                  ║', 'color: #00ffff;');
         console.log('%c╚══════════════════════════════════════════════════════════════════╝', 'color: #ffffff;');
     });
 </script>
