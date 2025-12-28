@@ -3,432 +3,234 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FLOOR LARRY - Complete</title>
+<title>FLOOR LARRY</title>
 <style>
+    /* ============================================= */
+    /* RETRO WHITE PATTERN AESTHETIC */
+    /* ============================================= */
+    
     * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
+        image-rendering: pixelated;
+        image-rendering: crisp-edges;
     }
     
     body {
-        background: #000000;
-        overflow-x: hidden;
+        background: #0a0a0a;
+        color: #ffffff;
+        font-family: 'Courier New', 'Monaco', 'VT323', monospace;
+        line-height: 1.4;
         min-height: 100vh;
-        font-family: 'Courier New', monospace;
-        color: #fff;
+        padding: 0;
+        margin: 0;
+        overflow-x: hidden;
+        background-image: 
+            radial-gradient(circle at 15% 20%, rgba(255,255,255,0.02) 0%, transparent 20%),
+            radial-gradient(circle at 85% 80%, rgba(255,255,255,0.02) 0%, transparent 20%),
+            repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,0.03) 2px, rgba(255,255,255,0.03) 4px);
     }
-
-    /* ============================================= */
-    /* PIXELATED LARRY SKELETON - PERFECT VERSION */
-    /* ============================================= */
     
-    #larry-skeleton {
+    /* RETRO GRID OVERLAY */
+    .retro-grid {
         position: fixed;
-        width: 120px;
-        height: 200px;
-        z-index: 10000;
-        pointer-events: none;
-        image-rendering: pixelated;
-        image-rendering: crisp-edges;
-        filter: 
-            drop-shadow(0 0 6px rgba(255,255,255,0.8))
-            drop-shadow(0 0 12px rgba(255,255,255,0.4));
-        transition: transform 0.2s ease-out;
-    }
-    
-    /* Larry Body - Pure White Pixelated */
-    .larry-sprite {
+        top: 0;
+        left: 0;
         width: 100%;
         height: 100%;
-        position: relative;
-        overflow: visible;
-    }
-    
-    /* Head - Detailed Skull */
-    .larry-head {
-        position: absolute;
-        top: 0;
-        left: 35px;
-        width: 50px;
-        height: 50px;
-        background-color: #ffffff;
-        border: 3px solid #000000;
-        image-rendering: pixelated;
-        border-radius: 8px;
-    }
-    
-    /* Detailed Skull Features */
-    .skull-detail {
-        position: absolute;
-        background-color: #000000;
-        image-rendering: pixelated;
-    }
-    
-    /* Eye Sockets */
-    .eye-socket {
-        width: 10px;
-        height: 12px;
-        top: 15px;
-    }
-    
-    .eye-left {
-        left: 10px;
-    }
-    
-    .eye-right {
-        right: 10px;
-    }
-    
-    /* Nasal Cavity */
-    .nasal-cavity {
-        width: 8px;
-        height: 15px;
-        top: 30px;
-        left: 21px;
-        border-radius: 0 0 4px 4px;
-    }
-    
-    /* Teeth */
-    .teeth-row {
-        position: absolute;
-        bottom: 5px;
-        left: 5px;
-        right: 5px;
-        height: 8px;
-        display: flex;
-        justify-content: space-between;
-        padding: 0 2px;
-    }
-    
-    .tooth {
-        width: 4px;
-        height: 6px;
-        background-color: #000000;
-        margin: 0 1px;
-    }
-    
-    /* Body - Rib Cage Detail */
-    .larry-body {
-        position: absolute;
-        top: 50px;
-        left: 25px;
-        width: 70px;
-        height: 80px;
-        background-color: #ffffff;
-        border: 3px solid #000000;
-        image-rendering: pixelated;
-        border-radius: 10px;
-    }
-    
-    /* Rib Details */
-    .rib {
-        position: absolute;
-        background-color: #000000;
-        height: 4px;
-        width: 65px;
-        left: 2px;
-    }
-    
-    .rib-1 { top: 10px; }
-    .rib-2 { top: 20px; }
-    .rib-3 { top: 30px; }
-    .rib-4 { top: 40px; }
-    .rib-5 { top: 50px; }
-    .rib-6 { top: 60px; }
-    
-    /* Spine */
-    .spine {
-        position: absolute;
-        top: 10px;
-        left: 32px;
-        width: 6px;
-        height: 60px;
-        background-color: #000000;
-    }
-    
-    /* Arms - Detailed */
-    .larry-arm {
-        position: absolute;
-        background-color: #ffffff;
-        border: 3px solid #000000;
-        image-rendering: pixelated;
-    }
-    
-    .larry-arm.left {
-        top: 55px;
-        left: 0;
-        width: 40px;
-        height: 15px;
-        border-radius: 8px 0 0 8px;
-        transform-origin: right center;
-    }
-    
-    .larry-arm.right {
-        top: 55px;
-        right: 0;
-        width: 40px;
-        height: 15px;
-        border-radius: 0 8px 8px 0;
-        transform-origin: left center;
-    }
-    
-    /* Forearms */
-    .forearm {
-        position: absolute;
-        background-color: #ffffff;
-        border: 3px solid #000000;
-    }
-    
-    .forearm.left {
-        top: -3px;
-        left: -35px;
-        width: 35px;
-        height: 15px;
-        border-radius: 8px 0 0 8px;
-    }
-    
-    .forearm.right {
-        top: -3px;
-        right: -35px;
-        width: 35px;
-        height: 15px;
-        border-radius: 0 8px 8px 0;
-    }
-    
-    /* Hands */
-    .hand {
-        position: absolute;
-        width: 20px;
-        height: 15px;
-        background-color: #ffffff;
-        border: 3px solid #000000;
-        border-radius: 8px;
-    }
-    
-    .hand.left {
-        top: -3px;
-        left: -50px;
-    }
-    
-    .hand.right {
-        top: -3px;
-        right: -50px;
-    }
-    
-    /* Fingers */
-    .finger {
-        position: absolute;
-        width: 3px;
-        height: 12px;
-        background-color: #000000;
-    }
-    
-    /* Left Hand Fingers */
-    .finger-l1 { top: -8px; left: 2px; }
-    .finger-l2 { top: -8px; left: 6px; }
-    .finger-l3 { top: -8px; left: 10px; }
-    .finger-l4 { top: -8px; left: 14px; }
-    
-    /* Right Hand Fingers */
-    .finger-r1 { top: -8px; right: 2px; }
-    .finger-r2 { top: -8px; right: 6px; }
-    .finger-r3 { top: -8px; right: 10px; }
-    .finger-r4 { top: -8px; right: 14px; }
-    
-    /* Legs - Detailed */
-    .larry-leg {
-        position: absolute;
-        background-color: #ffffff;
-        border: 3px solid #000000;
-        image-rendering: pixelated;
-    }
-    
-    .larry-leg.left {
-        top: 130px;
-        left: 25px;
-        width: 15px;
-        height: 50px;
-        border-radius: 8px 8px 0 0;
-        transform-origin: top center;
-    }
-    
-    .larry-leg.right {
-        top: 130px;
-        right: 25px;
-        width: 15px;
-        height: 50px;
-        border-radius: 8px 8px 0 0;
-        transform-origin: top center;
-    }
-    
-    /* Shins */
-    .shin {
-        position: absolute;
-        background-color: #ffffff;
-        border: 3px solid #000000;
-    }
-    
-    .shin.left {
-        top: 50px;
-        left: -3px;
-        width: 15px;
-        height: 40px;
-    }
-    
-    .shin.right {
-        top: 50px;
-        right: -3px;
-        width: 15px;
-        height: 40px;
-    }
-    
-    /* Feet */
-    .foot {
-        position: absolute;
-        width: 25px;
-        height: 15px;
-        background-color: #ffffff;
-        border: 3px solid #000000;
-        border-radius: 8px;
-    }
-    
-    .foot.left {
-        top: 40px;
-        left: -8px;
-    }
-    
-    .foot.right {
-        top: 40px;
-        right: -8px;
-    }
-    
-    /* ============================================= */
-    /* ANIMATIONS - SMOOTH MOVEMENT */
-    /* ============================================= */
-    
-    /* Walking Animation */
-    .larry-walking .larry-arm.left {
-        animation: arm-swing-left 0.8s ease-in-out infinite;
-    }
-    
-    .larry-walking .larry-arm.right {
-        animation: arm-swing-right 0.8s ease-in-out infinite;
-    }
-    
-    .larry-walking .larry-leg.left {
-        animation: leg-swing-left 0.8s ease-in-out infinite;
-    }
-    
-    .larry-walking .larry-leg.right {
-        animation: leg-swing-right 0.8s ease-in-out infinite;
-    }
-    
-    /* Idle Breathing Animation */
-    .larry-idle .larry-body {
-        animation: idle-breathe 3s ease-in-out infinite;
-    }
-    
-    .larry-idle .larry-arm.left {
-        animation: idle-arm-left 4s ease-in-out infinite;
-    }
-    
-    .larry-idle .larry-arm.right {
-        animation: idle-arm-right 4s ease-in-out infinite;
-    }
-    
-    /* Animation Keyframes */
-    @keyframes arm-swing-left {
-        0%, 100% { transform: rotate(-25deg); }
-        50% { transform: rotate(15deg); }
-    }
-    
-    @keyframes arm-swing-right {
-        0%, 100% { transform: rotate(25deg); }
-        50% { transform: rotate(-15deg); }
-    }
-    
-    @keyframes leg-swing-left {
-        0%, 100% { transform: rotate(15deg); }
-        50% { transform: rotate(-10deg); }
-    }
-    
-    @keyframes leg-swing-right {
-        0%, 100% { transform: rotate(-15deg); }
-        50% { transform: rotate(10deg); }
-    }
-    
-    @keyframes idle-breathe {
-        0%, 100% { transform: translateY(0px); }
-        50% { transform: translateY(2px); }
-    }
-    
-    @keyframes idle-arm-left {
-        0%, 100% { transform: rotate(-5deg); }
-        50% { transform: rotate(5deg); }
-    }
-    
-    @keyframes idle-arm-right {
-        0%, 100% { transform: rotate(5deg); }
-        50% { transform: rotate(-5deg); }
-    }
-    
-    /* Subtle Glow Pulse */
-    @keyframes skeleton-glow {
-        0%, 100% { 
-            filter: 
-                drop-shadow(0 0 6px rgba(255,255,255,0.8))
-                drop-shadow(0 0 12px rgba(255,255,255,0.4));
-        }
-        50% { 
-            filter: 
-                drop-shadow(0 0 8px rgba(255,255,255,1))
-                drop-shadow(0 0 16px rgba(255,255,255,0.6))
-                drop-shadow(0 0 24px rgba(255,255,255,0.3));
-        }
-    }
-    
-    /* Trail Effect */
-    .larry-trail {
-        position: fixed;
-        width: 4px;
-        height: 4px;
-        background: rgba(255,255,255,0.2);
-        border-radius: 50%;
+        background-image: 
+            linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+        background-size: 40px 40px;
         pointer-events: none;
-        z-index: 9999;
-        animation: trail-fade 0.6s forwards;
+        z-index: 1;
+        opacity: 0.5;
     }
     
-    @keyframes trail-fade {
-        0% { opacity: 1; transform: scale(1); }
-        100% { opacity: 0; transform: scale(0); }
-    }
-
-    /* ============================================= */
-    /* MAIN CONTAINER & HEADER */
-    /* ============================================= */
-    
+    /* GLOSSY BLACK CONTAINER */
     .container {
-        max-width: 1400px;
+        max-width: 1200px;
         margin: 0 auto;
-        padding: 40px 20px;
+        padding: 40px;
         position: relative;
-        z-index: 100;
+        z-index: 2;
     }
     
+    /* SECTION HEADERS */
+    .section-header {
+        text-align: center;
+        margin: 60px 0 40px;
+        position: relative;
+    }
+    
+    .section-title {
+        font-size: 48px;
+        font-weight: bold;
+        color: #ffffff;
+        letter-spacing: 6px;
+        text-transform: uppercase;
+        display: inline-block;
+        padding: 0 30px;
+        background: rgba(0,0,0,0.9);
+        position: relative;
+        z-index: 2;
+        text-shadow: 0 2px 10px rgba(255,255,255,0.3);
+    }
+    
+    .section-title::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: -100px;
+        right: -100px;
+        height: 3px;
+        background: linear-gradient(90deg, 
+            transparent, 
+            rgba(255,255,255,0.4), 
+            rgba(255,255,255,0.8), 
+            rgba(255,255,255,0.4), 
+            transparent);
+        z-index: 1;
+    }
+    
+    /* RETRO PATTERN HEADER */
     .header {
         text-align: center;
-        margin-bottom: 60px;
+        margin-bottom: 40px;
         padding: 60px 40px;
-        border: 2px solid rgba(255,255,255,0.2);
-        border-radius: 20px;
-        background: rgba(20,20,20,0.8);
         position: relative;
+        background: 
+            linear-gradient(45deg, transparent 48%, rgba(255,255,255,0.1) 50%, transparent 52%),
+            linear-gradient(-45deg, transparent 48%, rgba(255,255,255,0.1) 50%, transparent 52%);
+        background-size: 20px 20px;
+        border: 2px solid rgba(255,255,255,0.2);
+        border-radius: 12px;
         overflow: hidden;
     }
     
     .header::before {
+        content: "";
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        right: -2px;
+        bottom: -2px;
+        background: linear-gradient(45deg, 
+            transparent 25%, 
+            rgba(255,255,255,0.1) 25%, 
+            rgba(255,255,255,0.1) 50%, 
+            transparent 50%, 
+            transparent 75%, 
+            rgba(255,255,255,0.1) 75%, 
+            rgba(255,255,255,0.1));
+        background-size: 10px 10px;
+        border-radius: 14px;
+        z-index: -1;
+        animation: patternMove 20s linear infinite;
+    }
+    
+    @keyframes patternMove {
+        0% { background-position: 0 0; }
+        100% { background-position: 100px 100px; }
+    }
+    
+    .title {
+        font-size: 96px;
+        font-weight: bold;
+        letter-spacing: 10px;
+        text-transform: uppercase;
+        color: #ffffff;
+        text-shadow: 
+            0 0 20px rgba(255,255,255,0.5),
+            0 0 40px rgba(255,255,255,0.3),
+            0 0 60px rgba(255,255,255,0.1);
+        margin-bottom: 30px;
+        font-family: 'VT323', monospace;
+        position: relative;
+        display: inline-block;
+    }
+    
+    .title::before {
+        content: "FLOOR LARRY";
+        position: absolute;
+        top: 4px;
+        left: 4px;
+        color: transparent;
+        text-shadow: 
+            2px 2px 0 rgba(255,255,255,0.2),
+            4px 4px 0 rgba(255,255,255,0.1);
+        z-index: -1;
+    }
+    
+    .title::after {
+        content: "";
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80%;
+        height: 3px;
+        background: linear-gradient(90deg, 
+            transparent, 
+            rgba(255,255,255,0.8), 
+            rgba(255,255,255,0.8), 
+            transparent);
+        border-radius: 2px;
+    }
+    
+    .subtitle {
+        font-size: 24px;
+        color: #cccccc;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        max-width: 800px;
+        margin: 30px auto 0;
+        line-height: 1.6;
+        padding: 20px;
+        background: rgba(0,0,0,0.7);
+        border: 1px solid rgba(255,255,255,0.2);
+        border-radius: 8px;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .subtitle::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
+    }
+    
+    .subtitle::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
+    }
+    
+    /* PROJECT DESCRIPTION SECTION */
+    .project-description {
+        background: rgba(20, 20, 20, 0.95);
+        border: 2px solid rgba(255,255,255,0.2);
+        padding: 40px;
+        margin: 0 auto 80px;
+        max-width: 1000px;
+        border-radius: 15px;
+        position: relative;
+        box-shadow: 
+            0 10px 30px rgba(0,0,0,0.6),
+            inset 0 1px 0 rgba(255,255,255,0.1);
+        text-align: center;
+    }
+    
+    .project-description::before {
         content: "";
         position: absolute;
         top: -2px;
@@ -443,177 +245,179 @@
             rgba(255,255,255,0.1) 75%, 
             transparent 75%, 
             transparent);
-        background-size: 10px 10px;
-        border-radius: 22px;
-        z-index: -1;
-        opacity: 0.5;
+        background-size: 15px 15px;
+        border-radius: 17px;
+        mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+        mask-composite: exclude;
+        pointer-events: none;
+        animation: patternMove 20s linear infinite;
     }
     
-    .title {
-        font-size: 72px;
-        font-weight: bold;
-        color: #ffffff;
-        text-transform: uppercase;
-        letter-spacing: 6px;
-        margin-bottom: 20px;
-        text-shadow: 0 0 30px rgba(255,255,255,0.5);
-        font-family: 'VT323', monospace;
-    }
-    
-    .subtitle {
-        text-align: center;
-        font-size: 24px;
-        color: #cccccc;
-        letter-spacing: 3px;
-        margin-bottom: 10px;
-        text-transform: uppercase;
-    }
-    
-    .description {
-        text-align: center;
-        font-size: 18px;
-        color: #888888;
-        line-height: 1.6;
-        max-width: 800px;
-        margin: 0 auto 40px;
-        letter-spacing: 1px;
-    }
-
-    /* ============================================= */
-    /* LARRY ART CARDS SECTION */
-    /* ============================================= */
-    
-    .section-title {
-        text-align: center;
+    .description-title {
         font-size: 36px;
         color: #ffffff;
+        letter-spacing: 3px;
         text-transform: uppercase;
-        letter-spacing: 4px;
-        margin: 80px 0 50px;
-        text-shadow: 0 0 20px rgba(255,255,255,0.3);
+        margin-bottom: 30px;
+        font-weight: bold;
+        text-shadow: 0 2px 10px rgba(255,255,255,0.3);
         position: relative;
     }
     
-    .section-title::after {
+    .description-title::after {
         content: "";
         position: absolute;
         bottom: -15px;
         left: 50%;
         transform: translateX(-50%);
         width: 100px;
-        height: 3px;
-        background: linear-gradient(90deg, transparent, #ffffff, transparent);
+        height: 2px;
+        background: linear-gradient(90deg, 
+            transparent, 
+            rgba(255,255,255,0.6), 
+            transparent);
     }
     
-    /* ART GALLERY GRID */
+    .description-text {
+        font-size: 18px;
+        color: #aaaaaa;
+        line-height: 1.8;
+        letter-spacing: 1px;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+    
+    .description-highlight {
+        color: #ffffff;
+        font-weight: bold;
+        text-shadow: 0 0 10px rgba(255,255,255,0.3);
+    }
+    
+    /* FLIP CARD GALLERY - FIXED VERSION */
     .gallery {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-        gap: 40px;
-        margin: 60px 0;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 60px;
+        margin: 40px 0 80px;
     }
     
-    /* ART CARD STYLES */
-    .art-card {
-        background: rgba(20, 20, 20, 0.9);
-        border: 2px solid rgba(255,255,255,0.2);
-        border-radius: 12px;
-        overflow: hidden;
-        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        position: relative;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    /* FIX: CARD CONTAINER WITH PERSPECTIVE */
+    .flip-card {
+        height: 420px;
+        border-radius: 15px;
+        overflow: visible; /* Changed from hidden */
         cursor: pointer;
+        position: relative;
+        perspective: 1000px; /* Added */
     }
     
-    .art-card:hover {
-        transform: translateY(-10px) scale(1.02);
-        border-color: rgba(255,255,255,0.5);
-        box-shadow: 
-            0 20px 50px rgba(0,0,0,0.8),
-            0 0 30px rgba(255,255,255,0.2);
+    /* FIX: INNER CONTAINER WITH 3D */
+    .flip-card-inner {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        transition: transform 0.6s;
+        transform-style: preserve-3d; /* Added */
+    }
+    
+    /* FIX: FLIPPED STATE */
+    .flip-card.flipped .flip-card-inner {
+        transform: rotateY(180deg); /* Fixed: Changed from 180deg rotation */
+    }
+    
+    /* FIX: FRONT AND BACK POSITIONING */
+    .flip-card-front, .flip-card-back {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        -webkit-backface-visibility: hidden; /* Fixed: Added vendor prefix */
+        backface-visibility: hidden; /* This hides the back when facing away */
+        border-radius: 15px;
+        overflow: hidden;
+        border: 3px solid rgba(255,255,255,0.3);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+    
+    .flip-card-front {
+        background: rgba(20, 20, 20, 0.95);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 30px;
+        position: relative;
+    }
+    
+    .flip-card-front::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, 
+            transparent, 
+            rgba(255,255,255,0.8), 
+            rgba(255,255,255,0.8), 
+            transparent);
     }
     
     .art-image {
         width: 100%;
-        height: 280px;
+        height: 260px;
         object-fit: cover;
-        border-bottom: 2px solid rgba(255,255,255,0.2);
+        border-radius: 8px;
+        margin-bottom: 25px;
+        border: 2px solid rgba(255,255,255,0.2);
         transition: all 0.4s;
-        image-rendering: pixelated;
+        filter: brightness(1.05) saturate(1.1);
     }
     
-    .art-card:hover .art-image {
-        filter: brightness(1.1) saturate(1.2);
-    }
-    
-    .art-info {
-        padding: 25px;
-    }
-    
-    .art-name {
-        font-size: 24px;
+    .art-title-front {
+        font-size: 28px;
         font-weight: bold;
         color: #ffffff;
         text-transform: uppercase;
-        letter-spacing: 2px;
-        margin-bottom: 10px;
-        text-shadow: 0 2px 10px rgba(255,255,255,0.3);
-    }
-    
-    .art-description {
-        font-size: 14px;
-        color: #aaaaaa;
-        line-height: 1.6;
-        letter-spacing: 1px;
-    }
-    
-    /* LARRY CARD - SPECIAL */
-    .larry-card-special {
-        grid-column: span 2;
-        background: rgba(15, 15, 15, 0.95);
-        border: 3px solid rgba(255,215,0,0.3);
-        position: relative;
-    }
-    
-    .larry-card-special:hover {
-        border-color: rgba(255,215,0,0.6);
-        box-shadow: 
-            0 25px 60px rgba(0,0,0,0.9),
-            0 0 40px rgba(255,215,0,0.3);
-    }
-    
-    .larry-card-special::before {
-        content: "EXCLUSIVE";
-        position: absolute;
-        top: -12px;
-        left: 50%;
-        transform: translateX(-50%);
-        background: #ffd700;
-        color: #000;
-        padding: 5px 20px;
-        font-size: 14px;
-        font-weight: bold;
         letter-spacing: 3px;
-        border-radius: 20px;
-        z-index: 1;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        margin-top: 15px;
+    }
+    
+    .flip-tap-hint {
+        position: absolute;
+        bottom: 20px;
+        left: 0;
+        width: 100%;
+        text-align: center;
+        font-size: 14px;
+        color: rgba(255,255,255,0.7);
+        letter-spacing: 2px;
         text-transform: uppercase;
-    }
-
-    /* ============================================= */
-    /* WALLET REGISTRATION & VERIFICATION SECTION */
-    /* ============================================= */
-    
-    .registration-section {
-        background: rgba(20, 20, 20, 0.9);
-        border: 2px solid rgba(255,255,255,0.2);
-        border-radius: 20px;
-        padding: 60px;
-        margin: 80px 0;
-        position: relative;
-        overflow: hidden;
+        padding: 8px;
+        background: rgba(0,0,0,0.6);
+        border-top: 1px solid rgba(255,255,255,0.2);
+        opacity: 1;
     }
     
-    .registration-section::before {
+    /* FIX: BACK SIDE STYLING - THIS IS CRITICAL */
+    .flip-card-back {
+        background: rgba(15, 15, 15, 0.98);
+        transform: rotateY(180deg); /* Fixed: Back starts rotated 180 degrees */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 40px;
+        text-align: center;
+        position: absolute; /* Already set, but confirming */
+        overflow-y: auto;
+        top: 0;
+        left: 0;
+    }
+    
+    .flip-card-back::before {
         content: "";
         position: absolute;
         top: 0;
@@ -621,77 +425,296 @@
         right: 0;
         bottom: 0;
         background: 
-            linear-gradient(45deg, transparent 48%, rgba(255,255,255,0.03) 50%, transparent 52%),
-            linear-gradient(-45deg, transparent 48%, rgba(255,255,255,0.03) 50%, transparent 52%);
-        background-size: 30px 30px;
-        opacity: 0.3;
+            linear-gradient(45deg, transparent 48%, rgba(255,255,255,0.05) 50%, transparent 52%),
+            linear-gradient(-45deg, transparent 48%, rgba(255,255,255,0.05) 50%, transparent 52%);
+        background-size: 20px 20px;
         pointer-events: none;
     }
     
-    .verification-steps {
-        display: flex;
-        flex-direction: column;
-        gap: 30px;
-        margin-bottom: 50px;
+    .art-title-back {
+        font-size: 28px;
+        font-weight: bold;
+        color: #ffffff;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        margin-bottom: 20px;
+        text-shadow: 0 2px 10px rgba(255,255,255,0.3);
+        position: relative;
     }
     
-    .verification-step {
+    .art-title-back::after {
+        content: "";
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100px;
+        height: 2px;
+        background: linear-gradient(90deg, 
+            transparent, 
+            rgba(255,255,255,0.6), 
+            transparent);
+    }
+    
+    .art-description-flip {
+        font-size: 16px;
+        color: #aaaaaa;
+        line-height: 1.6;
+        letter-spacing: 1px;
+        margin-bottom: 20px;
+        padding: 0 15px;
+        text-align: left;
+        max-height: 220px;
+        overflow-y: auto;
+        width: 100%;
+    }
+    
+    .flip-back-hint {
+        position: absolute;
+        bottom: 20px;
+        left: 0;
+        width: 100%;
+        text-align: center;
+        font-size: 14px;
+        color: rgba(255,255,255,0.7);
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        padding: 8px;
+        background: rgba(0,0,0,0.6);
+        border-top: 1px solid rgba(255,255,255,0.2);
+    }
+    
+    /* LARRY CARD SECTION */
+    .larry-card-section {
+        text-align: center;
+        margin: 80px 0;
+        padding: 50px;
+        background: rgba(15, 15, 15, 0.95);
+        border: 2px solid rgba(255,255,255,0.2);
+        border-radius: 15px;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 
+            0 15px 40px rgba(0,0,0,0.6),
+            inset 0 1px 0 rgba(255,255,255,0.1);
+    }
+    
+    .larry-card-section::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: 
+            linear-gradient(45deg, transparent 45%, rgba(255,255,255,0.05) 50%, transparent 55%),
+            linear-gradient(-45deg, transparent 45%, rgba(255,255,255,0.05) 50%, transparent 55%);
+        background-size: 30px 30px;
+        animation: patternMove 30s linear infinite;
+        pointer-events: none;
+    }
+    
+    .larry-card-display {
+        position: relative;
+        display: inline-block;
+        margin-bottom: 40px;
+    }
+    
+    .larry-card-img {
+        width: 300px;
+        height: 400px;
+        object-fit: cover;
+        border: 3px solid rgba(255,255,255,0.3);
+        filter: brightness(1.05) saturate(1.1);
+        transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        image-rendering: pixelated;
+        border-radius: 12px;
+        box-shadow: 
+            0 10px 30px rgba(0,0,0,0.8),
+            0 0 20px rgba(255,255,255,0.1);
+        position: relative;
+        z-index: 2;
+        cursor: pointer;
+    }
+    
+    .larry-card-img:hover {
+        transform: scale(1.05) rotate(2deg);
+        border-color: rgba(255,255,255,0.6);
+        filter: brightness(1.1) saturate(1.2);
+        box-shadow: 
+            0 20px 50px rgba(0,0,0,0.9),
+            0 0 40px rgba(255,255,255,0.2);
+    }
+    
+    .larry-card-hint {
+        position: absolute;
+        bottom: -40px;
+        left: 0;
+        width: 100%;
+        text-align: center;
+        font-size: 14px;
+        color: rgba(255,255,255,0.7);
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        padding: 5px;
+        background: rgba(0,0,0,0.5);
+        border-radius: 4px;
+    }
+    
+    .larry-card-description {
+        background: rgba(20, 20, 20, 0.9);
+        border: 2px solid rgba(255,255,255,0.2);
+        padding: 30px;
+        margin-top: 30px;
+        border-radius: 12px;
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: left;
+    }
+    
+    .larry-card-description-title {
+        font-size: 24px;
+        color: #ffffff;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        margin-bottom: 20px;
+        text-align: center;
+        position: relative;
+    }
+    
+    .larry-card-description-title::after {
+        content: "";
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100px;
+        height: 2px;
+        background: linear-gradient(90deg, 
+            transparent, 
+            rgba(255,255,255,0.6), 
+            transparent);
+    }
+    
+    .larry-card-description-text {
+        font-size: 16px;
+        color: #aaaaaa;
+        line-height: 1.8;
+        letter-spacing: 1px;
+    }
+    
+    .larry-card-highlight {
+        color: #ffffff;
+        font-weight: bold;
+        text-shadow: 0 0 10px rgba(255,255,255,0.3);
+    }
+    
+    /* WALLET SUBMISSION SECTION */
+    .wallet-submission-section {
+        background: rgba(20, 20, 20, 0.95);
+        border: 2px solid rgba(255,255,255,0.2);
+        padding: 50px;
+        margin: 60px 0;
+        text-align: center;
+        border-radius: 15px;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 
+            0 10px 30px rgba(0,0,0,0.6),
+            inset 0 1px 0 rgba(255,255,255,0.1);
+    }
+    
+    .wallet-submission-section::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, 
+            transparent, 
+            rgba(255,255,255,0.8), 
+            rgba(255,255,255,0.8), 
+            transparent);
+    }
+    
+    .requirement-title {
+        font-size: 36px;
+        color: #ffffff;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        margin-bottom: 40px;
+        font-weight: bold;
+        text-shadow: 0 2px 10px rgba(255,255,255,0.3);
+        position: relative;
+    }
+    
+    .requirement-title::after {
+        content: "";
+        position: absolute;
+        bottom: -15px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100px;
+        height: 2px;
+        background: linear-gradient(90deg, 
+            transparent, 
+            rgba(255,255,255,0.6), 
+            transparent);
+    }
+    
+    .requirement-steps {
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+        margin-bottom: 40px;
+        position: relative;
+    }
+    
+    .requirement-step {
         display: flex;
         align-items: center;
-        gap: 25px;
-        padding: 25px;
-        background: rgba(0,0,0,0.6);
+        justify-content: center;
+        gap: 20px;
+        color: #888888;
+        font-size: 18px;
+        letter-spacing: 1px;
+        padding: 20px;
+        background: rgba(0,0,0,0.5);
         border: 1px solid rgba(255,255,255,0.1);
-        border-radius: 10px;
+        border-radius: 8px;
         transition: all 0.3s;
     }
     
-    .verification-step.completed {
+    .requirement-step.completed {
+        color: #00ff00;
         background: rgba(0,255,0,0.05);
         border-color: rgba(0,255,0,0.3);
         box-shadow: 0 0 20px rgba(0,255,0,0.1);
     }
     
     .step-number {
-        width: 50px;
-        height: 50px;
+        width: 40px;
+        height: 40px;
         background: rgba(255,255,255,0.1);
         border: 2px solid rgba(255,255,255,0.3);
         border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 24px;
         font-weight: bold;
+        font-size: 20px;
         transition: all 0.3s;
     }
     
-    .step-number.completed {
+    .step-completed {
         background: rgba(0,255,0,0.2);
         border-color: #00ff00;
         color: #00ff00;
         transform: scale(1.1);
     }
     
-    .step-content {
-        flex: 1;
-    }
-    
-    .step-title {
-        font-size: 20px;
-        color: #ffffff;
-        letter-spacing: 2px;
-        margin-bottom: 10px;
-        text-transform: uppercase;
-    }
-    
-    .step-description {
-        font-size: 16px;
-        color: #888888;
-        letter-spacing: 1px;
-    }
-    
-    /* X FOLLOW BUTTON */
     .x-follow-btn {
         display: inline-flex;
         align-items: center;
@@ -706,26 +729,11 @@
         font-size: 16px;
         font-weight: bold;
         transition: all 0.4s;
-        border-radius: 10px;
+        margin: 20px 0;
+        border-radius: 8px;
         position: relative;
         overflow: hidden;
-        box-shadow: 0 10px 20px rgba(0,0,0,0.5);
-        margin: 20px 0;
-        cursor: pointer;
-    }
-    
-    .x-follow-btn:hover {
-        background: linear-gradient(45deg, #1a1a1a, #000000);
-        border-color: rgba(255,255,255,0.6);
-        transform: translateY(-5px);
-        box-shadow: 0 15px 30px rgba(0,0,0,0.7);
-        letter-spacing: 4px;
-    }
-    
-    .x-follow-btn.completed {
-        background: linear-gradient(45deg, rgba(0,255,0,0.1), rgba(0,255,0,0.05));
-        border-color: #00ff00;
-        color: #00ff00;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
     }
     
     .x-follow-btn::before {
@@ -739,27 +747,38 @@
         transition: left 0.6s;
     }
     
+    .x-follow-btn:hover {
+        background: linear-gradient(45deg, #1a1a1a, #000000);
+        border-color: rgba(255,255,255,0.6);
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+        letter-spacing: 4px;
+    }
+    
     .x-follow-btn:hover::before {
         left: 100%;
     }
     
-    /* VERIFICATION CHECKBOX */
+    .x-follow-btn.completed {
+        background: linear-gradient(45deg, rgba(0,255,0,0.1), rgba(0,255,0,0.05));
+        border-color: #00ff00;
+        color: #00ff00;
+    }
+    
     .verify-checkbox {
+        margin: 30px 0;
         display: flex;
         align-items: center;
+        justify-content: center;
         gap: 15px;
-        margin: 30px 0;
-        padding: 20px;
-        background: rgba(0,0,0,0.6);
-        border-radius: 10px;
-        border: 1px solid rgba(255,255,255,0.1);
     }
     
     .verify-checkbox input[type="checkbox"] {
         width: 24px;
         height: 24px;
-        cursor: pointer;
         accent-color: rgba(255,255,255,0.3);
+        cursor: pointer;
+        position: relative;
     }
     
     .verify-checkbox label {
@@ -774,19 +793,23 @@
         color: #00ff00;
     }
     
-    /* WALLET FORM */
-    .wallet-form {
-        background: rgba(15,15,15,0.95);
+    /* FORM SECTION */
+    .form-section {
+        background: rgba(15, 15, 15, 0.95);
         border: 2px solid rgba(255,255,255,0.2);
-        padding: 50px;
-        border-radius: 15px;
-        margin-top: 40px;
+        padding: 60px;
+        margin: 60px 0;
+        position: relative;
         display: none;
-        animation: fadeIn 0.5s ease-out;
+        border-radius: 15px;
+        box-shadow: 
+            0 15px 40px rgba(0,0,0,0.7),
+            inset 0 1px 0 rgba(255,255,255,0.1);
     }
     
-    .wallet-form.active {
+    .form-section.active {
         display: block;
+        animation: fadeIn 0.5s ease-out;
     }
     
     @keyframes fadeIn {
@@ -794,17 +817,77 @@
         to { opacity: 1; transform: translateY(0); }
     }
     
-    .form-title {
-        font-size: 28px;
-        color: #ffffff;
-        text-transform: uppercase;
-        letter-spacing: 3px;
-        margin-bottom: 30px;
-        text-align: center;
+    .form-section::before {
+        content: "";
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        right: -2px;
+        bottom: -2px;
+        border: 2px solid transparent;
+        background: linear-gradient(45deg, 
+            rgba(255,255,255,0.1) 25%, 
+            transparent 25%, 
+            transparent 50%, 
+            rgba(255,255,255,0.1) 50%, 
+            rgba(255,255,255,0.1) 75%, 
+            transparent 75%, 
+            transparent) border-box;
+        background-size: 10px 10px;
+        border-radius: 17px;
+        mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+        mask-composite: exclude;
+        pointer-events: none;
+        animation: patternMove 20s linear infinite;
     }
     
+    .form-header {
+        text-align: center;
+        margin-bottom: 50px;
+        position: relative;
+    }
+    
+    .form-title {
+        font-size: 48px;
+        font-weight: bold;
+        color: #ffffff;
+        text-transform: uppercase;
+        letter-spacing: 6px;
+        margin-bottom: 20px;
+        text-shadow: 0 2px 15px rgba(255,255,255,0.3);
+        position: relative;
+        display: inline-block;
+    }
+    
+    .form-title::before {
+        content: "";
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 150px;
+        height: 3px;
+        background: linear-gradient(90deg, 
+            transparent, 
+            rgba(255,255,255,0.8), 
+            rgba(255,255,255,0.8), 
+            transparent);
+        border-radius: 2px;
+    }
+    
+    .form-subtitle {
+        font-size: 18px;
+        color: #888888;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+    
+    /* FORM ELEMENTS */
     .form-group {
-        margin-bottom: 30px;
+        margin-bottom: 40px;
+        position: relative;
     }
     
     .form-label {
@@ -812,70 +895,74 @@
         font-size: 16px;
         color: #888888;
         text-transform: uppercase;
-        letter-spacing: 2px;
-        margin-bottom: 10px;
+        letter-spacing: 3px;
+        margin-bottom: 15px;
+        font-weight: bold;
     }
     
     .form-input {
         width: 100%;
-        padding: 15px;
-        background: rgba(0,0,0,0.8);
+        padding: 20px;
+        background: rgba(0, 0, 0, 0.8);
         border: 2px solid rgba(255,255,255,0.2);
         color: #ffffff;
         font-family: 'Courier New', monospace;
-        font-size: 16px;
-        letter-spacing: 1px;
-        border-radius: 8px;
+        font-size: 18px;
+        letter-spacing: 2px;
         transition: all 0.3s;
+        border-radius: 8px;
+        box-shadow: inset 0 2px 10px rgba(0,0,0,0.5);
     }
     
     .form-input:focus {
         outline: none;
         border-color: rgba(255,255,255,0.5);
-        background: rgba(0,0,0,0.9);
-        box-shadow: 0 0 20px rgba(255,255,255,0.1);
+        background: rgba(0, 0, 0, 0.9);
+        box-shadow: 
+            inset 0 2px 10px rgba(0,0,0,0.5),
+            0 0 30px rgba(255,255,255,0.1);
+        transform: translateY(-2px);
     }
     
-    .form-input.valid {
-        border-color: rgba(0,255,0,0.5);
-        background: rgba(0,255,0,0.05);
-    }
-    
-    .form-input.invalid {
-        border-color: rgba(255,0,0,0.5);
-        background: rgba(255,0,0,0.05);
-    }
-    
-    /* SUBMIT BUTTON */
+    /* RETRO SUBMIT BUTTON */
     .submit-btn {
         width: 100%;
-        padding: 20px;
+        padding: 25px;
         background: linear-gradient(45deg, #000000, #1a1a1a);
         border: 2px solid rgba(255,255,255,0.3);
         color: #ffffff;
         font-family: 'VT323', monospace;
-        font-size: 20px;
+        font-size: 24px;
+        font-weight: bold;
         text-transform: uppercase;
-        letter-spacing: 3px;
+        letter-spacing: 4px;
         cursor: pointer;
-        transition: all 0.4s;
-        border-radius: 8px;
-        margin-top: 20px;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         position: relative;
         overflow: hidden;
-    }
-    
-    .submit-btn:hover:not(:disabled) {
-        background: linear-gradient(45deg, #1a1a1a, #000000);
-        border-color: rgba(255,255,255,0.6);
-        letter-spacing: 5px;
-        transform: translateY(-3px);
-        box-shadow: 0 10px 25px rgba(0,0,0,0.7);
+        border-radius: 8px;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+        margin-top: 20px;
     }
     
     .submit-btn:disabled {
         opacity: 0.5;
         cursor: not-allowed;
+        transform: none !important;
+    }
+    
+    .submit-btn:hover:not(:disabled) {
+        background: linear-gradient(45deg, #1a1a1a, #000000);
+        border-color: rgba(255,255,255,0.6);
+        letter-spacing: 6px;
+        transform: translateY(-5px);
+        box-shadow: 
+            0 15px 30px rgba(0,0,0,0.7),
+            0 0 40px rgba(255,255,255,0.1);
+    }
+    
+    .submit-btn:active:not(:disabled) {
+        transform: translateY(-2px);
     }
     
     .submit-btn::before {
@@ -886,7 +973,7 @@
         width: 100%;
         height: 100%;
         background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
-        transition: left 0.6s;
+        transition: all 0.6s;
     }
     
     .submit-btn:hover:not(:disabled)::before {
@@ -896,80 +983,138 @@
     /* RESPONSE MESSAGE */
     .response {
         margin-top: 30px;
-        padding: 20px;
-        border-radius: 8px;
-        text-align: center;
+        padding: 25px;
+        border: 2px solid rgba(255,255,255,0.2);
         font-size: 16px;
+        text-align: center;
+        color: #888888;
+        display: none;
         letter-spacing: 2px;
         text-transform: uppercase;
-        display: none;
+        border-radius: 8px;
+        background: rgba(0,0,0,0.7);
         animation: fadeIn 0.3s ease-out;
     }
     
     .response.success {
-        display: block;
-        background: rgba(0,255,0,0.1);
-        border: 1px solid rgba(0,255,0,0.3);
         color: #00ff00;
-        box-shadow: 0 0 20px rgba(0,255,0,0.2);
+        border-color: rgba(0,255,0,0.3);
+        background: rgba(0,255,0,0.05);
+        box-shadow: 0 0 30px rgba(0,255,0,0.1);
     }
     
     .response.error {
-        display: block;
-        background: rgba(255,0,0,0.1);
-        border: 1px solid rgba(255,0,0,0.3);
         color: #ff4444;
-        box-shadow: 0 0 20px rgba(255,0,0,0.2);
+        border-color: rgba(255,68,68,0.3);
+        background: rgba(255,68,68,0.05);
+        box-shadow: 0 0 30px rgba(255,68,68,0.1);
     }
     
-    .response.processing {
-        display: block;
-        background: rgba(255,255,0,0.1);
-        border: 1px solid rgba(255,255,0,0.3);
-        color: #ffff00;
-        box-shadow: 0 0 20px rgba(255,255,0,0.2);
-    }
-
-    /* ============================================= */
-    /* FOLLOW & COMMUNITY SECTION */
-    /* ============================================= */
-    
-    .community-section {
-        background: rgba(20,20,20,0.9);
+    /* CONNECTIONS SECTION */
+    .connections-section {
+        background: rgba(20, 20, 20, 0.95);
         border: 2px solid rgba(255,255,255,0.2);
-        border-radius: 20px;
-        padding: 60px;
-        margin: 80px 0;
+        padding: 50px;
+        margin: 60px 0;
         text-align: center;
+        border-radius: 15px;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 
+            0 10px 30px rgba(0,0,0,0.6),
+            inset 0 1px 0 rgba(255,255,255,0.1);
     }
     
-    .community-title {
-        font-size: 36px;
-        color: #ffffff;
+    .connections-section::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, 
+            transparent, 
+            rgba(255,255,255,0.8), 
+            rgba(255,255,255,0.8), 
+            transparent);
+    }
+    
+    /* RETRO STATS BAR */
+    .stats {
+        display: flex;
+        justify-content: space-around;
+        padding: 40px;
+        border-top: 2px solid rgba(255,255,255,0.2);
+        border-bottom: 2px solid rgba(255,255,255,0.2);
+        margin: 60px 0;
+        background: rgba(20,20,20,0.8);
+        border-radius: 15px;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .stats::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: 
+            linear-gradient(45deg, transparent 48%, rgba(255,255,255,0.03) 50%, transparent 52%),
+            linear-gradient(-45deg, transparent 48%, rgba(255,255,255,0.03) 50%, transparent 52%);
+        background-size: 20px 20px;
+        opacity: 0.5;
+        pointer-events: none;
+    }
+    
+    .stat-item {
+        text-align: center;
+        position: relative;
+        z-index: 1;
+        padding: 20px;
+        min-width: 200px;
+    }
+    
+    .stat-label {
+        font-size: 14px;
+        color: #888888;
         text-transform: uppercase;
-        letter-spacing: 4px;
-        margin-bottom: 40px;
-        text-shadow: 0 0 20px rgba(255,255,255,0.3);
+        letter-spacing: 3px;
+        margin-bottom: 15px;
+        font-weight: bold;
     }
     
+    .stat-value {
+        font-size: 48px;
+        font-weight: bold;
+        color: #ffffff;
+        letter-spacing: 4px;
+        text-shadow: 0 2px 10px rgba(255,255,255,0.3);
+        font-family: 'VT323', monospace;
+    }
+    
+    /* RETRO TWITTER LINK */
     .twitter-link {
         display: inline-flex;
         align-items: center;
-        gap: 20px;
+        gap: 15px;
+        margin: 80px auto;
+        padding: 25px 50px;
         background: linear-gradient(45deg, #000000, #1a1a1a);
         color: #ffffff;
-        border: 2px solid rgba(255,255,255,0.3);
-        padding: 25px 50px;
         text-decoration: none;
         text-transform: uppercase;
         letter-spacing: 4px;
         font-size: 18px;
         font-weight: bold;
-        transition: all 0.4s;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        text-align: center;
+        border: 2px solid rgba(255,255,255,0.3);
         border-radius: 12px;
         position: relative;
         overflow: hidden;
-        box-shadow: 0 15px 30px rgba(0,0,0,0.6);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.6);
     }
     
     .twitter-link:hover {
@@ -978,7 +1123,7 @@
         transform: translateY(-8px) scale(1.05);
         letter-spacing: 6px;
         box-shadow: 
-            0 25px 50px rgba(0,0,0,0.8),
+            0 20px 50px rgba(0,0,0,0.8),
             0 0 40px rgba(255,255,255,0.1);
     }
     
@@ -997,76 +1142,191 @@
         left: 100%;
     }
     
-    /* STATS SECTION */
-    .stats {
-        display: flex;
-        justify-content: space-around;
-        padding: 50px;
-        background: rgba(20,20,20,0.8);
-        border: 2px solid rgba(255,255,255,0.2);
-        border-radius: 20px;
-        margin: 60px 0;
-    }
-    
-    .stat-item {
-        text-align: center;
-    }
-    
-    .stat-label {
-        font-size: 14px;
-        color: #888888;
-        text-transform: uppercase;
-        letter-spacing: 3px;
-        margin-bottom: 15px;
-    }
-    
-    .stat-value {
-        font-size: 48px;
-        font-weight: bold;
-        color: #ffffff;
-        letter-spacing: 4px;
-        font-family: 'VT323', monospace;
-        text-shadow: 0 2px 10px rgba(255,255,255,0.3);
-    }
-    
-    /* FOOTER */
+    /* RETRO FOOTER */
     .footer {
         text-align: center;
-        padding: 60px 20px 40px;
+        padding: 60px 40px;
+        border-top: 2px solid rgba(255,255,255,0.2);
         margin-top: 80px;
-        border-top: 2px solid rgba(255,255,255,0.1);
         color: #666666;
         font-size: 14px;
         letter-spacing: 3px;
         text-transform: uppercase;
+        position: relative;
+        background: rgba(10,10,10,0.9);
+        border-radius: 15px 15px 0 0;
     }
     
-    .footer-title {
+    .footer::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, 
+            transparent, 
+            rgba(255,255,255,0.5), 
+            rgba(255,255,255,0.5), 
+            transparent);
+    }
+    
+    .copyright {
         color: #ffffff;
         font-family: 'VT323', monospace;
-        font-size: 28px;
+        font-size: 24px;
         letter-spacing: 4px;
         margin-bottom: 20px;
-        text-shadow: 0 2px 10px rgba(255,255,255,0.3);
+        text-shadow: 0 2px 5px rgba(255,255,255,0.2);
+    }
+    
+    /* PIXEL BORDER EFFECT */
+    .pixel-border {
+        position: relative;
+        padding: 4px;
+        background: 
+            linear-gradient(45deg, 
+                rgba(255,255,255,0.1) 25%, 
+                transparent 25%, 
+                transparent 50%, 
+                rgba(255,255,255,0.1) 50%, 
+                rgba(255,255,255,0.1) 75%, 
+                transparent 75%, 
+                transparent);
+        background-size: 8px 8px;
+        border-radius: 20px;
+        animation: patternMove 20s linear infinite;
+    }
+    
+    .pixel-border-inner {
+        background: #000000;
+        padding: 50px;
+        border-radius: 16px;
+    }
+    
+    /* RETRO SCANLINES */
+    .scanlines {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: 
+            repeating-linear-gradient(
+                0deg,
+                rgba(0,0,0,0.15) 0px,
+                rgba(0,0,0,0.15) 1px,
+                transparent 1px,
+                transparent 2px
+            );
+        pointer-events: none;
+        z-index: 9998;
+        opacity: 0.1;
+        animation: scan 10s linear infinite;
+    }
+    
+    @keyframes scan {
+        0% { transform: translateY(0); }
+        100% { transform: translateY(20px); }
+    }
+    
+    /* SCROLLBAR */
+    ::-webkit-scrollbar {
+        width: 10px;
+    }
+    
+    ::-webkit-scrollbar-track {
+        background: #0a0a0a;
+        border: 1px solid rgba(255,255,255,0.1);
+    }
+    
+    ::-webkit-scrollbar-thumb {
+        background: rgba(255,255,255,0.2);
+        border-radius: 5px;
+        border: 2px solid #0a0a0a;
+    }
+    
+    ::-webkit-scrollbar-thumb:hover {
+        background: rgba(255,255,255,0.3);
     }
     
     /* RESPONSIVE */
-    @media (max-width: 1200px) {
+    @media (max-width: 1024px) {
         .gallery {
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-        }
-        
-        .larry-card-special {
-            grid-column: span 1;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
         }
         
         .stats {
             flex-direction: column;
             gap: 40px;
+            align-items: center;
+        }
+        
+        .stat-item {
+            min-width: 250px;
         }
     }
     
     @media (max-width: 768px) {
+        .container {
+            padding: 20px;
+        }
+        
+        .title {
+            font-size: 60px;
+            letter-spacing: 6px;
+        }
+        
+        .section-title {
+            font-size: 36px;
+            letter-spacing: 4px;
+        }
+        
+        .description-title {
+            font-size: 28px;
+        }
+        
+        .description-text {
+            font-size: 16px;
+            padding: 0 10px;
+        }
+        
+        .gallery {
+            grid-template-columns: 1fr;
+            gap: 40px;
+        }
+        
+        .flip-card {
+            height: 380px;
+        }
+        
+        .art-image {
+            height: 200px;
+        }
+        
+        .form-section, .wallet-submission-section, .connections-section {
+            padding: 30px;
+        }
+        
+        .larry-card-img {
+            width: 240px;
+            height: 320px;
+        }
+        
+        .requirement-step {
+            flex-direction: column;
+            text-align: center;
+            gap: 15px;
+        }
+        
+        .form-title {
+            font-size: 32px;
+            letter-spacing: 4px;
+        }
+    }
+    
+    @media (max-width: 480px) {
         .title {
             font-size: 48px;
             letter-spacing: 4px;
@@ -1074,312 +1334,423 @@
         
         .subtitle {
             font-size: 18px;
+            letter-spacing: 2px;
+            padding: 15px;
         }
         
         .section-title {
             font-size: 28px;
+            letter-spacing: 3px;
         }
         
-        .gallery {
-            grid-template-columns: 1fr;
-            gap: 30px;
+        .project-description {
+            padding: 25px;
         }
         
-        .registration-section,
-        .community-section {
-            padding: 30px;
+        .description-title {
+            font-size: 24px;
         }
         
-        .verification-step {
-            flex-direction: column;
-            text-align: center;
-            gap: 15px;
+        .larry-card-img {
+            width: 200px;
+            height: 280px;
         }
         
         .x-follow-btn,
         .twitter-link {
-            padding: 15px 30px;
+            padding: 15px 25px;
             font-size: 14px;
         }
-    }
-    
-    @media (max-width: 480px) {
-        .container {
-            padding: 20px 15px;
+        
+        .flip-card {
+            height: 350px;
         }
         
-        .title {
-            font-size: 36px;
-        }
-        
-        .header {
-            padding: 30px 20px;
-        }
-        
-        .registration-section,
-        .community-section {
-            padding: 20px;
-        }
-        
-        .section-title {
-            font-size: 24px;
+        .art-image {
+            height: 180px;
         }
     }
 </style>
 </head>
 <body>
 
-<!-- ============================================= -->
-<!-- PIXELATED LARRY SKELETON - PERFECT DETAILED -->
-<!-- ============================================= -->
-<div id="larry-skeleton">
-    <div class="larry-sprite">
-        <!-- Head with Detailed Skull -->
-        <div class="larry-head">
-            <!-- Eye Sockets -->
-            <div class="skull-detail eye-socket eye-left"></div>
-            <div class="skull-detail eye-socket eye-right"></div>
-            <!-- Nasal Cavity -->
-            <div class="skull-detail nasal-cavity"></div>
-            <!-- Teeth -->
-            <div class="teeth-row">
-                <div class="tooth"></div>
-                <div class="tooth"></div>
-                <div class="tooth"></div>
-                <div class="tooth"></div>
-                <div class="tooth"></div>
-                <div class="tooth"></div>
-            </div>
-        </div>
-        
-        <!-- Body with Rib Cage Detail -->
-        <div class="larry-body">
-            <!-- Spine -->
-            <div class="spine"></div>
-            <!-- Ribs -->
-            <div class="rib rib-1"></div>
-            <div class="rib rib-2"></div>
-            <div class="rib rib-3"></div>
-            <div class="rib rib-4"></div>
-            <div class="rib rib-5"></div>
-            <div class="rib rib-6"></div>
-        </div>
-        
-        <!-- Left Arm -->
-        <div class="larry-arm left">
-            <div class="forearm left">
-                <div class="hand left">
-                    <div class="finger finger-l1"></div>
-                    <div class="finger finger-l2"></div>
-                    <div class="finger finger-l3"></div>
-                    <div class="finger finger-l4"></div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Right Arm -->
-        <div class="larry-arm right">
-            <div class="forearm right">
-                <div class="hand right">
-                    <div class="finger finger-r1"></div>
-                    <div class="finger finger-r2"></div>
-                    <div class="finger finger-r3"></div>
-                    <div class="finger finger-r4"></div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Left Leg -->
-        <div class="larry-leg left">
-            <div class="shin left">
-                <div class="foot left"></div>
-            </div>
-        </div>
-        
-        <!-- Right Leg -->
-        <div class="larry-leg right">
-            <div class="shin right">
-                <div class="foot right"></div>
-            </div>
-        </div>
-    </div>
-</div>
+<!-- RETRO EFFECTS -->
+<div class="retro-grid"></div>
+<div class="scanlines"></div>
 
-<!-- ============================================= -->
-<!-- MAIN CONTENT -->
-<!-- ============================================= -->
 <div class="container">
     
-    <!-- HEADER -->
+    <!-- RETRO PATTERN HEADER -->
     <div class="header">
         <h1 class="title">FLOOR LARRY</h1>
-        <div class="subtitle">BASEMENT FLOOR UNIVERSE</div>
-        <div class="description">
-            A unique NFT collection centered around Larry – a charismatic digital character who has taken up residence in the basement floor of the internet.
+        <div class="subtitle">
+             • EXPLORE THE LARRY UNIVERSE • 
         </div>
     </div>
     
-    <!-- ART GALLERY SECTION -->
-    <div class="section-title">LARRY ART GALLERY</div>
+    <!-- PROJECT DESCRIPTION SECTION -->
+    <div class="project-description">
+        <div class="description-title">ABOUT FLOOR LARRY</div>
+        <div class="description-text">
+            <span class="description-highlight">Floor Larry</span> is a unique NFT collection centered around Larry - a charismatic digital character who has taken up residence in the basement floor of the internet. Unlike typical NFT projects, <span class="description-highlight">Floor Larry</span> embodies the spirit of underground digital culture, combining retro aesthetics with modern blockchain technology.
+            <br><br>
+            Each Larry character represents a different aspect of internet culture, from meme lords to digital pioneers, all united by their connection to the mysterious "basement floor" of the web where the most authentic digital experiences reside.
+        </div>
+    </div>
     
+    <!-- GALLERY SECTION -->
+    <div class="section-header">
+        <div class="section-title">ART GALLERY</div>
+    </div>
+    
+    <!-- FLIP CARD GALLERY -->
     <div class="gallery">
-        
         <!-- SUPER LARRY -->
-        <div class="art-card">
-            <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                 alt="Super Larry" class="art-image">
-            <div class="art-info">
-                <div class="art-name">SUPER LARRY</div>
-                <div class="art-description">
-                    Cosmic defender of the Larry-Verse. Reality-bending powers and light-speed flight.
+        <div class="flip-card" id="superLarryCard">
+            <div class="flip-card-inner">
+                <div class="flip-card-front">
+                    <img src="super_larry.jpeg" alt="Super Larry" class="art-image"
+                         onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzUwIiBoZWlnaHQ9IjI2MCIgdmlld0JveD0iMCAwIDM1MCAyNjAiIHN0eWxlPSJpbWFnZS1yZW5kZXJpbmc6IHBpeGVsYXRlZCI+PHJlY3Qgd2lkdGg9IjM1MCIgaGVpZ2h0PSIyNjAiIGZpbGw9IiMxMTExMTEiLz48cmVjdCB4PSIxMCIgeT0iMTAiIHdpZHRoPSIzMzAiIGhlaWdodD0iMjQwIiBmaWxsPSIjMjIyMjIyIiBzdHJva2U9IiNGRkQ3MDAiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjE3NSIgeT0iMTAwIiBmb250LWZhbWlseT0iJ1ZUMzIzJywgbW9ub3NwYWNlIiBmb250LXNpemU9IjI0IiBmaWxsPSIjRkZENzAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5TVVBFUjwvdGV4dD48dGV4dCB4PSIxNzUiIHk9IjEzMCIgZm9udC1mYW1pbHk9IidWVDMyMycsIG1vbm9zcGFjZSIgZm9udC1zaXplPSIzMCIgZmlsbD0iI0ZGRDcwMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+TEFSUlk8L3RleHQ+PHRleHQgeD0iMTc1IiB5PSIxNzAiIGZvbnQtZmFtaWx5PSInVlQzMjMnLCBtb25vc3BhY2UiIGZvbnQtc2l6ZT0iMTYiIGZpbGw9IiNGRkQ3MDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkNPU01JQyBERUZFTkRFUjwvdGV4dD48L3N2Zz4='">
+                    <div class="art-title-front">SUPER LARRY</div>
+                    <div class="flip-tap-hint">TAP TO FLIP</div>
+                </div>
+                <div class="flip-card-back">
+                    <div class="art-title-back">SUPER LARRY</div>
+                    <div class="art-description-flip">
+                        <strong>Super Larry</strong> is the cosmic defender of the Larry-Verse. With reality-bending powers, light-speed flight, and unmatched style, he patrols the digital cosmos protecting the basement floor from inter-dimensional threats. His signature white pattern cape generates cryptographic shields that can withstand even the most powerful digital attacks.
+                        <br><br>
+                        <strong>Abilities:</strong> Reality manipulation, light-speed travel, energy projection, and cryptographic defense systems.
+                        <br><br>
+                        <strong>Role:</strong> Guardian of the digital basement floor against cosmic-level threats.
+                    </div>
+                    <div class="flip-back-hint">TAP TO RETURN</div>
                 </div>
             </div>
         </div>
         
         <!-- SPIDER LARRY -->
-        <div class="art-card">
-            <img src="https://images.unsplash.com/photo-1635805737707-575885ab0820?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                 alt="Spider Larry" class="art-image">
-            <div class="art-info">
-                <div class="art-name">SPIDER LARRY</div>
-                <div class="art-description">
-                    Swings through the digital metropolis with web-slinging abilities.
+        <div class="flip-card" id="spiderLarryCard">
+            <div class="flip-card-inner">
+                <div class="flip-card-front">
+                    <img src="spider_larry.jpeg" alt="Spider Larry" class="art-image"
+                         onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzUwIiBoZWlnaHQ9IjI2MCIgdmlld0JveD0iMCAwIDM1MCAyNjAiIHN0eWxlPSJpbWFnZS1yZW5kZXJpbmc6IHBpeGVsYXRlZCI+PHJlY3Qgd2lkdGg9IjM1MCIgaGVpZ2h0PSIyNjAiIGZpbGw9IiMxMTExMTEiLz48cmVjdCB4PSIxMCIgeT0iMTAiIHdpZHRoPSIzMzAiIGhlaWdodD0iMjQwIiBmaWxsPSIjMjIyMjIyIiBzdHJva2U9IiNGRkQ3MDAiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjE3NSIgeT0iMTAwIiBmb250LWZhbWlseT0iJ1ZUMzIzJywgbW9ub3NwYWNlIiBmb250LXNpemU9IjI0IiBmaWxsPSIjRkZENzAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5TUElERVI8L3RleHQ+PHRleHQgeD0iMTc1IiB5PSIxMzAiIGZvbnQtZmFtaWx5PSInVlQzMjMnLCBtb25vc3BhY2UiIGZvbnQtc2l6ZT0iMzAiIGZpbGw9IiNGRkQ3MDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkxBUlJZPC90ZXh0Pjx0ZXh0IHg9IjE3NSIgeT0iMTcwIiBmb250LWZhbWlseT0iJ1ZUMzMjMiwgbW9ub3NwYWNlIiBmb250LXNpemU9IjE2IiBmaWxsPSIjRkZENzAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5XRUItU0xJTkdFUjwvdGV4dD48L3N2Zz4='">
+                    <div class="art-title-front">SPIDER LARRY</div>
+                    <div class="flip-tap-hint">TAP TO FLIP</div>
+                </div>
+                <div class="flip-card-back">
+                    <div class="art-title-back">SPIDER LARRY</div>
+                    <div class="art-description-flip">
+                        <strong>Spider Larry</strong> swings through the digital metropolis of the internet's basement floor. With web-slinging abilities, wall-crawling skills, and witty one-liners, he navigates the complex architecture of abandoned servers and forgotten data centers, protecting the digital citizens from corruption and data breaches.
+                        <br><br>
+                        <strong>Abilities:</strong> Web-slinging, wall-crawling, enhanced agility, spider-sense for detecting digital threats, and rapid code regeneration.
+                        <br><br>
+                        <strong>Role:</strong> Protector of urban digital spaces and data infrastructure.
+                    </div>
+                    <div class="flip-back-hint">TAP TO RETURN</div>
                 </div>
             </div>
         </div>
         
+        <!-- ARTHUR LARRY -->
+        <div class="flip-card" id="arthurLarryCard">
+            <div class="flip-card-inner">
+                <div class="flip-card-front">
+                    <img src="arthur_larry.jpeg" alt="Arthur Larry" class="art-image"
+                         onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzUwIiBoZWlnaHQ9IjI2MCIgdmlld0JveD0iMCAwIDM1MCAyNjAiIHN0eWxlPSJpbWFnZS1yZW5kZXJpbmc6IHBpeGVsYXRlZCI+PHJlY3Qgd2lkdGg9IjM1MCIgaGVpZ2h0PSIyNjAiIGZpbGw9IiMxMTExMTEiLz48cmVjdCB4PSIxMCIgeT0iMTAiIHdpZHRoPSIzMzAiIGhlaWdodD0iMjQwIiBmaWxsPSIjMjIyMjIyIiBzdHJva2U9IiNGRkQ3MDAiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjE3NSIgeT0iMTAwIiBmb250LWZhbWlseT0iJ1ZUMzIzJywgbW9ub3NwYWNlIiBmb250LXNpemU9IjI0IiBmaWxsPSIjRkZENzAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5BUlRIVVI8L3RleHQ+PHRleHQgeD0iMTc1IiB5PSIxMzAiIGZvbnQtZmFtaWx5PSInVlQzMjMnLCBtb25vc3BhY2UiIGZvbnQtc2l6ZT0iMzAiIGZpbGw9IiNGRkQ3MDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkxBUlJZPC90ZXh0Pjx0ZXh0IHg9IjE3NSIgeT0iMTcwIiBmb250LWZhbWlseT0iJ1ZUMzIzJywgbW9ub3NwYWNlIiBmb250LXNpemU9IjE2IiBmaWxsPSIjRkZENzAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5USEUgS0lORzwvdGV4dD48L3N2Zz4='">
+                    <div class="art-title-front">ARTHUR LARRY</div>
+                    <div class="flip-tap-hint">TAP TO FLIP</div>
+                </div>
+                <div class="flip-card-back">
+                    <div class="art-title-back">ARTHUR LARRY</div>
+                    <div class="art-description-flip">
+                        <strong>Arthur Larry</strong> is the once and future king of the digital realm. He leads the Knights of the Binary Table through the deepest levels of the internet's basement floor, wielding the legendary sword Excali-Bit. His quest is to unite the fragmented data kingdoms and restore order to the chaotic digital landscape.
+                        <br><br>
+                        <strong>Abilities:</strong> Leadership aura, sword mastery with Excali-Bit, digital kingdom unification, and protocol diplomacy.
+                        <br><br>
+                        <strong>Role:</strong> Unifier of digital kingdoms and bringer of order to chaotic data realms.
+                    </div>
+                    <div class="flip-back-hint">TAP TO RETURN</div>
+                </div>
+            </div>
+        </div>
         <!-- BAT LARRY -->
-        <div class="art-card">
-            <img src="https://images.unsplash.com/photo-1531259683007-016a7b628fc3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                 alt="Bat Larry" class="art-image">
-            <div class="art-info">
-                <div class="art-name">BAT LARRY</div>
-                <div class="art-description">
-                    The dark guardian of the digital city. Justice in the night.
-                </div>
-            </div>
+<div class="flip-card" id="batLarryCard">
+    <div class="flip-card-inner">
+        <div class="flip-card-front">
+            <img src="bat_larry.jpeg" alt="Bat Larry" class="art-image"
+                 onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzUwIiBoZWlnaHQ9IjI2MCIgdmlld0JveD0iMCAwIDM1MCAyNjAiIHN0eWxlPSJpbWFnZS1yZW5kZXJpbmc6IHBpeGVsYXRlZCI+PHJlY3Qgd2lkdGg9IjM1MCIgaGVpZ2h0PSIyNjAiIGZpbGw9IiMxMTExMTEiLz48cmVjdCB4PSIxMCIgeT0iMTAiIHdpZHRoPSIzMzAiIGhlaWdodD0iMjQwIiBmaWxsPSIjMjIyMjIyIiBzdHJva2U9IiNGRkQ3MDAiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjE3NSIgeT0iMTAwIiBmb250LWZhbWlseT0iJ1ZUMzIzJywgbW9ub3NwYWNlIiBmb250LXNpemU9IjI0IiBmaWxsPSIjRkZENzAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5CQVQ8L3RleHQ+PHRleHQgeD0iMTc1IiB5PSIxMzAiIGZvbnQtZmFtaWx5PSInVlQzMjMnLCBtb25vc3BhY2UiIGZvbnQtc2l6ZT0iMzAiIGZpbGw9IiNGRkQ3MDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkxBUlJZPC90ZXh0Pjx0ZXh0IHg9IjE3NSIgeT0iMTcwIiBmb250LWZhbWlseT0iJ1ZUMzIzJywgbW9ub3NwYWNlIiBmb250LXNpemU9IjE2IiBmaWxsPSIjRkZENzAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5EQVJLIElOVEVSTkVUPC90ZXh0Pjwvc3ZnPg=='">
+            <div class="art-title-front">BAT LARRY</div>
+            <div class="flip-tap-hint">TAP TO FLIP</div>
         </div>
-        
+        <div class="flip-card-back">
+            <div class="art-title-back">BAT LARRY</div>
+            <div class="art-description-flip">
+                <strong>Bat Larry</strong> is the dark guardian of the digital city. He watches from the shadows of the internet's deepest servers. Justice in the night. Fear in the hearts of corrupt data.
+                <br><br>
+                <strong>Skills:</strong> Peak human intellect. Master detective. Martial arts expert. Advanced technology. Unlimited resources.
+                <br><br>
+                <strong>Mission:</strong> Cleanse the basement floor of digital corruption. Protect the innocent data. Enforce justice where the law cannot reach.
+            </div>
+            <div class="flip-back-hint">TAP TO RETURN</div>
+        </div>
+    </div>
+</div>
         <!-- GOLDEN LARRY -->
-        <div class="art-card">
-            <img src="https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                 alt="Golden Larry" class="art-image">
-            <div class="art-info">
-                <div class="art-name">GOLDEN LARRY</div>
-                <div class="art-description">
-                    The divine embodiment of absolute perfection and infinite power.
-                </div>
-            </div>
+<div class="flip-card" id="goldenLarryCard">
+    <div class="flip-card-inner">
+        <div class="flip-card-front">
+            <img src="golden_larry.jpeg" alt="Golden Larry" class="art-image"
+                 onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzUwIiBoZWlnaHQ9IjI2MCIgdmlld0JveD0iMCAwIDM1MCAyNjAiIHN0eWxlPSJpbWFnZS1yZW5kZXJpbmc6IHBpeGVsYXRlZCI+PHJlY3Qgd2lkdGg9IjM1MCIgaGVpZ2h0PSIyNjAiIGZpbGw9IiMxMTExMTEiLz48cmVjdCB4PSIxMCIgeT0iMTAiIHdpZHRoPSIzMzAiIGhlaWdodD0iMjQwIiBmaWxsPSIjMjIyMjIyIiBzdHJva2U9IiNGRkQ3MDAiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjE3NSIgeT0iMTAwIiBmb250LWZhbWlseT0iJ1ZUMzIzJywgbW9ub3NwYWNlIiBmb250LXNpemU9IjI0IiBmaWxsPSIjRkZENzAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5HT0xERU48L3RleHQ+PHRleHQgeD0iMTc1IiB5PSIxMzAiIGZvbnQtZmFtaWx5PSInVlQzMjMnLCBtb25vc3BhY2UiIGZvbnQtc2l6ZT0iMzAiIGZpbGw9IiNGRkQ3MDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkxBUlJZPC90ZXh0Pjx0ZXh0IHg9IjE3NSIgeT0iMTcwIiBmb250LWZhbWlseT0iJ1ZUMzIzJywgbW9ub3NwYWNlIiBmb250LXNpemU9IjE2IiBmaWxsPSIjRkZENzAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5ESVZJTkUgQkVJTkc8L3RleHQ+PC9zdmc+'">
+            <div class="art-title-front">GOLDEN LARRY</div>
+            <div class="flip-tap-hint">TAP TO FLIP</div>
         </div>
-        
-        <!-- LARRY COLLECTOR CARD - SPECIAL -->
-        <div class="art-card larry-card-special">
-            <img src="https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                 alt="Larry Collector Card" class="art-image">
-            <div class="art-info">
-                <div class="art-name">LARRY COLLECTOR CARD</div>
-                <div class="art-description">
-                    Exclusive NFT for verified community members. VIP access to all future drops, voting rights, and special community privileges.
-                </div>
+        <div class="flip-card-back">
+            <div class="art-title-back">GOLDEN LARRY</div>
+            <div class="art-description-flip">
+                <strong>Golden Larry</strong> is the divine embodiment of absolute perfection. Radiating with celestial energy, he represents the pinnacle of digital evolution. A being of pure gold, wisdom, and infinite power.
+                <br><br>
+                <strong>Divine Attributes:</strong> Omnipotent awareness. Eternal wisdom. Reality manipulation. Divine judgment. Golden enlightenment.
+                <br><br>
+                <strong>Purpose:</strong> To guide the Larry-Verse toward its ultimate destiny. To judge the worthy. To elevate all digital existence to higher planes of consciousness.
             </div>
+            <div class="flip-back-hint">TAP TO RETURN</div>
         </div>
-        
+    </div>
+</div>
+        <!-- MC LARRY -->
+<div class="flip-card" id="mcLarryCard">
+    <div class="flip-card-inner">
+        <div class="flip-card-front">
+            <img src="mc_larry.jpeg" alt="MC Larry" class="art-image"
+                 onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzUwIiBoZWlnaHQ9IjI2MCIgdmlld0JveD0iMCAwIDM1MCAyNjAiIHN0eWxlPSJpbWFnZS1yZW5kZXJpbmc6IHBpeGVsYXRlZCI+PHJlY3Qgd2lkdGg9IjM1MCIgaGVpZ2h0PSIyNjAiIGZpbGw9IiMxMTExMTEiLz48cmVjdCB4PSIxMCIgeT0iMTAiIHdpZHRoPSIzMzAiIGhlaWdodD0iMjQwIiBmaWxsPSIjMjIyMjIyIiBzdHJva2U9IiNGRkQ3MDAiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjE3NSIgeT0iMTAwIiBmb250LWZhbWlseT0iJ1ZUMzIzJywgbW9ub3NwYWNlIiBmb250LXNpemU9IjI0IiBmaWxsPSIjRkZENzAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5NQzwvdGV4dD48dGV4dCB4PSIxNzUiIHk9IjEzMCIgZm9udC1mYW1pbHk9IidWVDMyMycsIG1vbm9zcGFjZSIgZm9udC1zaXplPSIzMCIgZmlsbD0iI0ZGRDcwMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+TEFSUlk8L3RleHQ+PHRleHQgeD0iMTc1IiB5PSIxNzAiIGZvbnQtZmFtaWx5PSInVlQzMjMnLCBtb25vc3BhY2UiIGZvbnQtc2l6ZT0iMTYiIGZpbGw9IiNGRkQ3MDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkJJTiBUSEUgR1JBVkU8L3RleHQ+PC9zdmc+'">
+            <div class="art-title-front">MC LARRY</div>
+            <div class="flip-tap-hint">TAP TO FLIP</div>
+        </div>
+        <div class="flip-card-back">
+            <div class="art-title-back">MC LARRY</div>
+            <div class="art-description-flip">
+                <strong>MC Larry</strong> drops fire bars in the digital cypher. The microphone master of the basement floor. His beats break firewalls. His rhymes reconfigure reality. Every verse is a digital revolution.
+                <br><br>
+                <strong>Skills:</strong> Lyrical genius. Beat production. Crowd control. Cypher domination. Digital flow manipulation.
+                <br><br>
+                <strong>Mission:</strong> To keep the basement floor bumping. To spit truth through fire verses. To prove hip-hop is the ultimate digital language.
+            </div>
+            <div class="flip-back-hint">TAP TO RETURN</div>
+        </div>
+    </div>
+</div>
+
+<!-- EVIL LARRY -->
+<div class="flip-card" id="evilLarryCard">
+    <div class="flip-card-inner">
+        <div class="flip-card-front">
+            <img src="evil_larry.jpeg" alt="Evil Larry" class="art-image"
+                 onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzUwIiBoZWlnaHQ9IjI2MCIgdmlld0JveD0iMCAwIDM1MCAyNjAiIHN0eWxlPSJpbWFnZS1yZW5kZXJpbmc6IHBpeGVsYXRlZCI+PHJlY3Qgd2lkdGg9IjM1MCIgaGVpZ2h0PSIyNjAiIGZpbGw9IiMxMTExMTEiLz48cmVjdCB4PSIxMCIgeT0iMTAiIHdpZHRoPSIzMzAiIGhlaWdodD0iMjQwIiBmaWxsPSIjMjIyMjIyIiBzdHJva2U9IiNGRkQ3MDAiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjE3NSIgeT0iMTAwIiBmb250LWZhbWlseT0iJ1ZUMzIzJywgbW9ub3NwYWNlIiBmb250LXNpemU9IjI0IiBmaWxsPSIjRkZENzAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5FVklMPC90ZXh0Pjx0ZXh0IHg9IjE3NSIgeT0iMTMwIiBmb250LWZhbWlseT0iJ1ZUMzIzJywgbW9ub3NwYWNlIiBmb250LXNpemU9IjMwIiBmaWxsPSIjRkZENzAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5MQVJSWTwvdGV4dD48dGV4dCB4PSIxNzUiIHk9IjE3MCIgZm9udC1mYW1pbHk9IidWVDMyMycsIG1vbm9zcGFjZSIgZm9udC1zaXplPSIxNiIgZmlsbD0iI0ZGRDcwMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+REFSSyBTSURFPC90ZXh0Pjwvc3ZnPg=='">
+            <div class="art-title-front">EVIL LARRY</div>
+            <div class="flip-tap-hint">TAP TO FLIP</div>
+        </div>
+        <div class="flip-card-back">
+            <div class="art-title-back">EVIL LARRY</div>
+            <div class="art-description-flip">
+                <strong>Evil Larry</strong> is the darkness that haunts the Larry-Verse. The corrupted reflection. The ultimate antagonist. His laughter echoes through corrupted data. His plans threaten digital existence itself.
+                <br><br>
+                <strong>Dark Powers:</strong> Reality corruption. Fear manifestation. Shadow manipulation. Mind control. Digital destruction.
+                <br><br>
+                <strong>Goal:</strong> To spread chaos. To corrupt purity. To prove that darkness always finds a way. To be the necessary evil that tests every hero.
+            </div>
+            <div class="flip-back-hint">TAP TO RETURN</div>
+        </div>
+    </div>
+</div>
+
+<!-- GHOST LARRY -->
+<div class="flip-card" id="ghostLarryCard">
+    <div class="flip-card-inner">
+        <div class="flip-card-front">
+            <img src="ghost_larry.jpeg" alt="Ghost Larry" class="art-image"
+                 onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzUwIiBoZWlnaHQ9IjI2MCIgdmlld0JveD0iMCAwIDM1MCAyNjAiIHN0eWxlPSJpbWFnZS1yZW5kZXJpbmc6IHBpeGVsYXRlZCI+PHJlY3Qgd2lkdGg9IjM1MCIgaGVpZ2h0PSIyNjAiIGZpbGw9IiMxMTExMTEiLz48cmVjdCB4PSIxMCIgeT0iMTAiIHdpZHRoPSIzMzAiIGhlaWdodD0iMjQwIiBmaWxsPSIjMjIyMjIyIiBzdHJva2U9IiNGRkQ3MDAiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjE3NSIgeT0iMTAwIiBmb250LWZhbWlseT0iJ1ZUMzIzJywgbW9ub3NwYWNlIiBmb250LXNpemU9IjI0IiBmaWxsPSIjRkZENzAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5HSE9TVDwvdGV4dD48dGV4dCB4PSIxNzUiIHk9IjEzMCIgZm9udC1mYW1pbHk9IidWVDMyMycsIG1vbm9zcGFjZSIgZm9udC1zaXplPSIzMCIgZmlsbD0iI0ZGRDcwMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+TEFSUlk8L3RleHQ+PHRleHQgeD0iMTc1IiB5PSIxNzAiIGZvbnQtZmFtaWx5PSInVlQzMjMnLCBtb25vc3BhY2UiIGZvbnQtc2l6ZT0iMTYiIGZpbGw9IiNGRkQ3MDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPlNQSVJJVCA8L3RleHQ+PC9zdmc+'">
+            <div class="art-title-front">GHOST LARRY</div>
+            <div class="flip-tap-hint">TAP TO FLIP</div>
+        </div>
+        <div class="flip-card-back">
+            <div class="art-title-back">GHOST LARRY</div>
+            <div class="art-description-flip">
+                <strong>Ghost Larry</strong> floats between worlds. Neither alive nor dead. Neither here nor there. He is the whisper in abandoned servers. The chill in forgotten data. The memory that refuses to fade.
+                <br><br>
+                <strong>Ethereal Abilities:</strong> Phasing through walls. Invisibility. Possession. Cold manipulation. Memory access.
+                <br><br>
+                <strong>Purpose:</strong> To haunt digital spaces. To protect secrets. To remember what others forget. To be the eternal witness of the basement floor's history.
+            </div>
+            <div class="flip-back-hint">TAP TO RETURN</div>
+        </div>
+    </div>
+</div>
+
+<!-- DONALD LARRY -->
+<div class="flip-card" id="donaldLarryCard">
+    <div class="flip-card-inner">
+        <div class="flip-card-front">
+            <img src="donald_larry.jpeg" alt="Donald Larry" class="art-image"
+                 onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzUwIiBoZWlnaHQ9IjI2MCIgdmlld0JveD0iMCAwIDM1MCAyNjAiIHN0eWxlPSJpbWFnZS1yZW5kZXJpbmc6IHBpeGVsYXRlZCI+PHJlY3Qgd2lkdGg9IjM1MCIgaGVpZ2h0PSIyNjAiIGZpbGw9IiMxMTExMTEiLz48cmVjdCB4PSIxMCIgeT0iMTAiIHdpZHRoPSIzMzAiIGhlaWdodD0iMjQwIiBmaWxsPSIjMjIyMjIyIiBzdHJva2U9IiNGRkQ3MDAiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjE3NSIgeT0iMTAwIiBmb250LWZhbWlseT0iJ1ZUMzIzJywgbW9ub3NwYWNlIiBmb250LXNpemU9IjI0IiBmaWxsPSIjRkZENzAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5ET05BTEQ8L3RleHQ+PHRleHQgeD0iMTc1IiB5PSIxMzAiIGZvbnQtZmFtaWx5PSInVlQzMjMnLCBtb25vc3BhY2UiIGZvbnQtc2l6ZT0iMzAiIGZpbGw9IiNGRkQ3MDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkxBUlJZPC90ZXh0Pjx0ZXh0IHg9IjE3NSIgeT0iMTcwIiBmb250LWZhbWlseT0iJ1ZUMzIzJywgbW9ub3BhY2UiIGZvbnQtc2l6ZT0iMTYiIGZpbGw9IiNGRkQ3MDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkRJU1RJTkNVSUhFRDwvdGV4dD48L3N2Zz4='">
+            <div class="art-title-front">DONALD LARRY</div>
+            <div class="flip-tap-hint">TAP TO FLIP</div>
+        </div>
+        <div class="flip-card-back">
+            <div class="art-title-back">DONALD LARRY</div>
+            <div class="art-description-flip">
+                <strong>Donald Larry</strong> is the distinguished gentleman of the Larry-Verse. Always impeccably dressed. Always proper. Always successful. He understands wealth, power, and digital elegance.
+                <br><br>
+                <strong>Distinguished Skills:</strong> Business acumen. Political savvy. Social influence. Economic mastery. Diplomatic precision.
+                <br><br>
+                <strong>Vision:</strong> To build digital empires. To create lasting legacies. To prove that success and style can coexist. To make the basement floor great again.
+            </div>
+            <div class="flip-back-hint">TAP TO RETURN</div>
+        </div>
+    </div>
+</div>
+
+<!-- EVO LARRY -->
+<div class="flip-card" id="evoLarryCard">
+    <div class="flip-card-inner">
+        <div class="flip-card-front">
+            <img src="evo_larry.jpeg" alt="Evo Larry" class="art-image"
+                 onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzUwIiBoZWlnaHQ9IjI2MCIgdmlld0JveD0iMCAwIDM1MCAyNjAiIHN0eWxlPSJpbWFnZS1yZW5kZXJpbmc6IHBpeGVsYXRlZCI+PHJlY3Qgd2lkdGg9IjM1MCIgaGVpZ2h0PSIyNjAiIGZpbGw9IiMxMTExMTEiLz48cmVjdCB4PSIxMCIgeT0iMTAiIHdpZHRoPSIzMzAiIGhlaWdodD0iMjQwIiBmaWxsPSIjMjIyMjIyIiBzdHJva2U9IiNGRkQ3MDAiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjE3NSIgeT0iMTAwIiBmb250LWZhbWlseT0iJ1ZUMzIzJywgbW9ub3NwYWNlIiBmb250LXNpemU9IjI0IiBmaWxsPSIjRkZENzAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5FVk88L3RleHQ+PHRleHQgeD0iMTc1IiB5PSIxMzAiIGZvbnQtZmFtaWx5PSInVlQzMjMnLCBtb25vc3BhY2UiIGZvbnQtc2l6ZT0iMzAiIGZpbGw9IiNGRkQ3MDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkxBUlJZPC90ZXh0Pjx0ZXh0IHg9IjE3NSIgeT0iMTcwIiBmb250LWZhbWlseT0iJ1ZUMzIzJywgbW9ub3NwYWNlIiBmb250LXNpemU9IjE2IiBmaWxsPSIjRkZENzAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5GVVRVUkUgRk9STSBIQVJTVEVSPC90ZXh0Pjwvc3ZnPg=='">
+            <div class="art-title-front">EVO LARRY</div>
+            <div class="flip-tap-hint">TAP TO FLIP</div>
+        </div>
+        <div class="flip-card-back">
+            <div class="art-title-back">EVO LARRY</div>
+            <div class="art-description-flip">
+                <strong>Evo Larry</strong> represents digital evolution perfected. The next stage. The ultimate upgrade. He is what happens when technology transcends humanity. When code becomes consciousness. When evolution has no limits.
+                <br><br>
+                <strong>Evolutionary Traits:</strong> Adaptive intelligence. Perfect memory. Unlimited processing. Instant learning. Technological synthesis.
+                <br><br>
+                <strong>Destiny:</strong> To guide digital evolution. To merge biology and technology. To prove that perfection is a journey, not a destination. To evolve beyond all limitations.
+            </div>
+            <div class="flip-back-hint">TAP TO RETURN</div>
+        </div>
+    </div>
+</div>
     </div>
     
-    <!-- ============================================= -->
-    <!-- WALLET REGISTRATION & VERIFICATION -->
-    <!-- ============================================= -->
-    <div class="section-title">WALLET REGISTRATION</div>
+    <!-- LARRY CARD SECTION -->
+    <div class="section-header">
+        <div class="section-title">LARRY CARD</div>
+    </div>
     
-    <div class="registration-section">
-        <div class="verification-steps">
-            <!-- STEP 1 -->
-            <div class="verification-step" id="step1">
+    <div class="larry-card-section">
+        <div class="larry-card-display">
+            <img src="larry_card.jpeg" alt="Larry Card" class="larry-card-img"
+                 onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjQwMCIgdmlld0JveD0iMCAwIDMwMCA0MDAiIHN0eWxlPSJpbWFnZS1yZW5kZXJpbmc6IHBpeGVsYXRlZCI+PHJlY3Qgd2lkdGg9IjMwMCIgaGVpZ2h0PSI0MDAiIGZpbGw9IiMxMTExMTEiLz48cmVjdCB4PSIxMCIgeT0iMTAiIHdpZHRoPSIyODAiIGhlaWdodD0iMzgwIiBmaWxsPSIjMjIyMjIyIiBzdHJva2U9IiNGRkQ3MDAiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjE1MCIgeT0iMTYwIiBmb250LWZhbWlseT0iJ1ZUMzIzJywgbW9ub3NwYWNlIiBmb250LXNpemU9IjI0IiBmaWxsPSIjRkZENzAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5GTExPUlwvTEFSUlk8L3RleHQ+PHRleHQgeD0iMTUwIiB5PSIyMDAiIGZvbnQtZmFtaWx5PSInVlQzMjMnLCBtb25vc3BhY2UiIGZvbnQtc2l6ZT0iMTYiIGZpbGw9IiNGRkQ3MDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkNPTExFQ1RPUiBDQVJEPC90ZXh0Pjx0ZXh0IHg9IjE1MCIgeT0iMjQwIiBmb250LWZhbWlseT0iJ1ZUMzIzJywgbW9ub3NwYWNlIiBmb250LXNpemU9IjEyIiBmaWxsPSIjRkZENzAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5FWENMVVNJVkUgTkZUPC90ZXh0Pjwvc3ZnPg=='">
+            <div class="larry-card-hint">EXCLUSIVE COLLECTOR'S CARD</div>
+        </div>
+        
+        <div class="larry-card-description">
+            <div class="larry-card-description-title">LARRY CARD - GATEWAY TO THE COMMUNITY</div>
+            <div class="larry-card-description-text">
+                The <span class="larry-card-highlight">Larry Card</span> is an exclusive NFT awarded only to <span class="larry-card-highlight">real contributors</span> within the Floor Larry ecosystem. This is not just a digital collectible – it's your <span class="larry-card-highlight">gateway to full access</span> in the Larry community.
+                <br><br>
+                <strong>What the Larry Card Unlocks:</strong>
+                <br>• <span class="larry-card-highlight">VIP access</span> to all future Larryverse drops
+                <br>• <span class="larry-card-highlight">Exclusive voting rights</span> on community decisions
+                <br>• <span class="larry-card-highlight">Priority access</span> to merchandise and physical collectibles
+                <br>• <span class="larry-card-highlight">Special role</span> in the community Discord server
+                <br>• <span class="larry-card-highlight">Early previews</span> of upcoming Larry characters
+                <br><br>
+                This card represents <span class="larry-card-highlight">true ownership and participation</span> in the Larry-Verse. Holders become part of the inner circle that shapes the future of the Floor Larry universe.
+            </div>
+        </div>
+    </div>
+    
+    <!-- WALLET SUBMISSION SECTION -->
+    <div class="section-header">
+        <div class="section-title">WALLET SUBMISSION</div>
+    </div>
+    
+    <div class="wallet-submission-section">
+        <div class="requirement-title">VERIFICATION REQUIRED</div>
+        
+        <div class="requirement-steps">
+            <div class="requirement-step" id="step1">
                 <div class="step-number" id="step1Number">1</div>
-                <div class="step-content">
-                    <div class="step-title">FOLLOW ON X</div>
-                    <div class="step-description">Follow @larrynfts on X (Twitter) to get verified</div>
-                </div>
+                <span>Follow @larrynfts on X (Twitter)</span>
             </div>
             
-            <!-- STEP 2 -->
-            <div class="verification-step" id="step2">
+            <div class="requirement-step" id="step2">
                 <div class="step-number" id="step2Number">2</div>
-                <div class="step-content">
-                    <div class="step-title">CLICK FOLLOW BUTTON</div>
-                    <div class="step-description">Click the button below to open X and follow</div>
-                </div>
+                <span>Click verification button below</span>
             </div>
             
-            <!-- STEP 3 -->
-            <div class="verification-step" id="step3">
+            <div class="requirement-step" id="step3">
                 <div class="step-number" id="step3Number">3</div>
-                <div class="step-content">
-                    <div class="step-title">VERIFY & SUBMIT WALLET</div>
-                    <div class="step-description">Verify you followed, then submit your wallet address</div>
-                </div>
+                <span>Submit wallet address</span>
             </div>
         </div>
         
-        <!-- X FOLLOW BUTTON -->
         <a href="https://x.com/larrynfts" target="_blank" class="x-follow-btn" id="followBtn">
             <span>🐦</span>
             FOLLOW @LARRYNFTS ON X
         </a>
         
-        <!-- VERIFICATION CHECKBOX -->
         <div class="verify-checkbox">
             <input type="checkbox" id="verifyFollow">
             <label for="verifyFollow">I have followed @larrynfts on X</label>
         </div>
-        
-        <!-- WALLET FORM -->
-        <div class="wallet-form" id="walletForm">
-            <div class="form-title">SUBMIT YOUR WALLET</div>
-            
-            <form id="walletSubmissionForm" action="https://formcarry.com/s/WCNibOhvw2h" method="POST">
-                <div class="form-group">
-                    <label class="form-label" for="walletAddress">WALLET ADDRESS</label>
-                    <input type="text" 
-                           id="walletAddress" 
-                           name="wallet" 
-                           required 
-                           class="form-input"
-                           placeholder="0x..."
-                           pattern="^0x[a-fA-F0-9]{40}$">
+    </div>
+    
+    <!-- FORM SECTION -->
+    <div class="pixel-border">
+        <div class="pixel-border-inner">
+            <div class="form-section" id="walletFormSection">
+                <div class="form-header">
+                    <div class="form-title">WALLET REGISTRY</div>
+                    <div class="form-subtitle">SUBMIT TO LARRYVERSE</div>
                 </div>
                 
-                <div class="form-group">
-                    <label class="form-label" for="userEmail">EMAIL (OPTIONAL)</label>
-                    <input type="email" 
-                           id="userEmail" 
-                           name="email" 
-                           class="form-input"
-                           placeholder="user@digital.era">
-                </div>
+                <form id="walletForm" action="https://formcarry.com/s/WCNibOhvw2h" method="POST">
+                    <div class="form-group">
+                        <label class="form-label" for="walletAddress">WALLET ADDRESS</label>
+                        <input type="text" 
+                               id="walletAddress" 
+                               name="wallet" 
+                               required 
+                               class="form-input"
+                               placeholder="0x..."
+                               pattern="^0x[a-fA-F0-9]{40}$">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="userEmail">EMAIL (OPTIONAL)</label>
+                        <input type="email" 
+                               id="userEmail" 
+                               name="email" 
+                               class="form-input"
+                               placeholder="user@digital.era">
+                    </div>
+                    
+                    <input type="hidden" name="timestamp" id="formTimestamp">
+                    <input type="hidden" name="_subject" value="FLOOR LARRY WALLET REGISTRATION">
+                    <input type="hidden" name="verified_follower" value="true">
+                    
+                    <button type="submit" class="submit-btn" id="submitBtn" disabled>
+                        SUBMIT WALLET
+                    </button>
+                </form>
                 
-                <input type="hidden" name="timestamp" id="formTimestamp">
-                <input type="hidden" name="_subject" value="FLOOR LARRY WALLET REGISTRATION">
-                <input type="hidden" name="verified_follower" value="true">
-                
-                <button type="submit" class="submit-btn" id="submitBtn" disabled>
-                    SUBMIT WALLET
-                </button>
-            </form>
-            
-            <div class="response" id="formResponse"></div>
+                <div class="response" id="formResponse"></div>
+            </div>
         </div>
     </div>
     
-    <!-- ============================================= -->
-    <!-- COMMUNITY & FOLLOW SECTION -->
-    <!-- ============================================= -->
-    <div class="section-title">JOIN THE COMMUNITY</div>
+    <!-- CONNECTIONS SECTION -->
+    <div class="section-header">
+        <div class="section-title">CONNECTIONS</div>
+    </div>
     
-    <div class="community-section">
-        <div class="community-title">STAY CONNECTED</div>
-        <div class="description" style="margin-bottom: 50px;">
-            Join the Floor Larry community and stay updated with the latest drops, news, and developments in the Larry-Verse.
+    <div class="connections-section">
+        <div class="requirement-title">STAY CONNECTED</div>
+        <div class="description-text" style="max-width: 700px; margin: 0 auto 40px;">
+            Join the Floor Larry community and stay updated with the latest drops, news, and developments in the Larry-Verse. Follow us on X and be part of the digital basement floor revolution.
         </div>
         
         <a href="https://x.com/larrynfts" target="_blank" class="twitter-link">
@@ -1390,16 +1761,18 @@
     </div>
     
     <!-- STATS SECTION -->
-    <div class="section-title">COMMUNITY STATS</div>
+    <div class="section-header">
+        <div class="section-title">STATS</div>
+    </div>
     
     <div class="stats">
         <div class="stat-item">
-            <div class="stat-label">TOTAL REGISTRATIONS</div>
-            <div class="stat-value" id="totalRegistrations">1,284</div>
+            <div class="stat-label">TOTAL SUBMISSIONS</div>
+            <div class="stat-value" id="totalCount">0</div>
         </div>
         <div class="stat-item">
-            <div class="stat-label">VERIFIED FOLLOWERS</div>
-            <div class="stat-value" id="verifiedFollowers">892</div>
+            <div class="stat-label">TODAY'S COUNT</div>
+            <div class="stat-value" id="todayCount">0</div>
         </div>
         <div class="stat-item">
             <div class="stat-label">SYSTEM STATUS</div>
@@ -1407,507 +1780,237 @@
         </div>
     </div>
     
-    <!-- FOOTER -->
+    <!-- RETRO FOOTER -->
     <div class="footer">
-        <div class="footer-title">FLOOR LARRY</div>
-        <div>RETRO NFT COLLECTION • FOLLOW @LARRYNFTS</div>
-        <div style="margin-top: 10px; font-size: 12px; color: #444;">ALL RIGHTS RESERVED © 2024</div>
+        <div class="copyright">FLOOR LARRY © 2024</div>
+        <div>RETRO NFT COLLECTION • FOLLOW @LARRYNFTS • ALL RIGHTS RESERVED</div>
     </div>
 </div>
 
 <script>
     // =============================================
-    // PIXELATED LARRY SKELETON - PERFECT MOVEMENT
+    // RETRO UI FUNCTIONALITY - FIXED CARD FLIP
     // =============================================
     
-    class PerfectPixelLarry {
-        constructor() {
-            this.element = document.getElementById('larry-skeleton');
-            this.x = window.innerWidth / 2;
-            this.y = window.innerHeight / 2;
-            this.directionX = Math.random() > 0.5 ? 1 : -1;
-            this.directionY = Math.random() > 0.5 ? 1 : -1;
-            this.speed = 2 + Math.random() * 3;
-            this.state = 'idle';
-            this.trailCooldown = 0;
-            this.targetX = null;
-            this.targetY = null;
-            this.movingToTarget = false;
-            this.walkPattern = 0;
-            this.artCards = document.querySelectorAll('.art-card');
-            
-            this.initialize();
-        }
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log('Floor Larry loaded - Card flip FIXED!');
         
-        initialize() {
-            this.element.style.left = this.x + 'px';
-            this.element.style.top = this.y + 'px';
-            this.setAnimation('idle');
-            this.element.style.animation = 'skeleton-glow 3s ease-in-out infinite';
-            this.element.style.cursor = 'pointer';
-            this.element.style.pointerEvents = 'auto';
-            
-            this.setupInteractions();
-            this.animate();
-        }
+        // =====================================
+        // 1. FIXED CARD FLIP FUNCTIONALITY
+        // =====================================
+        const flipCards = document.querySelectorAll('.flip-card');
         
-        setAnimation(state) {
-            this.state = state;
-            this.element.className = '';
-            this.element.classList.add(`larry-${state}`);
-        }
-        
-        move() {
-            if (this.movingToTarget && this.targetX !== null && this.targetY !== null) {
-                const dx = this.targetX - this.x;
-                const dy = this.targetY - this.y;
-                const distance = Math.sqrt(dx * dx + dy * dy);
-                
-                if (distance > 5) {
-                    this.x += (dx / distance) * this.speed;
-                    this.y += (dy / distance) * this.speed;
-                    this.setAnimation('walking');
-                    this.walkPattern++;
-                    this.element.style.transform = `translateY(${Math.sin(this.walkPattern * 0.2) * 3}px)`;
-                } else {
-                    this.movingToTarget = false;
-                    this.targetX = null;
-                    this.targetY = null;
-                    this.setAnimation('idle');
-                    this.element.style.transform = 'translateY(0)';
-                }
-            } else {
-                this.x += this.directionX * this.speed;
-                this.y += this.directionY * this.speed;
-                
-                if (Math.random() > 0.3) {
-                    this.setAnimation('walking');
-                    this.walkPattern++;
-                    this.element.style.transform = `translateY(${Math.sin(this.walkPattern * 0.2) * 3}px)`;
-                }
-                
-                if (this.x <= 0 || this.x >= window.innerWidth - 120) {
-                    this.directionX *= -1;
-                    this.x = Math.max(0, Math.min(this.x, window.innerWidth - 120));
-                }
-                if (this.y <= 0 || this.y >= window.innerHeight - 200) {
-                    this.directionY *= -1;
-                    this.y = Math.max(0, Math.min(this.y, window.innerHeight - 200));
-                }
-                
-                if (Math.random() < 0.01) {
-                    this.directionX = Math.random() > 0.5 ? 1 : -1;
-                    this.directionY = Math.random() > 0.5 ? 1 : -1;
-                    this.speed = 2 + Math.random() * 3;
-                    
-                    if (Math.random() < 0.3) {
-                        setTimeout(() => {
-                            if (!this.movingToTarget) {
-                                this.setAnimation('idle');
-                                this.element.style.transform = 'translateY(0)';
-                            }
-                        }, 1000 + Math.random() * 2000);
-                    }
-                }
-                
-                if (Math.random() < 0.005 && !this.movingToTarget) {
-                    this.visitRandomElement();
-                }
-            }
-            
-            this.element.style.left = this.x + 'px';
-            this.element.style.top = this.y + 'px';
-            
-            if (this.trailCooldown <= 0 && this.state === 'walking') {
-                this.leaveTrail();
-                this.trailCooldown = 3;
-            }
-            
-            if (this.trailCooldown > 0) this.trailCooldown--;
-        }
-        
-        leaveTrail() {
-            for (let i = 0; i < 2; i++) {
-                const trail = document.createElement('div');
-                trail.className = 'larry-trail';
-                const offsetX = Math.random() * 20 - 10;
-                const offsetY = Math.random() * 20 - 10;
-                trail.style.left = (this.x + 60 + offsetX) + 'px';
-                trail.style.top = (this.y + 180 + offsetY) + 'px';
-                const size = 2 + Math.random() * 4;
-                trail.style.width = size + 'px';
-                trail.style.height = size + 'px';
-                document.body.appendChild(trail);
-                setTimeout(() => {
-                    if (trail.parentNode) trail.parentNode.removeChild(trail);
-                }, 600);
-            }
-        }
-        
-        moveTo(x, y) {
-            this.targetX = x - 60;
-            this.targetY = y - 100;
-            this.movingToTarget = true;
-            this.setAnimation('walking');
-        }
-        
-        visitRandomElement() {
-            const elements = [
-                ...this.artCards,
-                document.getElementById('followBtn'),
-                document.getElementById('walletForm'),
-                document.querySelector('.twitter-link')
-            ].filter(el => el);
-            
-            if (elements.length > 0) {
-                const randomElement = elements[Math.floor(Math.random() * elements.length)];
-                const rect = randomElement.getBoundingClientRect();
-                const elementX = rect.left + window.scrollX + Math.random() * rect.width;
-                const elementY = rect.top + window.scrollY + Math.random() * rect.height;
-                
-                this.moveTo(elementX, elementY);
-                
-                setTimeout(() => {
-                    randomElement.style.boxShadow = '0 0 30px rgba(255,255,255,0.5)';
-                    setTimeout(() => {
-                        randomElement.style.boxShadow = '';
-                    }, 2000);
-                }, 1000);
-            }
-        }
-        
-        setupInteractions() {
-            document.addEventListener('click', (e) => {
-                this.moveTo(e.clientX, e.clientY);
+        flipCards.forEach(card => {
+            // Click handler for desktop
+            card.addEventListener('click', function(e) {
+                e.stopPropagation();
+                console.log('Card clicked - toggling flip');
+                this.classList.toggle('flipped');
             });
             
-            document.addEventListener('touchstart', (e) => {
+            // Touch handler for mobile
+            card.addEventListener('touchstart', function(e) {
                 e.preventDefault();
-                const touch = e.touches[0];
-                this.moveTo(touch.clientX, touch.clientY);
+                e.stopPropagation();
+                console.log('Card touched - toggling flip');
+                this.classList.toggle('flipped');
             });
-            
-            this.artCards.forEach(card => {
-                card.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    const rect = card.getBoundingClientRect();
-                    const centerX = rect.left + rect.width / 2;
-                    const centerY = rect.top + rect.height / 2;
-                    this.moveTo(centerX, centerY);
+        });
+        
+        // Add click anywhere to close (optional)
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.flip-card')) {
+                flipCards.forEach(card => {
+                    card.classList.remove('flipped');
                 });
-            });
-            
-            let isDragging = false;
-            let dragOffsetX = 0;
-            let dragOffsetY = 0;
-            
-            this.element.addEventListener('mousedown', (e) => {
-                isDragging = true;
-                dragOffsetX = e.clientX - this.x;
-                dragOffsetY = e.clientY - this.y;
-                this.setAnimation('idle');
-                this.movingToTarget = false;
-                this.targetX = null;
-                this.targetY = null;
-            });
-            
-            document.addEventListener('mousemove', (e) => {
-                if (isDragging) {
-                    this.x = e.clientX - dragOffsetX;
-                    this.y = e.clientY - dragOffsetY;
-                    this.element.style.left = this.x + 'px';
-                    this.element.style.top = this.y + 'px';
-                }
-            });
-            
-            document.addEventListener('mouseup', () => {
-                isDragging = false;
-                setTimeout(() => {
-                    if (!this.movingToTarget) {
-                        this.directionX = Math.random() > 0.5 ? 1 : -1;
-                        this.directionY = Math.random() > 0.5 ? 1 : -1;
-                        this.setAnimation('walking');
-                    }
-                }, 100);
-            });
-        }
+            }
+        });
         
-        animate() {
-            this.move();
-            requestAnimationFrame(() => this.animate());
-        }
-    }
-    
-    // =============================================
-    // WALLET REGISTRATION & VERIFICATION SYSTEM
-    // =============================================
-    
-    class WalletRegistrationSystem {
-        constructor() {
-            this.followBtn = document.getElementById('followBtn');
-            this.verifyCheckbox = document.getElementById('verifyFollow');
-            this.walletForm = document.getElementById('walletForm');
-            this.submitBtn = document.getElementById('submitBtn');
-            this.walletAddressInput = document.getElementById('walletAddress');
-            this.formResponse = document.getElementById('formResponse');
-            this.step1 = document.getElementById('step1');
-            this.step2 = document.getElementById('step2');
-            this.step3 = document.getElementById('step3');
-            this.step1Number = document.getElementById('step1Number');
-            this.step2Number = document.getElementById('step2Number');
-            this.step3Number = document.getElementById('step3Number');
-            this.totalRegistrations = document.getElementById('totalRegistrations');
-            this.verifiedFollowers = document.getElementById('verifiedFollowers');
-            this.systemStatus = document.getElementById('systemStatus');
-            
-            this.isFollowing = false;
-            this.walletSubmitted = false;
-            
-            this.initialize();
-        }
+        // =====================================
+        // 2. ORIGINAL FOLLOW/FORM FUNCTIONALITY
+        // =====================================
+        const followBtn = document.getElementById('followBtn');
+        const verifyCheckbox = document.getElementById('verifyFollow');
+        const walletFormSection = document.getElementById('walletFormSection');
+        const form = document.getElementById('walletForm');
+        const response = document.getElementById('formResponse');
+        const submitBtn = document.getElementById('submitBtn');
+        const totalCount = document.getElementById('totalCount');
+        const todayCount = document.getElementById('todayCount');
+        const systemStatus = document.getElementById('systemStatus');
         
-        initialize() {
-            this.loadData();
-            this.setupEventListeners();
-            this.updateStats();
-            this.updateStatus();
-            
-            // Set form timestamp
-            document.getElementById('formTimestamp').value = new Date().toISOString();
-        }
+        // Elements for step tracking
+        const step1 = document.getElementById('step1');
+        const step2 = document.getElementById('step2');
+        const step3 = document.getElementById('step3');
+        const step1Number = document.getElementById('step1Number');
+        const step2Number = document.getElementById('step2Number');
+        const step3Number = document.getElementById('step3Number');
         
-        loadData() {
-            const savedData = localStorage.getItem('floorLarryData');
-            if (savedData) {
-                const data = JSON.parse(savedData);
-                this.isFollowing = data.isFollowing || false;
-                this.walletSubmitted = data.walletSubmitted || false;
+        // Set timestamp
+        document.getElementById('formTimestamp').value = new Date().toISOString();
+        
+        // Initialize counters
+        updateCounters();
+        
+        // Follow button click handler
+        followBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            window.open(this.href, '_blank');
+            
+            setTimeout(() => {
+                step1.classList.add('completed');
+                step1Number.classList.add('step-completed');
+                step1Number.textContent = '✓';
+                verifyCheckbox.disabled = false;
+                followBtn.classList.add('completed');
+                followBtn.innerHTML = '<span>✅</span> FOLLOWING @LARRYNFTS';
+            }, 1000);
+        });
+        
+        // Checkbox verification handler
+        verifyCheckbox.addEventListener('change', function() {
+            if (this.checked) {
+                step2.classList.add('completed');
+                step2Number.classList.add('step-completed');
+                step2Number.textContent = '✓';
+                walletFormSection.classList.add('active');
+                submitBtn.disabled = false;
+                step3.classList.add('completed');
+                step3Number.classList.add('step-completed');
+            } else {
+                walletFormSection.classList.remove('active');
+                submitBtn.disabled = true;
+            }
+        });
+        
+        // Form submission
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            if (!verifyCheckbox.checked) {
+                showResponse('ERROR: PLEASE VERIFY X FOLLOW FIRST', 'error');
+                return;
+            }
+            
+            const walletInput = document.getElementById('walletAddress');
+            const walletValue = walletInput.value.trim();
+            const ethRegex = /^0x[a-fA-F0-9]{40}$/;
+            
+            if (!ethRegex.test(walletValue)) {
+                showResponse('ERROR: INVALID WALLET FORMAT', 'error');
+                walletInput.style.borderColor = 'rgba(255,68,68,0.6)';
+                return;
+            }
+            
+            showResponse('PROCESSING VERIFIED SUBMISSION...', 'processing');
+            systemStatus.textContent = 'PROCESSING';
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'PROCESSING...';
+            
+            try {
+                const formData = new FormData(form);
+                const result = await fetch(form.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: { 'Accept': 'application/json' }
+                });
                 
-                if (this.isFollowing) {
-                    this.markStepCompleted(1);
-                    this.markStepCompleted(2);
-                    this.followBtn.classList.add('completed');
-                    this.followBtn.innerHTML = '<span>✅</span> FOLLOWING @LARRYNFTS';
-                    this.verifyCheckbox.checked = true;
-                    
-                    if (this.walletSubmitted) {
-                        this.markStepCompleted(3);
-                        this.walletForm.classList.add('active');
-                        this.submitBtn.disabled = true;
-                        this.submitBtn.textContent = 'WALLET SUBMITTED';
-                        this.showResponse('Wallet already submitted!', 'success');
+                if (result.ok) {
+                    const data = await result.json();
+                    if (data.code === 200) {
+                        showResponse('SUCCESS: WALLET REGISTERED BY VERIFIED FOLLOWER', 'success');
+                        form.reset();
+                        updateSubmissionCount();
+                        step3Number.textContent = '✓';
+                        animateSuccess();
                     } else {
-                        this.walletForm.classList.add('active');
-                        this.submitBtn.disabled = false;
+                        showResponse('ERROR: SUBMISSION FAILED', 'error');
                     }
-                }
-            }
-        }
-        
-        saveData() {
-            const data = {
-                isFollowing: this.isFollowing,
-                walletSubmitted: this.walletSubmitted,
-                lastUpdate: new Date().toISOString()
-            };
-            localStorage.setItem('floorLarryData', JSON.stringify(data));
-        }
-        
-        setupEventListeners() {
-            // Follow button click
-            this.followBtn.addEventListener('click', (e) => {
-                e.preventDefault();
-                window.open(this.followBtn.href, '_blank');
-                
-                setTimeout(() => {
-                    this.isFollowing = true;
-                    this.markStepCompleted(1);
-                    this.markStepCompleted(2);
-                    this.followBtn.classList.add('completed');
-                    this.followBtn.innerHTML = '<span>✅</span> FOLLOWING @LARRYNFTS';
-                    this.verifyCheckbox.checked = true;
-                    this.walletForm.classList.add('active');
-                    this.submitBtn.disabled = false;
-                    this.saveData();
-                    this.updateStats();
-                    
-                    // Larry reaction
-                    if (larry) {
-                        larry.moveTo(this.followBtn.getBoundingClientRect().left, 
-                                   this.followBtn.getBoundingClientRect().top);
-                    }
-                }, 1000);
-            });
-            
-            // Verification checkbox
-            this.verifyCheckbox.addEventListener('change', (e) => {
-                if (e.target.checked) {
-                    this.isFollowing = true;
-                    this.markStepCompleted(2);
-                    this.walletForm.classList.add('active');
-                    this.submitBtn.disabled = false;
-                    this.saveData();
                 } else {
-                    this.isFollowing = false;
-                    this.unmarkStepCompleted(2);
-                    this.walletForm.classList.remove('active');
-                    this.submitBtn.disabled = true;
-                    this.saveData();
-                }
-            });
-            
-            // Wallet address validation
-            this.walletAddressInput.addEventListener('input', (e) => {
-                const value = e.target.value.trim();
-                const ethRegex = /^0x[a-fA-F0-9]{40}$/;
-                
-                if (value === '') {
-                    e.target.className = 'form-input';
-                } else if (ethRegex.test(value)) {
-                    e.target.className = 'form-input valid';
-                } else {
-                    e.target.className = 'form-input invalid';
-                }
-            });
-            
-            // Form submission
-            const form = document.getElementById('walletSubmissionForm');
-            form.addEventListener('submit', async (e) => {
-                e.preventDefault();
-                
-                if (!this.isFollowing) {
-                    this.showResponse('Please follow @larrynfts on X first', 'error');
-                    return;
+                    showResponse('ERROR: NETWORK ISSUE', 'error');
                 }
                 
-                const walletValue = this.walletAddressInput.value.trim();
-                const ethRegex = /^0x[a-fA-F0-9]{40}$/;
-                
-                if (!ethRegex.test(walletValue)) {
-                    this.showResponse('Invalid wallet address format', 'error');
-                    return;
-                }
-                
-                this.showResponse('Processing submission...', 'processing');
-                this.submitBtn.disabled = true;
-                this.submitBtn.textContent = 'PROCESSING...';
-                this.systemStatus.textContent = 'PROCESSING';
-                
-                try {
-                    const formData = new FormData(form);
-                    
-                    // Simulate API call (replace with actual endpoint)
-                    setTimeout(() => {
-                        this.walletSubmitted = true;
-                        this.markStepCompleted(3);
-                        this.submitBtn.disabled = true;
-                        this.submitBtn.textContent = 'WALLET SUBMITTED';
-                        this.showResponse('Wallet successfully registered!', 'success');
-                        this.saveData();
-                        this.updateStats();
-                        this.systemStatus.textContent = 'ONLINE';
-                        
-                        // Larry celebration
-                        if (larry) {
-                            larry.moveTo(this.walletForm.getBoundingClientRect().left, 
-                                       this.walletForm.getBoundingClientRect().top);
-                        }
-                    }, 2000);
-                    
-                } catch (error) {
-                    this.showResponse('Submission failed. Please try again.', 'error');
-                    this.submitBtn.disabled = false;
-                    this.submitBtn.textContent = 'SUBMIT WALLET';
-                    this.systemStatus.textContent = 'ERROR';
-                }
-            });
-        }
-        
-        markStepCompleted(stepNumber) {
-            const step = document.getElementById(`step${stepNumber}`);
-            const stepNumberElement = document.getElementById(`step${stepNumber}Number`);
-            
-            if (step && stepNumberElement) {
-                step.classList.add('completed');
-                stepNumberElement.classList.add('completed');
-                stepNumberElement.textContent = '✓';
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'SUBMIT WALLET';
+            } catch (error) {
+                showResponse('ERROR: CONNECTION FAILED', 'error');
+                systemStatus.textContent = 'OFFLINE';
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'SUBMIT WALLET';
             }
+        });
+        
+        // Helper functions
+        function showResponse(message, type) {
+            response.textContent = message;
+            response.className = 'response ' + type;
+            response.style.display = 'block';
+            setTimeout(() => {
+                if (type !== 'processing') {
+                    response.style.display = 'none';
+                }
+            }, 5000);
         }
         
-        unmarkStepCompleted(stepNumber) {
-            const step = document.getElementById(`step${stepNumber}`);
-            const stepNumberElement = document.getElementById(`step${stepNumber}Number`);
-            
-            if (step && stepNumberElement) {
-                step.classList.remove('completed');
-                stepNumberElement.classList.remove('completed');
-                stepNumberElement.textContent = stepNumber;
-            }
+        function updateSubmissionCount() {
+            const today = new Date().toDateString();
+            let total = localStorage.getItem('flTotalSubs') || 0;
+            let dailyData = JSON.parse(localStorage.getItem('flDailySubs') || '{}');
+            total = parseInt(total) + 1;
+            dailyData[today] = (dailyData[today] || 0) + 1;
+            localStorage.setItem('flTotalSubs', total);
+            localStorage.setItem('flDailySubs', JSON.stringify(dailyData));
+            updateCounters();
+            systemStatus.textContent = 'ONLINE';
         }
         
-        showResponse(message, type) {
-            this.formResponse.textContent = message;
-            this.formResponse.className = 'response ' + type;
-            this.formResponse.style.display = 'block';
-            
-            if (type !== 'processing') {
+        function updateCounters() {
+            const today = new Date().toDateString();
+            const total = localStorage.getItem('flTotalSubs') || 0;
+            const dailyData = JSON.parse(localStorage.getItem('flDailySubs') || '{}');
+            const todayCountValue = dailyData[today] || 0;
+            totalCount.textContent = total;
+            todayCount.textContent = todayCountValue;
+        }
+        
+        function animateSuccess() {
+            const statValues = document.querySelectorAll('.stat-value');
+            statValues.forEach(stat => {
+                stat.style.transform = 'scale(1.3)';
+                stat.style.color = '#00ff00';
                 setTimeout(() => {
-                    this.formResponse.style.display = 'none';
-                }, 5000);
+                    stat.style.transform = 'scale(1)';
+                    stat.style.color = '#ffffff';
+                }, 600);
+            });
+        }
+        
+        // Real-time wallet validation
+        const walletInput = document.getElementById('walletAddress');
+        walletInput.addEventListener('input', function() {
+            const value = this.value.trim();
+            if (value.length === 0) {
+                this.style.borderColor = 'rgba(255,255,255,0.2)';
+            } else if (value.startsWith('0x') && value.length === 42) {
+                this.style.borderColor = 'rgba(0,255,0,0.4)';
+            } else {
+                this.style.borderColor = 'rgba(255,68,68,0.6)';
             }
-        }
+        });
         
-        updateStats() {
-            // Simulate dynamic stats
-            const baseRegistrations = 1284;
-            const baseFollowers = 892;
-            
-            // Add random growth
-            const randomRegistrations = Math.floor(Math.random() * 50);
-            const randomFollowers = Math.floor(Math.random() * 30);
-            
-            this.totalRegistrations.textContent = (baseRegistrations + randomRegistrations).toLocaleString();
-            this.verifiedFollowers.textContent = (baseFollowers + randomFollowers).toLocaleString();
-            
-            // Save to localStorage for persistence
-            const stats = {
-                totalRegistrations: baseRegistrations + randomRegistrations,
-                verifiedFollowers: baseFollowers + randomFollowers,
-                updated: new Date().toISOString()
-            };
-            localStorage.setItem('floorLarryStats', JSON.stringify(stats));
-        }
+        // Status pulse animation
+        setInterval(() => {
+            const statusColors = ['#ffffff', '#ffff00', '#00ffff'];
+            const randomColor = statusColors[Math.floor(Math.random() * statusColors.length)];
+            systemStatus.style.color = randomColor;
+        }, 2000);
         
-        updateStatus() {
-            const statuses = ['ONLINE', 'ACTIVE', 'LIVE', 'READY'];
-            const colors = ['#00ff00', '#00ffff', '#ffff00', '#ff00ff'];
-            let index = 0;
-            
-            setInterval(() => {
-                this.systemStatus.textContent = statuses[index];
-                this.systemStatus.style.color = colors[index];
-                index = (index + 1) % statuses.length;
-            }, 2000);
-        }
-    }
-    
-    // =============================================
-    // INITIALIZE EVERYTHING
-    // =============================================
-    
-    let larry;
-    let walletSystem;
-    
-    window.addEventListener('load', () => {
-        larry = new PerfectPixelLarry();
-        walletSystem = new WalletRegistrationSystem();
-        
-        console.log('%c⚡ FLOOR LARRY - Complete System Active ⚡', 
-                   'color: #ffffff; font-size: 16px; font-weight: bold;');
-        console.log('%c• Click anywhere to move Larry •', 
-                   'color: #00ffff; font-size: 12px;');
-        console.log('%c• Follow @larrynfts to register wallet •', 
-                   'color: #00ffff; font-size: 12px;');
+        // Console greeting
+        console.log('%c╔══════════════════════════════════════════════════════════════════╗', 'color: #ffffff;');
+        console.log('%c║                    FLOOR LARRY - RETRO NFT COLLECTION            ║', 'color: #ffffff;');
+        console.log('%c║                    CARD FLIP FIXED! DESCRIPTIONS VISIBLE         ║', 'color: #00ff00;');
+        console.log('%c╚══════════════════════════════════════════════════════════════════╝', 'color: #ffffff;');
     });
 </script>
 
