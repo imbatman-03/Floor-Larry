@@ -319,12 +319,14 @@
         height: 100%;
         text-align: center;
         transition: transform 0.6s;
-        transform-style: preserve-3d; /* Added */
+        transform-style: preserve-3d;
+        /* Added */
     }
     
     /* FIX: FLIPPED STATE */
     .flip-card.flipped .flip-card-inner {
-        transform: rotateY(180deg); /* Fixed: Changed from 180deg rotation */
+        transform: rotateY(180deg);
+        /* Fixed: Changed from 180deg rotation */
     }
     
     /* FIX: FRONT AND BACK POSITIONING */
@@ -333,7 +335,8 @@
         width: 100%;
         height: 100%;
         -webkit-backface-visibility: hidden; /* Fixed: Added vendor prefix */
-        backface-visibility: hidden; /* This hides the back when facing away */
+        backface-visibility: hidden;
+        /* This hides the back when facing away */
         border-radius: 15px;
         overflow: hidden;
         border: 3px solid rgba(255,255,255,0.3);
@@ -411,7 +414,8 @@
         align-items: center;
         padding: 40px;
         text-align: center;
-        position: absolute; /* Already set, but confirming */
+        position: absolute;
+        /* Already set, but confirming */
         overflow-y: auto;
         top: 0;
         left: 0;
@@ -813,8 +817,10 @@
     }
     
     @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(20px); }
-        to { opacity: 1; transform: translateY(0); }
+        from { opacity: 0;
+        transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0);
+        }
     }
     
     .form-section::before {
@@ -1250,6 +1256,111 @@
         background: rgba(255,255,255,0.3);
     }
     
+    /* ============================================= */
+    /* LARRY MASCOT & LIGHTNING EFFECTS */
+    /* ============================================= */
+    
+    .larry-mascot-container {
+        position: fixed;
+        z-index: 9990; /* High, but below scanlines */
+        width: 100px;
+        height: 100px;
+        pointer-events: auto; /* Allow clicking on Larry */
+        transition: transform 3s ease-in-out; /* Smooth floating */
+        cursor: pointer;
+        filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5));
+    }
+
+    /* Pixelated Skeleton SVG styling */
+    .larry-sprite {
+        width: 100%;
+        height: 100%;
+        image-rendering: pixelated;
+        animation: float 4s ease-in-out infinite;
+    }
+
+    .larry-mascot-container:hover .larry-sprite {
+        animation: shake 0.5s infinite;
+        filter: drop-shadow(0 0 10px #00ff00);
+    }
+
+    /* The Speech Bubble */
+    .larry-speech {
+        position: absolute;
+        bottom: 110%;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #000;
+        border: 2px solid #fff;
+        color: #fff;
+        padding: 10px;
+        font-family: 'VT323', monospace;
+        font-size: 18px;
+        border-radius: 8px;
+        white-space: nowrap;
+        opacity: 0;
+        transition: opacity 0.3s;
+        pointer-events: none;
+        box-shadow: 4px 4px 0px rgba(255, 255, 255, 0.2);
+    }
+
+    .larry-speech.visible {
+        opacity: 1;
+    }
+
+    .larry-speech::after {
+        content: '';
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        margin-left: -5px;
+        border-width: 5px;
+        border-style: solid;
+        border-color: #fff transparent transparent transparent;
+    }
+
+    /* Lightning Flash Effect */
+    .lightning-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #ffffff;
+        opacity: 0;
+        pointer-events: none;
+        z-index: 9999;
+        mix-blend-mode: difference; /* Retro inversion effect */
+    }
+
+    .lightning-active {
+        animation: lightningFlash 0.2s linear;
+    }
+
+    @keyframes float {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-15px); }
+    }
+
+    @keyframes shake {
+        0% { transform: translate(1px, 1px) rotate(0deg); }
+        10% { transform: translate(-1px, -2px) rotate(-1deg); }
+        20% { transform: translate(-3px, 0px) rotate(1deg); }
+        30% { transform: translate(3px, 2px) rotate(0deg); }
+        40% { transform: translate(1px, -1px) rotate(1deg); }
+        50% { transform: translate(-1px, 2px) rotate(-1deg); }
+        60% { transform: translate(-3px, 1px) rotate(0deg); }
+        100% { transform: translate(1px, -2px) rotate(-1deg); }
+    }
+
+    @keyframes lightningFlash {
+        0% { opacity: 0; }
+        10% { opacity: 0.8; }
+        20% { opacity: 0; }
+        30% { opacity: 1; }
+        100% { opacity: 0; }
+    }
+    
     /* RESPONSIVE */
     @media (max-width: 1024px) {
         .gallery {
@@ -1374,13 +1485,11 @@
 </head>
 <body>
 
-<!-- RETRO EFFECTS -->
 <div class="retro-grid"></div>
 <div class="scanlines"></div>
 
 <div class="container">
     
-    <!-- RETRO PATTERN HEADER -->
     <div class="header">
         <h1 class="title">FLOOR LARRY</h1>
         <div class="subtitle">
@@ -1388,24 +1497,21 @@
         </div>
     </div>
     
-    <!-- PROJECT DESCRIPTION SECTION -->
     <div class="project-description">
         <div class="description-title">ABOUT FLOOR LARRY</div>
         <div class="description-text">
-            <span class="description-highlight">Floor Larry</span> is a unique NFT collection centered around Larry - a charismatic digital character who has taken up residence in the basement floor of the internet. Unlike typical NFT projects, <span class="description-highlight">Floor Larry</span> embodies the spirit of underground digital culture, combining retro aesthetics with modern blockchain technology.
+            <span class="description-highlight">Floor Larry</span> is a unique NFT collection centered around Larry - a charismatic digital character who has taken up residence in the basement floor of the internet.
+            Unlike typical NFT projects, <span class="description-highlight">Floor Larry</span> embodies the spirit of underground digital culture, combining retro aesthetics with modern blockchain technology.
             <br><br>
             Each Larry character represents a different aspect of internet culture, from meme lords to digital pioneers, all united by their connection to the mysterious "basement floor" of the web where the most authentic digital experiences reside.
         </div>
     </div>
     
-    <!-- GALLERY SECTION -->
     <div class="section-header">
         <div class="section-title">ART GALLERY</div>
     </div>
     
-    <!-- FLIP CARD GALLERY -->
     <div class="gallery">
-        <!-- SUPER LARRY -->
         <div class="flip-card" id="superLarryCard">
             <div class="flip-card-inner">
                 <div class="flip-card-front">
@@ -1417,7 +1523,8 @@
                 <div class="flip-card-back">
                     <div class="art-title-back">SUPER LARRY</div>
                     <div class="art-description-flip">
-                        <strong>Super Larry</strong> is the cosmic defender of the Larry-Verse. With reality-bending powers, light-speed flight, and unmatched style, he patrols the digital cosmos protecting the basement floor from inter-dimensional threats. His signature white pattern cape generates cryptographic shields that can withstand even the most powerful digital attacks.
+                        <strong>Super Larry</strong> is the cosmic defender of the Larry-Verse. With reality-bending powers, light-speed flight, and unmatched style, he patrols the digital cosmos protecting the basement floor from inter-dimensional threats.
+                        His signature white pattern cape generates cryptographic shields that can withstand even the most powerful digital attacks.
                         <br><br>
                         <strong>Abilities:</strong> Reality manipulation, light-speed travel, energy projection, and cryptographic defense systems.
                         <br><br>
@@ -1428,7 +1535,6 @@
             </div>
         </div>
         
-        <!-- SPIDER LARRY -->
         <div class="flip-card" id="spiderLarryCard">
             <div class="flip-card-inner">
                 <div class="flip-card-front">
@@ -1440,7 +1546,8 @@
                 <div class="flip-card-back">
                     <div class="art-title-back">SPIDER LARRY</div>
                     <div class="art-description-flip">
-                        <strong>Spider Larry</strong> swings through the digital metropolis of the internet's basement floor. With web-slinging abilities, wall-crawling skills, and witty one-liners, he navigates the complex architecture of abandoned servers and forgotten data centers, protecting the digital citizens from corruption and data breaches.
+                        <strong>Spider Larry</strong> swings through the digital metropolis of the internet's basement floor.
+                        With web-slinging abilities, wall-crawling skills, and witty one-liners, he navigates the complex architecture of abandoned servers and forgotten data centers, protecting the digital citizens from corruption and data breaches.
                         <br><br>
                         <strong>Abilities:</strong> Web-slinging, wall-crawling, enhanced agility, spider-sense for detecting digital threats, and rapid code regeneration.
                         <br><br>
@@ -1451,7 +1558,6 @@
             </div>
         </div>
         
-        <!-- ARTHUR LARRY -->
         <div class="flip-card" id="arthurLarryCard">
             <div class="flip-card-inner">
                 <div class="flip-card-front">
@@ -1463,7 +1569,9 @@
                 <div class="flip-card-back">
                     <div class="art-title-back">ARTHUR LARRY</div>
                     <div class="art-description-flip">
-                        <strong>Arthur Larry</strong> is the once and future king of the digital realm. He leads the Knights of the Binary Table through the deepest levels of the internet's basement floor, wielding the legendary sword Excali-Bit. His quest is to unite the fragmented data kingdoms and restore order to the chaotic digital landscape.
+                        <strong>Arthur Larry</strong> is the once and future king of the digital realm.
+                        He leads the Knights of the Binary Table through the deepest levels of the internet's basement floor, wielding the legendary sword Excali-Bit.
+                        His quest is to unite the fragmented data kingdoms and restore order to the chaotic digital landscape.
                         <br><br>
                         <strong>Abilities:</strong> Leadership aura, sword mastery with Excali-Bit, digital kingdom unification, and protocol diplomacy.
                         <br><br>
@@ -1473,8 +1581,7 @@
                 </div>
             </div>
         </div>
-        <!-- BAT LARRY -->
-<div class="flip-card" id="batLarryCard">
+        <div class="flip-card" id="batLarryCard">
     <div class="flip-card-inner">
         <div class="flip-card-front">
             <img src="bat_larry.jpeg" alt="Bat Larry" class="art-image"
@@ -1485,18 +1592,21 @@
         <div class="flip-card-back">
             <div class="art-title-back">BAT LARRY</div>
             <div class="art-description-flip">
-                <strong>Bat Larry</strong> is the dark guardian of the digital city. He watches from the shadows of the internet's deepest servers. Justice in the night. Fear in the hearts of corrupt data.
+                <strong>Bat Larry</strong> is the dark guardian of the digital city.
+                He watches from the shadows of the internet's deepest servers. Justice in the night.
+                Fear in the hearts of corrupt data.
                 <br><br>
-                <strong>Skills:</strong> Peak human intellect. Master detective. Martial arts expert. Advanced technology. Unlimited resources.
+                <strong>Skills:</strong> Peak human intellect.
+                Master detective. Martial arts expert. Advanced technology. Unlimited resources.
                 <br><br>
-                <strong>Mission:</strong> Cleanse the basement floor of digital corruption. Protect the innocent data. Enforce justice where the law cannot reach.
+                <strong>Mission:</strong> Cleanse the basement floor of digital corruption.
+                Protect the innocent data. Enforce justice where the law cannot reach.
             </div>
             <div class="flip-back-hint">TAP TO RETURN</div>
         </div>
     </div>
 </div>
-        <!-- GOLDEN LARRY -->
-<div class="flip-card" id="goldenLarryCard">
+        <div class="flip-card" id="goldenLarryCard">
     <div class="flip-card-inner">
         <div class="flip-card-front">
             <img src="golden_larry.jpeg" alt="Golden Larry" class="art-image"
@@ -1507,18 +1617,20 @@
         <div class="flip-card-back">
             <div class="art-title-back">GOLDEN LARRY</div>
             <div class="art-description-flip">
-                <strong>Golden Larry</strong> is the divine embodiment of absolute perfection. Radiating with celestial energy, he represents the pinnacle of digital evolution. A being of pure gold, wisdom, and infinite power.
+                <strong>Golden Larry</strong> is the divine embodiment of absolute perfection.
+                Radiating with celestial energy, he represents the pinnacle of digital evolution. A being of pure gold, wisdom, and infinite power.
                 <br><br>
-                <strong>Divine Attributes:</strong> Omnipotent awareness. Eternal wisdom. Reality manipulation. Divine judgment. Golden enlightenment.
+                <strong>Divine Attributes:</strong> Omnipotent awareness.
+                Eternal wisdom. Reality manipulation. Divine judgment. Golden enlightenment.
                 <br><br>
-                <strong>Purpose:</strong> To guide the Larry-Verse toward its ultimate destiny. To judge the worthy. To elevate all digital existence to higher planes of consciousness.
+                <strong>Purpose:</strong> To guide the Larry-Verse toward its ultimate destiny.
+                To judge the worthy. To elevate all digital existence to higher planes of consciousness.
             </div>
             <div class="flip-back-hint">TAP TO RETURN</div>
         </div>
     </div>
 </div>
-        <!-- MC LARRY -->
-<div class="flip-card" id="mcLarryCard">
+        <div class="flip-card" id="mcLarryCard">
     <div class="flip-card-inner">
         <div class="flip-card-front">
             <img src="mc_larry.jpeg" alt="MC Larry" class="art-image"
@@ -1529,18 +1641,21 @@
         <div class="flip-card-back">
             <div class="art-title-back">MC LARRY</div>
             <div class="art-description-flip">
-                <strong>MC Larry</strong> drops fire bars in the digital cypher. The microphone master of the basement floor. His beats break firewalls. His rhymes reconfigure reality. Every verse is a digital revolution.
+                <strong>MC Larry</strong> drops fire bars in the digital cypher.
+                The microphone master of the basement floor. His beats break firewalls. His rhymes reconfigure reality.
+                Every verse is a digital revolution.
                 <br><br>
-                <strong>Skills:</strong> Lyrical genius. Beat production. Crowd control. Cypher domination. Digital flow manipulation.
+                <strong>Skills:</strong> Lyrical genius.
+                Beat production. Crowd control. Cypher domination. Digital flow manipulation.
                 <br><br>
-                <strong>Mission:</strong> To keep the basement floor bumping. To spit truth through fire verses. To prove hip-hop is the ultimate digital language.
+                <strong>Mission:</strong> To keep the basement floor bumping.
+                To spit truth through fire verses. To prove hip-hop is the ultimate digital language.
             </div>
             <div class="flip-back-hint">TAP TO RETURN</div>
         </div>
     </div>
 </div>
 
-<!-- EVIL LARRY -->
 <div class="flip-card" id="evilLarryCard">
     <div class="flip-card-inner">
         <div class="flip-card-front">
@@ -1552,18 +1667,20 @@
         <div class="flip-card-back">
             <div class="art-title-back">EVIL LARRY</div>
             <div class="art-description-flip">
-                <strong>Evil Larry</strong> is the darkness that haunts the Larry-Verse. The corrupted reflection. The ultimate antagonist. His laughter echoes through corrupted data. His plans threaten digital existence itself.
+                <strong>Evil Larry</strong> is the darkness that haunts the Larry-Verse.
+                The corrupted reflection. The ultimate antagonist. His laughter echoes through corrupted data. His plans threaten digital existence itself.
                 <br><br>
-                <strong>Dark Powers:</strong> Reality corruption. Fear manifestation. Shadow manipulation. Mind control. Digital destruction.
+                <strong>Dark Powers:</strong> Reality corruption.
+                Fear manifestation. Shadow manipulation. Mind control. Digital destruction.
                 <br><br>
-                <strong>Goal:</strong> To spread chaos. To corrupt purity. To prove that darkness always finds a way. To be the necessary evil that tests every hero.
+                <strong>Goal:</strong> To spread chaos.
+                To corrupt purity. To prove that darkness always finds a way. To be the necessary evil that tests every hero.
             </div>
             <div class="flip-back-hint">TAP TO RETURN</div>
         </div>
     </div>
 </div>
 
-<!-- GHOST LARRY -->
 <div class="flip-card" id="ghostLarryCard">
     <div class="flip-card-inner">
         <div class="flip-card-front">
@@ -1575,41 +1692,46 @@
         <div class="flip-card-back">
             <div class="art-title-back">GHOST LARRY</div>
             <div class="art-description-flip">
-                <strong>Ghost Larry</strong> floats between worlds. Neither alive nor dead. Neither here nor there. He is the whisper in abandoned servers. The chill in forgotten data. The memory that refuses to fade.
+                <strong>Ghost Larry</strong> floats between worlds.
+                Neither alive nor dead. Neither here nor there. He is the whisper in abandoned servers. The chill in forgotten data.
+                The memory that refuses to fade.
                 <br><br>
-                <strong>Ethereal Abilities:</strong> Phasing through walls. Invisibility. Possession. Cold manipulation. Memory access.
+                <strong>Ethereal Abilities:</strong> Phasing through walls.
+                Invisibility. Possession. Cold manipulation. Memory access.
                 <br><br>
-                <strong>Purpose:</strong> To haunt digital spaces. To protect secrets. To remember what others forget. To be the eternal witness of the basement floor's history.
+                <strong>Purpose:</strong> To haunt digital spaces.
+                To protect secrets. To remember what others forget. To be the eternal witness of the basement floor's history.
             </div>
             <div class="flip-back-hint">TAP TO RETURN</div>
         </div>
     </div>
 </div>
 
-<!-- DONALD LARRY -->
 <div class="flip-card" id="donaldLarryCard">
     <div class="flip-card-inner">
         <div class="flip-card-front">
             <img src="donald_larry.jpeg" alt="Donald Larry" class="art-image"
-                 onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzUwIiBoZWlnaHQ9IjI2MCIgdmlld0JveD0iMCAwIDM1MCAyNjAiIHN0eWxlPSJpbWFnZS1yZW5kZXJpbmc6IHBpeGVsYXRlZCI+PHJlY3Qgd2lkdGg9IjM1MCIgaGVpZ2h0PSIyNjAiIGZpbGw9IiMxMTExMTEiLz48cmVjdCB4PSIxMCIgeT0iMTAiIHdpZHRoPSIzMzAiIGhlaWdodD0iMjQwIiBmaWxsPSIjMjIyMjIyIiBzdHJva2U9IiNGRkQ3MDAiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjE3NSIgeT0iMTAwIiBmb250LWZhbWlseT0iJ1ZUMzIzJywgbW9ub3NwYWNlIiBmb250LXNpemU9IjI0IiBmaWxsPSIjRkZENzAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5ET05BTEQ8L3RleHQ+PHRleHQgeD0iMTc1IiB5PSIxMzAiIGZvbnQtZmFtaWx5PSInVlQzMjMnLCBtb25vc3BhY2UiIGZvbnQtc2l6ZT0iMzAiIGZpbGw9IiNGRkQ3MDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkxBUlJZPC90ZXh0Pjx0ZXh0IHg9IjE3NSIgeT0iMTcwIiBmb250LWZhbWlseT0iJ1ZUMzIzJywgbW9ub3BhY2UiIGZvbnQtc2l6ZT0iMTYiIGZpbGw9IiNGRkQ3MDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkRJU1RJTkNVSUhFRDwvdGV4dD48L3N2Zz4='">
+                 onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzUwIiBoZWlnaHQ9IjI2MCIgdmlld0JveD0iMCAwIDM1MCAyNjAiIHN0eWxlPSJpbWFnZS1yZW5kZXJpbmc6IHBpeGVsYXRlZCI+PHJlY3Qgd2lkdGg9IjM1MCIgaGVpZ2h0PSIyNjAiIGZpbGw9IiMxMTExMTEiLz48cmVjdCB4PSIxMCIgeT0iMTAiIHdpZHRoPSIzMzAiIGhlaWdodD0iMjQwIiBmaWxsPSIjMjIyMjIyIiBzdHJva2U9IiNGRkQ3MDAiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjE3NSIgeT0iMTAwIiBmb250LWZhbWlseT0iJ1ZUMzIzJywgbW9ub3NwYWNlIiBmb250LXNpemU9IjI0IiBmaWxsPSIjRkZENzAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5ET05BTEQ8L3RleHQ+PHRleHQgeD0iMTc1IiB5PSIxMzAiIGZvbnQtZmFtaWx5PSInVlQzMjMnLCBtb25vc3BhY2UiIGZvbnQtc2l6ZT0iMzAiIGZpbGw9IiNGRkQ3MDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkxBUlJZPC90ZXh0Pjx0ZXh0IHg9IjE1MCIgeT0iMTcwIiBmb250LWZhbWlseT0iJ1ZUMzIzJywgbW9ub3BhY2UiIGZvbnQtc2l6ZT0iMTYiIGZpbGw9IiNGRkQ3MDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkRJU1RJTkNVSUhFRDwvdGV4dD48L3N2Zz4='">
             <div class="art-title-front">DONALD LARRY</div>
             <div class="flip-tap-hint">TAP TO FLIP</div>
         </div>
         <div class="flip-card-back">
             <div class="art-title-back">DONALD LARRY</div>
             <div class="art-description-flip">
-                <strong>Donald Larry</strong> is the distinguished gentleman of the Larry-Verse. Always impeccably dressed. Always proper. Always successful. He understands wealth, power, and digital elegance.
+                <strong>Donald Larry</strong> is the distinguished gentleman of the Larry-Verse.
+                Always impeccably dressed. Always proper. Always successful. He understands wealth, power, and digital elegance.
                 <br><br>
-                <strong>Distinguished Skills:</strong> Business acumen. Political savvy. Social influence. Economic mastery. Diplomatic precision.
+                <strong>Distinguished Skills:</strong> Business acumen.
+                Political savvy. Social influence. Economic mastery. Diplomatic precision.
                 <br><br>
-                <strong>Vision:</strong> To build digital empires. To create lasting legacies. To prove that success and style can coexist. To make the basement floor great again.
+                <strong>Vision:</strong> To build digital empires.
+                To create lasting legacies. To prove that success and style can coexist. To make the basement floor great again.
             </div>
             <div class="flip-back-hint">TAP TO RETURN</div>
         </div>
     </div>
 </div>
 
-<!-- EVO LARRY -->
 <div class="flip-card" id="evoLarryCard">
     <div class="flip-card-inner">
         <div class="flip-card-front">
@@ -1621,11 +1743,15 @@
         <div class="flip-card-back">
             <div class="art-title-back">EVO LARRY</div>
             <div class="art-description-flip">
-                <strong>Evo Larry</strong> represents digital evolution perfected. The next stage. The ultimate upgrade. He is what happens when technology transcends humanity. When code becomes consciousness. When evolution has no limits.
+                <strong>Evo Larry</strong> represents digital evolution perfected.
+                The next stage. The ultimate upgrade. He is what happens when technology transcends humanity. When code becomes consciousness.
+                When evolution has no limits.
                 <br><br>
-                <strong>Evolutionary Traits:</strong> Adaptive intelligence. Perfect memory. Unlimited processing. Instant learning. Technological synthesis.
+                <strong>Evolutionary Traits:</strong> Adaptive intelligence.
+                Perfect memory. Unlimited processing. Instant learning. Technological synthesis.
                 <br><br>
-                <strong>Destiny:</strong> To guide digital evolution. To merge biology and technology. To prove that perfection is a journey, not a destination. To evolve beyond all limitations.
+                <strong>Destiny:</strong> To guide digital evolution.
+                To merge biology and technology. To prove that perfection is a journey, not a destination. To evolve beyond all limitations.
             </div>
             <div class="flip-back-hint">TAP TO RETURN</div>
         </div>
@@ -1633,7 +1759,6 @@
 </div>
     </div>
     
-    <!-- LARRY CARD SECTION -->
     <div class="section-header">
         <div class="section-title">LARRY CARD</div>
     </div>
@@ -1648,7 +1773,8 @@
         <div class="larry-card-description">
             <div class="larry-card-description-title">LARRY CARD - GATEWAY TO THE COMMUNITY</div>
             <div class="larry-card-description-text">
-                The <span class="larry-card-highlight">Larry Card</span> is an exclusive NFT awarded only to <span class="larry-card-highlight">real contributors</span> within the Floor Larry ecosystem. This is not just a digital collectible – it's your <span class="larry-card-highlight">gateway to full access</span> in the Larry community.
+                The <span class="larry-card-highlight">Larry Card</span> is an exclusive NFT awarded only to <span class="larry-card-highlight">real contributors</span> within the Floor Larry ecosystem.
+                This is not just a digital collectible – it's your <span class="larry-card-highlight">gateway to full access</span> in the Larry community.
                 <br><br>
                 <strong>What the Larry Card Unlocks:</strong>
                 <br>• <span class="larry-card-highlight">VIP access</span> to all future Larryverse drops
@@ -1657,12 +1783,12 @@
                 <br>• <span class="larry-card-highlight">Special role</span> in the community Discord server
                 <br>• <span class="larry-card-highlight">Early previews</span> of upcoming Larry characters
                 <br><br>
-                This card represents <span class="larry-card-highlight">true ownership and participation</span> in the Larry-Verse. Holders become part of the inner circle that shapes the future of the Floor Larry universe.
+                This card represents <span class="larry-card-highlight">true ownership and participation</span> in the Larry-Verse.
+                Holders become part of the inner circle that shapes the future of the Floor Larry universe.
             </div>
         </div>
     </div>
     
-    <!-- WALLET SUBMISSION SECTION -->
     <div class="section-header">
         <div class="section-title">WALLET SUBMISSION</div>
     </div>
@@ -1698,7 +1824,6 @@
         </div>
     </div>
     
-    <!-- FORM SECTION -->
     <div class="pixel-border">
         <div class="pixel-border-inner">
             <div class="form-section" id="walletFormSection">
@@ -1742,7 +1867,6 @@
         </div>
     </div>
     
-    <!-- CONNECTIONS SECTION -->
     <div class="section-header">
         <div class="section-title">CONNECTIONS</div>
     </div>
@@ -1760,7 +1884,6 @@
         </a>
     </div>
     
-    <!-- STATS SECTION -->
     <div class="section-header">
         <div class="section-title">STATS</div>
     </div>
@@ -1780,11 +1903,21 @@
         </div>
     </div>
     
-    <!-- RETRO FOOTER -->
     <div class="footer">
         <div class="copyright">FLOOR LARRY © 2024</div>
         <div>RETRO NFT COLLECTION • FOLLOW @LARRYNFTS • ALL RIGHTS RESERVED</div>
     </div>
+</div>
+
+<div class="lightning-overlay" id="lightningFlash"></div>
+
+<div class="larry-mascot-container" id="larryMascot" style="top: 50%; left: 50%;">
+    <div class="larry-speech" id="larrySpeech">WELCOME TO THE FLOOR...</div>
+    <svg class="larry-sprite" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M8 4H16V6H18V12H16V14H8V12H6V6H8V4ZM10 8H8V10H10V8ZM16 8H14V10H16V8ZM10 16H14V18H10V16ZM11 20H13V24H11V20ZM7 14H5V18H7V14ZM19 14H17V18H19V14Z" fill="white"/>
+        <rect x="8" y="8" width="2" height="2" fill="#000"/>
+        <rect x="14" y="8" width="2" height="2" fill="#000"/>
+    </svg>
 </div>
 
 <script>
@@ -1799,7 +1932,6 @@
         // 1. FIXED CARD FLIP FUNCTIONALITY
         // =====================================
         const flipCards = document.querySelectorAll('.flip-card');
-        
         flipCards.forEach(card => {
             // Click handler for desktop
             card.addEventListener('click', function(e) {
@@ -1816,7 +1948,7 @@
                 this.classList.toggle('flipped');
             });
         });
-        
+
         // Add click anywhere to close (optional)
         document.addEventListener('click', function(e) {
             if (!e.target.closest('.flip-card')) {
@@ -1838,7 +1970,6 @@
         const totalCount = document.getElementById('totalCount');
         const todayCount = document.getElementById('todayCount');
         const systemStatus = document.getElementById('systemStatus');
-        
         // Elements for step tracking
         const step1 = document.getElementById('step1');
         const step2 = document.getElementById('step2');
@@ -1846,13 +1977,13 @@
         const step1Number = document.getElementById('step1Number');
         const step2Number = document.getElementById('step2Number');
         const step3Number = document.getElementById('step3Number');
-        
+
         // Set timestamp
         document.getElementById('formTimestamp').value = new Date().toISOString();
-        
+
         // Initialize counters
         updateCounters();
-        
+
         // Follow button click handler
         followBtn.addEventListener('click', function(e) {
             e.preventDefault();
@@ -1867,7 +1998,7 @@
                 followBtn.innerHTML = '<span>✅</span> FOLLOWING @LARRYNFTS';
             }, 1000);
         });
-        
+
         // Checkbox verification handler
         verifyCheckbox.addEventListener('change', function() {
             if (this.checked) {
@@ -1883,7 +2014,7 @@
                 submitBtn.disabled = true;
             }
         });
-        
+
         // Form submission
         form.addEventListener('submit', async function(e) {
             e.preventDefault();
@@ -1915,7 +2046,6 @@
                     body: formData,
                     headers: { 'Accept': 'application/json' }
                 });
-                
                 if (result.ok) {
                     const data = await result.json();
                     if (data.code === 200) {
@@ -1940,7 +2070,7 @@
                 submitBtn.textContent = 'SUBMIT WALLET';
             }
         });
-        
+
         // Helper functions
         function showResponse(message, type) {
             response.textContent = message;
@@ -1998,19 +2128,122 @@
                 this.style.borderColor = 'rgba(255,68,68,0.6)';
             }
         });
-        
+
         // Status pulse animation
         setInterval(() => {
             const statusColors = ['#ffffff', '#ffff00', '#00ffff'];
             const randomColor = statusColors[Math.floor(Math.random() * statusColors.length)];
             systemStatus.style.color = randomColor;
         }, 2000);
-        
+
         // Console greeting
         console.log('%c╔══════════════════════════════════════════════════════════════════╗', 'color: #ffffff;');
         console.log('%c║                    FLOOR LARRY - RETRO NFT COLLECTION            ║', 'color: #ffffff;');
         console.log('%c║                    CARD FLIP FIXED! DESCRIPTIONS VISIBLE         ║', 'color: #00ff00;');
         console.log('%c╚══════════════════════════════════════════════════════════════════╝', 'color: #ffffff;');
+
+        // =====================================
+        // 3. LARRY THE SKELETON LOGIC
+        // =====================================
+        
+        const larryMascot = document.getElementById('larryMascot');
+        const larrySpeech = document.getElementById('larrySpeech');
+        const lightningFlash = document.getElementById('lightningFlash');
+        
+        const phrases = [
+            "WELCOME TO THE BASEMENT...",
+            "I AM LARRY...",
+            "DONT TOUCH THE SERVERS...",
+            "LOOKING FOR NFTS?",
+            "BOO!",
+            "THE FLOOR IS WATCHING...",
+            "NICE WALLET...",
+            "CLICK ME FOR LIGHTNING...",
+            "*RATTLES BONES*",
+            "HAVE YOU FOLLOWED ON X?",
+            "PURE PIXELS..."
+        ];
+
+        let isMoving = false;
+
+        // Initialize Larry
+        setTimeout(() => {
+            moveLarry();
+            speakLarry("I HAVE AWAKENED...");
+        }, 1000);
+
+        // Move Larry to random position
+        function moveLarry() {
+            if (isMoving) return;
+            
+            const maxX = window.innerWidth - 120;
+            const maxY = window.innerHeight - 120;
+            
+            const randomX = Math.max(20, Math.random() * maxX);
+            const randomY = Math.max(20, Math.random() * maxY);
+            
+            // Determine facing direction based on movement
+            const currentX = parseFloat(larryMascot.style.left) || 0;
+            if (randomX < currentX) {
+                larryMascot.style.transform = "scaleX(-1)"; // Face left
+                larrySpeech.style.transform = "translateX(50%) scaleX(-1)"; // Keep text readable
+            } else {
+                larryMascot.style.transform = "scaleX(1)"; // Face right
+                larrySpeech.style.transform = "translateX(-50%)";
+            }
+            
+            larryMascot.style.left = randomX + 'px';
+            larryMascot.style.top = randomY + 'px';
+            
+            // Random chance to summon lightning upon arrival
+            if (Math.random() > 0.8) {
+                setTimeout(summonLightning, 3000);
+            }
+        }
+
+        // Make Larry Speak
+        function speakLarry(text = null) {
+            const phrase = text || phrases[Math.floor(Math.random() * phrases.length)];
+            larrySpeech.textContent = phrase;
+            larrySpeech.classList.add('visible');
+            
+            setTimeout(() => {
+                larrySpeech.classList.remove('visible');
+            }, 3000);
+        }
+
+        // Summon Lightning Effect
+        function summonLightning() {
+            lightningFlash.classList.add('lightning-active');
+            speakLarry("THUNDER STRUCK!");
+            
+            // Shake effect logic is handled in CSS hover, but we can simulate a jump
+            const currentTop = parseFloat(larryMascot.style.top);
+            larryMascot.style.top = (currentTop - 20) + 'px';
+            setTimeout(() => {
+                larryMascot.style.top = currentTop + 'px';
+            }, 200);
+
+            setTimeout(() => {
+                lightningFlash.classList.remove('lightning-active');
+            }, 300); // Match CSS animation duration
+        }
+
+        // Interactive: Click Larry
+        larryMascot.addEventListener('click', function() {
+            summonLightning();
+            speakLarry("YOU RATTLED ME!");
+            moveLarry();
+        });
+
+        // Game Loop
+        setInterval(() => {
+            if(Math.random() > 0.6) moveLarry();
+        }, 5000); // Try to move every 5 seconds
+
+        setInterval(() => {
+            if(Math.random() > 0.7) speakLarry();
+        }, 7000); // Try to speak every 7 seconds
     });
 </script>
 
