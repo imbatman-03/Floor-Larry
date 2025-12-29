@@ -291,5 +291,32 @@
 
     <!-- Scripts -->
     <script src="game.js"></script>
+    <!-- Mobile Virtual Controls -->
+<div class="mobile-controls" id="mobileControls" style="display: none;">
+    <div class="virtual-button" id="moveButton">
+        🕹️
+    </div>
+    <div class="virtual-button" id="shootButton">
+        🔫
+    </div>
+</div>
+
+<script>
+// Show mobile controls only on mobile
+if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+    document.getElementById('mobileControls').style.display = 'flex';
+    
+    // Add touch events to virtual buttons
+    document.getElementById('shootButton').addEventListener('touchstart', function(e) {
+        e.preventDefault();
+        shoot();
+        // Keep shooting while touching
+        const interval = setInterval(shoot, 300);
+        this.addEventListener('touchend', function() {
+            clearInterval(interval);
+        }, { once: true });
+    });
+}
+</script>
 </body>
 </html>
