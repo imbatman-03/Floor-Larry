@@ -1280,5 +1280,139 @@ function updateLeaderboard() {
 // =============================================
 // START THE GAME
 // =============================================
+// =============================================
+// MOBILE TOUCH CONTROLS - ADD THIS WHOLE BLOCK
+// =============================================
+
+// 1. Add touch variables to Game object
+Game.touchControls = {
+    touchX: 0,
+    touchY: 0,
+    isTouching: false,
+    shootButtonPressed: false
+};
+
+// 2. Setup mobile controls
+function setupMobileControls() {
+    if (!Game.canvas) return;
+    
+    // Touch events
+    Game.canvas.addEventListener('touchstart', handleTouchStart);
+    Game.canvas.addEventListener('touchmove', handleTouchMove);
+    Game.canvas.addEventListener('touchend', handleTouchEnd);
+    Game.canvas.addEventListener('touchcancel', handleTouchEnd);
+    
+    // Prevent scrolling
+    Game.canvas.style.touchAction = 'none';
+    
+    // Show mobile message
+    showMobileMessage();
+}
+
+// 3. Touch handlers
+function handleTouchStart(e) {
+    e.preventDefault();
+    if (!Game.canvas || Game.state !== 'playing') return;
+    
+    const touch = e.touches[0];
+    const rect = Game.canvas.getBoundingClientRect();
+    
+    Game.touchControls.touchX = touch.clientX - rect.left;
+    Game.touchControls.touchY = touch.clientY - rect.top;
+    Game.touchControls.isTouching = true;
+    
+    // Shoot if touching right side
+    if (Game.touchControls.touchX > Game.canvas.width * 0.7) {
+        shoot();
+        Game.touchControls.shootButtonPressed = true;
+    }
+}
+
+function handleTouchMove(e) {
+    e.preventDefault();
+    if (!Game.touchControls.isTouching || !Game.canvas || Game.state !== 'playing') return;
+    
+    const touch = e.touches[0];
+    const rect = Game.canvas.getBoundingClientRect();
+    
+    Game.touchControls.touchX = touch.clientX - rect.left;
+    Game.touchControls.touchY = touch.clientY - rect.top;
+    
+    // Move player
+    const targetX = Game.touchControls.touchX - (Game.player.width / 2);
+    const targetY = Game.touchControls.touchY - (Game.player.height / 2);
+    
+    Game.player.x += (targetX - Game.player.x) * 0.3;
+    Game.player.y += (targetY - Game.player.y) * 0.3;
+    
+    // Keep in bounds
+    Game.player.x = Math.max(0, Math.min(Game.canvas.width - Game.player.width, Game.player.x));
+    Game.player.y = Math.max(0, Math.min(Game.canvas.height - Game.player.height, Game.player.y));
+}
+
+function handleTouchEnd(e) {
+    e.preventDefault();
+    Game.touchControls.isTouching = false;
+    Game.touchControls.shootButtonPressed = false;
+}
+
+// 4. Mobile auto-shooting
+function updateMobileShooting() {
+    if (Game.touchControls.shootButtonPressed && Game.state === 'playing') {
+        const now = Date.now();
+        if (now - Game.lastShot > 500) {
+            shoot();
+            Game.lastShot = now;
+        }
+    }
+}
+
+// 5. Show mobile message
+function showMobileMessage() {
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    if (!isMobile) return;
+    
+    const mobileMsg = document.createElement('div');
+    mobileMsg.innerHTML = `
+        <div style="
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            background: rgba(0,0,0,0.9);
+            color: #00ff00;
+            padding: 10px;
+            border: 2px solid #00ff00;
+            border-radius: 10px;
+            font-family: 'VT323', monospace;
+            font-size: 14px;
+            text-align: center;
+            z-index: 10000;
+        ">
+            📱 TOUCH TO MOVE • TAP RIGHT SIDE TO SHOOT
+        </div>
+    `;
+    document.body.appendChild(mobileMsg);
+    
+    setTimeout(() => {
+        if (mobileMsg.parentNode) {
+            mobileMsg.parentNode.removeChild(mobileMsg);
+        }
+    }, 5000);
+}
+
+// 6. Add to game loop
+const originalUpdateGame = updateGame;
+updateGame = function(deltaTime) {
+    originalUpdateGame(deltaTime);
+    updateMobileShooting();
+};
+
+// 7. Initialize mobile controls
+const originalInit = init;
+init = function() {
+    originalInit();
+    setupMobileControls();
+};
 // Initialize when page loads
 window.addEventListener('load', init);
