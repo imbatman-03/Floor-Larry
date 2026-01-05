@@ -1524,6 +1524,79 @@
             min-width: 120px;
             padding: 8px 12px;
         }
+        /* Whitelist Banner Styles */
+.whitelist-banner {
+    text-align: center;
+    margin: 40px auto;
+    max-width: 600px;
+    padding: 25px;
+    background: rgba(0, 0, 0, 0.7);
+    border: 2px solid #ffd700;
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 10px 40px rgba(255, 215, 0, 0.2);
+}
+
+.whitelist-banner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #ffd700, transparent);
+}
+
+.whitelist-button {
+    display: inline-block;
+    background: linear-gradient(145deg, #ffd700, #ffed4e);
+    color: #000;
+    padding: 18px 45px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    font-size: 1.4rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: 15px;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    position: relative;
+    overflow: hidden;
+}
+
+.whitelist-button:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 50px rgba(255, 215, 0, 0.4);
+    border-color: #000;
+}
+
+.whitelist-button::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.whitelist-button:hover::after {
+    opacity: 1;
+}
+
+.whitelist-subtitle {
+    color: #aaa;
+    font-size: 1rem;
+    letter-spacing: 2px;
+    margin-top: 10px;
+    font-family: 'Courier New', monospace;
+}
     }
 </style>
 </head>
@@ -1540,6 +1613,14 @@
              • EXPLORE THE LARRY UNIVERSE • 
         </div>
     </div>
+    </div> <!-- This closes .header -->
+<!-- ADD WHITELIST BUTTON HERE -->
+<div class="whitelist-banner">
+    <a href="whitelist.html" class="whitelist-button">
+        🎮 JOIN WHITELIST
+    </a>
+    <div class="whitelist-subtitle">Limited spots available! Get early access</div>
+</div>
     
     <div class="project-description">
         <div class="description-title">ABOUT FLOOR LARRY</div>
